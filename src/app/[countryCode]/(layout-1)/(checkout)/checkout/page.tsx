@@ -30,7 +30,7 @@ export default async function Checkout({params}:{params:{countryCode:string}}) {
 
   const cartWithRegion = await UpdateCartRegion({region, cart });
 
-  const cartWithPaymentSession = (await createPaymentSessions(cartWithRegion?.id).then(
+  const cartWithPaymentSession = (await createPaymentSessions(cart?.id).then(
     (cart) => cart
   )) as CartWithCheckoutStep
   

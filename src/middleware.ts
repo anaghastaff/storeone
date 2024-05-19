@@ -1,10 +1,10 @@
-import  {Region}  from "@medusajs/medusa"
+import { Region } from "@medusajs/medusa"
 import { notFound } from "next/navigation"
 import { NextRequest, NextResponse } from "next/server"
 
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
-const DEFAULT_REGION =  "us"
+const DEFAULT_REGION = "us"
 
 const regionMapCache = {
   regionMap: new Map<string, Region>(),
@@ -34,7 +34,6 @@ async function getRegionMap() {
     regions.forEach((region: Region) => {
       region.countries.forEach((c) => {
         regionMapCache.regionMap.set(c.iso_2, region)
-        console.log("region_name", region.name)
       })
     })
 
@@ -64,13 +63,9 @@ async function getCountryCode(
 
     if (urlCountryCode && regionMap.has(urlCountryCode)) {
       countryCode = urlCountryCode
-    } 
-    else if (vercelCountryCode && regionMap.has(vercelCountryCode)) 
-      {
+    } else if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
       countryCode = vercelCountryCode
-    }
-    
-    else if (regionMap.has(DEFAULT_REGION)) {
+    } else if (regionMap.has(DEFAULT_REGION)) {
       countryCode = DEFAULT_REGION
     } else if (regionMap.keys().next().value) {
       countryCode = regionMap.keys().next().value
@@ -91,24 +86,22 @@ async function getCountryCode(
  */
 export async function middleware(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
-  // const isOnboarding = searchParams.get("onboarding") === "true"
+  const isOnboarding = searchParams.get("onboarding") === "true"
   const cartId = searchParams.get("cart_id")
   const checkoutStep = searchParams.get("step")
-  // const onboardingCookie = request.cookies.get("_medusa_onboarding")
+  const onboardingCookie = request.cookies.get("_medusa_onboarding")
   const cartIdCookie = request.cookies.get("_medusa_cart_id")
 
   const regionMap = await getRegionMap()
 
-  const countryCode = regionMap && (await getCountryCode(request, regionMap))
-
+   const countryCode = regionMap && (await getCountryCode(request, regionMap))
+  // const countryCode = "us";
   const urlHasCountryCode =
     countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
 
   // check if one of the country codes is in the url
   if (
-    urlHasCountryCode &&
-    // (!isOnboarding || onboardingCookie) &&
-    (!cartId || cartIdCookie)
+    urlHasCountryCode
   ) {
     return NextResponse.next()
   }
@@ -117,25 +110,29 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname === "/" ? "" : request.nextUrl.pathname
 
   const queryString = request.nextUrl.search ? request.nextUrl.search : ""
+  console.log("queryString", queryString)
+  console.log("redirectPath", redirectPath)
 
   let redirectUrl = request.nextUrl.href
 
+  console.log("redirectUrl", redirectUrl)
+
   let response = NextResponse.redirect(redirectUrl, 307)
 
-  //If no country code is set, we redirect to the relevant region.
+  // If no country code is set, we redirect to the relevant region.
   if (!urlHasCountryCode && countryCode) {
     redirectUrl = `${request.nextUrl.origin}/${countryCode}${redirectPath}${queryString}`
     response = NextResponse.redirect(`${redirectUrl}`, 307)
   }
-
-   // If a cart_id is in the params, we set it as a cookie and redirect to the address step.
+  console.log("redirectUrl", redirectUrl)
+  // If a cart_id is in the params, we set it as a cookie and redirect to the address step.
   if (cartId && !checkoutStep) {
     redirectUrl = `${redirectUrl}&step=address`
     response = NextResponse.redirect(`${redirectUrl}`, 307)
     response.cookies.set("_medusa_cart_id", cartId, { maxAge: 60 * 60 * 24 })
   }
+  console.log("redirectUrl", redirectUrl)
 
- 
   // Set a cookie to indicate that we're onboarding. This is used to show the onboarding flow.
   // if (isOnboarding) {
   //   response.cookies.set("_medusa_onboarding", "true", { maxAge: 60 * 60 * 24 })
@@ -145,6 +142,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|favicon.ico|_next/assets|_next/image|assets|css).*)"],
-}
+  // matcher: [
+  //   "/((?!api|_next/static|favicon.ico|_next/assets|_next/image|_next/public|assets).*)",
+  // ],
 
+  matcher: ["/((?!api|_next/static|favicon.ico|_next/public|assets).*)"],
+}
