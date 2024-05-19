@@ -1,13 +1,9 @@
-
 import { ShopLayout1 } from "components/layouts/shop-layout-1";
 import { enrichLineItems, retrieveCart } from "medusa/modules/cart/actions";
 import type { LineItem } from "@medusajs/medusa";
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { getRegion } from "medusa/lib/data";
 import UpdateCartRegion from "medusa/lib/util/update-cart-region";
-
-
-
 
 export default async function Layout1({ children, params }:{
   children:React.ReactNode

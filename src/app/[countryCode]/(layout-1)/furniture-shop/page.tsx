@@ -1,3 +1,4 @@
+import { Viewport } from "next";
 import { FurnitureShopPageView } from "pages-sections/furniture-shop/page-view";
 import { getRegion } from "medusa/lib/data";
 import { retrievePricedProductById, getProductsList } from "medusa/lib/data";
@@ -13,9 +14,13 @@ export const metadata = {
     name: "UI-LIB",
     url: "https://ui-lib.com"
   }],
-  viewport: "width=device-width, initial-scale=1",
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
+
+export const viewport: Viewport = {
+width:"device-width", 
+initialScale:1,
+}
 
 
 async function ProductWithContext({region, cart}){

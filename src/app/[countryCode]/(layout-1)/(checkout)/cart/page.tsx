@@ -2,6 +2,7 @@ import {CartPageView} from "../../../../../pages-sections/cart/page-view";
 import { fetchCart } from "../../../../../medusa/lib/util/get-cart-from-cookie";
 import { getRegion } from "medusa/lib/data";
 import UpdateCartRegion from "medusa/lib/util/update-cart-region"
+import { Viewport } from "next";
 
 export const metadata = {
   title: "Cart - Bazaar Next.js E-commerce Template",
@@ -10,9 +11,14 @@ export const metadata = {
     name: "UI-LIB",
     url: "https://ui-lib.com"
   }],
-  viewport: "width=device-width, initial-scale=1",
+ 
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
+export const viewport: Viewport = {
+  width:'device-width',
+  initialScale:1,
+}
+
 export default async function Cart({params}:{params:{countryCode:string}}) {
   
   const cart = await fetchCart();

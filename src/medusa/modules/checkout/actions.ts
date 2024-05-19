@@ -42,7 +42,7 @@ export async function cartUpdate(data: StorePostCartsCartReq) {
 
 export async function setCartAddress(sameAsShipping: boolean, values: CartAddress) {
   if (!values) return "No form data received"
-  console.log("values in server",values)
+  
   const cartId = cookies().get("_medusa_cart_id")?.value
 
   if (!cartId) return { message: "No cartId cookie found" }
@@ -57,7 +57,7 @@ export async function setCartAddress(sameAsShipping: boolean, values: CartAddres
       postal_code: values.shipping_zip ? values.shipping_zip : "",
       city: values.shipping_city ? values.shipping_city : "",
       country_code: values.shipping_country.value ? values.shipping_country.value.toLocaleLowerCase() : "",
-      province: "",
+      province: values.shipping_city ? values.shipping_city : "",
       phone: values.shipping_contact ? values.shipping_contact : "",
     },
     email: values.email ? values.email : "",
@@ -77,11 +77,11 @@ export async function setCartAddress(sameAsShipping: boolean, values: CartAddres
       postal_code: values.billing_zip ? values.billing_zip : "",
       city: values.billing_city ? values.billing_city : "",
       country_code: values.billing_country.value ? values.billing_country.value.toLocaleLowerCase() : "",
-      province: "",
+      province: values.shipping_city ? values.shipping_city : "",
       phone: values.billing_contact ? values.billing_contact : "",
     } as StorePostCartsCartReq
 
-    console.log("data in server", data)
+    
     try {
       const response = await updateCart(cartId, data)
       .then((cart:CartWithCheckoutStep)=>{cart
@@ -245,6 +245,7 @@ export async function setShippingMethod(shippingMethodId: string) {
   try {
     await addShippingMethod({ cartId, shippingMethodId })
     revalidateTag("cart")
+    
   } catch (error: any) {
     throw error
   }

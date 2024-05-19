@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { NextRequest, NextResponse } from "next/server"
 
 
-const BACKEND_URL = "https://backend-stock-pjg4.onrender.com"
+const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
 const DEFAULT_REGION =  "us"
 
 const regionMapCache = {
@@ -65,10 +65,10 @@ async function getCountryCode(
     if (urlCountryCode && regionMap.has(urlCountryCode)) {
       countryCode = urlCountryCode
     } 
-    // else if (vercelCountryCode && regionMap.has(vercelCountryCode)) 
-    //   {
-    //   countryCode = vercelCountryCode
-    // }
+    else if (vercelCountryCode && regionMap.has(vercelCountryCode)) 
+      {
+      countryCode = vercelCountryCode
+    }
     
     else if (regionMap.has(DEFAULT_REGION)) {
       countryCode = DEFAULT_REGION
@@ -135,17 +135,7 @@ export async function middleware(request: NextRequest) {
     response.cookies.set("_medusa_cart_id", cartId, { maxAge: 60 * 60 * 24 })
   }
 
-  // if(request.nextUrl.pathname === "/payment"){
-  //   if(cartIdCookie){
-  //     const cart =  await fetchCart()
-  //     if(cart?.items?.length > 0){
-  //       redirectUrl = `${request.nextUrl.origin}/${countryCode}/checkout?step=` + cart?.checkout_step
-  //     }
-  //   }
-  //   redirectUrl = `${request.nextUrl.origin}/${countryCode}/cart`
-  //   response = NextResponse.redirect(`${redirectUrl}`, 307)
-  // }
-
+ 
   // Set a cookie to indicate that we're onboarding. This is used to show the onboarding flow.
   // if (isOnboarding) {
   //   response.cookies.set("_medusa_onboarding", "true", { maxAge: 60 * 60 * 24 })

@@ -232,7 +232,10 @@ export async function addShippingMethod({
 
   return medusaClient.carts
     .addShippingMethod(cartId, { option_id: shippingMethodId }, headers)
-    .then(({ cart }) => cart)
+    .then(({ cart }) => 
+      cart
+      
+    )
     .catch((err) => medusaError(err))
 }
 

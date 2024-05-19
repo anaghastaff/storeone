@@ -25,10 +25,11 @@ import { error } from "console";
 import useToggleState from "medusa/lib/hooks/use-toggle-state";
 import compareAddresses from "medusa/lib/util/compare-addresses";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { LoadingButton } from "@mui/lab";
 
 const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
-   const [sameAsShipping, setSameAsShipping] = useState(false);
-  const [error, SetError] = useState<string | null>(null);
+   
+  const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
   const [updating, setUpdating] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -57,14 +58,14 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
       .finally(() => {
         setUpdating(false);
       });
-    message && SetError(message);
+    message && setSnackbarMessage(message);
 
-    if (error !== "success" && error !== null) {
+    if (snackbarMessage !== "success" && snackbarMessage !== null) {
       setOpen(true);
     }
 
     const temp = "Address updated Successfully";
-    SetError(temp);
+    setSnackbarMessage(temp);
     setOpen(true);
     router.push("/checkout?step=delivery");
   };
@@ -126,41 +127,40 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
           handleSubmit,
           setFieldValue,
         }) => {
-          // const handleCheckboxChange = (checked) => {
-          //   setSameAsShipping(checked);
-          //   setFieldValue("same_as_shipping", checked);
-          //   setFieldValue("billing_zip", checked ? values.shipping_zip : "");
-          //   setFieldValue(
-          //     "billing_firstName",
-          //     checked ? values.shipping_firstName : ""
-          //   );
-          //   setFieldValue(
-          //     "billing_lastName",
-          //     checked ? values.shipping_lastName : ""
-          //   );
+          useEffect(() => {
+                        
+            setFieldValue("billing_zip", sameAsSBilling ? values.shipping_zip : "");
+            setFieldValue(
+              "billing_firstName",
+              sameAsSBilling ? values.shipping_firstName : ""
+            );
+            setFieldValue(
+              "billing_lastName",
+              sameAsSBilling ? values.shipping_lastName : ""
+            );
 
-          //   setFieldValue("billing_city", checked ? values.shipping_city : "");
-          //   setFieldValue(
-          //     "billing_contact",
-          //     checked ? values.shipping_contact : ""
-          //   );
-          //   setFieldValue(
-          //     "billing_company",
-          //     checked ? values.shipping_company : ""
-          //   );
-          //   setFieldValue(
-          //     "billing_address1",
-          //     checked ? values.shipping_address1 : ""
-          //   );
-          //   setFieldValue(
-          //     "billing_address2",
-          //     checked ? values.shipping_address2 : ""
-          //   );
-          //   setFieldValue(
-          //     "billing_country",
-          //     checked ? values.shipping_country : ""
-          //   );
-          // };
+            setFieldValue("billing_city", sameAsSBilling ? values.shipping_city : "");
+            setFieldValue(
+              "billing_contact",
+              sameAsSBilling ? values.shipping_contact : ""
+            );
+            setFieldValue(
+              "billing_company",
+              sameAsSBilling ? values.shipping_company : ""
+            );
+            setFieldValue(
+              "billing_address1",
+              sameAsSBilling ? values.shipping_address1 : ""
+            );
+            setFieldValue(
+              "billing_address2",
+              sameAsSBilling ? values.shipping_address2 : ""
+            );
+            setFieldValue(
+              "billing_country",
+              sameAsSBilling ? values.shipping_country : ""
+            );
+          },[sameAsSBilling, values, toggleSameAsBilling]);
 
           return (
             <>
@@ -195,7 +195,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                   )}
 
                   <Grid container spacing={6}>
-                    {updating ? (
+                    { !isOpen ? (
                       <Box
                         sx={{
                           display: "flex",
@@ -226,14 +226,23 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                         </Grid>
 
                         <Grid item sm={6} xs={12}>
-                          <Button
+                          <LoadingButton
+                           LinkComponent={Link}
                             variant="contained"
                             color="primary"
                             type="submit"
                             fullWidth
+                            loading={updating}
+                            loadingPosition="end"
                           >
-                            Proceed to Payment
-                          </Button>
+                            {
+                              updating ?
+                              <span>Submitting Address</span>
+                              :
+                              <span>Proceed to Delivery</span>
+                            }
+                            
+                          </LoadingButton>
                         </Grid>
                       </>
                     )}
@@ -352,7 +361,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                           </Grid>
                       </Grid>
                     ) : (
-                      <div>
+                    updating &&  <div>
                         <CircularProgress />
                       </div>
                     )}
@@ -366,7 +375,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
       <CustomizedSnackbars
         open={open}
         handleClose={handleClose}
-        message={error}
+        message={snackbarMessage}
       />
     </Box>
   );
@@ -416,6 +425,7 @@ const checkoutSchema = yup.object().shape({
   shipping_address1: yup.string().required("required"),
   shipping_address2: yup.string().notRequired(),
   shipping_city: yup.string().required("required"),
+  shipping_company:yup.string().notRequired(),
   billing_firstName: yup.string().required("required"),
   billing_lastName: yup.string().notRequired(),
   billing_contact: yup.string().required("required"),
@@ -423,6 +433,7 @@ const checkoutSchema = yup.object().shape({
   billing_country: yup.object().required("required"),
   billing_address1: yup.string().required("required"),
   billing_address2: yup.string().notRequired(),
+  billing_company:yup.string().notRequired(),
   billing_city: yup.string().required("required"),
 });
 

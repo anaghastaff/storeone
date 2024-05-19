@@ -111,7 +111,7 @@ const BillingAddressForm = ({
           <Grid item sm={6} xs={12}>
             <TextField
               fullWidth
-              type="number"
+              
               sx={{
                 mb: 2,
               }}

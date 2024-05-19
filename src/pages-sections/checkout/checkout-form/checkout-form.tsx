@@ -3,7 +3,7 @@ import Addresses from "./components/addresses";
 import Grid from "@mui/material/Unstable_Grid2";
 import ShippingOptions from "./components/shipping-options";
 import { listShippingMethods } from "medusa/lib/data";
-import Testpayment from "./components/payment";
+import Payment from "./components/payment";
 
 const CheckoutForm = async ({ cart }: { cart: CartWithCheckoutStep }) => {
 
@@ -29,7 +29,7 @@ const CheckoutForm = async ({ cart }: { cart: CartWithCheckoutStep }) => {
           />
         </Grid>
         <Grid xs={12}>
-          <Testpayment cart={cart} />
+          <Payment cart={cart} />
         </Grid>
       </Grid>
     </>

@@ -72,6 +72,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
       });
   };
 
+    
   
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,7 +126,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
                   gap: 2,
                 }}
               >
-                {availableShippingMethods ? (
+                {availableShippingMethods && (
                   availableShippingMethods.map((option) => {
                     return (
                       <>
@@ -189,19 +190,21 @@ const ShippingOptions: React.FC<ShippingProps> = ({
                       </>
                     );
                   })
-                ) : (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      px: 4,
-                      py: 8,
-                    }}
-                  >
-                    <CircularProgress />
-                  </Box>
-                )}
+                ) 
+                // : (
+                //   <Box
+                //     sx={{
+                //       display: "flex",
+                //       flexDirection: "column",
+                //       justifyContent: "center",
+                //       px: 4,
+                //       py: 8,
+                //     }}
+                //   >
+                //     <CircularProgress />
+                //   </Box>
+                // )
+                }
               </RadioGroup>
             </FormControl>
           </div>
@@ -227,20 +230,23 @@ const ShippingOptions: React.FC<ShippingProps> = ({
         </div>
       ) : (
         <Box>
-          <Box className="text-small-regular">
-            {cart && cart.shipping_methods.length > 0 && (
-              <Box className="flex flex-col w-1/3">
+          <Box>
+            {!isOpen && cart && cart?.shipping_methods.length > 0 && (
+              <Box sx={{display:'flex', width:{xs:'100%', md:'33%'}, columnGap:"16px"}}>
                
                 <Typography fontWeight="medium" variant="subtitle1">
-                  {cart.shipping_methods[0].shipping_option.name} (
-                  {formatAmount({
+                  {cart.shipping_methods[0].shipping_option.name} {" "} 
+                  
+                  
+                </Typography>
+                <Typography fontWeight="bold" variant="subtitle1">
+                {formatAmount({
                     amount: cart.shipping_methods[0].price,
                     region: cart.region,
                     includeTaxes: false,
                   })
                     .replace(/,/g, "")
                     .replace(/\./g, ",")}
-                  )
                 </Typography>
               </Box>
             )}
