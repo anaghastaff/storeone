@@ -17,7 +17,7 @@ export const StripeContext = createContext(false)
 const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY as string);
 
-const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
+const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID as string
 
 const Wrapper: React.FC<WrapperProps> = ({ cart, children }) => {
   const paymentSession = cart.payment_session as PaymentSession
@@ -46,7 +46,7 @@ const Wrapper: React.FC<WrapperProps> = ({ cart, children }) => {
     return (
       <PayPalScriptProvider
         options={{
-          "client-id": paypalClientId,
+          "clientId": paypalClientId,
           currency: cart?.region?.currency_code.toUpperCase(),
           intent: "authorize",
           components: "buttons",
