@@ -252,20 +252,16 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                 <div>
                   <Box sx={{ fontSize: "14px", fontWeight: "regular" }}>
                     {cart && cart.shipping_address ? (
-                      <Grid container spacing={3}
-                      
-                      >
+                      <Grid container spacing={3}>
 
                        <Grid item xs={12} md={6}>
                           <Stack
-                            
                             justifyContent="flex-start"
                             data-testid="shipping-address-summary"
                           >
                             <Typography
                               variant="subtitle1"
-                              fontWeight="medium"
-                             
+                              fontWeight="medium"                            
                             >
                               Shipping Address
                             </Typography>
@@ -285,8 +281,8 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                               {
                                 countryList.find(
                                   (country) =>
-                                    country.value.toLowerCase() ===
-                                    cart.shipping_address.country_code?.toLowerCase()
+                                    country?.value?.toLowerCase() ===
+                                    cart?.shipping_address.country_code?.toLowerCase()
                                 ).label
                               }{" "}
                               ({cart.shipping_address.country_code})
@@ -397,7 +393,7 @@ const setValuesfromCart = ({ cart }: { cart: CartWithCheckoutStep | null }) => {
       (country) =>
         country.value.toLowerCase() ===
         cart?.shipping_address?.country_code.toLowerCase()
-    ),
+    ) || countryList[229],
 
     billing_zip: cart?.billing_address?.postal_code || "",
     billing_lastName: cart?.billing_address?.last_name || "",
@@ -411,7 +407,7 @@ const setValuesfromCart = ({ cart }: { cart: CartWithCheckoutStep | null }) => {
       (country) =>
         country.value.toLowerCase() ===
         cart?.billing_address?.country_code.toLowerCase() 
-    ),
+    ) || countryList[229],
   };
   return data;
 }; // uncomment these fields below for from validation
