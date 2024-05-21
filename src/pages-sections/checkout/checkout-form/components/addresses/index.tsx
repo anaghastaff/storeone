@@ -389,11 +389,11 @@ const setValuesfromCart = ({ cart }: { cart: CartWithCheckoutStep | null }) => {
     shipping_address1: cart?.shipping_address?.address_1 || "",
     shipping_address2: cart?.shipping_address?.address_2 || "",
     shipping_city: cart?.shipping_address?.city || "",
-    shipping_country:(cart?.shipping_address !== null || cart?.shipping_address?.country_code !== null)  ? 
+    shipping_country: cart?.shipping_address !== null || cart?.shipping_address?.country_code !== null  ? 
     countryList.find(
       (country) =>
         country.value.toLowerCase() ===
-        cart?.shipping_address?.country_code.toLowerCase()
+        cart?.shipping_address?.country_code
     ) : countryList[229],
 
     billing_zip: cart?.billing_address?.postal_code || "",
@@ -404,11 +404,11 @@ const setValuesfromCart = ({ cart }: { cart: CartWithCheckoutStep | null }) => {
     billing_address1: cart?.billing_address?.address_1 || "",
     billing_address2: cart?.billing_address?.address_2 || "",
     billing_city: cart?.billing_address?.city || "",
-    billing_country: (cart?.billing_address !== null || cart?.billing_address?.country_code !== null ) ?
+    billing_country: cart?.billing_address !== null || cart?.billing_address?.country_code !== null  ?
      countryList.find(
       (country) =>
         country.value.toLowerCase() ===
-        cart?.billing_address?.country_code.toLowerCase() 
+        cart?.billing_address?.country_code 
     ) : countryList[229],
   };
   return data;
