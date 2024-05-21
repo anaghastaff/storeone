@@ -55,16 +55,17 @@ async function getCountryCode(
   try {
     let countryCode
 
-    const vercelCountryCode = request.headers
-      .get("x-vercel-ip-country")
-      ?.toLowerCase()
+    // const vercelCountryCode = request.headers
+    //   .get("x-vercel-ip-country")
+    //   ?.toLowerCase()
 
     const urlCountryCode = request.nextUrl.pathname.split("/")[1]?.toLowerCase()
 
     if (urlCountryCode && regionMap.has(urlCountryCode)) {
       countryCode = urlCountryCode
-    } else if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
-      countryCode = vercelCountryCode
+    } 
+    // else if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
+    //   countryCode = vercelCountryCode
     } else if (regionMap.has(DEFAULT_REGION)) {
       countryCode = DEFAULT_REGION
     } else if (regionMap.keys().next().value) {

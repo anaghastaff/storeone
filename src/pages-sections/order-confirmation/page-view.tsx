@@ -42,7 +42,13 @@ const OrderConfirmationPageView = (
             Order ID: {order?.id}
           </H6>
           <H6>
-            Total Amount Paid: {order?.paid_total}
+            Total Amount Paid: {formatAmount({
+                    amount: order?.total,
+                    region: order?.region,
+                    includeTaxes: true,
+                  })
+                    .replace(/,/g, "")
+                    .replace(/\./g, ",")}
           </H6>
           <Stack sx={{mt:1, mb:1, p:2}}>
             <H3>

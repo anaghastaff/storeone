@@ -217,10 +217,10 @@ const StripePaymentButton = ({
                 color="secondary"
                 size="large"
                 data-testid={dataTestId}
-                loadingIndicator={"Processing..."}
-                loadingPosition="end"
+                
+                loadingPosition="center"
               >
-                {submitting ? " " : "Process Payment"}
+                {submitting ? "Processing... " : "Process Payment"}
               </LoadingButton>
             </form>
           </Stack>
