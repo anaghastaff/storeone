@@ -410,7 +410,7 @@ const setValuesfromCart = ({ cart }: { cart: CartWithCheckoutStep | null }) => {
     billing_country: countryList.find(
       (country) =>
         country.value.toLowerCase() ===
-        cart?.billing_address?.country_code.toLowerCase()
+        cart?.billing_address?.country_code.toLowerCase() 
     ),
   };
   return data;

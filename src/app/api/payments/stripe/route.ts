@@ -55,7 +55,7 @@ const POST = async (req:NextRequest, res:NextResponse) => {
          
          customer: session?.data?.customer,
           amount: cart?.total ?? 0,      
-          currency: cart?.region.currency_code.toLowerCase() ,
+          currency: cart?.region?.currency_code?.toLowerCase() ,
           metadata:{
             medusa_customer_id:cart?.customer_id
           },

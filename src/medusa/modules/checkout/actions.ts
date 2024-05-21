@@ -11,7 +11,7 @@ import {
 } from "medusa/lib/data"
 import { GiftCard, StorePostCartsCartReq } from "@medusajs/medusa"
 import { revalidateTag } from "next/cache"
-import { redirect } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import { error } from "console"
 import type { CartAddress, CartWithCheckoutStep } from "medusa/types/global"
 
@@ -283,7 +283,8 @@ export async function placeOrder() {
   if (cart?.type === "order") {
     const countryCode = cart.data.shipping_address?.country_code?.toLowerCase()
     cookies().set("_medusa_cart_id", "", { maxAge: -1 })
-    redirect(`/${countryCode}/order-confirmation/${cart?.data.id}`)
+    const router = useRouter();
+    router.push(`/order-confirmation/${cart?.data.id}`)
   }
 
   return cart
