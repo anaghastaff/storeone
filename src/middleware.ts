@@ -53,7 +53,7 @@ async function getCountryCode(
   regionMap: Map<string, Region | number>
 ) {
   try {
-    let countryCode
+    let countryCode;
 
     // const vercelCountryCode = request.headers
     //   .get("x-vercel-ip-country")
@@ -66,7 +66,8 @@ async function getCountryCode(
     } 
     // else if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
     //   countryCode = vercelCountryCode
-    } else if (regionMap.has(DEFAULT_REGION)) {
+    // } 
+    else if (regionMap.has(DEFAULT_REGION)) {
       countryCode = DEFAULT_REGION
     } else if (regionMap.keys().next().value) {
       countryCode = regionMap.keys().next().value
