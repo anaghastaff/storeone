@@ -5,7 +5,7 @@ import { MedusaProvider, CartProvider } from "medusa-react"
 
 export default function MedusaProviders({children}:{children:React.ReactNode}){
     return (<MedusaProvider
-    baseUrl={MEDUSA_BACKEND_URL}
+    baseUrl={process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}
     queryClientProviderProps={{
       client: queryClient,
     }}

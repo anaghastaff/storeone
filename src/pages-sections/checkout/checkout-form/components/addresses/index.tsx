@@ -90,10 +90,10 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
     <Box sx={{mb:4}}>
       <Stack
         direction="row"
-        sx={{ alignItems: "center", justifyContent: "space-between", mb: 4 }}
+        sx={{ alignItems: "center", justifyContent: "space-between", mb:1 }}
       >
-        <Stack direction="row" columnGap={2} alignItems="center">
-          <Typography variant="h4" color="primary.black">
+        <Stack direction="row" columnGap={1} alignItems="center">
+          <Typography variant="h6" color="primary.black">
             Address
           </Typography>
           {!isOpen && cart?.shipping_address && (
@@ -129,36 +129,36 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
         }) => {
           useEffect(() => {
                         
-            setFieldValue("billing_zip", sameAsSBilling ? values.shipping_zip : "");
+            setFieldValue("billing_zip", sameAsSBilling ? values.shipping_zip : values.billing_zip);
             setFieldValue(
               "billing_firstName",
-              sameAsSBilling ? values.shipping_firstName : ""
+              sameAsSBilling ? values.shipping_firstName : values.billing_firstName
             );
             setFieldValue(
               "billing_lastName",
-              sameAsSBilling ? values.shipping_lastName : ""
+              sameAsSBilling ? values.shipping_lastName : values.billing_lastName
             );
 
-            setFieldValue("billing_city", sameAsSBilling ? values.shipping_city : "");
+            setFieldValue("billing_city", sameAsSBilling ? values.shipping_city : values.billing_city);
             setFieldValue(
               "billing_contact",
-              sameAsSBilling ? values.shipping_contact : ""
+              sameAsSBilling ? values.shipping_contact : values.billing_contact
             );
             setFieldValue(
               "billing_company",
-              sameAsSBilling ? values.shipping_company : ""
+              sameAsSBilling ? values.shipping_company : values.billing_company
             );
             setFieldValue(
               "billing_address1",
-              sameAsSBilling ? values.shipping_address1 : ""
+              sameAsSBilling ? values.shipping_address1 : values.billing_address1
             );
             setFieldValue(
               "billing_address2",
-              sameAsSBilling ? values.shipping_address2 : ""
+              sameAsSBilling ? values.shipping_address2 : values.billing_address2
             );
             setFieldValue(
               "billing_country",
-              sameAsSBilling ? values.shipping_country : ""
+              sameAsSBilling ? values.shipping_country : values.billing_country
             );
           },[sameAsSBilling, values, toggleSameAsBilling]);
 
@@ -253,18 +253,19 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                   <Box sx={{ fontSize: "14px", fontWeight: "regular" }}>
                     {cart && cart.shipping_address ? (
                       <Grid container spacing={3}
+                      
                       >
 
                        <Grid item xs={12} md={6}>
                           <Stack
-                           
+                            
                             justifyContent="flex-start"
                             data-testid="shipping-address-summary"
                           >
                             <Typography
                               variant="subtitle1"
                               fontWeight="medium"
-                              sx={{ md: 1 }}
+                             
                             >
                               Shipping Address
                             </Typography>

@@ -20,6 +20,7 @@ import {
   CircularProgress,
   Card,
   Paper,
+  CardContent,
 } from "@mui/material";
 import type { PricedShippingOption } from "@medusajs/medusa/dist/types/pricing";
 import type { Cart } from "@medusajs/medusa";
@@ -27,7 +28,7 @@ import { useEffect, useState } from "react";
 import { H2, H1, H3 } from "components/Typography";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { formatAmount } from "medusa/lib/util/prices";
-
+import AddIcon from "@mui/icons-material/Add";
 import { setShippingMethod } from "medusa/modules/checkout/actions";
 import ErrorMessage from "medusa/modules/checkout/components/error-message";
 import { LoadingButton } from "@mui/lab";
@@ -43,7 +44,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [temp, setValue] = useState("");
+  const [temp, setValue] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -72,11 +73,9 @@ const ShippingOptions: React.FC<ShippingProps> = ({
       });
   };
 
-    
-  
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+    setError(null);
+
     set((event.target as HTMLInputElement).value);
   };
 
@@ -89,30 +88,29 @@ const ShippingOptions: React.FC<ShippingProps> = ({
     <Box sx={{ mb: 4 }}>
       <Stack
         direction="row"
-        sx={{ alignItems: "center", justifyContent: "space-between", mb: 4 }}
+        sx={{ alignItems: "center", justifyContent: "space-between" }}
       >
-      <Stack
-        direction="row"
-        columnGap={2} alignItems="baseline"
-      >
-        <Typography variant="h4" fontSize="3xl" gutterBottom>
-          Shipping
-        </Typography>
-        {!isOpen && cart.shipping_methods.length > 0 && <CheckCircleIcon color="success" />}
-      </Stack>
+        <Stack direction="row" columnGap={1} alignItems="center">
+          <Typography variant="h6" sx={{ mb: 1 }}>
+            Shipping
+          </Typography>
+          {!isOpen && cart.shipping_methods.length > 0 && (
+            <CheckCircleIcon color="success" />
+          )}
+        </Stack>
 
-      {!isOpen && cart.shipping_methods.length > 0 && (
-        <Button
-          onClick={handleEdit}
-          color="primary"
-          variant="contained"
-          size="small"
-          sx={{ maxWidth: "fit-content" }}
-          data-testid="edit-delivery-button"
-        >
-          Edit
-        </Button>
-      )}
+        {!isOpen && cart.shipping_methods.length > 0 && (
+          <Button
+            onClick={handleEdit}
+            color="primary"
+            variant="contained"
+            size="small"
+            sx={{ maxWidth: "fit-content" }}
+            data-testid="edit-delivery-button"
+          >
+            Edit
+          </Button>
+        )}
       </Stack>
 
       {isOpen ? (
@@ -122,61 +120,63 @@ const ShippingOptions: React.FC<ShippingProps> = ({
               <RadioGroup
                 data-testid="delivery-option-radio"
                 onChange={handleChange}
-                sx={{
-                  gap: 2,
-                }}
+                sx={{ gap: 2 }}
               >
-                {availableShippingMethods && (
+                {availableShippingMethods &&
                   availableShippingMethods.map((option) => {
                     return (
                       <>
-                        <Paper
+                        <Card
                           key={option.id}
-                          elevation={option.id ===
-                            cart?.shipping_methods[0]?.shipping_option_id ? 6 : 4}
-                          sx={{bgcolor:option.id ===
-                            cart?.shipping_methods[0]?.shipping_option_id ? '#90caf9' 
-                            : '#c5cae9',
-                            
-                            
+                          sx={{
+                            border:
+                              option.id ===
+                              cart?.shipping_methods[0]?.shipping_option_id
+                                ? "1px solid #90caf9"
+                                : "",
+                            px: 1,
+                            "&:hover": {
+                              bgcolor: "lightgreen",
+                            },
                           }}
                         >
                           <FormControlLabel
-                            value={option.id}
                             key={option.id}
+                            value={option.id as string}
                             labelPlacement="end"
-                            sx={{
-                              height: "50px",
-                              p:1
-                            }}
                             control={
                               <Radio
                                 checked={
                                   option.id ===
                                   cart?.shipping_methods[0]?.shipping_option_id
                                 }
+                                icon={<AddIcon color="secondary" />}
+                                checkedIcon={
+                                  <CheckCircleIcon color="success" />
+                                }
                               />
                             }
                             label={
                               <Box
                                 sx={{
-                                  width: "300px",
                                   display: "flex",
                                   justifyContent: "space-between",
-                                 
-                                  gap: 4,
+                                  gap: 2,
                                   height: "100%",
                                 }}
                               >
-                                <Typography variant="subtitle1" sx={{display:'flex', alignItems:'center', gap:1}}>
-
-                                  {option.name} 
-                                  {option.id ===
-                                  cart?.shipping_methods[0]?.shipping_option_id &&
-                                    <CheckCircleIcon color="secondary" />}
+                                <Typography
+                                  variant="body1"
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 1,
+                                  }}
+                                >
+                                  {option.name}
                                 </Typography>
-                                  
-                                <Typography variant="subtitle1">
+
+                                <Typography variant="body1">
                                   {formatAmount({
                                     amount: option.amount!,
                                     region: cart?.region,
@@ -186,25 +186,10 @@ const ShippingOptions: React.FC<ShippingProps> = ({
                               </Box>
                             }
                           />
-                        </Paper>
+                        </Card>
                       </>
                     );
-                  })
-                ) 
-                // : (
-                //   <Box
-                //     sx={{
-                //       display: "flex",
-                //       flexDirection: "column",
-                //       justifyContent: "center",
-                //       px: 4,
-                //       py: 8,
-                //     }}
-                //   >
-                //     <CircularProgress />
-                //   </Box>
-                // )
-                }
+                  })}
               </RadioGroup>
             </FormControl>
           </div>
@@ -232,15 +217,17 @@ const ShippingOptions: React.FC<ShippingProps> = ({
         <Box>
           <Box>
             {!isOpen && cart && cart?.shipping_methods.length > 0 && (
-              <Box sx={{display:'flex', width:{xs:'100%', md:'33%'}, columnGap:"16px"}}>
-               
-                <Typography fontWeight="medium" variant="subtitle1">
-                  {cart.shipping_methods[0].shipping_option.name} {" "} 
-                  
-                  
+              <Box
+                sx={{
+                  display: "flex",
+                  columnGap: "16px",
+                }}
+              >
+                <Typography fontWeight="medium" variant="body1">
+                  {cart.shipping_methods[0].shipping_option.name}{" "}
                 </Typography>
-                <Typography fontWeight="bold" variant="subtitle1">
-                {formatAmount({
+                <Typography fontWeight="bold" variant="body1">
+                  {formatAmount({
                     amount: cart.shipping_methods[0].price,
                     region: cart.region,
                     includeTaxes: false,
@@ -253,7 +240,6 @@ const ShippingOptions: React.FC<ShippingProps> = ({
           </Box>
         </Box>
       )}
-      <Divider className="mt-8" />
     </Box>
   );
 };

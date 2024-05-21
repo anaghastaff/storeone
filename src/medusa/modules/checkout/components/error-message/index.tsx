@@ -9,7 +9,7 @@ const ErrorMessage = ({ error, 'data-testid': dataTestid }: { error?: string | n
     <Box 
     sx={{pt:2, color:'error'}}
     data-testid={dataTestid}>
-      <Typography variant="caption">{error}</Typography>
+      <Typography variant="caption"  paragraph>{error}</Typography>
     </Box>
   )
 }

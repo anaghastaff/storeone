@@ -255,7 +255,8 @@ export async function setPaymentMethod(providerId: string) {
   const cartId = cookies().get("_medusa_cart_id")?.value
 
   if (!cartId) throw new Error("No cartId cookie found")
-
+    console.log("Cart ID", cartId)
+  console.log("providerId", providerId)
   try {
     const cart = await setPaymentSession({ cartId, providerId })
     revalidateTag("cart")
@@ -282,7 +283,7 @@ export async function placeOrder() {
   if (cart?.type === "order") {
     const countryCode = cart.data.shipping_address?.country_code?.toLowerCase()
     cookies().set("_medusa_cart_id", "", { maxAge: -1 })
-    redirect(`/${countryCode}/order/confirmed/${cart?.data.id}`)
+    redirect(`/${countryCode}/order-confirmation/${cart?.data.id}`)
   }
 
   return cart

@@ -17,11 +17,6 @@ export const metadata = {
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
 
-export const viewport: Viewport = {
-width:"device-width", 
-initialScale:1,
-}
-
 
 async function ProductWithContext({region, cart}){
   const {products, count} = await medusaClient.products.list({
