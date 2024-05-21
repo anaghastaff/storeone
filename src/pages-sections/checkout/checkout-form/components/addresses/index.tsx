@@ -389,7 +389,8 @@ const setValuesfromCart = ({ cart }: { cart: CartWithCheckoutStep | null }) => {
     shipping_address1: cart?.shipping_address?.address_1 || "",
     shipping_address2: cart?.shipping_address?.address_2 || "",
     shipping_city: cart?.shipping_address?.city || "",
-    shipping_country: cart?.shipping_address?.country_code !== null ? countryList.find(
+    shipping_country:(cart?.shipping_address !== null || cart?.shipping_address?.country_code !== null)  ? 
+    countryList.find(
       (country) =>
         country.value.toLowerCase() ===
         cart?.shipping_address?.country_code.toLowerCase()
