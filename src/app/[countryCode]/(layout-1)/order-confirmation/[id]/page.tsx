@@ -1,5 +1,4 @@
 import { OrderConfirmationPageView } from "pages-sections/order-confirmation";
-
 import { retrieveOrder } from "medusa/lib/data"
 import { LineItem, Order } from "@medusajs/medusa"
 import { enrichLineItems } from "medusa/modules/cart/actions"
@@ -42,8 +41,6 @@ export default async function OrderConfirmation(
 ) {
 
   const { order } = await getOrder(params.id)
-
- 
 
   return <OrderConfirmationPageView order={order}/>;
 }

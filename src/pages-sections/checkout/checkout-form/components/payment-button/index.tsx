@@ -87,6 +87,7 @@ const StripePaymentButton = ({
   notReady: boolean;
   "data-testid"?: string;
 }) => {
+  
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [cardComplete, setCardComplete] = useState(false);
@@ -95,12 +96,25 @@ const StripePaymentButton = ({
   const elements = useElements();
   const card = elements?.getElement("card");
 
+  // const onPaymentCompleted = async () => {
+  //   await placeOrder().catch(() => {
+  //     setErrorMessage("An error occurred, please try again.");
+  //     setSubmitting(false);
+  //   });
+  // };
+
   const onPaymentCompleted = async () => {
-    await placeOrder().catch(() => {
-      setErrorMessage("An error occurred, please try again.");
-      setSubmitting(false);
-    });
-  };
+   
+    try{
+      const response = await placeOrder()
+      
+      return response
+    }
+    catch(error){
+      setErrorMessage("An error occurred, please try again.")
+       setSubmitting(false)
+    }
+  }
 
   const disabled = !stripe || !elements ? true : false;
 
