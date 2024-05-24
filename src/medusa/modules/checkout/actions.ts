@@ -284,8 +284,7 @@ export async function placeOrder() {
     const countryCode = cart.data.shipping_address?.country_code?.toLowerCase()
     cookies().set("_medusa_cart_id", "", { maxAge: -1 })
     console.log(`Redirecting to: /${countryCode}/order-confirmation/${cart?.data.id}`);
-
-      redirect(`/${countryCode}/order-confirmation/${cart?.data.id}`)
+    redirect(`/${countryCode}/order-confirmation/${cart?.data.id}`)
    }
 
   return cart 

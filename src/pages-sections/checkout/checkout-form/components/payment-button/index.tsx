@@ -25,6 +25,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { LoadingButton } from "@mui/lab";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 type PaymentButtonProps = {
   cart: Omit<Cart, "refundable_amount" | "refunded_total">;
@@ -92,29 +93,17 @@ const StripePaymentButton = ({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [cardComplete, setCardComplete] = useState(false);
 
+
   const stripe = useStripe();
   const elements = useElements();
   const card = elements?.getElement("card");
 
-  // const onPaymentCompleted = async () => {
-  //   await placeOrder().catch(() => {
-  //     setErrorMessage("An error occurred, please try again.");
-  //     setSubmitting(false);
-  //   });
-  // };
-
   const onPaymentCompleted = async () => {
-   
-    try{
-      const response = await placeOrder()
-      
-      return response
-    }
-    catch(error){
-      setErrorMessage("An error occurred, please try again.")
-       setSubmitting(false)
-    }
-  }
+    await placeOrder().catch(() => {
+      setErrorMessage("An error occurred, please try again.");
+      setSubmitting(false);
+    });
+  };  
 
   const disabled = !stripe || !elements ? true : false;
 
@@ -230,9 +219,9 @@ const StripePaymentButton = ({
                 variant="contained"
                 color="secondary"
                 size="large"
-                data-testid={dataTestId}
-                
+                data-testid={dataTestId}             
                 loadingPosition="center"
+                sx={{rowGap:1}}
               >
                 {submitting ? "Processing... " : "Process Payment"}
               </LoadingButton>
@@ -322,18 +311,19 @@ const PayPalPaymentButton = ({
 const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
+  
   const onPaymentCompleted = async () => {
-    await placeOrder().catch((err) => {
+    await placeOrder()
+    .then((cart)=> cart)
+    .catch((err) => {
       setErrorMessage(err.toString());
       setSubmitting(false);
     });
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     setSubmitting(true);
-
-    onPaymentCompleted();
+    await onPaymentCompleted();
   };
 
   return (
@@ -343,13 +333,13 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         variant="contained"
         disabled={notReady}
         loading={submitting}
-        loadingIndicator="Processing..."
+        
         loadingPosition="end"
         onClick={handlePayment}
         size="large"
         data-testid="submit-order-button"
       >
-        Place order
+        <span>Place order</span>
       </LoadingButton>
       <ErrorMessage
         error={errorMessage}
