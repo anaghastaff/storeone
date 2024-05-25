@@ -1,10 +1,11 @@
 'use client'
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography"
 import { styled } from '@mui/material/styles';
 import clsx from "clsx"; 
 
 
-const StyledBox = styled(Box, {
+const StyledBox = styled(Typography, {
   shouldForwardProp: prop => prop !== "ellipsis"
 })(({
   ellipsis

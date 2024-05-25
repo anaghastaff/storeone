@@ -1,6 +1,10 @@
 import { formatAmount } from "medusa/lib/util/prices"
 import { LineItem, Region } from "@medusajs/medusa"
 import { clx } from "@medusajs/ui"
+import Stack from "@mui/material/Stack"
+import Box from '@mui/material/Box'
+
+import { Paragraph, Span } from "components/Typography"
 
 import { getPercentageDiff } from "medusa/lib/util/get-precentage-diff"
 import { CalculatedVariant } from "medusa/types/medusa"
@@ -21,33 +25,37 @@ const LineItemPrice = ({
   const hasReducedPrice = (item.total || 0) < originalPrice
 
   return (
-    <div className="flex flex-col gap-x-2 text-ui-fg-subtle items-end">
-      <div className="text-left">
+    <Stack 
+      columnGap={2} sx={{color:"grey.600"}} alignItems="flex-end"
+    >
+      <Box >
         {hasReducedPrice && (
           <>
-            <p>
+            <Paragraph align="left">
               {style === "default" && (
-                <span className="text-ui-fg-subtle">Original: </span>
+                <Span color="grey.600" align="left">Original: </Span>
               )}
-              <span className="line-through text-ui-fg-muted" data-testid="product-original-price">
+              <Span 
+                sx={{textDecoration:'line-through'}}
+                color="grey.600"
+              data-testid="product-original-price">
                 {formatAmount({
                   amount: originalPrice,
                   region: region,
                   includeTaxes: false,
                 })}
-              </span>
-            </p>
+              </Span>
+            </Paragraph>
             {style === "default" && (
-              <span className="text-ui-fg-interactive">
+              <Span color="info">
                 -{getPercentageDiff(originalPrice, item.total || 0)}%
-              </span>
+              </Span>
             )}
           </>
         )}
-        <span
-          className={clx("text-base-regular", {
-            "text-ui-fg-interactive": hasReducedPrice,
-          })}
+        <Span
+          color={hasReducedPrice ? "info" : "common.black"}
+          
           data-testid="product-price"
         >
           {formatAmount({
@@ -55,9 +63,9 @@ const LineItemPrice = ({
             region: region,
             includeTaxes: false,
           })}
-        </span>
-      </div>
-    </div>
+        </Span>
+      </Box>
+    </Stack >
   )
 }
 

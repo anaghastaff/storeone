@@ -1,7 +1,8 @@
 import { formatAmount } from "medusa/lib/util/prices"
 import { LineItem, Region } from "@medusajs/medusa"
 import { clx } from "@medusajs/ui"
-
+import {Paragraph, Span} from "components/Typography"
+import Stack from "@mui/material/Stack"
 import { getPercentageDiff } from "medusa/lib/util/get-precentage-diff"
 import { CalculatedVariant } from "medusa/types/medusa"
 
@@ -21,32 +22,35 @@ const LineItemUnitPrice = ({
   const reducedPrice = (item.total || 0) / item.quantity!
 
   return (
-    <div className="flex flex-col text-ui-fg-muted justify-center h-full">
+    <Stack 
+      sx={{fontStyle:'normal'}}
+      justifyContent="center"
+      height="100%"
+    >
       {hasReducedPrice && (
         <>
           <p>
             {style === "default" && (
-              <span className="text-ui-fg-muted">Original: </span>
+              <Span color="grey.600">Original: </Span>
             )}
-            <span className="line-through" data-testid="product-unit-original-price">
+            <Span sx={{textDecoration:'line-through'}} data-testid="product-unit-original-price">
               {formatAmount({
                 amount: originalPrice,
                 region: region,
                 includeTaxes: false,
               })}
-            </span>
+            </Span>
           </p>
           {style === "default" && (
-            <span className="text-ui-fg-interactive">
+            <Span color="info">
               -{getPercentageDiff(originalPrice, reducedPrice || 0)}%
-            </span>
+            </Span>
           )}
         </>
       )}
-      <span
-        className={clx("text-base-regular", {
-          "text-ui-fg-interactive": hasReducedPrice,
-        })}
+      <Span
+        
+        color={hasReducedPrice ? "info" : "grey.700"}
         data-testid="product-unit-price"
       >
         {formatAmount({
@@ -54,8 +58,8 @@ const LineItemUnitPrice = ({
           region: region,
           includeTaxes: false,
         })}
-      </span>
-    </div>
+      </Span>
+    </Stack>
   )
 }
 

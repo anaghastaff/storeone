@@ -5,9 +5,12 @@ import Button from "@mui/material/Button";
 
 export const Wrapper = styled(BazaarCard)({
     margin: "auto",
-    padding: "2rem",
-    maxWidth: "630px",
-    textAlign: "center"
+    padding: "1rem",
+    maxWidth:"767px",
+    display:'flex',
+    flexDirection:'column',
+    alignItems:'baseline',
+    colGap:2
   });
  export const StyledButton = styled(Button)({
     marginTop: "2rem",

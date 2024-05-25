@@ -1,5 +1,6 @@
 import { ProductVariant } from "@medusajs/medusa"
-import { Text } from "@medusajs/ui"
+import { Paragraph } from "components/Typography"
+import  Typography  from "@mui/material/Typography"
 
 type LineItemOptionsProps = {
   variant: ProductVariant
@@ -9,9 +10,11 @@ type LineItemOptionsProps = {
 
 const LineItemOptions = ({ variant, 'data-testid': dataTestid, 'data-value': dataValue }: LineItemOptionsProps) => {
   return (
-    <Text data-testid={dataTestid} data-value={dataValue} className="inline-block txt-medium text-ui-fg-subtle w-full overflow-hidden text-ellipsis">
+    <Typography variant="caption" component="span" data-testid={dataTestid} data-value={dataValue} 
+    sx={{display:'flex', flexWrap:"wrap", color:'grey.600', overflow:"hidden" }}>
+    
       Variant: {variant.title}
-    </Text>
+    </Typography>
   )
 }
 
