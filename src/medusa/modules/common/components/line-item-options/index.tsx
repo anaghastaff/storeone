@@ -10,8 +10,7 @@ type LineItemOptionsProps = {
 
 const LineItemOptions = ({ variant, 'data-testid': dataTestid, 'data-value': dataValue }: LineItemOptionsProps) => {
   return (
-    <Typography variant="caption" component="span" data-testid={dataTestid} data-value={dataValue} 
-    sx={{display:'flex', flexWrap:"wrap", color:'grey.600', overflow:"hidden" }}>
+    <Typography variant="caption" component="span" data-testid={dataTestid} data-value={dataValue}  color="grey.700">
     
       Variant: {variant.title}
     </Typography>

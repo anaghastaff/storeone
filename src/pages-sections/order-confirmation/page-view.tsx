@@ -21,6 +21,8 @@ type OrderCompletedTemplateProps = {
 };
 
 const OrderConfirmationPageView = ({ order }: OrderCompletedTemplateProps) => {
+
+  
   return (
     
       <Wrapper >
@@ -38,7 +40,10 @@ const OrderConfirmationPageView = ({ order }: OrderCompletedTemplateProps) => {
         <H2 lineHeight={1.1} mt="1.5rem" >
           Your order is complete! 
         </H2>
-             
+           {/* <H2>
+            {order?.id}
+          
+            </H2>   */}
         
         <Divider />
 

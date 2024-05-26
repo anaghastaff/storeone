@@ -13,7 +13,8 @@ const StyledBox = styled(Typography, {
     overflow: "hidden", 
     whiteSpace: "nowrap",
     textOverflow: "ellipsis" 
-  })
+  }),
+  fontFamily:'sans-serif'
 }));
 export const H1 = props => {
   const {
@@ -112,7 +113,7 @@ export const Paragraph = props => {
     className,
     ...others
   } = props;
-  return <StyledBox fontSize={14} component="p" fontWeight={400} ellipsis={ellipsis ? 1 : 0} {...className && {
+  return <StyledBox fontSize={12} component="p" fontWeight={400} ellipsis={ellipsis ? 1 : 0} {...className && {
     className: clsx({
       [className]: true
     })
@@ -142,7 +143,7 @@ export const Span = props => {
     className,
     ...others
   } = props;
-  return <StyledBox component="span" ellipsis={ellipsis ? 1 : 0} {...className && {
+  return <StyledBox component="span" fontSize={12} ellipsis={ellipsis ? 1 : 0} {...className && {
     className: clsx({
       [className]: true
     })
