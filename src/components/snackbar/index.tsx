@@ -12,8 +12,6 @@ export default function CustomizedSnackbars({open, message, handleClose}:{
     const vertical = 'bottom'
     const horizontal = 'center'
 
-    
-
   return (
     <div>
      

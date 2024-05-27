@@ -3,7 +3,8 @@ import { retrieveOrder } from "medusa/lib/data"
 import { LineItem, Order } from "@medusajs/medusa"
 import { enrichLineItems } from "medusa/modules/cart/actions"
 import { notFound } from "next/navigation"
-
+import Loading from "../loading";
+import { Suspense } from "react";
 export const metadata = {
   title: "Order Confirmed",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -42,5 +43,5 @@ export default async function OrderConfirmation(
 
   const { order } = await getOrder(params.id)
 
-  return <OrderConfirmationPageView order={order}/>;
+  return  <OrderConfirmationPageView order={order}/>;
 }

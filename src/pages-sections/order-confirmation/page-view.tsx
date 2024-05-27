@@ -15,6 +15,8 @@ import CartTotals from "medusa/modules/common/components/cart-totals";
 import ShippingDetails from "medusa/modules/order/components/shipping-details";
 import PaymentDetails from "medusa/modules/order/components/payment-details";
 import Typography from "@mui/material/Typography";
+import Loading from "app/[countryCode]/(layout-1)/order-confirmation/loading";
+import { Suspense } from "react";
 
 type OrderCompletedTemplateProps = {
   order: Order;
@@ -48,8 +50,9 @@ const OrderConfirmationPageView = ({ order }: OrderCompletedTemplateProps) => {
         <Divider />
 
         {/*Order details - date, order number, pass status-prop (optional) to display current order status */}
+            <Suspense fallback={<Loading />}>
         <OrderDetails order={order} />
-
+        </Suspense>
         <Divider />
 
         <H1 sx={{mb:1}}>
@@ -57,12 +60,19 @@ const OrderConfirmationPageView = ({ order }: OrderCompletedTemplateProps) => {
         </H1>
 
         {/*Purchased Item List - thumbnail, qty, amount, variant */}
-
+        <Suspense fallback={<Loading />}>
         <Items items={order.items} region={order.region} />
+        </Suspense>
         <Divider />
+        <Suspense fallback={<Loading />}>
         <CartTotals data={order} />
+        </Suspense>
+        <Suspense fallback={<Loading />}>
         <ShippingDetails order={order} />
+        </Suspense>
+        <Suspense fallback={<Loading />}>
         <PaymentDetails order={order} />
+        </Suspense>
 
         <StyledButton
           color="primary"

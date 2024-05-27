@@ -2,9 +2,9 @@ import { Viewport } from "next";
 import { FurnitureShopPageView } from "pages-sections/furniture-shop/page-view";
 import { getRegion } from "medusa/lib/data";
 import { retrievePricedProductById, getProductsList } from "medusa/lib/data";
-
+import { Suspense } from "react";
 import { medusaClient } from "medusa/lib/config";
-
+import Loading from "./loading";
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 
 export const metadata = {
@@ -62,6 +62,8 @@ export default async function FurnitureShop(
       return data
   }))
   
-  return  <FurnitureShopPageView region={region} pricedProducts={pricedProducts} cart={cart}/>; 
+  return <Suspense fallback={<Loading />}>
+    <FurnitureShopPageView region={region} pricedProducts={pricedProducts} cart={cart}/>; 
+  </Suspense> 
   
 }
