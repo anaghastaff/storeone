@@ -14,7 +14,8 @@ const SideNav = props => {
     width = 280,
     handle,
     children,
-    toggleSidenav
+    toggleSidenav,
+    
   } = props;
   const [sideNavOpen, setSideNavOpen] = useState(open);
 

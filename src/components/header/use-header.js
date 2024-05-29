@@ -4,6 +4,7 @@ const useHeader = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [sidenavOpen, setSidenavOpen] = useState(false);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
+  const [loginMenuOpen, setLoginMenuOpen] = useState(false);
 
   const toggleDialog = () => setDialogOpen(state => !state);
 
@@ -11,13 +12,17 @@ const useHeader = () => {
 
   const toggleSearchBar = () => setSearchBarOpen(state => !state);
 
+  const toggleLoginMenu = () => setLoginMenuOpen(state => !state);
+
   return {
     dialogOpen,
     sidenavOpen,
     searchBarOpen,
+    loginMenuOpen,
     toggleDialog,
     toggleSidenav,
-    toggleSearchBar
+    toggleSearchBar,
+    toggleLoginMenu
   };
 };
 

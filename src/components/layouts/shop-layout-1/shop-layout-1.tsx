@@ -10,6 +10,7 @@ import Header from "components/header/header";
 import { SearchInputWithCategory } from "components/search-box";
 import { MobileNavigationBar } from "components/mobile-navigation";
 import type { CartWithCheckoutStep } from "medusa/types/global";
+import type { Customer } from "@medusajs/medusa";
 /**
  *  USED IN:
  *  1. market-1, market-2, gadget-shop, fashion-shop, fashion-2, fashion-3, furniture-shop, grocery-3, gift-shop
@@ -20,10 +21,12 @@ import type { CartWithCheckoutStep } from "medusa/types/global";
  */
 
 const ShopLayout1 = ({
-  children, cart
+  children, cart, customer, countryCode
 }:{
   children:React.ReactNode, 
-  cart: CartWithCheckoutStep
+  cart: CartWithCheckoutStep,
+  customer?: Omit<Customer, 'password-hash'> | null,
+  countryCode?:string
 }) => {
   
   const [isFixed, setIsFixed] = useState(false);
@@ -38,7 +41,7 @@ const ShopLayout1 = ({
       /* HEADER */
     }
       <Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={300}>
-        <Header isFixed={isFixed} searchInput={<SearchInputWithCategory/>} cart={cart} />
+        <Header countryCode={countryCode} customer={customer} isFixed={isFixed} searchInput={<SearchInputWithCategory/>} cart={cart} />
       </Sticky>
 
       {
@@ -54,7 +57,7 @@ const ShopLayout1 = ({
       {
       /* SMALL DEVICE BOTTOM NAVIGATION */
     }
-      <MobileNavigationBar cart={cart}/>
+      <MobileNavigationBar cart={cart} customer={customer} countryCode={countryCode}/>
 
       {
       /* FOOTER */

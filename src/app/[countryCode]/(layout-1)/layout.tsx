@@ -3,7 +3,7 @@ import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { getRegion } from "medusa/lib/data";
 import UpdateCartRegion from "medusa/lib/util/update-cart-region";
 import type { Viewport } from "next";
-
+import { getCustomer } from "medusa/lib/data";
 export const viewport: Viewport = {
   width:'device-width',
   initialScale:1,
@@ -22,10 +22,10 @@ export default async function Layout1({ children, params }:{
   if(!region) { return null}
 
   const updatedCart = await UpdateCartRegion({region, cart })
-  
+  const customer = await getCustomer()
   return (
     
-      <ShopLayout1 cart={updatedCart} >{children} </ShopLayout1> 
+      <ShopLayout1 cart={updatedCart} customer={customer} countryCode={params.countryCode}>{children} </ShopLayout1> 
     
   );
 }

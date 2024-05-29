@@ -10,16 +10,22 @@ import ShoppingBagOutlined from "icons/ShoppingBagOutlined"; // GLOBAL CUSTOM HO
 
 import useCart from "hooks/useCart"; // ==============================================================
 import { CartWithCheckoutStep } from "medusa/types/global";
+import type { Customer } from "@medusajs/medusa";
+import Avatar from "@mui/material/Avatar"
 
 // ==============================================================
 const LoginCartButtons = ({ 
   toggleDialog,
   toggleSidenav,
-  cart
+  toggleLoginMenu,
+  cart,
+  customer
 }:{
   toggleDialog:()=>void,
   toggleSidenav:()=>void,
-  cart?:CartWithCheckoutStep
+  toggleLoginMenu:()=>void,
+  cart?:CartWithCheckoutStep,
+  customer?:Omit<Customer, 'password-hash'> | null
 
 }) => {
   // const {
@@ -28,8 +34,8 @@ const LoginCartButtons = ({
   
   
   return <FlexBox gap={1.5} alignItems="center">
-      <Box component={IconButton} p={1.25} bgcolor="grey.200" onClick={toggleDialog}>
-        <PersonOutline />
+      <Box component={IconButton} p={customer ? 0 : 1.25} bgcolor="grey.200" onClick={customer ? toggleLoginMenu : toggleDialog}>
+      {customer ? <Avatar sx={{width:32, height:32, bgcolor:'forestgreen', color:'common.white',p:2}}>{customer?.first_name.charAt(0).toUpperCase()} </Avatar> : <PersonOutline /> } 
       </Box>
 
       <Badge badgeContent={cart ? cart?.items?.length : null} color="primary">

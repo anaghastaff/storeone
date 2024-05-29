@@ -1,7 +1,5 @@
-"use client";
-
 import Button from "@mui/material/Button";
-import { useFormik } from "formik";
+
 import * as yup from "yup"; // LOCAL CUSTOM COMPONENTS
 
 import EyeToggleButton from "../eye-toggle-button"; // LOCAL CUSTOM HOOK
@@ -10,46 +8,66 @@ import usePasswordVisible from "../use-password-visible"; // GLOBAL CUSTOM COMPO
 
 import BazaarTextField from "components/BazaarTextField";
 
-const LoginPageView = () => {
-  const {
-    visiblePassword,
-    togglePasswordVisible
-  } = usePasswordVisible(); // LOGIN FORM FIELDS INITIAL VALUES
+import { useFormState } from "react-dom";
+import {logCustomerIn} from "medusa/modules/account/actions"
+import ErrorMessage from "medusa/modules/common/components/error-message";
+import { SubmitButton } from "medusa/modules/common/components/submit-button";
 
-  const initialValues = {
-    email: "",
-    password: ""
-  }; // LOGIN FORM FIELD VALIDATION SCHEMA
+const LoginPageView = () => {
+  const { visiblePassword, togglePasswordVisible } = usePasswordVisible(); // LOGIN FORM FIELDS INITIAL VALUES
 
   const validationSchema = yup.object().shape({
     password: yup.string().required("Password is required"),
-    email: yup.string().email("invalid email").required("Email is required")
+    email: yup.string().email("invalid email").required("Email is required"),
   });
-  const {
-    values,
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    handleSubmit
-  } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: values => {
-      console.log(values);
-    }
-  });
-  return <form onSubmit={handleSubmit}>
-      <BazaarTextField mb={1.5} fullWidth name="email" size="small" type="email" variant="outlined" onBlur={handleBlur} value={values.email} onChange={handleChange} label="Email or Phone Number" placeholder="exmple@mail.com" error={!!touched.email && !!errors.email} helperText={touched.email && errors.email} />
 
-      <BazaarTextField mb={2} fullWidth size="small" name="password" label="Password" autoComplete="on" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.password} placeholder="*********" type={visiblePassword ? "text" : "password"} error={!!touched.password && !!errors.password} helperText={touched.password && errors.password} InputProps={{
-      endAdornment: <EyeToggleButton show={visiblePassword} click={togglePasswordVisible} />
-    }} />
+  const [message, formAction] = useFormState(logCustomerIn, null);
 
-      <Button fullWidth type="submit" color="primary" variant="contained" size="large">
+  return (
+    <form action={formAction}>
+      <BazaarTextField
+        mb={1.5}
+        fullWidth
+        name="email"
+        size="medium"
+        type="email"
+        variant="outlined"
+        label="Email or Phone Number"
+        placeholder="exmple@mail.com"
+        required
+      />
+
+      <BazaarTextField
+        mb={2}
+        fullWidth
+        size="medium"
+        name="password"
+        label="Password"
+        autoComplete="on"
+        variant="outlined"
+        placeholder="*********"
+        type={visiblePassword ? "text" : "password"}
+        InputProps={{
+          endAdornment: (
+            <EyeToggleButton
+              show={visiblePassword}
+              click={togglePasswordVisible}
+            />
+          ),
+        }}
+      />
+
+      <SubmitButton
+      variant="contained"
+      size="large"
+      color="error"
+      fullWidth
+      >
         Login
-      </Button>
-    </form>;
+      </SubmitButton>
+      <ErrorMessage error={message} data-testid="error-message-login" />
+    </form> 
+  );
 };
 
 export default LoginPageView;

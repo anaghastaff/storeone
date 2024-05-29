@@ -16,6 +16,7 @@ import LoginCartButtons from "./login-cart-buttons"; // STYLED COMPONENTS
 
 import { HeaderWrapper, StyledContainer } from "./styles"; 
 import type { CartWithCheckoutStep } from "medusa/types/global";
+import type { Customer } from "@medusajs/medusa";
 
 
 
@@ -23,23 +24,32 @@ const Header = ({
   isFixed,
   className,
   searchInput,
-  cart
+  cart,
+  customer,
+ countryCode
 }:{
   isFixed: any,
     className?: any,
     searchInput: any,
-    cart:CartWithCheckoutStep 
+    cart:CartWithCheckoutStep ,
+    customer?: Omit<Customer, 'password-hash'> | null,
+    countryCode?:string
+    
 }) => {
   
   console.log("cart with checkout", cart?.checkout_step)
-
+  
   const theme = useTheme();
   const downMd = useMediaQuery(theme.breakpoints.down(1150));
   const {
     dialogOpen,
     sidenavOpen,
+    loginMenuOpen,
+    searchBarOpen,
+    toggleSearchBar,
     toggleDialog,
-    toggleSidenav
+    toggleSidenav,
+    toggleLoginMenu
   } = useHeader();
   const CONTENT_FOR_LARGE_DEVICE = <Fragment>
       {
@@ -66,16 +76,16 @@ const Header = ({
       {
       /* LOGIN AND CART BUTTON */
     }
-      <LoginCartButtons toggleDialog={toggleDialog} toggleSidenav={toggleSidenav} cart={cart}/>
+      <LoginCartButtons customer={customer} toggleLoginMenu={toggleLoginMenu} toggleDialog={toggleDialog} toggleSidenav={toggleSidenav} cart={cart}/>
 
       {
       /* LOGIN FORM DIALOG AND CART SIDE BAR  */
     }
-      <DialogDrawer dialogOpen={dialogOpen} sidenavOpen={sidenavOpen} toggleDialog={toggleDialog} toggleSidenav={toggleSidenav} cart={cart}/>
+      <DialogDrawer countryCode={countryCode} customer={customer} toggleLoginMenu={toggleLoginMenu} loginMenuOpen={loginMenuOpen} dialogOpen={dialogOpen} sidenavOpen={sidenavOpen} toggleDialog={toggleDialog} toggleSidenav={toggleSidenav} cart={cart}/>
     </Fragment>;
   return <HeaderWrapper className={clsx(className)}>
       <StyledContainer>
-        {downMd ? <MobileHeader searchInput={searchInput}  cart={cart} /> : CONTENT_FOR_LARGE_DEVICE}
+        {downMd ? <MobileHeader countryCode={countryCode} searchInput={searchInput}  cart={cart} customer={customer} /> : CONTENT_FOR_LARGE_DEVICE}
       </StyledContainer>
     </HeaderWrapper>;
 };

@@ -70,7 +70,7 @@ const MiniCart = ({
     push(path);
   };
 
-  return <Box width="100%" minWidth={380}>
+  return <Box width="100%" >
       {
       /* HEADING SECTION */
     }

@@ -21,18 +21,22 @@ import useCart from "hooks/useCart"; // LOCAL CUSTOM HOOK
 import useHeader from "./use-header"; // ==============================================================
 
 import { enrichLineItems, retrieveCart } from "medusa/modules/cart/actions";
-import type { LineItem } from "@medusajs/medusa";
+import type { Customer, LineItem } from "@medusajs/medusa";
 import type { CartWithCheckoutStep } from "medusa/types/global";
-
+import Avatar from "@mui/material/Avatar"
 
 
 // ==============================================================
 const MobileHeader = ({
   searchInput,
-  cart
+  cart,
+  customer,
+  countryCode,
 }:{
   searchInput:any,
-  cart:CartWithCheckoutStep
+  cart:CartWithCheckoutStep,
+  customer: Omit<Customer, 'password-hash'> | null,
+  countryCode:string
 }) => {
   // const {
   //   state
@@ -42,10 +46,12 @@ const MobileHeader = ({
   const {
     dialogOpen,
     sidenavOpen,
+    loginMenuOpen,
     searchBarOpen,
-    toggleDialog,
     toggleSearchBar,
-    toggleSidenav
+    toggleDialog,
+    toggleSidenav,
+    toggleLoginMenu
   } = useHeader();
   const ICON_STYLE = {
     color: "grey.600",
@@ -75,9 +81,12 @@ const MobileHeader = ({
             <Icon.Search sx={ICON_STYLE} />
           </Box>
 
-          <Box component={IconButton} onClick={toggleDialog}>
+          {/* <Box sx={{bgcolor:'blueviolet'}} component={IconButton} onClick={customer ? toggleLoginMenu : toggleDialog}>
             <Icon.User sx={ICON_STYLE} />
-          </Box>
+          </Box> */}
+          <Box component={IconButton} bgcolor="grey.200" onClick={customer ? toggleLoginMenu : toggleDialog}>
+      {customer ? <Avatar sx={{width:32, height:32, bgcolor:'blueviolet', color:'common.white',p:2}}>{customer?.first_name.charAt(0).toUpperCase()} </Avatar> : <Icon.User sx={ICON_STYLE} /> } 
+      </Box>
 
           <Box component={IconButton} onClick={toggleSidenav}>
             <Badge badgeContent={cart?.items.length} color="primary">
@@ -116,7 +125,7 @@ const MobileHeader = ({
       {
       /* LOGIN FORM DIALOG AND CART SIDE BAR  */
     }
-      <DialogDrawer dialogOpen={dialogOpen} sidenavOpen={sidenavOpen} toggleDialog={toggleDialog} toggleSidenav={toggleSidenav} cart={cart}/>
+        <DialogDrawer countryCode={countryCode} customer={customer} toggleLoginMenu={toggleLoginMenu} loginMenuOpen={loginMenuOpen} dialogOpen={dialogOpen} sidenavOpen={sidenavOpen} toggleDialog={toggleDialog} toggleSidenav={toggleSidenav} cart={cart}/>
     </Fragment>;
 };
 
