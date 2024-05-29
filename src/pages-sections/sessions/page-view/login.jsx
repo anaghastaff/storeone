@@ -1,4 +1,4 @@
-import Button from "@mui/material/Button";
+"use client"
 
 import * as yup from "yup"; // LOCAL CUSTOM COMPONENTS
 
