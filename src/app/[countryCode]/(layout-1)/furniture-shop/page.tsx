@@ -39,15 +39,12 @@ export default async function FurnitureShop(
     countryCode:string
   }
 }) {
-
   
   const region = await getRegion(countryCode);
   if (!region){
     return null
   }
-
   const cart = await fetchCart();
-  
 
   const {products, count} = await ProductWithContext({region, cart});
 

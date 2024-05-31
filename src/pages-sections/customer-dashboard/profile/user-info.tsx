@@ -4,12 +4,16 @@ import useMediaQuery from "@mui/material/useMediaQuery"; // GLOBAL CUSTOM COMPON
 
 import FlexBox from "components/flex-box/flex-box";
 import { Small, Span } from "components/Typography"; // CUSTOM DATA MODEL
+import type { Customer } from "@medusajs/medusa";
+import type { Theme } from "@mui/material";
 
 // ==============================================================
 const UserInfo = ({
-  user
+  customer
+}:{
+  customer: Omit<Customer, 'password-hash'> | null
 }) => {
-  const downMd = useMediaQuery(theme => theme.breakpoints.down("sm"));
+  const downMd = useMediaQuery((theme:Theme) => theme.breakpoints.down("sm"));
   return <Card sx={{
     mt: 3,
     display: "flex",
@@ -23,11 +27,11 @@ const UserInfo = ({
       justifyContent: "flex-start"
     })
   }}>
-      <TableRowItem title="First Name" value={user.name.firstName} />
-      <TableRowItem title="Last Name" value={user.name.lastName} />
-      <TableRowItem title="Email" value={user.email} />
-      <TableRowItem title="Phone" value={user.phone} />
-      <TableRowItem title="Birth date" value={format(new Date(user.dateOfBirth), "dd MMM, yyyy")} />
+      <TableRowItem title="First Name" value={customer?.first_name} />
+      <TableRowItem title="Last Name" value={customer?.last_name} />
+      <TableRowItem title="Email" value={customer?.email} />
+      <TableRowItem title="Phone" value={customer?.phone} />
+      <TableRowItem title="Birth date" value={format(new Date(customer?.created_at), "dd MMM, yyyy")} />
     </Card>;
 };
 

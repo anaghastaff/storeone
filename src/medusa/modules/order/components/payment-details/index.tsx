@@ -17,8 +17,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
   const payment = order.payments[0];
   const date = payment.created_at.toString().split("T");
   return (
-    
-      
+          
       <Box sx={{width:'100%'}}>
       <H1 sx={{ display: "flex", mt: 3, mb: 1 }}>Payment</H1>
         {payment && (

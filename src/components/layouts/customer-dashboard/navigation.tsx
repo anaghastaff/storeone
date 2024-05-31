@@ -15,8 +15,12 @@ import { Paragraph, Span } from "components/Typography"; // CUSTOM ICON COMPONEN
 import CustomerService from "icons/CustomerService"; // STYLED COMPONENTS
 
 import { MainContainer, StyledNavLink } from "./styles";
+import type { Customer, Order } from "@medusajs/medusa";
 
-const Navigation = () => {
+const Navigation = ({customer, orders}:{
+  customer:Omit<Customer,"password-hash"> | null,
+  orders: Order[] | null
+}) => {
   const pathname = usePathname();
   return <MainContainer>
       {MENUS.map(item => <Fragment key={item.title}>
@@ -35,7 +39,15 @@ const Navigation = () => {
                 <Span>{title}</Span>
               </FlexBox>
 
-              <Span>{count}</Span>
+              <Span>{
+              title === "Orders" ? orders?.length > 0 ? orders?.length : 0 :
+              title === "Wishlist" ? 0 :
+              title === 'Support Tickets' ? 0 :
+                title === 'Profile Info' ? null :
+                title === 'Addresses' ? customer?.shipping_addresses?.length :
+                title === 'Payment Methods' ? null : null
+              
+              }</Span>
             </StyledNavLink>)}
         </Fragment>)}
     </MainContainer>;

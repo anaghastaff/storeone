@@ -1,5 +1,6 @@
+'use client'
 import Card from "@mui/material/Card";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 const fbStyle = {
   background: "#3B5998",
   color: "white"

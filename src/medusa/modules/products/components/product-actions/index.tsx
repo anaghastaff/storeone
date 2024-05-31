@@ -68,8 +68,9 @@ export default function ProductActions({
       for (const option of variant.options) {
         temp[option.option_id] = option.value;
       }
-
+      
       map[variant.id] = temp;
+      
     }
 
     return map;
@@ -219,7 +220,7 @@ export default function ProductActions({
                       current={options[option.id]}
                       updateOption={updateOptions}
                       title={option.title}
-                      data-testid="product-options"
+                      data-testid="product-options" 
                     />
                   </Box>
                 );

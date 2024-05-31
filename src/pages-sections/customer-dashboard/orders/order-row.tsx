@@ -10,10 +10,13 @@ import { H5, Paragraph } from "components/Typography"; // Local CUSTOM COMPONENT
 import TableRow from "../table-row"; // CUSTOM UTILS LIBRARY FUNCTION
 
 import { currency } from "lib"; // CUSTOM DATA MODEL
-
+import { Order } from "@medusajs/medusa";
+import { formatAmount } from "medusa/lib/util/prices";
 // =================================================
 const OrderRow = ({
   order
+}:{
+  order: Omit<Order, 'beforeInsert'>
 }) => {
   const getColor = status => {
     switch (status) {
@@ -27,31 +30,36 @@ const OrderRow = ({
         return "success";
 
       case "Cancelled":
-        return "primary";
+        return "error";
 
       default:
         return "default";
     }
   };
 
-  return <Link href={`/orders/${order.id}`}>
+  return <Link href={`/orders/${order?.id}`}>
       <TableRow sx={{
       gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr"
     }}>
-        <H5 ellipsis>#{order.id.substring(0, 18)}</H5>
+        <H5 ellipsis>#{order?.id.substring(0, 18)}</H5>
 
         <Box textAlign="center">
-          <Chip size="small" label={order.status} color={getColor(order.status)} />
+          <Chip size="small" label={order?.status} color="default" />
         </Box>
 
         <Paragraph textAlign={{
         sm: "center",
         xs: "left"
       }}>
-          {format(new Date(order.createdAt), "MMM dd, yyyy")}
+          {format(new Date(order?.created_at), "MMM dd, yyyy")}
         </Paragraph>
-
-        <Paragraph textAlign="center">{currency(order.totalPrice)}</Paragraph>
+         
+        <Paragraph textAlign="center">{
+        formatAmount({
+            amount: order?.total,
+            region: order?.region,
+            includeTaxes: false,
+          })}</Paragraph>
 
         <Box display={{
         sm: "inline-flex",

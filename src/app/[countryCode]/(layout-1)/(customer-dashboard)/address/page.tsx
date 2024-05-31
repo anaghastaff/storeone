@@ -1,6 +1,6 @@
 import { AddressPageView } from "pages-sections/customer-dashboard/address/page-view"; // API FUNCTIONS
-
-import api from "utils/__api__/address";
+import {headers} from 'next/headers';
+import {getCustomer, getRegion} from 'medusa/lib/data';
 export const metadata = {
   title: "Address - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -8,10 +8,15 @@ export const metadata = {
     name: "UI-LIB",
     url: "https://ui-lib.com"
   }],
-  viewport: "width=device-width, initial-scale=1",
+  
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
 export default async function Address() {
-  const addressList = await api.getAddressList();
-  return <AddressPageView addressList={addressList} />;
+  const nextHeaders = headers();
+  const countryCode = nextHeaders.get("next-url")?.split("/")[1] || ""
+  const region = await getRegion(countryCode);
+  const customer = await getCustomer();
+  
+
+  return <AddressPageView customer={customer} region={region} />;
 }

@@ -1,5 +1,6 @@
 import { ProfilePageView } from "pages-sections/customer-dashboard/profile/page-view"; // API FUNCTIONS
-
+import { getCustomer, listCustomerOrders } from "medusa/lib/data";
+import { redirect } from "next/navigation";
 import api from "utils/__api__/users";
 export const metadata = {
   title: "Profile - Bazaar Next.js E-commerce Template",
@@ -8,10 +9,12 @@ export const metadata = {
     name: "UI-LIB",
     url: "https://ui-lib.com"
   }],
-  viewport: "width=device-width, initial-scale=1",
+  
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
 export default async function Profile() {
-  const user = await api.getUser();
-  return <ProfilePageView user={user} />;
+  
+  const customer = await getCustomer()
+  const orders = await listCustomerOrders();
+  return <ProfilePageView orders={orders} customer={customer} />;
 }

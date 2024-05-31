@@ -1,5 +1,6 @@
 import { OrdersPageView } from "pages-sections/customer-dashboard/orders/page-view"; // API FUNCTIONS
-
+import { getCustomer, listCustomerOrders } from "medusa/lib/data";
+import { notFound, redirect } from "next/navigation";
 import api from "utils/__api__/orders";
 export const metadata = {
   title: "Orders - Bazaar Next.js E-commerce Template",
@@ -8,10 +9,15 @@ export const metadata = {
     name: "UI-LIB",
     url: "https://ui-lib.com"
   }],
-  viewport: "width=device-width, initial-scale=1",
+  
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
 export default async function Orders() {
-  const orders = await api.getOrders();
+  
+  const customer = await getCustomer();
+  const orders = await listCustomerOrders();
+  if(!customer || !orders){
+   notFound()
+  }
   return <OrdersPageView orders={orders} />;
 }

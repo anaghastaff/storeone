@@ -12,6 +12,7 @@ import useCart from "hooks/useCart"; // ========================================
 import { CartWithCheckoutStep } from "medusa/types/global";
 import type { Customer } from "@medusajs/medusa";
 import Avatar from "@mui/material/Avatar"
+import { Typography } from "@mui/material";
 
 // ==============================================================
 const LoginCartButtons = ({ 
@@ -35,7 +36,13 @@ const LoginCartButtons = ({
   
   return <FlexBox gap={1.5} alignItems="center">
       <Box component={IconButton} p={customer ? 0 : 1.25} bgcolor="grey.200" onClick={customer ? toggleLoginMenu : toggleDialog}>
-      {customer ? <Avatar sx={{width:32, height:32, bgcolor:'forestgreen', color:'common.white',p:2}}>{customer?.first_name.charAt(0).toUpperCase()} </Avatar> : <PersonOutline /> } 
+      {customer ? <Avatar sx={{width:32, height:32, bgcolor:'forestgreen', p:1}}>
+        <Typography variant="caption" color="common.white" letterSpacing="0.1em" textAlign="center" align="center">
+      {customer?.first_name.charAt(0).toUpperCase()}
+      {customer?.last_name.charAt(0).toUpperCase()}
+        {/* {customer?.orders?.length === null && "O"} */}
+
+        </Typography> </Avatar> : <PersonOutline /> } 
       </Box>
 
       <Badge badgeContent={cart ? cart?.items?.length : null} color="primary">

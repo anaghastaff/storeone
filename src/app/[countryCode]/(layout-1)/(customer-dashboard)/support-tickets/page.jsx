@@ -1,5 +1,6 @@
 import { TicketsPageView } from "pages-sections/customer-dashboard/support-tickets/page-view"; // API FUNCTIONS
-
+import { getCustomer } from "medusa/lib/data";
+import { redirect } from "next/navigation";
 import api from "utils/__api__/ticket";
 export const metadata = {
   title: "Support Tickets - Bazaar Next.js E-commerce Template",
@@ -8,10 +9,14 @@ export const metadata = {
     name: "UI-LIB",
     url: "https://ui-lib.com"
   }],
-  viewport: "width=device-width, initial-scale=1",
+  
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
 export default async function SupportTickets() {
   const tickets = await api.getTicketList();
+  const customer = await getCustomer();
+  if(!customer){
+    redirect('/login')
+  }
   return <TicketsPageView tickets={tickets} />;
 }

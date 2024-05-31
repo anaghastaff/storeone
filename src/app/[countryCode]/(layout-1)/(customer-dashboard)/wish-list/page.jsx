@@ -1,5 +1,6 @@
 import { WishListPageView } from "pages-sections/customer-dashboard/wish-list"; // API FUNCTIONS
-
+import { getCustomer } from "medusa/lib/data";
+import { redirect } from "next/navigation";
 import { getWishListProducts } from "utils/__api__/wish-list";
 export const metadata = {
   title: "Wish List - Bazaar Next.js E-commerce Template",
@@ -8,7 +9,7 @@ export const metadata = {
     name: "UI-LIB",
     url: "https://ui-lib.com"
   }],
-  viewport: "width=device-width, initial-scale=1",
+  
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
 export default async function WishList({
@@ -18,5 +19,9 @@ export default async function WishList({
     products,
     totalProducts
   } = await getWishListProducts(searchParams.page);
+  const customer = await getCustomer();
+  if(!customer){
+    redirect('/login')
+  }
   return <WishListPageView products={products} totalProducts={totalProducts} />;
 }

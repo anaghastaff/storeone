@@ -57,6 +57,32 @@ export async function logCustomerIn(
   }
 }
 
+export async function updateProfileInfo(
+  _currentState: Record<string, unknown>,
+  formData:FormData
+){  
+  try
+  {
+    const name:Record<string, unknown>  = await updateCustomerName({success:false, error:false},formData);
+    const email:Record<string, unknown>  = await updateCustomerEmail({success:false, error:false},formData);
+    const phone:Record<string, unknown>  = await updateCustomerPhone({success:false, error:false},formData);
+    if(name.success === false)
+      {
+      return { success: false, error: name.error.toString()}
+}
+if(email.success === false){
+  return{success:false, error:email.error.toString()}
+}
+if(phone.success === false){
+  return { success: false, error: phone.error.toString()}
+}
+return { success: true, error: null }
+}
+catch(error: any){
+  return { success: false, error: error.toString() }
+}
+}
+
 export async function updateCustomerName(
   _currentState: Record<string, unknown>,
   formData: FormData

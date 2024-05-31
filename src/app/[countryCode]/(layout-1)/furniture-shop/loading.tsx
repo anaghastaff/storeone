@@ -1,5 +1,5 @@
-import  Skeleton  from "@mui/material/Skeleton";
+import PageLoadFallback from "components/loading";
 
 export default function Loading(){
-    return <Skeleton width="inherit" height="inherit" animation="wave" sx={{bgcolor:'grey.600'}} />
+    return <PageLoadFallback pagename="Furniture"/>
 }

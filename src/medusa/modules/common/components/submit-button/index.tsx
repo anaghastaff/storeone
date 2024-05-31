@@ -12,7 +12,8 @@ export function SubmitButton({
   'data-testid': dataTestId,
   size="medium",
   color="primary",
-  fullWidth
+  fullWidth,
+  disabled,
 }: {
   children: React.ReactNode
   variant?: 'contained' | 'outlined' | 'text'
@@ -20,7 +21,8 @@ export function SubmitButton({
   'data-testid'?: string,
     size?:'small' | 'medium' | 'large',
     color?:'primary' | 'secondary' | 'info' | 'error' | 'warning',
-    fullWidth?:boolean
+    fullWidth?:boolean,
+    disabled?:boolean,
 }) {
   const { pending } = useFormStatus()
 
@@ -29,7 +31,7 @@ export function SubmitButton({
       size={size}
       className={className}
       type="submit"
-      disabled={pending}
+      disabled={pending || disabled}
       variant={variant}
       color={color}
       data-testid={dataTestId}

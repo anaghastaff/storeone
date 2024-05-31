@@ -7,16 +7,19 @@ import Person from "@mui/icons-material/Person"; // Local CUSTOM COMPONENT
 import ProfileEditForm from "../edit-form";
 import ProfilePicUpload from "../profile-pic-upload";
 import DashboardHeader from "../../dashboard-header"; // CUSTOM DATA MODEL
+import type { Customer } from "@medusajs/medusa";
 
 // ===========================================================
 const ProfileEditPageView = ({
-  user
+  customer
+}:{
+  customer: Omit<Customer, 'password-hash'> | null
 }) => {
   return <Fragment>
       {
       /* TITLE HEADER AREA */
     }
-      <DashboardHeader Icon={Person} href="/profile" title="Edit Profile" buttonText="Back to Profile" />
+      <DashboardHeader Icon={Person} href={`/profile/${customer?.id}`} title="Edit Profile" buttonText="Back to Profile" />
 
       <Card sx={{
       p: 3
@@ -24,12 +27,12 @@ const ProfileEditPageView = ({
         {
         /* USER PROFILE PIC */
       }
-        <ProfilePicUpload />
+        <ProfilePicUpload customer={customer}/>
 
         {
         /* PROFILE EDITOR FORM */
       }
-        <ProfileEditForm user={user} />
+        <ProfileEditForm customer={customer} />
       </Card>
     </Fragment>;
 };

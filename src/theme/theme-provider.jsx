@@ -16,7 +16,7 @@ const ThemeProvider = ({
   children
 }) => {
   const pathname = "/" + usePathname().split("/")[2];
-  console.log("pathname in themeprovider", pathname) 
+  
   const {
     settings
   } = useSettings();

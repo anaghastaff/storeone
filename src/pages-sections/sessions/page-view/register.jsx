@@ -15,6 +15,7 @@ import BazaarTextField from "components/BazaarTextField";
 import { SubmitButton } from "medusa/modules/common/components/submit-button";
 import ErrorMessage from "medusa/modules/common/components/error-message";
 import { useFormState } from "react-dom";
+import { useState } from "react";
 import { signUp } from "medusa/modules/account/actions";
 const RegisterPageView = () => {
   const { visiblePassword, togglePasswordVisible } = usePasswordVisible(); // COMMON INPUT PROPS FOR TEXT FIELD
@@ -50,12 +51,18 @@ const RegisterPageView = () => {
       )
       .required("You have to agree with our Terms and Conditions!"),
   });
+  const [checked, setChecked] = useState(false);
 
+  const handleChange = (e) => {
+    setChecked(e.target.checked)
+  }
+  
   const [message, formAction] = useFormState(signUp, null);
 
   return (
     <form action={formAction}>
       <BazaarTextField
+      required
         mb={1.5}
         fullWidth
         name="first_name"
@@ -66,6 +73,7 @@ const RegisterPageView = () => {
       />
 
       <BazaarTextField
+      required
         mb={1.5}
         fullWidth
         name="last_name"
@@ -76,6 +84,7 @@ const RegisterPageView = () => {
       />
 
       <BazaarTextField
+      required
         mb={1.5}
         fullWidth
         name="email"
@@ -87,6 +96,7 @@ const RegisterPageView = () => {
       />
 
       <BazaarTextField
+      required
         mb={1.5}
         fullWidth
         name="phone"
@@ -98,6 +108,7 @@ const RegisterPageView = () => {
       />
 
       <BazaarTextField
+      required
         mb={1.5}
         fullWidth
         size="small"
@@ -118,7 +129,7 @@ const RegisterPageView = () => {
           <Checkbox
             size="small"
             color="secondary"
-            checked={values.agreement || false}
+            checked={checked}
           />
         }
         label={
@@ -149,7 +160,7 @@ const RegisterPageView = () => {
         }
       />
 
-      <SubmitButton variant="contained" size="large" color="error" fullWidth>
+      <SubmitButton variant="contained" size="large" color="error" fullWidth disabled={!checked}>
         Create Account
       </SubmitButton>
       <ErrorMessage error={message} data-testid="error-message-login" />
