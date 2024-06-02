@@ -1,5 +1,4 @@
 'use client'
-import Pagination from "@mui/material/Pagination";
 
 import {styled} from "@mui/material/styles"; // STYLED COMPONENT
 import TablePagination from '@mui/material/TablePagination'
