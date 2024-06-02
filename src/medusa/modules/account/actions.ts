@@ -20,7 +20,7 @@ import {
   StorePostCustomersReq,
 } from "@medusajs/medusa"
 
-export const maxDuration = 60;
+
 
 export async function signUp(_currentState: unknown, formData: FormData) {
   const customer = {

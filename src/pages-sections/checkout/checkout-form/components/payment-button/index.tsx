@@ -25,13 +25,11 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { LoadingButton } from "@mui/lab";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
 
 type PaymentButtonProps = {
   cart: Omit<Cart, "refundable_amount" | "refunded_total">;
   "data-testid": string;
 };
-
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({
   cart,
