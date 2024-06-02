@@ -15,7 +15,7 @@ import { redirect, useRouter } from "next/navigation"
 import { error } from "console"
 import type { CartAddress, CartWithCheckoutStep } from "medusa/types/global"
 
-export const maxDuration = 60;
+
 
 export async function cartUpdate(data: StorePostCartsCartReq) {
   const cartId = cookies().get("_medusa_cart_id")?.value

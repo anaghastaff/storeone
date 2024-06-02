@@ -32,6 +32,7 @@ type PaymentButtonProps = {
   "data-testid": string;
 };
 
+
 const PaymentButton: React.FC<PaymentButtonProps> = ({
   cart,
   "data-testid": dataTestId,
@@ -46,6 +47,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       : false;
 
   const paymentSession = cart.payment_session as PaymentSession;
+
 
   switch (paymentSession.provider_id) {
     case "stripe":
