@@ -9,16 +9,26 @@ import { updateProfileInfo } from "medusa/modules/account/actions";
 import { SubmitButton } from "medusa/modules/common/components/submit-button";
 import ErrorMessage from "medusa/modules/common/components/error-message";
 import { useState } from "react";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, Stack } from "@mui/material";
 import { FlexBox } from "components/flex-box";
 import { Span } from "components/Typography";
-import BoxLink from "pages-sections/sessions/box-link";
+
+import {useRouter} from 'next/navigation'
+import { useSnackbar, VariantType } from 'notistack';
 // ==============================================================
 const ProfileEditForm = ({
   customer,
 }: {
   customer: Omit<Customer, "password-hash"> | null;
 }) => {
+
+  const [state, formAction] = useFormState(updateProfileInfo, {
+    error: false,
+    success: false,
+  });
+
+  const router = useRouter();
+
   const INITIAL_VALUES = {
     email: customer?.email || "",
     phone: customer?.phone || "",
@@ -35,11 +45,17 @@ const ProfileEditForm = ({
   const handleChange = (e) => {
     setChecked(e.target.checked);
   };
-
-  const [state, formAction] = useFormState(updateProfileInfo, {
-    error: false,
-    success: false,
-  });
+  const {enqueueSnackbar} = useSnackbar()
+  
+  
+  if (state.success === true) {
+    enqueueSnackbar("Profile Edit Successful", { variant: "success" });
+    router.push("/profile");
+  } 
+  if(state.success === false && state.error) {
+    enqueueSnackbar("Error submitting changes", { variant: "error" });
+  }
+ 
 
   return (
     <form action={formAction}>
@@ -80,7 +96,7 @@ const ProfileEditForm = ({
             defaultValue={INITIAL_VALUES.phone}
           />
         </Grid>
-
+        <Grid item md={6} xs={12}>
         <FormControlLabel
           name="agreement"
           className="agreement"
@@ -111,17 +127,20 @@ const ProfileEditForm = ({
             </FlexBox>
           }
         />
-
+          </Grid>
         <Grid item xs={12}>
+          <Stack direction="row" gap={1}>
           <SubmitButton
             variant="contained"
-            size="large"
+            size="small"
             color="error"
-            fullWidth
+            
             disabled={!checked}
           >
             Confirm Changes
           </SubmitButton>
+          <Button variant="outlined" size="small" color="error" href="/profile">Cancel</Button>
+          </Stack>
           <ErrorMessage
             error={state.error as string}
             data-testid="error-message-login"

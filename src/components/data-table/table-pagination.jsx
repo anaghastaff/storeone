@@ -1,7 +1,10 @@
+'use client'
 import Pagination from "@mui/material/Pagination";
-import styled from "@mui/material/styles/styled"; // STYLED COMPONENT
 
-const StyledPagination = styled(Pagination)(({
+import {styled} from "@mui/material/styles"; // STYLED COMPONENT
+import TablePagination from '@mui/material/TablePagination'
+
+const StyledPagination = styled(TablePagination)(({
   theme
 }) => ({
   "& .MuiPaginationItem-root": {

@@ -32,15 +32,20 @@ const WishListPageView = props => {
       /* PRODUCT LIST AREA */
     }
       <Grid container spacing={3}>
-        {products.map(item => <Grid item lg={4} sm={6} xs={12} key={item.id}>
+        {/* {products.map(item => <Grid item lg={4} sm={6} xs={12} key={item.id}>
             <ProductCard1 id={item.id} slug={item.slug} title={item.title} price={item.price} rating={item.rating} imgUrl={item.thumbnail} discount={item.discount} />
-          </Grid>)}
+          </Grid>)} */}
+          <div style={{display:'flex', width:'100%', minWidth:'100%', height:"auto", color:'darkmagenta'}}>
+            <h5>
+            To be implemented
+            </h5>
+          </div>
       </Grid>
 
       {
       /* PAGINATION AREA */
     }
-      <Pagination page={currentPage} count={Math.ceil(totalProducts / 6)} onChange={(_, page) => handleChangePage(page)} />
+      {/* <Pagination page={currentPage} count={Math.ceil(totalProducts / 6)} onChange={(_, page) => handleChangePage(page)} /> */}
     </Fragment>;
 };
 

@@ -16,17 +16,22 @@ const TicketsPageView = ({
       {
       /* TITLE HEADER AREA */
     }
-      <DashboardHeader title="Support Ticket" Icon={CustomerService} />
+      <DashboardHeader title="To be Implemented" Icon={CustomerService} />
 
       {
       /* SUPPORT TICKET LIST AREA */
     }
-      {tickets.map(item => <TicketCard ticket={item} key={item.id} />)}
+      {/* {tickets.map(item => <TicketCard ticket={item} key={item.id} />)} */}
+      <div style={{display:'flex', width:'100%', minWidth:'100%', height:"auto", color:'darkmagenta'}}>
+            <h5>
+            To be implemented
+            </h5>
+          </div>
 
       {
       /* PAGINATION AREA */
     }
-      <Pagination count={4} onChange={data => console.log(data)} />
+      {/* <Pagination count={4} onChange={data => console.log(data)} /> */}
     </Fragment>;
 };
 

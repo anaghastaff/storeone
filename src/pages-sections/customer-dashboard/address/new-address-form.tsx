@@ -11,10 +11,12 @@ import { FlexBox } from 'components/flex-box';
 import { Span } from 'components/Typography';
 import BoxLink from 'pages-sections/sessions/box-link';
 import { updateCustomerShippingAddress, addCustomerShippingAddress } from 'medusa/modules/account/actions';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import CountrySelect from 'medusa/modules/common/components/country-select';
 import type { Address, Region } from '@medusajs/medusa';
 import ErrorMessage from 'medusa/modules/common/components/error-message';
+import { useSnackbar, VariantType } from 'notistack';
+import { useRouter } from 'next/navigation';
 // =============================================================
 const NewShippingAddressForm = ({
   address,
@@ -23,14 +25,26 @@ const NewShippingAddressForm = ({
   address:Address,
   region:Region
 }) => {
- 
+  const [formState, formAction] = useFormState(addCustomerShippingAddress, {success: false, error:null} )
   const [checked, setChecked] = useState(false)
+  const router = useRouter()
+  const {enqueueSnackbar} = useSnackbar()
 
+  
+    if (formState.success === true) {
+      enqueueSnackbar("Address Added Successfully", { variant: "success" });
+      router.push("/address");
+    } 
+    if(formState.success === false && formState.error) {
+      enqueueSnackbar("Error adding Address", { variant: "error" });
+    }
+
+  
   const handleChange=(e)=>{
     setChecked(e.target.checked)
   }
 
-   const [formState, formAction] = useFormState(addCustomerShippingAddress, {success: false, error:null} )
+   
   return  <form action={formAction}>
           <Grid container spacing={3}>
             <Grid item md={6} xs={12} sm={6}>
@@ -131,7 +145,7 @@ const NewShippingAddressForm = ({
       />
        </Grid>
        <Grid item md={6} xs={12} sm={6}>
-      <SubmitButton variant="contained" size="large" color="error" fullWidth disabled={!checked}>
+      <SubmitButton variant="contained" size="small" color="error" disabled={!checked}>
         Add Address
       </SubmitButton>
       </Grid>

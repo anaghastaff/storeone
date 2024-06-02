@@ -4,6 +4,7 @@ import  Button  from "@mui/material/Button"
 import React from "react"
 import { useFormStatus } from "react-dom"
 import { CircularProgress } from "@mui/material"
+import { SnackbarProvider, VariantType, useSnackbar } from "notistack"
 
 export function SubmitButton({
   children,
@@ -14,6 +15,7 @@ export function SubmitButton({
   color="primary",
   fullWidth,
   disabled,
+  
 }: {
   children: React.ReactNode
   variant?: 'contained' | 'outlined' | 'text'
@@ -23,9 +25,11 @@ export function SubmitButton({
     color?:'primary' | 'secondary' | 'info' | 'error' | 'warning',
     fullWidth?:boolean,
     disabled?:boolean,
+  
 }) {
   const { pending } = useFormStatus()
-
+ 
+ 
   return (
     <Button
       size={size}
@@ -35,12 +39,13 @@ export function SubmitButton({
       variant={variant}
       color={color}
       data-testid={dataTestId}
-      endIcon={pending && <CircularProgress />}
+      endIcon={pending && <CircularProgress size={16}/>}
       disableElevation
       disableRipple
       fullWidth={fullWidth}
+     
     >
-      {pending ? "submitting..." : children}
+      {pending ? "submitting" : children}
     </Button>
   )
 }

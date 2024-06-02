@@ -17,6 +17,7 @@ import { H6, Paragraph, Span } from "components/Typography";
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton';
 import { SideNav } from "components/side-nav";
+import LogoutButton from "./logout-button";
 // ==============================================================
 const DialogDrawer = (props) => {
   const {
@@ -32,9 +33,7 @@ const DialogDrawer = (props) => {
   } = props;
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("xs"));
 
-  const handleLogout = async () => {
-    await signOut(countryCode);
-  };
+ 
   return (
     <Fragment>
       {customer ? (
@@ -80,7 +79,8 @@ const DialogDrawer = (props) => {
             My Profile
           </Link>
           <Divider variant="fullWidth" color="grey.800" sx={{width:'100%', borderBottom:'1px solid #eee', height:'1px'}} />
-          <Link
+          <LogoutButton countryCode={countryCode} />
+          {/* <Link
             component="button"
             onClick={handleLogout}
             variant="body1"
@@ -88,7 +88,7 @@ const DialogDrawer = (props) => {
             underline="none"
           >
             Logout
-          </Link>
+          </Link> */}
         </Stack>
         </SideNav>
       ) : (

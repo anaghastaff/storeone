@@ -8,7 +8,7 @@ import ThemeProvider from "theme/theme-provider"; // PRODUCT CART PROVIDER
 import CartProvider from "contexts/CartContext"; // SITE SETTINGS PROVIDER
 import MedusaProviders from "medusa/providers";
 import SettingsProvider from "contexts/SettingContext"; // GLOBAL CUSTOM COMPONENTS 
-
+import SnackbarProvider from "components/SnackbarProvider";
 import { RTL } from "components/rtl";
 import { ProgressBar } from "components/progress"; // IMPORT DUMMY SERVER
 
@@ -26,8 +26,10 @@ export default function RootLayout({
         <CartProvider>
           <SettingsProvider>
             <ThemeProvider>
+              <SnackbarProvider>
               <ProgressBar />
               <RTL>{children}</RTL>
+              </SnackbarProvider>
             </ThemeProvider>
           </SettingsProvider>
         </CartProvider>

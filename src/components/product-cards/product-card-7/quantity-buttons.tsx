@@ -9,7 +9,6 @@ import { Paragraph } from "components/Typography"; // STYLED COMPONENT
 import { StyledButton } from "./styles"; // ==============================================================
 import type { PricedVariant } from "@medusajs/medusa/dist/types/pricing";
 import Button from '@mui/material/Button'
-import { revalidateTag } from "next/cache";
 
 // ==============================================================
 const QuantityButtons = ({

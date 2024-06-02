@@ -19,7 +19,7 @@ const ProfileEditPageView = ({
       {
       /* TITLE HEADER AREA */
     }
-      <DashboardHeader Icon={Person} href={`/profile/${customer?.id}`} title="Edit Profile" buttonText="Back to Profile" />
+      <DashboardHeader Icon={Person} href={`/profile`} title="Edit Profile" buttonText="Back to Profile" />
 
       <Card sx={{
       p: 3
