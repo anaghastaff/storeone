@@ -12,7 +12,7 @@ import { H4, H3, H5 } from "components/Typography";
 import { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 // import TablePagination from "@mui/material/TablePagination";
-import TablePagination from "../../../../components/data-table/table-pagination";
+import TablePaginationx from "components/data-table/table-pagination";
 
 // ====================================================
 const OrdersPageView = ({
@@ -95,7 +95,7 @@ const OrdersPageView = ({
 
         
       </TableContainer>
-      <TablePagination
+      <TablePaginationx
           rowsPerPageOptions={[5, 10]}
           page={page}
           count={count}

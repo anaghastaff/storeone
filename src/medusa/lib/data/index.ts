@@ -26,6 +26,8 @@ const emptyResponse = {
   nextPage: null,
 }
 
+export const maxDuration = 60;
+
 /**
  * Function for getting custom headers for Medusa API requests, including the JWT token and cache revalidation tags.
  *

@@ -16,6 +16,8 @@ import {
   updateItem,
 } from "medusa/lib/data"
 
+export const maxDuration = 60;
+
 /**
  * Retrieves the cart based on the cartId cookie
  *

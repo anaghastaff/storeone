@@ -38,6 +38,6 @@ const StyledPagination = styled(TablePagination)(({
   }
 }));
 
-const TablePagination = props => <StyledPagination {...props} />;
+const TablePaginationx = props => <StyledPagination {...props} />;
 
-export default TablePagination;
+export default TablePaginationx;

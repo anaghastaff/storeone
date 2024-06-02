@@ -14,7 +14,7 @@ import { Typography } from "@mui/material";
 import { deleteCustomerShippingAddress } from "medusa/modules/account/actions";
 import { useSnackbar, VariantType } from "notistack";
 import Table from "@mui/material/Table";
-import TablePagination from "@mui/material/TablePagination";
+import TablePaginationx from "components/data-table/table-pagination";
 import { Button, Box, TableRow, TableContainer } from "@mui/material";
 import { H4, H3, H5 } from "components/Typography";
 // =======================================================
@@ -94,7 +94,7 @@ const AddressPageView: React.FC<AddressBookProps> = ({ customer, region }) => {
           {/* PAGINATION AREA */}
         </Table>
       </TableContainer>
-      <TablePagination
+      <TablePaginationx
           rowsPerPageOptions={[1,2,3,4,5]}
           page={page}
           count={count}
