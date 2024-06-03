@@ -29,12 +29,14 @@ import PaymentContainer from "../payment-container";
 import { LoadingButton } from "@mui/lab";
 import CreditCard from "@mui/icons-material/CreditCard";
 
+export const maxDuration=60;
 
 const Payment = ({
   cart,
 }: {
   cart: Omit<Cart, "refundable_amount" | "refunded_total"> | null;
 }) => {
+  console.log("cart type", cart?.type)
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [paymentSelected, setPaymentSelected] = useState(false);

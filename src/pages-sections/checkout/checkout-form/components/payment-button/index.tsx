@@ -163,7 +163,7 @@ const StripePaymentButton = ({
         (pi && pi.status === "requires_capture") ||
         (pi && pi.status === "succeeded")
       ) {
-        onPaymentCompleted();
+       await onPaymentCompleted();
       }
 
       setErrorMessage(error.message || null);
@@ -175,6 +175,7 @@ const StripePaymentButton = ({
       paymentIntent.status === "succeeded"
     ) {
       return onPaymentCompleted();
+      
     }
 
     if (error) {

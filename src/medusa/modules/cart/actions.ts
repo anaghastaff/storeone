@@ -15,6 +15,7 @@ import {
   updateCart,
   updateItem,
 } from "medusa/lib/data"
+import { redirect } from "next/navigation"
 
 /**
  * Retrieves the cart based on the cartId cookie
@@ -72,6 +73,36 @@ export async function retrieveCart() {
   } catch (e) {
     console.log(e)
     return null
+  }
+}
+
+export async function addToCheckout({
+  variantId,
+  quantity,
+  countryCode,
+}: {
+  variantId: string
+  quantity: number
+  countryCode: string
+}) {
+  const cart = await getOrSetCart(countryCode).then((cart) => cart)
+
+  if (!cart) {
+    return "Missing cart ID"
+  }
+
+  if (!variantId) {
+    return "Missing product variant ID"
+  }
+
+  try {
+    await addItem({ cartId: cart.id, variantId, quantity })
+    
+      revalidateTag("cart")
+     
+    
+  } catch (e) {
+    return "Error adding item to cart"
   }
 }
 

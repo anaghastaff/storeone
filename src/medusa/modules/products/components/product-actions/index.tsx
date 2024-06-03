@@ -8,13 +8,14 @@ import { isEqual } from "lodash";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useIntersection } from "medusa/lib/hooks/use-in-view";
-import { addToCart, updateLineItem } from "medusa/modules/cart/actions";
+import { addToCart, updateLineItem, addToCheckout } from "medusa/modules/cart/actions";
 import Divider from "@mui/material/Divider";
 import OptionSelect from "medusa/modules/products/components/option-select";
 import MobileActions from "../mobile-actions";
 import ProductPrice from "../product-price";
 import type { CartWithCheckoutStep } from "medusa/types/global";
-import QuantityButtons from "components/product-cards/product-card-7/quantity-buttons";
+import QuantityButtons from "components/product-cards/product-card-7/quantity-buttons"; 
+import { useRouter } from "next/navigation";
 
 type ProductActionsProps = {
   product: PricedProduct;
@@ -36,6 +37,8 @@ export default function ProductActions({
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string>>({});
   const [isAdding, setIsAdding] = useState(false);
+  const [toCheckout, addItemtoCheckout] = useState(false);
+  const [reduce, addReduce] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [cartItemExist, setcartItemExist] = useState<LineItem | null>(null);
@@ -52,7 +55,6 @@ export default function ProductActions({
     for (const option of product.options || []) {
       Object.assign(optionObj, { [option.id]: undefined });
     }
-
     setOptions(optionObj);
   }, [product]);
 
@@ -112,6 +114,12 @@ export default function ProductActions({
     }
   }, [variant]);
 
+  //Store the current selected color to match with available sizes inside the optionSelect Component
+
+  const colorOption = product?.options?.find(o => o.title === 'Color');
+  const colorOptionId = colorOption?.id;
+  const currentColor = colorOptionId ? options[colorOptionId] : undefined;
+
   useEffect(() => {
     const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
     setInCart(temp || null);
@@ -166,7 +174,7 @@ export default function ProductActions({
   const handleDecrementQuantity = async (quantity: number) => {
     if (inCart) {
       setError(null);
-      setUpdating(true);
+      addReduce(true);
 
       const message = await updateLineItem({
         lineId: inCart?.id,
@@ -176,12 +184,9 @@ export default function ProductActions({
           return err.message;
         })
         .finally(() => {
-          setUpdating(false);
+          addReduce(false);
         });
-      const res = await message.json();
-      if (res) {
-        console.log("Item update success");
-      }
+     
       message && setError(message);
     }
 
@@ -202,16 +207,41 @@ export default function ProductActions({
 
     setIsAdding(false);
   };
+  const router = useRouter()
+
+  const handleAddToCheckout = async () => {
+    if (!variant?.id) return null;
+
+    addItemtoCheckout(true);
+
+    try{
+      await addToCheckout({
+        variantId: variant.id,
+        quantity: 1,
+        countryCode,
+      })
+      .then((res)=>{
+        console.log("result",res)
+        if(res !== "Error adding item to cart" ){
+          addItemtoCheckout(false);
+          router.push("/checkout?step=address");
+        }       
+      })
+      
+    }catch(err){
+      setError(err.toString())
+    }
+  };
 
   return (
     <>
       <Box
-        sx={{ display: "flex", flexDirection: "column", rowGap: 2 }}
+        sx={{ display: "flex", flexDirection: "column", rowGap: 1 }}
         ref={actionsRef}
       >
         <Box>
           {product.variants.length > 1 && (
-            <Box sx={{ display: "flex", flexDirection: "column", rowGap: 4 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", rowGap: '0.5rem' }}>
               {(product.options || []).map((option) => {
                 return (
                   <Box key={option.id}>
@@ -220,12 +250,14 @@ export default function ProductActions({
                       current={options[option.id]}
                       updateOption={updateOptions}
                       title={option.title}
-                      data-testid="product-options" 
+                      currentColor={currentColor as string} 
+                      data-testid="product-options"
+                      variants={product.variants}
                     />
                   </Box>
                 );
               })}
-              <Divider />
+              
             </Box>
           )}
         </Box>
@@ -256,6 +288,11 @@ export default function ProductActions({
           handleIncrement={handleIncrementQuantity}
           handleDecrement={handleDecrementQuantity}
           handleAddToCart={handleAddToCart}
+          handleAddToCheckout={handleAddToCheckout}
+          isAdding={isAdding}
+          updating={updating}
+          toCheckout={toCheckout}
+          reduce={reduce}
         />
 
         {/* <MobileActions

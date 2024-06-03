@@ -33,10 +33,16 @@ export default function ProductPrice({
   
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', color: '#333' }}>
+      <Box sx={{columnGap:1, display:'flex'}}>
       <Typography variant="h6" sx={{ fontWeight: '600', color: selectedPrice.price_type === "sale" ? '#007bff' : 'inherit' }}>
         {!variant && "From "}
-        {selectedPrice.calculated_price}
+        
       </Typography>
+      <Typography color="error.dark" variant="h6">
+      {selectedPrice.calculated_price}
+      </Typography>
+      </Box>
+      
       {selectedPrice.price_type === "sale" && (
         <>
           <Typography variant="body1">

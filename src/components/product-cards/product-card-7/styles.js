@@ -2,7 +2,7 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
-
+import { LoadingButton } from "@mui/lab";
 import { Span } from "components/Typography";
 export const StyledCard = styled(Box)(({
   theme
@@ -114,7 +114,7 @@ export const SizeBox = styled("div")(({ theme }) => ({
 }));
 
 
-export const StyledButton = styled(Button)(({
+export const StyledButton = styled(LoadingButton)(({
   theme
 
 }) => ({

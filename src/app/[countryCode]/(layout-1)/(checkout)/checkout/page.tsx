@@ -29,11 +29,11 @@ export default async function Checkout({params}:{params:{countryCode:string}}) {
   if(!region) return null
 
   const cartWithRegion = await UpdateCartRegion({region, cart });
-
+  
   const cartWithPaymentSession = (await createPaymentSessions(cart?.id).then(
     (cart) => cart
   )) as CartWithCheckoutStep
-  
+  console.log("cart type", cart?.type)
   return (
     <Wrapper cart={cart}>
       <CheckoutPageView cart={cartWithPaymentSession}/>

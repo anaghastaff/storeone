@@ -45,7 +45,7 @@ export default async function FurnitureShop(
     return null
   }
   const cart = await fetchCart();
-
+  console.log("cart type", cart?.type)
   const {products, count} = await ProductWithContext({region, cart});
 
   const pricedProducts = await Promise.all( products.map( async (product) => {
