@@ -213,7 +213,6 @@ export default function ProductActions({
     if (!variant?.id) return null;
 
     addItemtoCheckout(true);
-
     try{
       await addToCheckout({
         variantId: variant.id,
@@ -250,7 +249,7 @@ export default function ProductActions({
                       current={options[option.id]}
                       updateOption={updateOptions}
                       title={option.title}
-                      currentColor={currentColor as string} 
+                      currentColor={currentColor} 
                       data-testid="product-options"
                       variants={product.variants}
                     />
