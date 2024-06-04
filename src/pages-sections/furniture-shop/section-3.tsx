@@ -49,7 +49,7 @@ const Section3 = ({
 
 
   return (products.length === 0) ? (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", bgcolor:'aqua' }}>
       <Box my={2}>
         <H1 mb="4px">{heading}</H1>
         <Paragraph color="grey.600">{description}</Paragraph>
@@ -59,7 +59,7 @@ const Section3 = ({
         width="100%"
         sx={{
           bgcolor: "#E9EBFF",
-          height: "500px",
+          height: "400px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

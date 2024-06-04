@@ -33,7 +33,7 @@ export default function ProductInCarousel ({
 
     const responsive = [
         {
-          breakpoint: 650,
+          breakpoint: 900,
           settings: {
             slidesToShow: 2,
           },
@@ -85,7 +85,7 @@ export default function ProductInCarousel ({
                 product={item}
                 off={"10"}
                 // rating={5}
-                status={item.tags[0]?.value || "star"}
+                status={item?.tags?.find((i)=>i?.value === 'sale') ? "Sale" : item.variants.find((v)=> v?.inventory_quantity < 95 ) ? 'Top' : ""}
                 imgUrl={(products === undefined || products.length === null) ? <CircularProgress color="success"/> : item.thumbnail}
                 productColors={colors ? colors : <Skeleton variant="rectangular" sx={{ bgcolor: 'red', height: 12, width: 12 }} />}
                 productSizes={size ? size : <Skeleton variant="rectangular" sx={{ bgcolor: 'red', height: 14, width: 14 }} />}

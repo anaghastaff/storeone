@@ -19,11 +19,11 @@ const Review = ({
     cart.shipping_address &&
     cart.shipping_methods.length > 0 &&
     cart.payment_session;
-
+  
   return (
     <Box className="bg-white">
       <Box className="flex flex-row items-center justify-between mb-6">
-        <Typography variant="h4" fontSize="3xl" gutterBottom>
+        <Typography variant="h6" fontSize="3xl" gutterBottom>
           Review
         </Typography>
       </Box>

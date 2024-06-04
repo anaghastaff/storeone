@@ -127,12 +127,12 @@ const ShippingOptions: React.FC<ShippingProps> = ({
                     return (
                       <>
                         <Card
-                          key={option.id}
+                          key={option?.id}
                           sx={{
                             border:
                               option.id ===
                               cart?.shipping_methods[0]?.shipping_option_id
-                                ? "1px solid #90caf9"
+                                ? "2px solid maroon"
                                 : "",
                             px: 1,
                             "&:hover": {
@@ -141,7 +141,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
                           }}
                         >
                           <FormControlLabel
-                            key={option.id}
+                           
                             value={option.id as string}
                             labelPlacement="end"
                             control={
@@ -158,6 +158,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
                             }
                             label={
                               <Box
+                              
                                 sx={{
                                   display: "flex",
                                   justifyContent: "space-between",

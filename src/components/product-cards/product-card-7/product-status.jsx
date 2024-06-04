@@ -7,7 +7,7 @@ const ProductStatus = ({
   status
 }) => {
   return status ? <StatusChipBox>
-      <StatusChip>{status}</StatusChip>
+      <StatusChip sx={{bgcolor: status === "sale" ? "red" : "#3399ff"}}>{status}</StatusChip>
       <Box width="100%" display="flex">
         <div className="triangle-left" />
         <div className="triangle-right" />

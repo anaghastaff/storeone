@@ -68,6 +68,10 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
           data-testid={dataTestId}
         />
       );
+      case "Cash On Delivery":
+        return (
+          <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
+        );
     default:
       return (
         <Stack>
@@ -165,7 +169,6 @@ const StripePaymentButton = ({
       ) {
        await onPaymentCompleted();
       }
-
       setErrorMessage(error.message || null);
       return;
     }
@@ -174,10 +177,8 @@ const StripePaymentButton = ({
       (paymentIntent && paymentIntent.status === "requires_capture") ||
       paymentIntent.status === "succeeded"
     ) {
-      return onPaymentCompleted();
-      
+      return onPaymentCompleted();    
     }
-
     if (error) {
       handleError(error);
     }

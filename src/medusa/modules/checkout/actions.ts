@@ -281,7 +281,7 @@ export async function placeOrder() {
   } catch (error: any) {
     throw error
   }
- 
+  
   if (cart?.type === "order") {
     const countryCode = cart.data.shipping_address?.country_code?.toLowerCase()
     cookies().set("_medusa_cart_id", "", { maxAge: -1 })

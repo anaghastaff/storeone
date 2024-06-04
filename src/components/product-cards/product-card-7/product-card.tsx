@@ -11,7 +11,7 @@ import ProductStatus from "./product-status";
 import ProductRating from "../product-rating";
 import QuantityButtons from "./quantity-buttons"; // STYLED COMPONENTS
 import { Suspense } from "react";
-
+ 
 import { StyledCard, ContentWrapper, ColorBox, ImgBox, SizeBox } from "./styles"; // =======================================================
 import { Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress"
@@ -65,7 +65,7 @@ const ProductCard17 = props => {
   //   };
   //   handleCartAmountChange(product, "remove");
   // };
-
+const discount = 15;
   return <StyledCard sx={sx}>
       <Link href={`/products/${slug}`}> 
         <ImgBox id="imgBox">
@@ -77,19 +77,20 @@ const ProductCard17 = props => {
           {
           /* DISCOUNT PERCENT CHIP IF AVAILABLE */
         }
-          <DiscountChip discount={off} sx={{
+          <DiscountChip discount={discount} sx={{
           borderRadius: 0
         }} />
 
           {
           /* PRODUCT IMAGE / THUMBNAIL */
         }
-          <LazyImage alt={title} width={500} height={500} src={imgUrl} id="productImg" />
+          <LazyImage alt={title} fill src={imgUrl} 
+          sx={{objectFit:'fill',left:0, top:0, position:'absolute'}} id="productImg" />
         </ImgBox>
       </Link>
 
       <ContentWrapper>
-        <Box flex="1 1 0">
+        <Box flex="1 1 0" width="100%" >
           {
           /* PRODUCT TITLE / NAME */
         }
@@ -123,9 +124,9 @@ const ProductCard17 = props => {
          {/* {price && <PreviewPrice price={price} />} */}
           {/* <ProductPrice discount={off} price={price} /> */} 
           <div style={{display:'flex', flexDirection:'column', gap:"14px", width:'100%', backgroundColor:'#fafafa'}}>
-          <Suspense fallback={<CircularProgress color="error" sx={{margin:"auto"}}/> }>
+          
           <ProductActions product={product} region={region} cart={cart}/>
-          </Suspense>
+         
         </div>
         </Box>
 

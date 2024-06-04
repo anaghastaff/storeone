@@ -59,7 +59,7 @@ const FurnitureShopPageView = async ({
 
   
 
-  return <Fragment>
+  return <Container maxWidth={false} disableGutters component="div">
       {
       /* HERO SECTION */
     }
@@ -73,7 +73,7 @@ const FurnitureShopPageView = async ({
         /* LEFT SIDEBAR & OFFER BANNERS AREA */
       }
         <Sidebar navList={sidebarNavList} products={pricedProducts} region={region}/>
-
+        
         <Stack spacing={6} my={6}>
           {
           /* TOP NEW PRODUCTS AREA */
@@ -103,7 +103,7 @@ const FurnitureShopPageView = async ({
       /* SETTINGS IS USED ONLY FOR DEMO, YOU CAN REMOVE THIS */
     }
       <Setting />
-    </Fragment>;
+    </Container>;
 };
 
 export default FurnitureShopPageView;

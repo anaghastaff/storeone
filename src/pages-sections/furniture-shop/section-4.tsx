@@ -33,18 +33,16 @@ const Section4 = ({
  cart:CartWithCheckoutStep | null
 }) => {
   return <div> 
-      <Box my={2} >
+      <Box >
         <H1 mb="4px">{heading}</H1>
         <Paragraph color="grey.600" >
           {description}
         </Paragraph>
       </Box>       
-      <Grid container mb={-0.5} spacing={3}>
+      <Grid container mb={-0.5} spacing={4}>
       {products.map((item:PricedProduct) => {
           const size = variantSizes(item); // Get the size for the current item
-          const colors = variantColors(item);
-
-          
+          const colors = variantColors(item);    
           const { cheapestPrice } = getProductPrice({
             product:item,
             region,
@@ -62,9 +60,9 @@ const Section4 = ({
                 product={item}
                 off={"10"}
                 // rating={5}
-                status={item.tags[0]?.value || "star"}
-                imgUrl={item.thumbnail}
-                productColors={colors}
+                status={item?.tags?.find((i)=>i?.value === 'sale') ? "Sale" : item.variants.find((v)=> v?.inventory_quantity < 95 ) ? 'Top' : ""}
+                imgUrl={ item.thumbnail}
+                productColors={colors  }
                 productSizes={size}
               />
             </Grid> 

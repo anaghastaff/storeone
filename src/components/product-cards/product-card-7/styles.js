@@ -4,18 +4,22 @@ import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 import { LoadingButton } from "@mui/lab";
 import { Span } from "components/Typography";
+
+
 export const StyledCard = styled(Box)(({
   theme
 }) => ({
   height: "100%",
   margin: "auto",
   borderRadius: 0,
-  overflow: "hidden",
-  position: "relative",
+  overflow: "hidden",  
   transition: "all 250ms ease-in-out",
-  outline: `2px solid ${theme.palette.grey[200]}`,
+  outline: `4px solid ${theme.palette.grey[200]}`,
+  marginLeft:'auto',
+  marginRight:'auto',
+ boxShadow: theme.shadows[8],
   "&:hover": {
-    boxShadow: theme.shadows[2],
+    boxShadow: theme.shadows[12],
     "& .css-1i2n18j": {
       display: "flex"
     },
@@ -27,13 +31,18 @@ export const StyledCard = styled(Box)(({
 export const ImgBox = styled("div")(({
   theme
 }) => ({
-  height: 250,
-  marginBottom: 100,
-  padding: "60px 40px 20px 40px",
+  height: 275,
+  width:320,
+  
+  position:'relative',
+  marginLeft:'auto',
+  marginRight:'auto',
+    // marginBottom: 100,
+  // padding: "60px 40px 20px 40px",
   background: theme.palette.primary[50]
 }));
 export const ContentWrapper = styled("div")({
-  gap: 8,
+  
   display: "flex",
   padding: "1rem",
   "& .title, & .categories": {
