@@ -13,8 +13,8 @@ type OptionSelectProps = {
   updateOption: (option: Record<string, string>) => void 
   title: string
   'data-testid'?: string
-  currentColor:string
-  variants:PricedVariant[] 
+  currentColor?:string
+  variants?:PricedVariant[] 
 }
 
 const OptionSelect: React.FC<OptionSelectProps> = ({
