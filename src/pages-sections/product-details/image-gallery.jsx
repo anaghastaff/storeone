@@ -16,18 +16,18 @@ const ImageGalleryArea = ({product}) => {
 
     return <Fragment>
 
-<FlexBox justifyContent="center" mb={6} sx={{ bgcolor: "grey.300" }}>
+<FlexBox justifyContent="center" mb={6} sx={{width:300, height:300, mx:'auto', bgcolor: "grey.300", display:'block', position:'relative', overflow:'hidden' }}>
            {images ? 
            <LazyImage
               alt={title ? title : "loading..."}
-              width={300}
-              height={300}
+             fill={true}
+             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               loading="lazy"
               src={
                 images && images[selectedImage]?.url
               }
               sx={{
-                objectFit: "contain",
+                objectFit: "cover", position:'absolute', 
               }}
             />
             :
@@ -37,7 +37,7 @@ const ImageGalleryArea = ({product}) => {
             }
           </FlexBox>
 
-          <FlexBox overflow="auto">
+          <FlexBox overflow="auto" >
             {images?.map((url, ind) => (
               <FlexRowCenter
                 key={ind}

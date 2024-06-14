@@ -7,19 +7,19 @@ export default function PageLoadFallback({ pagename }: { pagename?: string }) {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 3,
-        minHeight: "70vh",
+        display: "flex",    
+        gap: 3,        
         justifyContent: "center",
         alignItems: "center",
         minWidth:'100%',
         width:'100%',
-        mx:'auto',
+        flexGrow:1,
+        minHeight:'50vh',
+        m:'auto',
         textAlign: 'center',
       }}
     >
-      <CircularProgress disableShrink color="info" size={40} thickness={4} />
+      <CircularProgress disableShrink color="info" size={16} thickness={4} />
 
       <Typography variant="h6" fontWeight="bold" color="info">
         Loading {pagename} ...

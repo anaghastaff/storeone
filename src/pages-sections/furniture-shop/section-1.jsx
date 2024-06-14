@@ -9,13 +9,30 @@ import { Wrapper, StyledButton, ContentWrapper } from "./styles";
 import { COMMON_DOT_STYLES } from "components/carousel/styles"; // =============================================================================
 import { Suspense } from "react";
 import { Skeleton, CircularProgress } from "@mui/material";
+import { useSnackbar } from "notistack";
+import {useEffect} from 'react'
+
 // =============================================================================
 const Section1 = ({
-  mainCarouselData
+  mainCarouselData,
+  customer
 }) => {
   const {
     palette
   } = useTheme();
+
+  const {enqueueSnackbar} = useSnackbar();
+
+  useEffect(()=>{
+    if(customer){
+      enqueueSnackbar(`Welcome, ${customer?.first_name}`, {variant:'success'})
+    }if(!customer){
+      enqueueSnackbar(`You are not signed in`, {variant:'default'})
+    }
+    return ()=>{customer}
+  },[customer])
+  
+
   return <Wrapper id="carouselBox">
       <Carousel dots arrows={false} slidesToShow={1} spaceBetween={0} dotColor={palette.primary.main} dotStyles={COMMON_DOT_STYLES}>
         {mainCarouselData.map(item => <div key={item.id}>

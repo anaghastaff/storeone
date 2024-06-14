@@ -211,7 +211,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
             disabled={!cart.shipping_methods[0]}
             data-testid="submit-delivery-option-button"
           >
-            Continue to payment
+           <span>Continue to payment</span> 
           </LoadingButton>
         </div>
       ) : (

@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { isEqual } from "lodash";
 import { useParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, Dispatch, SetStateAction } from "react";
 import { useIntersection } from "medusa/lib/hooks/use-in-view";
 import { addToCart, updateLineItem, addToCheckout } from "medusa/modules/cart/actions";
 import Divider from "@mui/material/Divider";
@@ -16,11 +16,13 @@ import ProductPrice from "../product-price";
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import QuantityButtons from "components/product-cards/product-card-7/quantity-buttons"; 
 import { useRouter } from "next/navigation";
-
+import { useSnackbar } from "notistack";
 type ProductActionsProps = {
   product: PricedProduct;
   region: Region;
   cart: CartWithCheckoutStep | null;
+  setID?: Dispatch<SetStateAction<string>>;
+  variant_ID?:string
 };
 
 export type PriceType = {
@@ -34,6 +36,9 @@ export default function ProductActions({
   product,
   region,
   cart,
+  setID,
+  variant_ID,
+  
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string>>({});
   const [isAdding, setIsAdding] = useState(false);
@@ -43,7 +48,7 @@ export default function ProductActions({
   const [error, setError] = useState<string | null>(null);
   const [cartItemExist, setcartItemExist] = useState<LineItem | null>(null);
   const [inCart, setInCart] = useState<LineItem | null>(null);
-
+  const {enqueueSnackbar} = useSnackbar();
   const countryCode = useParams().countryCode as string;
 
   const variants = product.variants;
@@ -110,6 +115,7 @@ export default function ProductActions({
     }
 
     if (variant && variant.allow_backorder === false) {
+      
       return true;
     }
   }, [variant]);
@@ -123,6 +129,7 @@ export default function ProductActions({
   useEffect(() => {
     const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
     setInCart(temp || null);
+    
   }, [options, variant]);
 
   const actionsRef = useRef<HTMLDivElement>(null);
@@ -134,7 +141,12 @@ export default function ProductActions({
       const variantIds = variants.map((variant) => variant.id);
       return variantIds.includes(item?.variant.id);
     });
-    data && setcartItemExist(data);
+    if(data) 
+      {
+        console.log("data", data?.id)
+        setcartItemExist(data) 
+        setID(data?.id) ;
+    }
   }, [options, variant, inStock]);
 
   const handleIncrementQuantity = async (quantity: number) => {
@@ -150,10 +162,14 @@ export default function ProductActions({
           return err.message;
         })
         .finally(() => {
+
           setUpdating(false);
         });
 
       message && setError(message);
+      if(!message){
+        enqueueSnackbar("Success, Item added to cart", {variant:'success'})
+      }
     } else {
       if (!variant?.id) return null;
 
@@ -164,7 +180,9 @@ export default function ProductActions({
         quantity: 1,
         countryCode,
       });
-
+      if(!res){
+        enqueueSnackbar("Success, Item added to cart", {variant:'success'})
+      }
       setIsAdding(false);
     }
 
@@ -188,6 +206,9 @@ export default function ProductActions({
         });
      
       message && setError(message);
+      if(!message){
+        enqueueSnackbar("Item removed from cart", {variant:'default'})
+      }
     }
 
     // handleCartAmountChange(product, "remove");
@@ -199,12 +220,14 @@ export default function ProductActions({
 
     setIsAdding(true);
 
-    await addToCart({
+   const message = await addToCart({
       variantId: variant.id,
       quantity: 1,
       countryCode,
     });
-
+    if(!message){
+      enqueueSnackbar("item is added to cart!", {variant:'default'})
+    }
     setIsAdding(false);
   };
   const router = useRouter()
@@ -223,6 +246,7 @@ export default function ProductActions({
         console.log("result",res)
         if(res !== "Error adding item to cart" ){
           addItemtoCheckout(false);
+          enqueueSnackbar("item is added to cart!", {variant:'default'})
           router.push("/checkout?step=address");
         }       
       })

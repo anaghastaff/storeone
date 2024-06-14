@@ -12,6 +12,7 @@ import { useFormState } from "react-dom";
 import {logCustomerIn} from "medusa/modules/account/actions"
 import ErrorMessage from "medusa/modules/common/components/error-message";
 import { SubmitButton } from "medusa/modules/common/components/submit-button";
+import { useSnackbar } from "notistack";
 
 const LoginPageView = () => {
   const { visiblePassword, togglePasswordVisible } = usePasswordVisible(); // LOGIN FORM FIELDS INITIAL VALUES
@@ -20,9 +21,11 @@ const LoginPageView = () => {
     password: yup.string().required("Password is required"),
     email: yup.string().email("invalid email").required("Email is required"),
   });
+  
 
   const [message, formAction] = useFormState(logCustomerIn, null);
 
+ 
   return (
     <form action={formAction}>
       <BazaarTextField
@@ -62,6 +65,7 @@ const LoginPageView = () => {
       size="large"
       color="error"
       fullWidth
+      message={message}
       >
         Login
       </SubmitButton>

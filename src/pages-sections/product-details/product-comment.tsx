@@ -10,33 +10,38 @@ import { H5, H6, Paragraph, Span } from "components/Typography"; // CUSTOM UTILS
 import { getDateDifference } from "lib"; // ===========================================================
 
 // ===========================================================
-const ProductComment = props => {
-  const {
-    name,
-    imgUrl,
-    rating,
-    date,
-    comment
-  } = props || {};
-  return <Box mb={4} maxWidth={600}>
+const ProductComment = ({
+  id,
+  title,
+  user_name,
+  rating ,
+  content,
+  created_at,
+}) => {
+  
+  return <Box mb={4} maxWidth={600} key={id}>
       <FlexBox alignItems="center" mb={2} gap={2}>
-        <Avatar alt={name} src={imgUrl} sx={{
-        width: 48,
-        height: 48
-      }} />
+        <Avatar sx={{
+        width: 24,
+        height: 24,
+        color:'white',
+        bgcolor:'green',
+      }} >
+        {user_name.charAt(0).toUpperCase()}
+      </Avatar>
 
         <div>
-          <H5 mb={1}>{name}</H5>
+          <H5 mb={1}>{user_name}</H5>
 
-          <FlexBox alignItems="center" gap={1.25}>
+          <FlexBox alignItems="center" gap={1.25}>            
             <Rating size="small" value={rating} color="warn" readOnly />
             <H6>{rating}</H6>
-            <Span>{getDateDifference(date)}</Span>
+            <Span>{getDateDifference(new Date(created_at))}</Span>
           </FlexBox>
         </div>
       </FlexBox>
-
-      <Paragraph color="grey.700">{comment}</Paragraph>
+      <Paragraph color="grey.700">{title}</Paragraph>
+      <Paragraph color="grey.700">{content}</Paragraph>
     </Box>;
 };
 

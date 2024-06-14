@@ -27,9 +27,9 @@ type ItemProps = {
 const Item = ({ item, region, type = "full" }: ItemProps) => {
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  
   const { handle } = item.variant.product;
-
+ 
   const changeQuantity = async (quantity: number) => {
     setError(null);
     setUpdating(true);

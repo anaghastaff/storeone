@@ -80,11 +80,12 @@ const QuantityButtons = ({
                 borderRadius:'0'
               }}
             >
-              {!variant
+             <span>
+             {!variant
                 ? "Select variant"
                 : !inStock
                   ? "Out of stock"
-                  : !isAdding && "Add to cart"}
+                  : !isAdding && "Add to cart"}</span> 
             </LoadingButton>
 
              <LoadingButton
@@ -111,11 +112,13 @@ const QuantityButtons = ({
                 },
               }}
             >
-              {!variant
+            <span>
+            {!variant
                 ? "Buy Now"
                 : !inStock
                   ? "Out of stock"
                   : !toCheckout && "Buy Now"}
+              </span>  
             </LoadingButton>
           </Stack>
         )}

@@ -8,6 +8,7 @@ import styled from "@mui/material/styles/styled"; // Local CUSTOM COMPONENTS
 
 import ProductReview from "./product-review";
 import ProductDescription from "./product-description"; // STYLED COMPONENT
+import { FlexBox } from "components/flex-box";
 
 const StyledTabs = styled(Tabs)(({
   theme
@@ -23,7 +24,7 @@ const StyledTabs = styled(Tabs)(({
   }
 }));
 
-const ProductTabs = () => {
+const ProductTabs = ({product, response}) => {
   const [selectedOption, setSelectedOption] = useState(0);
 
   const handleOptionClick = (_, value) => setSelectedOption(value);
@@ -31,13 +32,13 @@ const ProductTabs = () => {
   return <>
       <StyledTabs textColor="primary" value={selectedOption} indicatorColor="primary" onChange={handleOptionClick}>
         <Tab className="inner-tab" label="Description" />
-        <Tab className="inner-tab" label="Review (3)" />
+        <Tab className="inner-tab" label={`Reviews (${response.data?.length})`}/>
       </StyledTabs>
 
-      <Box mb={6}>
-        {selectedOption === 0 && <ProductDescription />}
-        {selectedOption === 1 && <ProductReview />}
-      </Box>
+      <FlexBox mb={6} p={3}>
+        {selectedOption === 0 && <ProductDescription product={product} />}
+        {selectedOption === 1 && <ProductReview product={product} response={response}/>}
+      </FlexBox>
     </>;
 };
 

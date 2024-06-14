@@ -4,7 +4,7 @@ import  Button  from "@mui/material/Button"
 import React from "react"
 import { useFormStatus } from "react-dom"
 import { CircularProgress } from "@mui/material"
-import { SnackbarProvider, VariantType, useSnackbar } from "notistack"
+import { useSnackbar } from "notistack";
 
 export function SubmitButton({
   children,
@@ -15,7 +15,7 @@ export function SubmitButton({
   color="primary",
   fullWidth,
   disabled,
-  
+  message
 }: {
   children: React.ReactNode
   variant?: 'contained' | 'outlined' | 'text'
@@ -25,10 +25,14 @@ export function SubmitButton({
     color?:'primary' | 'secondary' | 'info' | 'error' | 'warning',
     fullWidth?:boolean,
     disabled?:boolean,
-  
+  message?:string | null
 }) {
   const { pending } = useFormStatus()
- 
+  const {enqueueSnackbar} = useSnackbar()
+  // if(message === null && !pending){
+  //   console.log("Message", message)
+  //   enqueueSnackbar("You have successfully Signed IN!", {variant:"success"})
+  // }
  
   return (
     <Button

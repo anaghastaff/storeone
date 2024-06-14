@@ -9,7 +9,8 @@ import FrequentlyBought from "../frequently-bought"; // CUSTOM DATA MODEL
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import type { Region } from "@medusajs/medusa";
-
+import ProductDescription from "../product-description";
+import {ApiResponse} from '../product-review'
 // ==============================================================
 
 type ProductDetailsPageViewProps = {
@@ -18,7 +19,8 @@ type ProductDetailsPageViewProps = {
   countryCode:string,
   product:PricedProduct,
   region:Region,
-  cart: CartWithCheckoutStep
+  cart: CartWithCheckoutStep,
+  response:ApiResponse
 
 }
 const ProductDetailsPageView:React.FC<ProductDetailsPageViewProps> = props => {
@@ -31,12 +33,13 @@ const ProductDetailsPageView:React.FC<ProductDetailsPageViewProps> = props => {
       {
       /* PRODUCT DETAILS INFO AREA */
     }
-       <ProductIntro product={props.product} region={props.region} cart={props.cart}/> 
+       <ProductIntro product={props.product} region={props.region} cart={props.cart} response={props.response}/> 
 
       {
       /* PRODUCT DESCRIPTION AND REVIEW */
     }
-       <ProductTabs />
+       {/* <ProductTabs /> */}
+       <ProductTabs product={props.product} response={props.response}/>
 
       {
       /* FREQUENTLY BOUGHT PRODUCTS AREA */

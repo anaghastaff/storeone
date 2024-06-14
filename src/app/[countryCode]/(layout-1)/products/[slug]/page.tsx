@@ -6,7 +6,7 @@ import FetchProducts from "app/api/fetchProducts";
 import { getRegion, retrievePricedProductById, getProductByHandle } from "medusa/lib/data";
 
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
-
+import { FetchReviews } from "../../../../../pages-sections/product-details/fetch-review";
 
 export const metadata = {
   title: "Product Details - Furniture", 
@@ -28,14 +28,15 @@ export default async function ProductDetails({
   const handle = params.slug;
   const region = await getRegion(countryCode)
   const cart = await fetchCart();
-
+  
   
   if (!region){
     return null
   }
 
   if(!handle) return null;
-  const {product} = await getProductByHandle(handle)
+  const {product} = await getProductByHandle(handle);
+  const response = await FetchReviews({id:product.id});
 
   const pricedProduct = await retrievePricedProductById({
         id:product.id,
@@ -43,6 +44,7 @@ export default async function ProductDetails({
       })
      
       if(!pricedProduct) return null;
+      
  
   try {
     const relatedProducts = await getRelatedProducts();
@@ -55,6 +57,7 @@ export default async function ProductDetails({
         product={pricedProduct}
         region={region}
         cart={cart}
+        response={response}
       />
     ); 
   } catch (error) {

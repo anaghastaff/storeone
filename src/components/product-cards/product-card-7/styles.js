@@ -12,6 +12,7 @@ export const StyledCard = styled(Box)(({
   height: "100%",
   margin: "auto",
   borderRadius: 0,
+  position:'relative',
   overflow: "hidden",  
   transition: "all 250ms ease-in-out",
   outline: `4px solid ${theme.palette.grey[200]}`,
@@ -31,10 +32,7 @@ export const StyledCard = styled(Box)(({
 export const ImgBox = styled("div")(({
   theme
 }) => ({
-  height: 275,
-  width:320,
   
-  position:'relative',
   marginLeft:'auto',
   marginRight:'auto',
     // marginBottom: 100,
@@ -58,7 +56,7 @@ export const StatusChipBox = styled("div")(({
   height: 42,
   zIndex: 11,
   top: "0px",
-  right: "30px",
+  right: "10px",
   fontSize: "12px",
   position: "absolute",
   background: theme.palette.primary.main,

@@ -5,9 +5,9 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 const StyledChip = styled(Chip)(({
   theme
 }) => ({
-  zIndex: 11,
-  top: "5px",
-  left: "-1",
+  zIndex: 1,
+  top: "30px",
+  left: "0",
   paddingLeft: 0,
   paddingRight: 3,
   fontWeight: 600,
@@ -18,18 +18,12 @@ const StyledChip = styled(Chip)(({
 })); // ==============================================================
 
 // ==============================================================
-const DiscountChip = ({
-  discount = 0,
-  ...props
-}) => {
-  return discount > 0 ? <StyledChip size="small" label={`upto ${discount}% off`} {...props} /> : null;
-};
 
-export const CartQTYChip = ({
+ const CartQTYChip = ({
   qty = 0,
   ...props
 }) => {
-  return qty > 0 ? <StyledChip icon={<ShoppingCartOutlinedIcon />} size="small" label={`qty - ${qty}`} {...props} /> : null;
+  return  <StyledChip icon={<ShoppingCartOutlinedIcon />} size="small" label={`qty - ${qty}`} {...props} /> ;
 };
 
-export default DiscountChip;
+export default CartQTYChip;

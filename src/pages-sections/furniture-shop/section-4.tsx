@@ -39,7 +39,7 @@ const Section4 = ({
           {description}
         </Paragraph>
       </Box>       
-      <Grid container mb={-0.5} spacing={4}>
+      <Grid container mb={-0.5} spacing={6}>
       {products.map((item:PricedProduct) => {
           const size = variantSizes(item); // Get the size for the current item
           const colors = variantColors(item);    
@@ -62,7 +62,7 @@ const Section4 = ({
                 // rating={5}
                 status={item?.tags?.find((i)=>i?.value === 'sale') ? "Sale" : item.variants.find((v)=> v?.inventory_quantity < 95 ) ? 'Top' : ""}
                 imgUrl={ item.thumbnail}
-                productColors={colors  }
+                productColors={colors}
                 productSizes={size}
               />
             </Grid> 

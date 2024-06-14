@@ -17,46 +17,27 @@ import api from "utils/__api__/furniture-shop";
 import Testing from "../testing";
 import type { PricedProduct, PricedVariant } from "@medusajs/medusa/dist/types/pricing";
 import type { CartWithCheckoutStep } from "medusa/types/global";
-import type { ProductVariant, Region } from "@medusajs/medusa";
-// import { getRegion } from "medusa/lib/data";
-// import { retrievePricedProductById, getProductsList } from "medusa/lib/data";
-
-// import { medusaClient } from "medusa/lib/config";
-
-// import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
-
-//  async function ProductWithContext({region, cart}){
-//  const {products, count} = await medusaClient.products.list({
-//   expand: "categories",
-//   region_id:region.id,
-//   cart_id:cart?.id,
-//   })
-//   .then(({ products, limit, offset, count }) => {
-//    return {products, count}
-// })
-
-// return {products, count}
-// }
-
-
+import type { ProductVariant, Region, Customer } from "@medusajs/medusa";
 
 const FurnitureShopPageView = async ({
   
    region,
    pricedProducts,
-   cart
+   cart,
+   customer
  
 }:{
   region:Region,
   pricedProducts,
-  cart:CartWithCheckoutStep
+  cart:CartWithCheckoutStep,
+  customer?:Omit<Customer, 'password-hash'> | null
 }) => {
   const topNewProducts = await api.getTopNewProducts();
   const mainCarouselData = await api.getMainCarouselData();
   const furnitureProducts = await api.getFurnitureProducts();
   const sidebarNavList = await api.getFurnitureShopNavList();
   const topSellingProducts = await api.getTopSellingProducts();
-
+ 
   
 
   return <Container maxWidth={false} disableGutters component="div">
@@ -66,7 +47,7 @@ const FurnitureShopPageView = async ({
       <Suspense fallback={<div>
         <p>Loading...</p> <CircularProgress />
       </div>}>
-       <Section1 mainCarouselData={mainCarouselData} /> 
+       <Section1 mainCarouselData={mainCarouselData} customer={customer}/> 
        </Suspense>
       <Container>
         {

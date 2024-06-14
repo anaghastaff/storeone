@@ -56,7 +56,8 @@ const AddressForm = ({
   if (formState.success === true) {
     enqueueSnackbar("Address Updated Successfully", { variant: "success" });
     router.push("/address");
-  } else {
+  } 
+  if(ormState.success === false && formState.error) {
     enqueueSnackbar("Error Updating Address", { variant: "error" });
   }
 

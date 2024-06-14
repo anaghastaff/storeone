@@ -225,7 +225,7 @@ const StripePaymentButton = ({
                 loadingPosition="center"
                 sx={{rowGap:1}}
               >
-                {submitting ? "Processing... " : "Process Payment"}
+                <span>{submitting ? "Processing... " : "Process Payment"}</span>
               </LoadingButton>
             </form>
           </Stack>

@@ -2,6 +2,29 @@ import { Cart, ProductCategory, ProductVariant, Region } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import { ProductCollection } from "@medusajs/product"
 
+export interface Review {
+  product_id: string;
+  title: string;
+  user_name: string;
+  rating: number;
+  content: string;
+  id: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ApiResponse {
+  status: string;
+  data: Review[] | null;
+  message: string;
+}
+
+export interface ApiResponseWithoutData {
+  status: string;
+  message: string;
+}
+
+
 export type CartAddress = {
     email:string,
     shipping_zip: string,

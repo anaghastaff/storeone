@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import { medusaClient } from "medusa/lib/config";
 import Loading from "./loading";
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
-
+import { getCustomer } from "medusa/lib/data";
 export const metadata = {
   title: "Furniture Shop - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -39,7 +39,7 @@ export default async function FurnitureShop(
     countryCode:string
   }
 }) {
-  
+  const customer = await getCustomer()
   const region = await getRegion(countryCode);
   if (!region){
     return null
@@ -60,7 +60,7 @@ export default async function FurnitureShop(
   }))
   
   return <Suspense fallback={<Loading />}>
-    <FurnitureShopPageView region={region} pricedProducts={pricedProducts} cart={cart}/>; 
+    <FurnitureShopPageView region={region} pricedProducts={pricedProducts} cart={cart} customer={customer}/>; 
   </Suspense> 
   
 }

@@ -125,11 +125,14 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 data-testid="mobile-cart-button"
                 disableRipple
               >
-                {!variant
+              <span>
+              {!variant
                   ? "Select variant"
                   : !inStock
                   ? "Out of stock"
                   : "Add to cart"}
+                </span>  
+              
               </LoadingButton>
             </div>
           </div>
