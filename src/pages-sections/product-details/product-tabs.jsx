@@ -35,7 +35,7 @@ const ProductTabs = ({product, response}) => {
         <Tab className="inner-tab" label={`Reviews (${response.data?.length})`}/>
       </StyledTabs>
 
-      <FlexBox mb={6} p={3}>
+      <FlexBox mb={2} p={3}>
         {selectedOption === 0 && <ProductDescription product={product} />}
         {selectedOption === 1 && <ProductReview product={product} response={response}/>}
       </FlexBox>

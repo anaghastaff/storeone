@@ -21,24 +21,16 @@ const Section2 =  ({products, region}:{
   products:PricedProduct,
   region:Region,
 }) => {
-
-  
-  
+    
   const {
     breakpoints
   } = useTheme();
-
-  // const product1 = "/assets/images/Furniture Shop/Furniture (6).png";
-  // const product2 = "/assets/images/Furniture Shop/Furniture (5).png";
-  // const product3 = "/assets/images/Furniture Shop/Furniture (1).png";
-  // const product4 = "/assets/images/Furniture Shop/Furniture (3).png";
-  // const product5 = "/assets/images/Furniture Shop/Furniture (4).png";
-
-  const product1 =  (products === null) ? <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} />  : products[0].images[0].url;
-  const product2 = (products.length === 0)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> : products ?  products[1].images[0].url : <CircularProgress color="warning"/>;
-  const product3 = (products.length === 0)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> : products ?  products[2].images[0].url : <CircularProgress color="warning"/>;
-  const product4 = (products.length === 0)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> : products ?  products[3].images[0].url : <CircularProgress color="warning"/>;
-  const product5 = (products.length === 0)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> : products ?  products[4].images[0].url : <CircularProgress color="warning"/>;
+  
+  const product1 =  (!products) ? <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} />  : products[0].images[0].url;
+  const product2 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[1].images[0].url 
+  const product3 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[2].images[0].url 
+  const product4 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[3].images[0].url 
+  const product5 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[4].images[0].url 
   return <Fragment>
       <Grid container spacing={3}>
         {

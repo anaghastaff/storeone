@@ -7,7 +7,7 @@ import Pagination from "../../pagination";
 import DashboardHeader from "../../dashboard-header"; // CUSTOM DATA MODEL
 import type { Customer, Order } from "@medusajs/medusa";
 import Container from "@mui/material/Container";
-import { Button, Box, TableRow, TableContainer } from "@mui/material";
+import { Button, Box, TableRow, TableCell, TableContainer } from "@mui/material";
 import { H4, H3, H5 } from "components/Typography";
 import { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
@@ -57,43 +57,20 @@ const OrdersPageView = ({
       {/* ORDER LIST AREA */}
       <TableContainer>
         <Table>
-          {rows?.length ? (
+          {rows?.length && (
             rows
               .slice(page * rowPerPage, page * rowPerPage + rowPerPage)
               .map((row) => <OrderRow order={row} key={row?.id} />)
-          ) : (
-            <Container
-              sx={{
-                height: "100%",
-                display: "flex",
-                gap: 3,
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              maxWidth="md"
-            >
-              <Box>
-                <H3>You have not ordered anything!</H3>
-              </Box>
-              <Box>
-                <Button
-                  href="/furniture-shop"
-                  sx={{ width: "fit-content" }}
-                  size="large"
-                  variant="contained"
-                >
-                  Browse-Products
-                </Button>
-              </Box>
-            </Container>
-          )}
+          ) 
+            
+          }
         </Table>
 
         {/* ORDERS PAGINATION */}
 
         
       </TableContainer>
+      
       <TablePagination
           rowsPerPageOptions={[5, 10]}
           page={page}
@@ -103,6 +80,32 @@ const OrdersPageView = ({
           onPageChange={handlePageChange}
           onRowsPerPageChange={handleRowsPerPage}
         />
+
+        {!orders && <Container
+          sx={{
+            height: "100%",
+            display: "flex",
+            gap: 3,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          maxWidth="md"
+        >
+          <Box>
+            <H3>You have not ordered anything!</H3>
+          </Box>
+          <Box>
+            <Button
+              href="/furniture-shop"
+              sx={{ width: "fit-content" }}
+              size="large"
+              variant="contained"
+            >
+              Browse-Products
+            </Button>
+          </Box>
+        </Container>}
     </Fragment>
   );
 };

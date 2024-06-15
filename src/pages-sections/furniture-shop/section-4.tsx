@@ -52,7 +52,7 @@ const Section4 = ({
               <ProductCard17
                 hideRating
                 id={item.id}
-                slug={item.handle}
+                slug={item.id}
                 title={item.title}
                 price={cheapestPrice}
                 region={region}

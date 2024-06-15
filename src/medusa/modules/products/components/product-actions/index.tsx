@@ -21,8 +21,7 @@ type ProductActionsProps = {
   product: PricedProduct;
   region: Region;
   cart: CartWithCheckoutStep | null;
-  setID?: Dispatch<SetStateAction<string>>;
-  variant_ID?:string
+  
 };
 
 export type PriceType = {
@@ -36,8 +35,7 @@ export default function ProductActions({
   product,
   region,
   cart,
-  setID,
-  variant_ID,
+  
   
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string>>({});
@@ -145,7 +143,7 @@ export default function ProductActions({
       {
         console.log("data", data?.id)
         setcartItemExist(data) 
-        setID(data?.id) ;
+        
     }
   }, [options, variant, inStock]);
 

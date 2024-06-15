@@ -7,18 +7,14 @@ import format from "date-fns/format"; // GLOBAL CUSTOM COMPONENT
 
 import { H5, Paragraph } from "components/Typography"; // Local CUSTOM COMPONENT
 
-import TableRow from "../table-row"; // CUSTOM UTILS LIBRARY FUNCTION
-
+ //import TableRow from "../table-row"; // CUSTOM UTILS LIBRARY FUNCTION
+import { TableRow, TableCell, Skeleton } from "@mui/material";
 import { currency } from "lib"; // CUSTOM DATA MODEL
 import { Order } from "@medusajs/medusa";
 import { formatAmount } from "medusa/lib/util/prices";
 // =================================================
-const OrderRow = ({
-  order
-}:{
-  order: Omit<Order, 'beforeInsert'>
-}) => {
-  const getColor = status => {
+const OrderRow = ({ order }: { order: Omit<Order, "beforeInsert"> }) => {
+  const getColor = (status) => {
     switch (status) {
       case "Pending":
         return "secondary";
@@ -37,45 +33,67 @@ const OrderRow = ({
     }
   };
 
-  return <Link href={`/orders/${order?.id}`}>
-      <TableRow sx={{
-      gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr"
-    }}>
+  return (
+    order ? <>
+      <Link href={`/orders/${order?.id}`}>
+      <TableRow
+        sx={{
+          gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr",
+        }}
+      >
+        <TableCell>
         <H5 ellipsis>#{order?.id.substring(0, 18)}</H5>
-
+        </TableCell>
+        <TableCell>
         <Box textAlign="center">
           <Chip size="small" label={order?.status} color="default" />
         </Box>
-
-        <Paragraph textAlign={{
-        sm: "center",
-        xs: "left"
-      }}>
+        </TableCell>
+        <TableCell>
+        <Paragraph
+          textAlign={{
+            sm: "center",
+            xs: "left",
+          }}
+        >
           {format(new Date(order?.created_at), "MMM dd, yyyy")}
         </Paragraph>
-         
-        <Paragraph textAlign="center">{
-        formatAmount({
+        </TableCell>
+        <TableCell>
+        <Paragraph textAlign="center">
+          {formatAmount({
             amount: order?.total,
             region: order?.region,
             includeTaxes: false,
-          })}</Paragraph>
-
-        <Box display={{
-        sm: "inline-flex",
-        xs: "none"
-      }} justifyContent="end">
+          })}
+        </Paragraph>
+        </TableCell>
+        <TableCell>
+        <Box
+          display={{
+            sm: "inline-flex",
+            xs: "none",
+          }}
+          justifyContent="end"
+        >
           <IconButton>
-            <East fontSize="small" sx={{
-            color: "grey.500",
-            transform: ({
-              direction
-            }) => `rotate(${direction === "rtl" ? "180deg" : "0deg"})`
-          }} />
+            <East
+              fontSize="small"
+              sx={{
+                color: "grey.500",
+                transform: ({ direction }) =>
+                  `rotate(${direction === "rtl" ? "180deg" : "0deg"})`,
+              }}
+            />
           </IconButton>
         </Box>
+        </TableCell>
       </TableRow>
-    </Link>;
+    </Link>
+      </> 
+      : <Skeleton width="100%" height="100%" variant="rectangular" sx={{bgcolor:'grey.600'}} />
+   
+  );
 };
 
 export default OrderRow;

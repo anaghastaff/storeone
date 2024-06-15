@@ -1,3 +1,4 @@
+'use client'
 import { styled } from "@mui/material/styles"; // MUI ICON COMPONENTS
 
 import ChevronRight from "@mui/icons-material/ChevronRight"; // GLOBAL CUSTOM COMPONENT

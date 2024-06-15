@@ -10,6 +10,7 @@ import { currency } from "lib"; // CUSTOM DATA MODEL
 import type { Order } from "@medusajs/medusa";
 import { formatAmount } from "medusa/lib/util/prices";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import SubmitProductReview from "pages-sections/product-details/submit-review";
 // ==============================================================
 const OrderedProducts = ({
   order,
@@ -45,7 +46,7 @@ const OrderedProducts = ({
             <FlexBox gap={2.5} alignItems="center">
               <Avatar
                 alt={item?.title}
-                src={item?.thumbnail}
+                src={item?.thumbnail} 
                 sx={{
                   height: 64,
                   width: 64,
@@ -69,17 +70,13 @@ const OrderedProducts = ({
               Product Variant: {item?.variant?.title}
             </Paragraph>
             {}
-            <Button
-              variant="text"
-              href={`/products/${product?.handle}`}
-              color="primary"
-            >
-              Write a Review
-            </Button>
+            <SubmitProductReview productId={product.id} variant="text">
+      Write a Review
+     </SubmitProductReview>
           </FlexBetween>
         );
       })}
-    </Card>
+    </Card> 
   );
 };
 

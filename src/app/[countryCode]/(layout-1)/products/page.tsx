@@ -3,6 +3,8 @@ import { medusaClient } from "medusa/lib/config";
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { Container } from "@mui/material";
 import Section4 from "pages-sections/furniture-shop/section-4";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata = {
   title: "Products", 
@@ -27,6 +29,8 @@ async function ProductWithContext({region, cart}){
    
    return {products, count}
    }
+
+  //  MAIN FUNCTION
 
 export default async function AllProducts(
 {
@@ -58,7 +62,9 @@ export default async function AllProducts(
 
     return (
         <Container>
+          <Suspense fallback={<Loading pagename="products" />}>
         <Section4 cart={cart}  products={pricedProducts} region={region} heading="All Products" description="Summer Collection"/>
+        </Suspense>
         </Container>
     ); 
   

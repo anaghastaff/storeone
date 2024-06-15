@@ -29,7 +29,7 @@ const ProductDetailsPageView:React.FC<ProductDetailsPageViewProps> = props => {
   return <Container sx={{
     my: 4
   }}>
-  <div>{props.product.title}</div>
+  
       {
       /* PRODUCT DETAILS INFO AREA */
     }

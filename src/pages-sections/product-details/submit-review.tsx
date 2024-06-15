@@ -13,12 +13,17 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { useSnackbar } from "notistack";
 import { SubmitButton } from "medusa/modules/common/components/submit-button";
 import Dialog from "@mui/material/Dialog";
-import { DialogActions, DialogTitle, DialogContent } from "@mui/material";
+import { DialogActions, DialogTitle, DialogContent, IconButton } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "medusa/modules/common/components/divider";
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import useHeader from "components/header/use-header";
+import { Wrapper } from "pages-sections/sessions/styles";
+import {ReviewFormWrapper} from './styles';
+import CloseIcon from '@mui/icons-material/Close';
 
 export interface Review {
   product_id: string;
@@ -52,17 +57,20 @@ const validationSchema = yup.object().shape({
 });
 
 const SubmitProductReview = ({
-  product,
-  response,
+  productId,
+  color="primary",
+  children,
+  variant="outlined",
+  size="medium",
 }: {
-  product: PricedProduct;
-  response?: ApiResponse;
+  productId: string; 
+  children:React.ReactNode;
+  variant?:"outlined" | "contained" | "text";
+  color?:"primary" | "secondary" | "info" | "error" | "warning" | "success";
+  size?:"small" | "medium" | "large";
 }) => {
-  const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const [fetchReviews, setFetchReviews] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [pending, setPending] = useState(false);
   const [success, setSuccess] = useState(null);
@@ -83,7 +91,7 @@ const SubmitProductReview = ({
       console.log("values entered by user", values);
       try {
         setPending(true);
-        const response = await fetch(`/api/reviews/${product.id}`, {
+        const response = await fetch(`/api/reviews/${productId}`, {
           method: "POST",
           body: JSON.stringify(values),
         });
@@ -109,44 +117,49 @@ const SubmitProductReview = ({
 
   return (
     <>
-      <FlexBox sx={{ my: 1 }}>
+     
+      <FlexBox sx={{ my: 1 }}>     
         <Button
           onClick={handleClickOpen}
-          variant="outlined"
-          size="medium"
+          variant={variant}
+          size={size}
           sx={{ px: 2, width: "fit-content" }}
+          color={color}
+          endIcon={<RateReviewIcon sx={{fontSize:14}}/>}
         >
-          Write a Review
+         {children}
         </Button>
       </FlexBox>
-      <Dialog open={open} onClose={handleClose} fullScreen={fullScreen}>
+     <ReviewFormWrapper>
+      <Dialog scroll="body" open={open} onClose={handleClose} fullScreen={fullScreen} sx={{mt:10}}>
+     
         <Backdrop
           sx={{ color: "InfoText", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={pending}
         >
           <CircularProgress color="inherit" />
         </Backdrop>
-        <Button
+        <Box sx={{p:1}}>
+        <IconButton disableRipple edge="end" sx={{borderRadius:'50%', bgcolor:'grey.300'}}
           onClick={handleClose}
-          variant="outlined"
-          size="small"
-          sx={{ px: 2, width: "fit-content" }}
         >
-          Close
-        </Button>
-        <Divider />
+          <CloseIcon color="info" fontSize="small"/>
+        </IconButton>
+        </Box>
+       
         <FlexBox
           sx={{
-            maxWidth: "500px",
+            maxWidth: 500,
+            width: {sm:500},
             minWidth: 300,
             m: "auto",
+           
             display: "flex",
             flexDirection: "column",
             gap: 1,
           }}
         >
-          <DialogTitle>Your Review</DialogTitle>
-
+         
           <form onSubmit={formik.handleSubmit}>
             <DialogContent>
               <Box mb={2.5}>
@@ -226,7 +239,7 @@ const SubmitProductReview = ({
                 />
               </Box>
             </DialogContent>
-            <DialogActions>
+            <DialogActions sx={{p:2}}>
               <SubmitButton
                 variant="contained"
                 color="primary"
@@ -241,7 +254,9 @@ const SubmitProductReview = ({
             </DialogActions>
           </form>
         </FlexBox>
+        
       </Dialog>
+      </ReviewFormWrapper>
     </>
   );
 };

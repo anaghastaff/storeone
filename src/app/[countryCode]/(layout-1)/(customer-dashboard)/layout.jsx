@@ -9,17 +9,13 @@ export const viewport = {
 export default async function Layout({
   children
 }) {
- try{
+ 
   const customer = await getCustomer()
   const orders = await listCustomerOrders()
   if(!customer){
-     
       redirect("/login")
   }
- }catch(err){
-  console.log(err.toString())
- }
  
   
-  return customer && <CustomerDashboardLayout customer={customer} orders={orders}>{children}</CustomerDashboardLayout>; 
+  return (customer && <CustomerDashboardLayout customer={customer} orders={orders}>{children}</CustomerDashboardLayout>)
 }

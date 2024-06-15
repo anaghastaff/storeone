@@ -39,7 +39,7 @@ const ProductList: React.FC = async () => {
           <ProductCard7
             hideRating
             id={item.id}
-            slug={item.handle}
+            slug={item.id}
             title={item.title}
             price={item.variants[0].prices[0].amount}
             off={"10"}
