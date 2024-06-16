@@ -47,11 +47,8 @@ export default async function FurnitureShop(
   const cart = await fetchCart();
   console.log("cart type", cart?.type)
   const {products, count} = await ProductWithContext({region, cart});
-
   const pricedProducts = await Promise.all( products.map( async (product) => {
-
     if (!product.id) return null;
-
      const data = await retrievePricedProductById({
         id:product.id,
         regionId:region.id
@@ -60,7 +57,7 @@ export default async function FurnitureShop(
   }))
   
   return <Suspense fallback={<Loading />}>
-    <FurnitureShopPageView region={region} pricedProducts={pricedProducts} cart={cart} customer={customer}/>; 
+    <FurnitureShopPageView count={count} region={region} pricedProducts={pricedProducts} cart={cart} customer={customer}/>; 
   </Suspense> 
   
 }

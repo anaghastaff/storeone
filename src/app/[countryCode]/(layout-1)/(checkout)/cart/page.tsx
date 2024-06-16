@@ -4,7 +4,8 @@ import { getRegion } from "medusa/lib/data";
 import UpdateCartRegion from "medusa/lib/util/update-cart-region";
 import { Viewport } from "next";
 import EmptyCartView from "components/mini-cart/empty-view";
-
+import {Suspense} from 'react'
+import Loading from "../loading";
 export const metadata = {
   title: "Cart - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -35,7 +36,11 @@ export default async function Cart({
   const updatedCart = await UpdateCartRegion({ region, cart });
 
   return cart?.items?.length > 0 ? (
+    <>
+    <Suspense fallback={<Loading pagename="data" />} >
     <CartPageView cart={updatedCart} />
+    </Suspense>
+    </>
   ) : (
     <EmptyCartView />
   );

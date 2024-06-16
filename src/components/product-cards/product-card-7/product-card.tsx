@@ -45,8 +45,8 @@ const ProductCard17 = (props) => {
     imgUrl,
     rating,
     hideRating,
-    productColors,
-    productSizes,
+    // productColors,
+    // productSizes,
     slug,
     region,
     cart,
@@ -54,10 +54,8 @@ const ProductCard17 = (props) => {
   } = props;
 
   const discount = 15;
-
-  const [variant_ID, setID] = useState("");
   const [ratingData, setData] = useState<ApiResponse | null>(null);
-  let count;
+
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -101,7 +99,7 @@ const ProductCard17 = (props) => {
               fill={true}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               src={imgUrl}
-              sx={{ objectFit: "cover", left: 0, top: 0, right: 0 }}
+              sx={{ objectFit: "contain", left: 0, top: 0, right: 0 }}
               id="productImg"
             />
           ) : (
@@ -153,8 +151,6 @@ const ProductCard17 = (props) => {
               product={product}
               region={region}
               cart={cart}
-              variant_ID={variant_ID}
-              setID={setID}
             />
           </div>
         </Box>

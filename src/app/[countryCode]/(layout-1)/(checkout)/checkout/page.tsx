@@ -5,7 +5,8 @@ import UpdateCartRegion from "medusa/lib/util/update-cart-region"
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import { Viewport } from "next";
 import Wrapper from "medusa/modules/checkout/payment-wrapper";
-
+import {Suspense} from 'react'
+import Loading from "../loading";
 export const metadata = {
   title: "Checkout - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -35,9 +36,11 @@ export default async function Checkout({params}:{params:{countryCode:string}}) {
   )) as CartWithCheckoutStep
   console.log("cart type", cart?.type)
   return (
+    <Suspense fallback={<Loading pagename="data" />} >
     <Wrapper cart={cart}>
       <CheckoutPageView cart={cartWithPaymentSession}/>
   </Wrapper>
+  </Suspense>
   )
   
 }

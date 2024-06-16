@@ -41,18 +41,19 @@ export default function ProductInCarousel({
     <>
       <Carousel
         responsive={responsive}
-        dots
+        dots={false}
         dotColor="#3399ff"
+        
         slidesToShow={3}
         arrowStyles={{
           width: 40,
           height: 40,
           boxShadow: 2,
           borderRadius: 0,
-          color: "primary.main",
-          backgroundColor: "primary.50",
+          color: "common.white",
+          backgroundColor: "primary.main",
           "&:hover": {
-            backgroundColor: "primary.100",
+            backgroundColor: "primary.dark",
           },
         }}
       >
@@ -84,33 +85,7 @@ export default function ProductInCarousel({
                       ? "Top"
                       : ""
                 }
-                imgUrl={
-                  products === undefined || products.length === null ? (
-                    <CircularProgress color="success" />
-                  ) : (
-                    item.thumbnail
-                  )
-                }
-                productColors={
-                  colors ? (
-                    colors
-                  ) : (
-                    <Skeleton
-                      variant="rectangular"
-                      sx={{ bgcolor: "red", height: 12, width: 12 }}
-                    />
-                  )
-                }
-                productSizes={
-                  size ? (
-                    size
-                  ) : (
-                    <Skeleton
-                      variant="rectangular"
-                      sx={{ bgcolor: "red", height: 14, width: 14 }}
-                    />
-                  )
-                }
+                imgUrl={item.thumbnail}
               />
             </Box>
           );

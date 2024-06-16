@@ -24,13 +24,15 @@ const FurnitureShopPageView = async ({
    region,
    pricedProducts,
    cart,
-   customer
+   customer,
+   count,
  
 }:{
   region:Region,
   pricedProducts,
   cart:CartWithCheckoutStep,
-  customer?:Omit<Customer, 'password-hash'> | null
+  customer?:Omit<Customer, 'password-hash'> | null,
+  count?:number,
 }) => {
   const topNewProducts = await api.getTopNewProducts();
   const mainCarouselData = await api.getMainCarouselData();
@@ -70,7 +72,7 @@ const FurnitureShopPageView = async ({
           /* ALL PRODUCTS AREA */
           
         }
-         <Section4 cart={cart}  products={pricedProducts} region={region} heading="All Products" description="Summer Collection"/>
+         <Section4 count={count} cart={cart}  products={pricedProducts} region={region} heading="All Products" description="Summer Collection"/>
         
         </Stack>
       </Container>

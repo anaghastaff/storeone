@@ -49,7 +49,6 @@ export async function generateMetadata(
         url: "https://ui-lib.com",
       },
     ],
-
     keywords: ["e-commerce", "e-commerce template", "next.js", "react"],
   };
 }

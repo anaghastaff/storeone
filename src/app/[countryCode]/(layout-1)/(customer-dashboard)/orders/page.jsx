@@ -2,6 +2,8 @@ import { OrdersPageView } from "pages-sections/customer-dashboard/orders/page-vi
 import { getCustomer, listCustomerOrders } from "medusa/lib/data";
 import { notFound, redirect } from "next/navigation";
 import api from "utils/__api__/orders";
+
+import { Suspense } from "react";
 export const metadata = {
   title: "Orders - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
