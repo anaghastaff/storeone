@@ -1,7 +1,7 @@
 import { Customer } from "@medusajs/medusa";
 import { getCustomer, getRegion } from "medusa/lib/data";
 import { headers } from "next/headers";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { AddressDetailsPageView } from "pages-sections/customer-dashboard/address/page-view"; // API FUNCTIONS
 
 import api from "utils/__api__/address";
@@ -24,11 +24,14 @@ export default async function Address({
 }) {
   const nextHeaders = headers();
   const countryCode = nextHeaders.get("next-url")?.split("/")[1] || ""
-  const region = await getRegion(countryCode);
-  const customer = await getCustomer() as Omit<Customer, 'password-hash'> | null;
+  const region = await getRegion(countryCode);  
   const edit=true
+  const customer = await getCustomer();
+  if(!customer) {
+    redirect('/login')
+  }
   const address = customer?.shipping_addresses.find((a)=> a?.id === params.addressId)
     
-    return <AddressDetailsPageView address={address} region={region}  edit={edit}/>;
+    return (customer && <AddressDetailsPageView address={address} region={region}  edit={edit}/>);
  
 }

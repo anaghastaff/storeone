@@ -47,7 +47,7 @@ const ShopLayout1 = ({
       {
       /* NAVIGATION BAR */
     }
-      <Navbar elevation={0} border={1} />
+      <Navbar elevation={0} border={1} customer={customer}/>
 
       {
       /* BODY CONTENT */

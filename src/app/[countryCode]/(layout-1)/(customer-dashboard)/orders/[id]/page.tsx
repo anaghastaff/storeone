@@ -1,7 +1,8 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { OrderDetailsPageView } from "pages-sections/customer-dashboard/orders/page-view"; // API FUNCTIONS
 import { listCustomerOrders, getProductsList } from "medusa/lib/data";
 import { medusaClient } from "medusa/lib/config";
+import { getCustomer } from "medusa/lib/data";
 
 export const metadata = {
   title: "Order Details - Bazaar Next.js E-commerce Template",
@@ -14,7 +15,15 @@ export const metadata = {
   keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
 };
 
+
 async function ProductWithContext({regionId, cartId}){
+  
+    const customer = await getCustomer();
+     
+  
+  if(!customer){
+    redirect("/login");
+  }
   const {products, count} = await medusaClient.products.list({
    expand: "categories",
    region_id:regionId,

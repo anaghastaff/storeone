@@ -13,7 +13,7 @@ const ProfilePageView = ({
   customer
 }:{
   orders: Order[],
-  customer: Omit<Customer, 'password-hash'> | null
+  customer: Omit<Customer, 'password-hash'> | null,
 }) => {
   return <Fragment>
       {

@@ -2,6 +2,7 @@ import { WishListPageView } from "pages-sections/customer-dashboard/wish-list"; 
 import { getCustomer } from "medusa/lib/data";
 import { redirect } from "next/navigation";
 import { getWishListProducts } from "utils/__api__/wish-list";
+import NotFound from "app/not-found";
 export const metadata = {
   title: "Wish List - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -23,5 +24,5 @@ export default async function WishList({
   if(!customer){
     redirect('/login')
   }
-  return <WishListPageView products={products} totalProducts={totalProducts} />;
+  return customer ? <WishListPageView products={products} totalProducts={totalProducts} /> : <NotFound />;
 }

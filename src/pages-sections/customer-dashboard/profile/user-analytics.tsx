@@ -46,6 +46,7 @@ const UserAnalytics = ({
       shipmentCount++
     }
   })
+  
 
   return <Grid container spacing={3}>
       <Grid item md={6} xs={12}>

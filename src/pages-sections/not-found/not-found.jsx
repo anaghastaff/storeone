@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button"; // CUSTOM GLOBAL COMPONENTS
 
 import { FlexBox, FlexRowCenter } from "components/flex-box";
+import { H4 } from "components/Typography";
 
 const NotFound = () => {
   const router = useRouter();
@@ -17,13 +18,19 @@ const NotFound = () => {
       }} />
       </Box>
 
+      <H4 >Unauthorized Access</H4>
+
       <FlexBox flexWrap="wrap" gap={2}>
+        
         <Button variant="outlined" color="primary" onClick={() => router.back()}>
           Go Back
         </Button>
 
         <Button variant="contained" color="primary" onClick={() => router.push("/")}>
           Go to Home
+        </Button>
+        <Button variant="contained" color="primary" onClick={() => router.push("/login")}>
+         Login
         </Button>
       </FlexBox>
     </FlexRowCenter>;

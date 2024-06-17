@@ -1,6 +1,9 @@
 import { AddressPageView } from "pages-sections/customer-dashboard/address/page-view"; // API FUNCTIONS
 import {headers} from 'next/headers';
 import {getCustomer, getRegion} from 'medusa/lib/data';
+import {redirect} from 'next/navigation';
+import NotFound from "app/not-found";
+
 export const metadata = {
   title: "Address - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -16,7 +19,11 @@ export default async function Address() {
   const countryCode = nextHeaders.get("next-url")?.split("/")[1] || ""
   const region = await getRegion(countryCode);
   const customer = await getCustomer();
-  
+  if(!customer) {
+    redirect('/login')
+  }
 
-  return <AddressPageView customer={customer} region={region} />;
+  return customer ? <AddressPageView customer={customer} region={region} /> : 
+  <NotFound />
+  ;
 }

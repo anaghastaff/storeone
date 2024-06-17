@@ -19,7 +19,7 @@ export const viewport = {
 export default async function Login() {
   const customer = await getCustomer();
   if(customer){
-    redirect('/profile')
+    redirect(new URL('/furniture-shop'))
   }
   return <LoginPageView />;
 }

@@ -18,5 +18,5 @@ export default async function SupportTickets() {
   if(!customer){
     redirect('/login')
   }
-  return <TicketsPageView tickets={tickets} />;
+  return customer && <TicketsPageView tickets={tickets} />;
 }

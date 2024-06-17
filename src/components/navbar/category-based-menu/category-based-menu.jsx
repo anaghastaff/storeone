@@ -11,13 +11,14 @@ import { Wrapper, StyledCard, MenusContainer } from "./styles"; // DATA TYPES
 // ===============================================================
 const CategoryBasedMenu = ({
   title,
-  menuList
+  menuList,
+  customer,
 }) => {
   const [openList, setOpenList] = useState(menuList[0].title);
-  const categories = menuList.reduce((prev, curr) => [...prev, curr.title], []);
+  const categories = menuList.reduce((prev, curr) =>  [...prev, curr.title], []);
   const subCategories = menuList.find(item => item.title === openList);
-  return <Wrapper>
-      <FlexRowCenter alignItems="flex-end" gap={0.3}>
+  return  <Wrapper>
+     <FlexRowCenter alignItems="flex-end" gap={0.3}>
         {title}{" "}
         <KeyboardArrowDown sx={{
         color: "grey.500",

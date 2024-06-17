@@ -18,114 +18,202 @@ import useSettings from "hooks/useSettings"; // NAVIGATION DATA LIST
 
 import navigation from "data/navbarNavigation"; // STYLED COMPONENTS
 
-import { ParentNav, ParentNavItem, StyledNavLink, NavBarWrapper, InnerContainer, NAV_LINK_STYLES, ChildNavListWrapper } from "./styles"; // DATA TYPES
+import {
+  ParentNav,
+  ParentNavItem,
+  StyledNavLink,
+  NavBarWrapper,
+  InnerContainer,
+  NAV_LINK_STYLES,
+  ChildNavListWrapper,
+} from "./styles"; // DATA TYPES
 
 // ==========================================================
 const Navbar = ({
   border,
   elevation = 2,
   navListOpen = false,
-  hideCategories = false
+  hideCategories = false,
+  customer,
 }) => {
-  const {
-    settings
-  } = useSettings();
+  const { settings } = useSettings();
   const pathname = usePathname();
 
-  const renderNestedNav = (list = [], isRoot = false) => {
-    return list.map(nav => {
-      if (isRoot) {
+  const renderNestedNav = (list = [], isRoot = false, customer) => {
+    return list.map((nav) => {
+      if (isRoot ) {
         // SHOW MEGA MENU
-        if (nav.megaMenu) {
-          return <MegaMenu key={nav.title} title={nav.title} menuList={nav.child} />;
+        if (nav.megaMenu ) {
+          return (
+             <MegaMenu key={nav.title} title={nav.title} menuList={nav.child} customer={customer}/>
+            
+          );
         } // SHOW MEGA MENU WITH SUB ITEMS
 
-
         if (nav.megaMenuWithSub) {
-          return <CategoryBasedMenu key={nav.title} title={nav.title} menuList={nav.child} />;
+          return (
+            <CategoryBasedMenu
+              key={nav.title}
+              title={nav.title}
+              menuList={nav.child}
+              custtomer={customer}
+            />
+          );
         }
 
         if (nav.url) {
-          return <StyledNavLink href={nav.url} key={nav.title}>
+          return (
+            <StyledNavLink href={nav.url} key={nav.title}>
               {nav.title}
-            </StyledNavLink>;
+            </StyledNavLink>
+          );
         }
 
         if (nav.child) {
-          return <FlexBox key={nav.title} alignItems="center" position="relative" flexDirection="column" sx={{
-            "&:hover": {
-              "& > .child-nav-item": {
-                display: "block"
-              }
-            }
-          }}>
-              <FlexBox alignItems="flex-end" gap={0.3} sx={NAV_LINK_STYLES}>
-                {nav.title}{" "}
-                <KeyboardArrowDown sx={{
-                color: "grey.500",
-                fontSize: "1.1rem"
-              }} />
-              </FlexBox>
+          return (
+            <FlexBox
+              key={nav.title}
+              alignItems="center"
+              position="relative"
+              flexDirection="column"
+              sx={{
+                "&:hover": {
+                  "& > .child-nav-item": {
+                    display: "block",
+                  },
+                },
+              }}
+            >
+              
+                {(nav.title === 'User Account' && !customer) ? ""
+                  : (nav.title !== 'User Account' && !customer)  ?  
+                  <FlexBox alignItems="flex-end" gap={0.3} sx={NAV_LINK_STYLES}>
+                  {nav.title}{" "}
+                  <KeyboardArrowDown
+                    sx={{
+                      color: "grey.500",
+                      fontSize: "1.1rem",
+                    }}
+                  />
+                </FlexBox> 
+                  : (nav.title === 'User Account' && customer) ?   
+                  <FlexBox color="primary.main" fontWeight="bold" alignItems="flex-end" gap={0.3} sx={NAV_LINK_STYLES}>
+                  {"My Account"}{" "}
+                  <KeyboardArrowDown
+                    sx={{
+                      color: "grey.500",
+                      fontSize: "1.1rem",
+                    }}
+                  />
+                </FlexBox>   : 
+                <FlexBox alignItems="flex-end" gap={0.3} sx={NAV_LINK_STYLES}>
+                  {nav.title}{" "}
+                  <KeyboardArrowDown
+                    sx={{
+                      color: "grey.500",
+                      fontSize: "1.1rem",
+                    }}
+                  />
+                </FlexBox>
+                }
+              
+            {/* <FlexBox alignItems="flex-end" gap={0.3} sx={NAV_LINK_STYLES}>
+                {(nav.title === 'User Account' && !customer) ? ""
+                : (nav.title !== 'User Account' && !customer)  ? nav.title 
+                : (nav.title === 'User Account' && customer) ?  nav.title   : ""
+              }{" "}
+                <KeyboardArrowDown
+                  sx={{
+                    color: "grey.500",
+                    fontSize: "1.1rem",
+                  }}
+                />
+              </FlexBox> */}
 
               <ChildNavListWrapper className="child-nav-item">
-                <BazaarCard elevation={3} sx={{
-                mt: 2.5,
-                py: 1,
-                minWidth: 200
-              }}>
+                <BazaarCard
+                  elevation={3}
+                  sx={{
+                    mt: 2.5,
+                    py: 1,
+                    minWidth: 200,
+                  }}
+                >
+                  
                   {renderNestedNav(nav.child)}
                 </BazaarCard>
               </ChildNavListWrapper>
-            </FlexBox>;
+            </FlexBox>
+          );
         }
-      } else {
+      } 
+      else {
         if (nav.url) {
-          return <NavLink href={nav.url} key={nav.title}>
+          return (
+            <NavLink href={nav.url} key={nav.title}>
               <MenuItem>{nav.title}</MenuItem>
-            </NavLink>;
+            </NavLink>
+          );
         }
 
         if (nav.child) {
-          const isActive = nav.child.flat().find(item => item.url === pathname);
-          return <ParentNav key={nav.title} minWidth={230} active={isActive ? 1 : 0}>
+          const isActive = nav.child
+            .flat()
+            .find((item) => item.url === pathname);
+          return (
+            <ParentNav key={nav.title} minWidth={230} active={isActive ? 1 : 0}>
               <MenuItem color="grey.700">
                 <Span flex="1 1 0">{nav.title}</Span>
 
-                {settings.direction === "ltr" ? <ArrowRight fontSize="small" /> : <ArrowLeft fontSize="small" />}
+                {settings.direction === "ltr" ? (
+                  <ArrowRight fontSize="small" />
+                ) : (
+                  <ArrowLeft fontSize="small" />
+                )}
               </MenuItem>
 
               <ParentNavItem className="parent-nav-item">
-                <BazaarCard sx={{
-                py: "0.5rem",
-                minWidth: "230px"
-              }} elevation={3}>
+                <BazaarCard
+                  sx={{
+                    py: "0.5rem",
+                    minWidth: "230px",
+                  }}
+                  elevation={3}
+                >
                   {renderNestedNav(nav.child)}
                 </BazaarCard>
               </ParentNavItem>
-            </ParentNav>;
+            </ParentNav>
+          );
         }
       }
     });
   };
 
-  const CONTENT = <FlexBox gap={4}>{renderNestedNav(navigation, true)}</FlexBox>;
-  return <NavBarWrapper hoverEffect={false} elevation={elevation} border={border}>
-      {hideCategories ? <InnerContainer sx={{
-      justifyContent: "center"
-    }}>
+  const CONTENT = (
+    <FlexBox gap={4}>{renderNestedNav(navigation, true, customer)}</FlexBox>
+  );
+  return (
+    <NavBarWrapper hoverEffect={false} elevation={elevation} border={border}>
+      {hideCategories ? (
+        <InnerContainer
+          sx={{
+            justifyContent: "center",
+          }}
+        >
           {CONTENT}
-        </InnerContainer> : <InnerContainer>
-          {
-        /* CATEGORY MEGA MENU */
-      }
+        </InnerContainer>
+      ) : (
+        <InnerContainer>
+          {/* CATEGORY MEGA MENU */}
           <Categories open={navListOpen} />
 
-          {
-        /* HORIZONTAL MENU */
-      }
+          {/* HORIZONTAL MENU */}
           {CONTENT}
-        </InnerContainer>}
-    </NavBarWrapper>;
+        </InnerContainer>
+      )}
+    </NavBarWrapper>
+  );
 };
 
 export default Navbar;
