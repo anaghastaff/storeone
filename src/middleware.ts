@@ -96,9 +96,9 @@ export async function middleware(request: NextRequest) {
 
   const regionMap = await getRegionMap()
 
-   const countryCode = regionMap && (await getCountryCode(request, regionMap))
+  //  const countryCode = regionMap && (await getCountryCode(request, regionMap))
    
-  // const countryCode = "us";
+  const countryCode = "us";
   const urlHasCountryCode =
     countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
   
@@ -123,8 +123,7 @@ export async function middleware(request: NextRequest) {
 
   // If no country code is set, we redirect to the relevant region.
   if (!urlHasCountryCode && countryCode) {
-    redirectUrl = `${request.nextUrl.origin}/${countryCode}${redirectPath}${queryString}`
-    
+    redirectUrl = `${request.nextUrl.origin}/${countryCode}${redirectPath}${queryString}`    
     response = NextResponse.redirect(`${redirectUrl}`, 307)
   }
   

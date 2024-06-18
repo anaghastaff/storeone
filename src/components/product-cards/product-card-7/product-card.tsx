@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import Box from "@mui/material/Box";
 // GLOBAL CUSTOM COMPONENTS

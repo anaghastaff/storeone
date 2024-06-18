@@ -115,10 +115,10 @@ export default function ProductActions({
   const colorOptionId = colorOption?.id;
   const currentColor = colorOptionId ? options[colorOptionId] : undefined;
 
-  useEffect(() => {
-    const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
-    setInCart(temp || null);    
-  }, [options, variant]);
+  // useEffect(() => {
+  //   const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
+  //   setInCart(temp || null);    
+  // }, [options, variant]);
 
   const actionsRef = useRef<HTMLDivElement>(null);
   const inView = useIntersection(actionsRef, "0px");
@@ -156,12 +156,11 @@ export default function ProductActions({
     } else {
       if (!variant?.id) return null;
       setIsAdding(true);
-      const res = await addToCart({
+      await addToCart({
         variantId: variant.id,
         quantity: 1,
         countryCode,
-      });
-     
+      });     
       setIsAdding(false);
     }
     // handleCartAmountChange(product);
@@ -191,7 +190,7 @@ export default function ProductActions({
   const handleAddToCart = async () => {
     if (!variant?.id) return null;
     setIsAdding(true);
-   const message = await addToCart({
+   await addToCart({
       variantId: variant.id,
       quantity: 1,
       countryCode,
