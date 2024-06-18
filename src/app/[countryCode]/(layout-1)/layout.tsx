@@ -5,6 +5,7 @@ import UpdateCartRegion from "medusa/lib/util/update-cart-region";
 import type { Viewport } from "next";
 import { getCustomer } from "medusa/lib/data";
 import { Suspense } from "react";
+import Loading from "./loading";
 
 export const viewport: Viewport = {
   width:'device-width',
@@ -26,7 +27,7 @@ export default async function Layout1({ children, params }:{
   const updatedCart = await UpdateCartRegion({region, cart })
   const customer = await getCustomer()
   return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading/>}>
       <ShopLayout1 cart={updatedCart} customer={customer} countryCode={params.countryCode}>{children} </ShopLayout1> 
       </Suspense>
   );
