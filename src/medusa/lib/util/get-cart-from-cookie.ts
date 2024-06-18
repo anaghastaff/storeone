@@ -8,24 +8,20 @@ import type { LineItem } from "@medusajs/medusa";
 
 
 export const fetchCart = async () => {
-    const cartId = cookies().get("_medusa_cart_id")?.value;
-  
+    const cartId = cookies().get("_medusa_cart_id")?.value;  
     if (!cartId) {
       return null;
-    }
-  
+    }  
     const cart = await getCart(cartId).then(
       (cart) => cart as CartWithCheckoutStep
-    );
-  
+    );  
     if (!cart) {
       return null;
     }
     if (cart?.items.length > 0)
        {
       const enrichedItems = await enrichLineItems(cart?.items, cart?.region_id);
-      cart.items = enrichedItems as LineItem[];
-      
+      cart.items = enrichedItems as LineItem[];      
       cart.checkout_step = cart ? getCheckoutStep(cart) : null;
       return cart;
     } 

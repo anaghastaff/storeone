@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { Region, type LineItem } from "@medusajs/medusa";
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import Button from "@mui/material/Button";
@@ -48,13 +47,11 @@ export default function ProductActions({
   const [inCart, setInCart] = useState<LineItem | null>(null);
   const {enqueueSnackbar} = useSnackbar();
   const countryCode = useParams().countryCode as string;
-
   const variants = product.variants;
 
   // initialize the option state
   useEffect(() => {
     const optionObj: Record<string, string> = {};
-
     for (const option of product.options || []) {
       Object.assign(optionObj, { [option.id]: undefined });
     }
@@ -64,20 +61,14 @@ export default function ProductActions({
   // memoized record of the product's variants
   const variantRecord = useMemo(() => {
     const map: Record<string, Record<string, string>> = {};
-
     for (const variant of variants) {
       if (!variant.options || !variant.id) continue;
-
       const temp: Record<string, string> = {};
-
       for (const option of variant.options) {
         temp[option.option_id] = option.value;
-      }
-      
-      map[variant.id] = temp;
-      
+      }      
+      map[variant.id] = temp;      
     }
-
     return map;
   }, [variants]);
 
@@ -126,12 +117,10 @@ export default function ProductActions({
 
   useEffect(() => {
     const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
-    setInCart(temp || null);
-    
+    setInCart(temp || null);    
   }, [options, variant]);
 
   const actionsRef = useRef<HTMLDivElement>(null);
-
   const inView = useIntersection(actionsRef, "0px");
 
   useEffect(() => {
@@ -142,11 +131,11 @@ export default function ProductActions({
     if(data) 
       {
         console.log("data", data?.id)
-        setcartItemExist(data) 
-        
+        setcartItemExist(data)         
     }
   }, [options, variant, inStock]);
 
+  // increase quantity
   const handleIncrementQuantity = async (quantity: number) => {
     if (inCart) {
       setError(null);
@@ -160,30 +149,25 @@ export default function ProductActions({
           return err.message;
         })
         .finally(() => {
-
           setUpdating(false);
         });
-
       message && setError(message);
       if(!message){
         enqueueSnackbar("Success, Item added to cart", {variant:'success'})
       }
     } else {
       if (!variant?.id) return null;
-
       setIsAdding(true);
-
       const res = await addToCart({
         variantId: variant.id,
         quantity: 1,
         countryCode,
       });
-      if(!res){
+      if(typeof res !== 'string' || res !== undefined){
         enqueueSnackbar("Success, Item added to cart", {variant:'success'})
       }
       setIsAdding(false);
     }
-
     // handleCartAmountChange(product);
   };
 
@@ -191,7 +175,6 @@ export default function ProductActions({
     if (inCart) {
       setError(null);
       addReduce(true);
-
       const message = await updateLineItem({
         lineId: inCart?.id,
         quantity,
@@ -201,23 +184,19 @@ export default function ProductActions({
         })
         .finally(() => {
           addReduce(false);
-        });
-     
+        });     
       message && setError(message);
       if(!message){
         enqueueSnackbar("Item removed from cart", {variant:'default'})
       }
     }
-
     // handleCartAmountChange(product, "remove");
   };
 
   // add the selected variant to the cart
   const handleAddToCart = async () => {
     if (!variant?.id) return null;
-
     setIsAdding(true);
-
    const message = await addToCart({
       variantId: variant.id,
       quantity: 1,

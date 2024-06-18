@@ -145,15 +145,12 @@ export async function updateLineItem({
   if (!cartId) {
     return "Missing cart ID"
   }
-
   if (!lineId) {
     return "Missing lineItem ID"
   }
-
   if (!cartId) {
     return "Missing cart ID"
   }
-
   try {
     await updateItem({ cartId, lineId, quantity })
     revalidateTag("cart")
@@ -164,15 +161,12 @@ export async function updateLineItem({
 
 export async function deleteLineItem(lineId: string) {
   const cartId = cookies().get("_medusa_cart_id")?.value
-
   if (!cartId) {
     return "Missing cart ID"
   }
-
   if (!lineId) {
     return "Missing lineItem ID"
   }
-
   if (!cartId) {
     return "Missing cart ID"
   }

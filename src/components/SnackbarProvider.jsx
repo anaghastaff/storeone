@@ -23,8 +23,8 @@ const SnackbarProvider = ({
   children
 }) => {
   return <Provider maxSnack={4} autoHideDuration={5000} anchorOrigin={{
-    vertical: "bottom",
-    horizontal: "center"
+    vertical: "top",
+    horizontal: "right"
   }}>
       {children}
     </Provider>;
