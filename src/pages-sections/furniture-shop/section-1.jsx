@@ -21,16 +21,9 @@ const Section1 = ({
     palette
   } = useTheme();
 
-  const {enqueueSnackbar} = useSnackbar();
+ 
 
-  useEffect(()=>{
-    if(customer){
-      enqueueSnackbar(`Welcome, ${customer?.first_name}`, {variant:'success'})
-    }if(!customer){
-      enqueueSnackbar(`You are not signed in`, {variant:'default'})
-    }
-    return ()=>{customer}
-  },[customer])
+  
   
 
   return <Wrapper id="carouselBox">

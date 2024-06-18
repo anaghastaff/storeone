@@ -27,10 +27,10 @@ const Section2 =  ({products, region}:{
   } = useTheme();
   
   const product1 =  (!products) ? <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} />  : products[0].images[0].url;
-  const product2 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[1].images[0].url 
-  const product3 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[2].images[0].url 
-  const product4 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[3].images[0].url 
-  const product5 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[4].images[0].url 
+  const product2 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[2].images[0].url 
+  const product3 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[6].images[0].url 
+  const product4 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[7].images[0].url 
+  const product5 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[9].images[0].url 
   return <Fragment>
       <Grid container spacing={3}>
         {

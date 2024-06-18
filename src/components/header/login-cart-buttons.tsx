@@ -1,11 +1,8 @@
 import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton"; // MUI ICON COMPONENT
-
 import PersonOutline from "@mui/icons-material/PersonOutline"; // GLOBAL CUSTOM COMPONENT
-
 import { FlexBox } from "components/flex-box"; // CUSTOM ICON COMPONENT
-
 import ShoppingBagOutlined from "icons/ShoppingBagOutlined"; // GLOBAL CUSTOM HOOK
 import Button from '@mui/material/Button'
 import useCart from "hooks/useCart"; // ==============================================================
@@ -62,7 +59,7 @@ const LoginCartButtons = ({
         )}
       </Box>
 
-      <Badge badgeContent={cart ? cart?.items?.length : null} color="primary">
+      <Badge badgeContent={cart?.items?.length ?? null} color="primary">
         <Box
           p={1.25}
           bgcolor="grey.200"

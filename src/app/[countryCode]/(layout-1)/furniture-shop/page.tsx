@@ -7,6 +7,7 @@ import { medusaClient } from "medusa/lib/config";
 import Loading from "./loading";
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { getCustomer } from "medusa/lib/data";
+
 export const metadata = {
   title: "Furniture Shop - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
@@ -23,6 +24,7 @@ async function ProductWithContext({region, cart}){
    expand: "categories",
    region_id:region.id,
    cart_id:cart?.id,
+   
    })
    .then(({ products, limit, offset, count }) => {
     return {products, count}
@@ -56,8 +58,7 @@ export default async function FurnitureShop(
       return data
   }))
   
-  return <Suspense fallback={<Loading />}>
-    <FurnitureShopPageView count={count} region={region} pricedProducts={pricedProducts} cart={cart} customer={customer}/>; 
-  </Suspense> 
+  return  <FurnitureShopPageView count={count} region={region} pricedProducts={pricedProducts} cart={cart} customer={customer}/>; 
+   
   
 }

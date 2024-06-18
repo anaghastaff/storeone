@@ -1,4 +1,4 @@
-
+'use client'
 import { useTheme } from "@mui/material/styles";
 import SlickCarousel from "react-slick"; // LOCAL CUSTOM COMPONENTS
 

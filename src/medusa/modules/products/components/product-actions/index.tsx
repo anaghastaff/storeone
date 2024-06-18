@@ -45,7 +45,7 @@ export default function ProductActions({
   const [error, setError] = useState<string | null>(null);
   const [cartItemExist, setcartItemExist] = useState<LineItem | null>(null);
   const [inCart, setInCart] = useState<LineItem | null>(null);
-  const {enqueueSnackbar} = useSnackbar();
+  
   const countryCode = useParams().countryCode as string;
   const variants = product.variants;
 
@@ -86,11 +86,11 @@ export default function ProductActions({
   }, [options, variantRecord, variants, product]);
 
   // if product only has one variant, then select it
-  useEffect(() => {
-    if (variants.length === 1 && variants[0].id) {
-      setOptions(variantRecord[variants[0].id]);
-    }
-  }, [variants, variantRecord]);
+  // useEffect(() => {
+  //   if (variants.length === 1 && variants[0].id) {
+  //     setOptions(variantRecord[variants[0].id]);
+  //   }
+  // }, [variants, variantRecord]);
 
   // update the options when a variant is selected
   const updateOptions = (update: Record<string, string>) => {
@@ -152,9 +152,7 @@ export default function ProductActions({
           setUpdating(false);
         });
       message && setError(message);
-      if(!message){
-        enqueueSnackbar("Success, Item added to cart", {variant:'success'})
-      }
+     
     } else {
       if (!variant?.id) return null;
       setIsAdding(true);
@@ -163,9 +161,7 @@ export default function ProductActions({
         quantity: 1,
         countryCode,
       });
-      if(typeof res !== 'string' || res !== undefined){
-        enqueueSnackbar("Success, Item added to cart", {variant:'success'})
-      }
+     
       setIsAdding(false);
     }
     // handleCartAmountChange(product);
@@ -186,9 +182,7 @@ export default function ProductActions({
           addReduce(false);
         });     
       message && setError(message);
-      if(!message){
-        enqueueSnackbar("Item removed from cart", {variant:'default'})
-      }
+     
     }
     // handleCartAmountChange(product, "remove");
   };
@@ -202,9 +196,7 @@ export default function ProductActions({
       quantity: 1,
       countryCode,
     });
-    if(!message){
-      enqueueSnackbar("item is added to cart!", {variant:'default'})
-    }
+   
     setIsAdding(false);
   };
   const router = useRouter()
@@ -223,7 +215,7 @@ export default function ProductActions({
         console.log("result",res)
         if(res !== "Error adding item to cart" ){
           addItemtoCheckout(false);
-          enqueueSnackbar("item is added to cart!", {variant:'default'})
+          
           router.push("/checkout?step=address");
         }       
       })

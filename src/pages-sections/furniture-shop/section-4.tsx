@@ -8,8 +8,6 @@ import type { Region } from "medusa/types/medusa";
 import { getProductPrice } from "medusa/lib/util/get-product-price";
 import {CartWithCheckoutStep} from "medusa/types/global"
 import ProductCard17 from "../../components/product-cards/product-card-7/product-card";
-import { variantSizes } from "lib/sizes";
-import { variantColors } from "lib/colors";
 import { useState } from "react";
 
 // ===================================================================
@@ -52,8 +50,7 @@ const Section4 = ({
       </Box>       
       <Grid container mb={-0.5} spacing={6}>
       {products.map((item:PricedProduct) => {
-          const size = variantSizes(item); // Get the size for the current item
-          const colors = variantColors(item);    
+            
           const { cheapestPrice } = getProductPrice({
             product:item,
             region,
@@ -71,10 +68,9 @@ const Section4 = ({
                 product={item}
                 off={"10"} 
                 // rating={5}
-                status={item?.tags?.find((i)=>i?.value === 'sale') ? "Sale" : item.variants.find((v)=> v?.inventory_quantity < 95 ) ? 'Top' : ""}
+                status={item?.tags?.find((i)=>i?.value === 'sale') ? "Sale" : item.variants?.find((v)=> v?.inventory_quantity < 95 ) ? 'Top' : ""}
                 imgUrl={ item.thumbnail}
-                productColors={colors}
-                productSizes={size}
+                
               />
             </Grid> 
           );

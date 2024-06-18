@@ -11,6 +11,8 @@ import { SearchInputWithCategory } from "components/search-box";
 import { MobileNavigationBar } from "components/mobile-navigation";
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import type { Customer } from "@medusajs/medusa";
+import { Suspense } from "react";
+import CircularProgress from '@mui/material/CircularProgress'
 /**
  *  USED IN:
  *  1. market-1, market-2, gadget-shop, fashion-shop, fashion-2, fashion-3, furniture-shop, grocery-3, gift-shop
@@ -40,13 +42,18 @@ const ShopLayout1 = ({
       {
       /* HEADER */
     }
+    
       <Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={300}>
+      <Suspense fallback={<CircularProgress />}>
         <Header countryCode={countryCode} customer={customer} isFixed={isFixed} searchInput={<SearchInputWithCategory/>} cart={cart} />
+        </Suspense>
       </Sticky>
+     
 
       {
       /* NAVIGATION BAR */
     }
+    
       <Navbar elevation={0} border={1} customer={customer}/>
 
       {

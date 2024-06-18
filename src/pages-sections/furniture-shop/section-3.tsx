@@ -1,4 +1,3 @@
-'use client'
 import Box from "@mui/material/Box"; // GLOBAL CUSTOM COMPONENTS
 import { Carousel } from "components/carousel";
 import { H1, Paragraph } from "components/Typography";

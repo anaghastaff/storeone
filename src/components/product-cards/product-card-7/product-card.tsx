@@ -45,8 +45,7 @@ const ProductCard17 = (props) => {
     imgUrl,
     rating,
     hideRating,
-    // productColors,
-    // productSizes,
+    
     slug,
     region,
     cart,

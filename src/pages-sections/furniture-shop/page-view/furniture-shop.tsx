@@ -1,5 +1,3 @@
-
-import { Fragment } from "react";
 import { Suspense } from "react";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container"; // GLOBAL CUSTOM COMPONENTS
@@ -12,15 +10,13 @@ import Sidebar from "../sidebar";
 import Section1 from "../section-1";
 import Section3 from "../section-3";
 import Section4 from "../section-4"; // API FUNCTIONS
-
+import { mainCarouselData, categoryNavigation as sidebarNavList } from "__server__/__db__/furniture/data";
 import api from "utils/__api__/furniture-shop";
 import Testing from "../testing";
-import type { PricedProduct, PricedVariant } from "@medusajs/medusa/dist/types/pricing";
 import type { CartWithCheckoutStep } from "medusa/types/global";
-import type { ProductVariant, Region, Customer } from "@medusajs/medusa";
+import type { Region, Customer } from "@medusajs/medusa";
 
-const FurnitureShopPageView = async ({
-  
+const FurnitureShopPageView = async ({  
    region,
    pricedProducts,
    cart,
@@ -34,13 +30,12 @@ const FurnitureShopPageView = async ({
   customer?:Omit<Customer, 'password-hash'> | null,
   count?:number,
 }) => {
-  const topNewProducts = await api.getTopNewProducts();
-  const mainCarouselData = await api.getMainCarouselData();
-  const furnitureProducts = await api.getFurnitureProducts();
-  const sidebarNavList = await api.getFurnitureShopNavList();
-  const topSellingProducts = await api.getTopSellingProducts();
- 
-  
+  // const topNewProducts = await api.getTopNewProducts();
+  //  const mainCarouselData = await api.getMainCarouselData();
+  // const furnitureProducts = await api.getFurnitureProducts();
+  // const sidebarNavList = await api.getFurnitureShopNavList();
+  // const topSellingProducts = await api.getTopSellingProducts();
+   
 
   return <Container maxWidth={false} disableGutters component="div">
       {
