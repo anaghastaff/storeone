@@ -54,23 +54,23 @@ const ProductCard17 = (props) => {
   } = props;
 
   const discount = 15;
-  const [ratingData, setData] = useState<ApiResponse | null>(null);
+  // const [ratingData, setData] = useState<ApiResponse | null>(null);
 
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const response = await fetch(`/api/reviews/${id}`, {
-        method: "GET",
-        credentials: "include",
-      });
-      const { data } = await response.json();
+  // useEffect(() => {
+  //   const fetchReviews = async () => {
+  //     const response = await fetch(`/api/reviews/${id}`, {
+  //       method: "GET",
+  //       credentials: "include",
+  //     });
+  //     const { data } = await response.json();
 
-      setData(data);
-    };
-    fetchReviews();
-  }, []);
+  //     setData(data);
+  //   };
+  //   fetchReviews();
+  // }, []);
 
-  const finalRating = averageRating({ response: ratingData?.data });
+  // const finalRating = averageRating({ response: ratingData?.data });
 
   return (
     <StyledCard sx={sx}>
@@ -131,12 +131,12 @@ const ProductCard17 = (props) => {
 
           {/* PRODUCT RATING / REVIEW  */}
 
-          <ProductRating
+          {/* <ProductRating
             showRating={hideRating}
             rating={finalRating ?? 0}
             status={ratingData?.status ?? "error"}
             length={ratingData?.data?.length ?? 0}
-          />
+          /> */}
 
           <div
             style={{

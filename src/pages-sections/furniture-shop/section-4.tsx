@@ -1,4 +1,3 @@
-'use client'
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button"; // GLOBAL CUSTOM COMPONENTS
@@ -31,18 +30,18 @@ const Section4 = ({
  count?:number
 }) => {
 
-  const [variable, setVariable] = useState(3);
-  const [pageEnd, setPageEnd] = useState(false);
-  const [increment, setIncrement] = useState(1);
-  const pages = Math.floor(count / 3) ;
+  // const [variable, setVariable] = useState(3);
+  // const [pageEnd, setPageEnd] = useState(false);
+  // const [increment, setIncrement] = useState(1);
+  // const pages = Math.floor(count / 3) ;
   
-  const handleCount = () =>{
-    setVariable(prev=>prev+3);
-    setIncrement(prev=>prev+1);
-    if(increment >= pages || (variable+2) >= count){
-      setPageEnd(true)
-    }   
-  }
+  // const handleCount = () =>{
+  //   setVariable(prev=>prev+3);
+  //   setIncrement(prev=>prev+1);
+  //   if(increment >= pages || (variable+2) >= count){
+  //     setPageEnd(true)
+  //   }   
+  // }
 
   return <div> 
       <Box >
@@ -52,7 +51,7 @@ const Section4 = ({
         </Paragraph>
       </Box>       
       <Grid container mb={-0.5} spacing={6}>
-      {products.slice(0, variable).map((item:PricedProduct) => {
+      {products.map((item:PricedProduct) => {
           const size = variantSizes(item); // Get the size for the current item
           const colors = variantColors(item);    
           const { cheapestPrice } = getProductPrice({
@@ -82,11 +81,11 @@ const Section4 = ({
         })}
       </Grid>
       <Box mt={6} mb={6} display="flex" justifyContent="center"> 
-        <Button color="primary" variant="contained" size="large" sx={{borderRadius:0, mb:2}}
+        {/* <Button color="primary" variant="contained" size="large" sx={{borderRadius:0, mb:2}}
           onClick={handleCount} disabled={pageEnd}
         >
           Load More...
-        </Button>
+        </Button> */}
       </Box>
     </div>;
 };
