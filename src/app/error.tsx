@@ -2,7 +2,7 @@
 
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button"; // GLOBAL CUSTOM COMPONENTS
-
+import React from 'react'
 import { H1 } from "components/Typography";
 import { FlexRowCenter } from "components/flex-box"; // ==============================================================
 

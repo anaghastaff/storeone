@@ -1,20 +1,25 @@
 /** @type {import('next').NextConfig} */
-// import { withStoreConfig } from '../store-config';
-// import store from '../store.config.json';
-
 const nextConfig = {
-  // env: { theme: "DEFAULT", currency: "USD" },
-  // publicRuntimeConfig: { theme: "DEFAULT", currency: "USD" },
-  // features: store.features,
-  reactStrictMode: true,
+  env: { theme: "DEFAULT", currency: "USD" },
+  publicRuntimeConfig: { theme: "DEFAULT", currency: "USD" },
   experimental: {
     serverComponentsExternalPackages: [
       "@medusajs/product",
     ],
-    
   },
   images: {
+    
     remotePatterns: [
+      {
+        protocol:"http",
+        hostname:"res.cloudinary.com",    
+        pathname:"/dxvvl4bpp/**",
+      },
+      {
+        protocol:"https",
+        hostname:"res.cloudinary.com",
+        pathname:"/dxvvl4bpp/**",
+      },
       {
         protocol: "http",
         hostname: "localhost",
@@ -30,11 +35,6 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
-      },
-      {
-        protocol:"https",
-        hostname:"res.cloudinary.com",
-        pathname:"/dxvvl4bpp/**",
       },
     ],
   },
