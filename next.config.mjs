@@ -32,11 +32,6 @@ const nextConfig = {
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
       },
       {
-        protocol:"http",
-        hostname:"res.cloudinary.com",  
-        pathname:"/dxvvl4bpp/**",
-      },
-      {
         protocol:"https",
         hostname:"res.cloudinary.com",
         pathname:"/dxvvl4bpp/**",
