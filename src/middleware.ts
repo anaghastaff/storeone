@@ -1,17 +1,17 @@
-import { Region } from "@medusajs/medusa"
-import { notFound } from "next/navigation"
-import { NextRequest, NextResponse } from "next/server"
+import { Region } from "@medusajs/medusa";
+import { notFound } from "next/navigation";
+import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
-const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "us"
+const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
+const DEFAULT_REGION = "us";
 
 const regionMapCache = {
   regionMap: new Map<string, Region>(),
   regionMapUpdated: Date.now(),
-}
+};
 
 async function getRegionMap() {
-  const { regionMap, regionMapUpdated } = regionMapCache
+  const { regionMap, regionMapUpdated } = regionMapCache;
 
   if (
     !regionMap.keys().next().value ||
@@ -23,23 +23,23 @@ async function getRegionMap() {
         revalidate: 3600,
         tags: ["regions"],
       },
-    }).then((res) => res.json())
+    }).then((res) => res.json());
 
     if (!regions) {
-      notFound()
+      notFound();
     }
 
     // Create a map of country codes to regions.
     regions.forEach((region: Region) => {
       region.countries.forEach((c) => {
-        regionMapCache.regionMap.set(c.iso_2, region)
-      })
-    })
+        regionMapCache.regionMap.set(c.iso_2, region);
+      });
+    });
 
-    regionMapCache.regionMapUpdated = Date.now()
+    regionMapCache.regionMapUpdated = Date.now();
   }
 
-  return regionMapCache.regionMap
+  return regionMapCache.regionMap;
 }
 
 /**
@@ -52,30 +52,34 @@ async function getCountryCode(
   regionMap: Map<string, Region | number>
 ) {
   try {
-    let countryCode
+    let countryCode;
 
-    const vercelCountryCode = request.headers
-      .get("x-vercel-ip-country")
-      ?.toLowerCase()
+    // const vercelCountryCode = request.headers
+    //   .get("x-vercel-ip-country")
+    //   ?.toLowerCase()
 
-    const urlCountryCode = request.nextUrl.pathname.split("/")[1]?.toLowerCase()
+    const urlCountryCode = request.nextUrl.pathname
+      .split("/")[1]
+      ?.toLowerCase();
 
     if (urlCountryCode && regionMap.has(urlCountryCode)) {
-      countryCode = urlCountryCode
-    } else if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
-      countryCode = vercelCountryCode
-    } else if (regionMap.has(DEFAULT_REGION)) {
-      countryCode = DEFAULT_REGION
+      countryCode = urlCountryCode;
+    }
+    // else if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
+    //   countryCode = vercelCountryCode
+    // }
+    else if (regionMap.has(DEFAULT_REGION)) {
+      countryCode = DEFAULT_REGION;
     } else if (regionMap.keys().next().value) {
-      countryCode = regionMap.keys().next().value
+      countryCode = regionMap.keys().next().value;
     }
 
-    return countryCode
+    return countryCode;
   } catch (error) {
     if (process.env.NODE_ENV === "development") {
       console.error(
         "Middleware.ts: Error getting the country code. Did you set up regions in your Medusa Admin and define a NEXT_PUBLIC_MEDUSA_BACKEND_URL environment variable?"
-      )
+      );
     }
   }
 }
@@ -84,59 +88,80 @@ async function getCountryCode(
  * Middleware to handle region selection and onboarding status.
  */
 export async function middleware(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams
-  const isOnboarding = searchParams.get("onboarding") === "true"
-  const cartId = searchParams.get("cart_id")
-  const checkoutStep = searchParams.get("step")
-  const onboardingCookie = request.cookies.get("_medusa_onboarding")
-  const cartIdCookie = request.cookies.get("_medusa_cart_id")
+  const searchParams = request.nextUrl.searchParams;
+  const isOnboarding = searchParams.get("onboarding") === "true";
+  const cartId = searchParams.get("cart_id");
+  const checkoutStep = searchParams.get("step");
+  const onboardingCookie = request.cookies.get("_medusa_onboarding");
+  const cartIdCookie = request.cookies.get("_medusa_cart_id");
 
-  const regionMap = await getRegionMap()
+  const regionMap = await getRegionMap();
 
-  const countryCode = regionMap && (await getCountryCode(request, regionMap))
-
+  const countryCode = regionMap && (await getCountryCode(request, regionMap));
+  // const countryCode = "us";
   const urlHasCountryCode =
-    countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
+    countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode);
 
   // check if one of the country codes is in the url
-  if (
-    urlHasCountryCode &&
-    (!isOnboarding || onboardingCookie) &&
-    (!cartId || cartIdCookie)
-  ) {
-    return NextResponse.next()
+  if (urlHasCountryCode) {
+    return NextResponse.next();
   }
 
   const redirectPath =
-    request.nextUrl.pathname === "/" ? "" : request.nextUrl.pathname
+    request.nextUrl.pathname === "/" ? "" : request.nextUrl.pathname;
 
-  const queryString = request.nextUrl.search ? request.nextUrl.search : ""
+  const queryString = request.nextUrl.search ? request.nextUrl.search : "";
+  console.log("queryString", queryString);
+  console.log("redirectPath", redirectPath);
 
-  let redirectUrl = request.nextUrl.href
+  let redirectUrl = request.nextUrl.href;
 
-  let response = NextResponse.redirect(redirectUrl, 307)
+  console.log("redirectUrl", redirectUrl);
+
+  let response = NextResponse.redirect(redirectUrl, 307);
 
   // If no country code is set, we redirect to the relevant region.
   if (!urlHasCountryCode && countryCode) {
-    redirectUrl = `${request.nextUrl.origin}/${countryCode}${redirectPath}${queryString}`
-    response = NextResponse.redirect(`${redirectUrl}`, 307)
+    redirectUrl = `${request.nextUrl.origin}/${countryCode}${redirectPath}${queryString}`;
+    response = NextResponse.redirect(`${redirectUrl}`, 307);
   }
-
+  console.log("redirectUrl", redirectUrl);
   // If a cart_id is in the params, we set it as a cookie and redirect to the address step.
   if (cartId && !checkoutStep) {
-    redirectUrl = `${redirectUrl}&step=address`
-    response = NextResponse.redirect(`${redirectUrl}`, 307)
-    response.cookies.set("_medusa_cart_id", cartId, { maxAge: 60 * 60 * 24 })
+    redirectUrl = `${redirectUrl}&step=address`;
+    response = NextResponse.redirect(`${redirectUrl}`, 307);
+    response.cookies.set("_medusa_cart_id", cartId, { maxAge: 60 * 60 * 24 });
   }
+  console.log("redirectUrl", redirectUrl);
+ 
+  // const protectedRoutePathName = request.nextUrl.pathname.split("/")[2];
+
+  // const protectedRoutes = [
+  //   "address",
+  //   "orders",
+  //   "payment-methods",
+  //   "profile",
+  //   "support-tickets",
+  //   "wish-list"
+  // ];
+
+  // if (!customer && protectedRoutes.includes(protectedRoutePathName) ) {
+  //   redirectUrl = `${request.nextUrl.origin}/${countryCode}/login`;
+  //   response = NextResponse.redirect(`${redirectUrl}`, 307);
+  // }
 
   // Set a cookie to indicate that we're onboarding. This is used to show the onboarding flow.
-  if (isOnboarding) {
-    response.cookies.set("_medusa_onboarding", "true", { maxAge: 60 * 60 * 24 })
-  }
+  // if (isOnboarding) {
+  //   response.cookies.set("_medusa_onboarding", "true", { maxAge: 60 * 60 * 24 })
+  // }
 
-  return response
+  return response;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|favicon.ico).*)"],
-}
+  // matcher: [
+  //   "/((?!api|_next/static|favicon.ico|_next/assets|_next/image|_next/public|assets).*)",
+  // ],
+
+  matcher: ["/((?!api|_next/static|favicon.ico|_next/public|assets).*)"],
+};
