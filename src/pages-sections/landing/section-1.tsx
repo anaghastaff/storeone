@@ -11,11 +11,10 @@ import Header from "./header";
 import LazyImage from "components/LazyImage";
 import { H1, Paragraph, Span } from "components/Typography";
 import { FlexBox, FlexRowCenter } from "components/flex-box";
-import {CartWithCheckoutStep } from "medusa/types/global"
 
-const Section1 = ({cart}:{cart:CartWithCheckoutStep}) => {
+const Section1 = () => {
   return <div>
-      <Header cart={cart} />
+      <Header />
 
       <Container id="section-1" sx={{
       mt: 12,

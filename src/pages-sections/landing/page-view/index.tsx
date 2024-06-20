@@ -19,11 +19,11 @@ const IndexPageView = ({countryCode, cart}:{countryCode:string, cart: CartWithCh
   const handleChangeFilter = value => setFilterDemo(value);
 
   return <Box id="top" overflow="hidden" bgcolor="background.paper">
-      <Section1 cart={cart}/>
+      <Section1 />
       <Section6 handleChangeFilter={handleChangeFilter} />
       <Section2 />
       <Section5 />
-      <Section3 filterDemo={filterDemo} setFilterDemo={handleChangeFilter} countryCode={countryCode}/>
+      <Section3 filterDemo={filterDemo} setFilterDemo={handleChangeFilter} />
       <Section4 />
       <Footer />
       <Setting />

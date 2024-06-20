@@ -17,9 +17,10 @@ export default function PageLoadFallback({ pagename }: { pagename?: string }) {
         minHeight:'70vh',
         m:'auto',
         textAlign: 'center',
+        
       }}
     >
-      <CircularProgress disableShrink color="info" size={16} thickness={4} />
+      <CircularProgress disableShrink color="info" size={32} thickness={4} />
     </Box>
   );
 }

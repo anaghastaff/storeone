@@ -33,14 +33,16 @@ const Section2 =  ({products, region, limit}:{
   const max = Math.ceil(limit);
   const random = Math.floor(Math.random() * (max - min+1) + Math.random())
   return random
-  }  
-  
+  }    
   const min = 0;
-  const product1 = products[generateRandom(min,limit)]?.thumbnail 
-  const product2 =  products[generateRandom(min,limit)]?.thumbnail 
-  const product3 =   products[generateRandom(min,limit)]?.thumbnail 
-  const product4 =   products[generateRandom(min,limit)]?.thumbnail 
-  const product5 =   products[generateRandom(min,limit)]?.thumbnail  
+
+  const random = generateRandom(min,limit)
+
+  const product1 = products[1]?.thumbnail 
+  const product2 =  products[2]?.thumbnail 
+  const product3 =   products[3]?.thumbnail 
+  const product4 =   products[4]?.thumbnail 
+  const product5 =   products[5]?.thumbnail  
   
   return <Fragment>
       <Grid container spacing={3}>

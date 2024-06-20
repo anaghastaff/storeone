@@ -71,15 +71,15 @@ const FurnitureShopPageView = async ({
         />
 
         <Stack spacing={6} my={6}>
-          {/* TOP NEW PRODUCTS AREA */}
-          {/* <Section3
+          {/* TOP NEW PRODUCTS AREA  */}
+           <Section3
             ratings={ratings}
             heading="Top New Product"
             cart={cart}
             products={products}
             region={region}
             description="New products launched this month"
-          /> */}
+          />
 
           {/* TOP SELLING PRODUCT AREA */}
           {/* <Section3
@@ -116,7 +116,7 @@ const FurnitureShopPageView = async ({
       </Container>
 
       {/* POPUP NEWSLETTER FORM */}
-      <Newsletter image="/assets/images/newsletter/bg-2.png" />
+      <Newsletter image="/assets/images/newsletter/bg-3.png" />
 
       {/* SETTINGS IS USED ONLY FOR DEMO, YOU CAN REMOVE THIS */}
       <Setting />

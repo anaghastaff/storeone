@@ -31,7 +31,7 @@ const TitleBadge = styled(Span)(({
 const Section3 = ({
   filterDemo,
   setFilterDemo,
-  countryCode
+  
 }) => {
   const pages = [...demoPageList, ...shopPageList, ...vendorPageList, ...customerPageList];
   const filtered = pages.filter(item => filterDemo !== "" ? item.page === filterDemo : true);
@@ -81,7 +81,7 @@ const Section3 = ({
           </Grid>
 
           {filtered.map((item, i) => <Grid item lg={4} sm={6} xs={12} key={i}>
-              <PageCard countryCode={countryCode} {...item} />
+              <PageCard {...item} />
             </Grid>)}
         </Grid>
 

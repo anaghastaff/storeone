@@ -40,7 +40,7 @@ const QuantityButtons = ({
   reduce:boolean
 }) => {
 
-  console.log("quantity" , quantity)
+  
   return (
     <FlexBox
       width="100%"
@@ -59,8 +59,6 @@ const QuantityButtons = ({
       >
         {quantity === 0 && (
           <Stack direction="row" columnGap={2}>      
-
-
             <LoadingButton
               loading={isAdding}
               loadingPosition="center"

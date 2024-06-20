@@ -24,11 +24,10 @@ export default async function Layout1({ children, params }:{
   const region = await getRegion(params.countryCode);
   if(!region) { return null}
 
-  const updatedCart = await UpdateCartRegion({region, cart })
   const customer = await getCustomer()
   return (
       <Suspense fallback={<Loading/>}>
-      <ShopLayout1 cart={updatedCart} customer={customer} countryCode={params.countryCode}>{children} </ShopLayout1> 
+      <ShopLayout1 cart={cart} customer={customer} countryCode={params.countryCode}>{children} </ShopLayout1> 
       </Suspense>
   );
 }

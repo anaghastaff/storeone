@@ -55,7 +55,7 @@ const HeaderWrapper = styled("div")(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-const Header = ({ cart }: { cart: CartWithCheckoutStep }) => {
+const Header = () => {
   const [open, setOpen] = useState(false);
   const [isFixed, setFixed] = useState(false);
   const downSM = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));

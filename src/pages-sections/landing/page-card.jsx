@@ -65,7 +65,6 @@ const PageCard = props => {
     previewUrl,
     disabled,
     status,
-    countryCode
   } = props;
   return <Fragment>
       <Wrapper mb={3} p="6% 6% 0px" overflow="hidden">
