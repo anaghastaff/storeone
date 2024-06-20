@@ -34,7 +34,6 @@ const Header = ({
   countryCode?: string;
 }) => {
   console.log("cart with checkout", cart?.checkout_step);
-
   const theme = useTheme();
   const downMd = useMediaQuery(theme.breakpoints.down(1150));
   const {

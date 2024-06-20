@@ -19,17 +19,11 @@ export const metadata = {
 type Props = {
   params:{id : string}
 }
-
-
-
 async function getOrder(id: string) {
-
   const order = await retrieveOrder(id)
-
   if (!order) {
     return notFound()
   }
-
   const enrichedItems = await enrichLineItems(order.items, order.region_id)
 
   return {

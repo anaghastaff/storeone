@@ -26,8 +26,8 @@ export default async function Layout1({ children, params }:{
 
   const customer = await getCustomer()
   return (
-      <Suspense fallback={<Loading/>}>
+      
       <ShopLayout1 cart={cart} customer={customer} countryCode={params.countryCode}>{children} </ShopLayout1> 
-      </Suspense>
+      
   );
 }

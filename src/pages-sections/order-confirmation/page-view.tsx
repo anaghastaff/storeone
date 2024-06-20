@@ -15,7 +15,7 @@ import CartTotals from "medusa/modules/common/components/cart-totals";
 import ShippingDetails from "medusa/modules/order/components/shipping-details";
 import PaymentDetails from "medusa/modules/order/components/payment-details";
 import Typography from "@mui/material/Typography";
-import Loading from "app/[countryCode]/(layout-1)/order-confirmation/loading";
+import Loading from "app/[countryCode]/(layout-1)/furniture-shop/order-confirmation/loading";
 import { Suspense } from "react";
 
 type OrderCompletedTemplateProps = {

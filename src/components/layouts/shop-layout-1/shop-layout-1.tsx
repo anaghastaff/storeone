@@ -47,15 +47,12 @@ const ShopLayout1 = ({
       <Suspense fallback={<CircularProgress />}>
         <Header countryCode={countryCode} customer={customer} isFixed={isFixed} searchInput={<SearchInputWithCategory/>} cart={cart} />
         </Suspense>
-      </Sticky>
-     
+      </Sticky>    
 
       {
       /* NAVIGATION BAR */
     }
-    
       <Navbar elevation={0} border={1} customer={customer}/>
-
       {
       /* BODY CONTENT */
     }
@@ -65,7 +62,6 @@ const ShopLayout1 = ({
       /* SMALL DEVICE BOTTOM NAVIGATION */
     }
       <MobileNavigationBar cart={cart} customer={customer} countryCode={countryCode}/>
-
       {
       /* FOOTER */
     }

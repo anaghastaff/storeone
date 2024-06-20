@@ -105,10 +105,12 @@ const Section1 = () => {
             </Tooltip>
           </FlexBox>
         </Box>
-
-        <LazyImage priority alt="cover" width={2600} height={566} quality={100} src="/public/assets/images/landing/page-group-2.png" sx={{
-        display: "grid"
+        <FlexBox width="100%" height={566} position="relative">
+        <LazyImage priority alt="cover" fill sizes="100vw" quality={50} src="/assets/images/landing/page-group-2.png" 
+        sx={{
+         objectFit:'contain', display:'grid'
       }} />
+      </FlexBox>
       </Container>
     </div>;
 };
