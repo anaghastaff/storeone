@@ -72,27 +72,27 @@ const FurnitureShopPageView = async ({
 
         <Stack spacing={6} my={6}>
           {/* TOP NEW PRODUCTS AREA */}
-          <Section3
+          {/* <Section3
             ratings={ratings}
             heading="Top New Product"
             cart={cart}
             products={products}
             region={region}
             description="New products launched this month"
-          />
+          /> */}
 
           {/* TOP SELLING PRODUCT AREA */}
-          <Section3
+          {/* <Section3
             ratings={ratings}
             heading="Top Selling Product"
             cart={cart}
             products={products}
             region={region}
             description="Top selling products of this month"
-          />
+          /> */}
 
           {/* ALL PRODUCTS AREA */}
-          <Suspense
+          {/* <Suspense
             fallback={
               <Skeleton
                 sx={{ width: "100%", height: "100%", bgcolor: "grey.500" }}
@@ -111,12 +111,12 @@ const FurnitureShopPageView = async ({
               heading="All Products"
               description="Summer Collection"
             />
-          </Suspense>
+          </Suspense> */}
         </Stack>
       </Container>
 
       {/* POPUP NEWSLETTER FORM */}
-      <Newsletter image="/assets/images/newsletter/bg-3.png" />
+      <Newsletter image="/assets/images/newsletter/bg-2.png" />
 
       {/* SETTINGS IS USED ONLY FOR DEMO, YOU CAN REMOVE THIS */}
       <Setting />
