@@ -1,71 +1,95 @@
-import { getRegion, retrievePricedProductById, getProductByHandle } from "medusa/lib/data";
+import {
+  getRegion,
+  retrievePricedProductById,
+  getProductByHandle,
+} from "medusa/lib/data";
 import { medusaClient } from "medusa/lib/config";
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { Container } from "@mui/material";
 import Section4 from "pages-sections/furniture-shop/section-4";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { FetchAllReviews } from "medusa/lib/util/fetch-all-reviews";
+import { calculateAverageRating } from "medusa/lib/util/get-average-rating";
+import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
 
 export const metadata = {
-  title: "Products", 
+  title: "All Products",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
-  authors: [{
-    name: "UI-LIB",
-    url: "https://ui-lib.com"
-  }],
-  
-  keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
+  authors: [
+    {
+      name: "UI-LIB",
+      url: "https://ui-lib.com",
+    },
+  ],
+
+  keywords: ["e-commerce", "e-commerce template", "next.js", "react"],
 };
 
-async function ProductWithContext({region, cart}){
-    const {products, count} = await medusaClient.products.list({
-     expand: "categories",
-     region_id:region.id,
-     cart_id:cart?.id,
-     })
-     .then(({ products, limit, offset, count }) => {
-      return {products, count}
-   })
-   
-   return {products, count}
-   }
+type Params = {
+  searchParams: {
+    sortBy?: SortOptions;
+    page?: string;
+  };
+  params: {
+    countryCode: string;
+    slug: string;
+  };
+};
 
-  //  MAIN FUNCTION
+async function ProductWithContext({ region }) {
+  const { products, count } = await medusaClient.products
+    .list({
+      expand: "categories",
+      region_id: region.id,
+    })
+    .then(({ products, limit, offset, count }) => {
+      return { products, count };
+    });
 
-export default async function AllProducts(
-{
-   params
-}:{
-    params:{
-        countryCode: string,
-        slug: string
-    }
-}) { 
-    const region = await getRegion(params.countryCode);
-    if (!region){
-      return null
-    }
-    const cart = await fetchCart();
-  
-    const {products, count} = await ProductWithContext({region, cart});
-  
-    const pricedProducts = await Promise.all( products.map( async (product) => {
-  
+  return { products, count };
+}
+
+//  MAIN FUNCTION
+
+export default async function AllProducts({ searchParams, params }: Params) {
+  const { sortBy, page } = searchParams;
+  const region = await getRegion(params.countryCode);
+  if (!region) {
+    return null;
+  }
+  const cart = await fetchCart();
+  const { allReviews } = await FetchAllReviews();
+  const ratings = await calculateAverageRating({ allReviews });
+  const { products, count } = await ProductWithContext({ region });
+  const pricedProducts = await Promise.all(
+    products.map(async (product) => {
       if (!product.id) return null;
-  
-       const data = await retrievePricedProductById({
-          id:product.id,
-          regionId:region.id
-        })
-        return data
-    }))
-
-    return (
-        <Container>
-          <Suspense fallback={<Loading pagename="products" />}>
-        <Section4 cart={cart}  products={pricedProducts} region={region} heading="All Products" description="Summer Collection"/>
-        </Suspense>
-        </Container>
-    ); 
-  
+      const data: PricedProduct = await retrievePricedProductById({
+        id: product.id,
+        regionId: region.id,
+      });
+      return data;
+    })
+  );
+  const pageNumber = page ? parseInt(page) : 1;
+  return (
+    <Container>
+      <Suspense fallback={<Loading pagename="products" />}>
+        <Section4
+          countryCode={params.countryCode}
+          cart={cart}
+          products={pricedProducts}
+          region={region}
+          heading="All Products"
+          description="Summer Collection"
+          page={pageNumber}
+          count={count}
+          sortBy={sortBy}
+          ratings={ratings}
+        />
+      </Suspense>
+    </Container>
+  );
 }

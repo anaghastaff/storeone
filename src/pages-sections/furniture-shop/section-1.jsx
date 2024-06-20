@@ -43,7 +43,7 @@ const Section1 = ({
                     {item.description}
                   </Paragraph>
 
-                  <StyledButton color="primary" variant="contained">
+                  <StyledButton href="/products" color="primary" variant="contained" >
                     {item.buttonText}
                   </StyledButton>
                 </div>

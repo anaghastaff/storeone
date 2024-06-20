@@ -36,8 +36,7 @@ async function ProductWithContext({ region }) {
   const { products, count } = await medusaClient.products
     .list({
       expand: "categories",
-      region_id: region.id,
-      
+      region_id: region.id,      
       limit:limit,
     })
     .then(({ products, limit, offset, count }) => {
