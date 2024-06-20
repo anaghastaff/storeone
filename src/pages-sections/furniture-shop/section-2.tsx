@@ -17,20 +17,31 @@ import type { Region } from "medusa/types/medusa";
 
 
 
-const Section2 =  ({products, region}:{
-  products:PricedProduct,
+
+const Section2 =  ({products, region, limit}:{
+  products:PricedProduct[],
   region:Region,
+  limit:number
 }) => {
     
   const {
     breakpoints
   } = useTheme();
+
+
+  function generateRandom(min=1, limit){    
+  const max = Math.ceil(limit);
+  const random = Math.floor(Math.random() * (max - min+1) + Math.random())
+  return random
+  }  
   
-  const product1 =  (!products) ? <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} />  : products[0].images[0].url;
-  const product2 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[2].images[0].url 
-  const product3 = (!products)  ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[6].images[0].url 
-  const product4 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[7].images[0].url 
-  const product5 = (!products)   ?  <Skeleton  variant="rectangular" animation="wave" sx={{bgcolor:'green', width:"100%", height:'100px'}} /> :   products[9].images[0].url 
+  const min = 0;
+  const product1 = products[generateRandom(min,limit)]?.thumbnail 
+  const product2 =  products[generateRandom(min,limit)]?.thumbnail 
+  const product3 =   products[generateRandom(min,limit)]?.thumbnail 
+  const product4 =   products[generateRandom(min,limit)]?.thumbnail 
+  const product5 =   products[generateRandom(min,limit)]?.thumbnail  
+  
   return <Fragment>
       <Grid container spacing={3}>
         {
@@ -50,7 +61,7 @@ const Section2 =  ({products, region}:{
 
                 <H6 fontSize={23}>UP TO 50% OFF</H6>
                 <CustomButton>Shop Now</CustomButton>
-                {(products.length === 0) ? <CircularProgress color="primary"/> : ""}
+                {(products?.length === 0) ? <CircularProgress color="primary"/> : ""}
               </div>
               
             </LeftContentBox>

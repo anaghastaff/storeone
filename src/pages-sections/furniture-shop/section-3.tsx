@@ -8,30 +8,38 @@ import { variantSizes } from "lib/sizes";
 
 import { CircularProgress, Skeleton } from "@mui/material";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
-import { Product } from "@medusajs/medusa";
-import type { Region } from "medusa/types/medusa";
-
+import { Product, Region } from "@medusajs/medusa";
 import { getProductPrice } from "medusa/lib/util/get-product-price";
-import {CartWithCheckoutStep} from "medusa/types/global"
+import {CartWithCheckoutStep, type AverageRatings} from "medusa/types/global"
 import ProductInCarousel from "./product-in-carousal";
 // import ProductInCarousel from "./product-in-carousal";
 
 // ====================================================
 const Section3 = ({
-   products,
+  products,
   heading,
   region,
   description,
   cart,
+  ratings,
 }:
 {
-  products,
+  products:PricedProduct[],
   heading:string,
   region:Region,
   description:string,
-  cart:CartWithCheckoutStep | null
+  cart:CartWithCheckoutStep | null,
+  ratings:AverageRatings
 }) => {
+  
+  
   const responsive = [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
     {
       breakpoint: 650,
       settings: {
@@ -45,43 +53,20 @@ const Section3 = ({
       },
     },
   ];
-
-
-  return (products.length === 0) ? (
-    <Box sx={{ width: "100%", bgcolor:'aqua' }}>
-      <Box my={2}>
-        <H1 mb="4px">{heading}</H1>
-        <Paragraph color="grey.600">{description}</Paragraph>
-      </Box>
-      <Skeleton
-        variant="rectangular"
-        width="100%"
-        sx={{
-          bgcolor: "#E9EBFF",
-          height: "400px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography variant="h3" color="primary">
-          Loading...
-        </Typography>
-        <CircularProgress color="success" />
-      </Skeleton>
-    </Box>
-  ) : (
-    <div>
+  
+  return  (
+    products && <div>
       <Box my={2}>
         <H1 mb="4px">{heading}</H1>
         <Paragraph color="grey.600">{description}</Paragraph>
       </Box>
       <ProductInCarousel 
+       responsive={responsive}
         products={products}     
         region={region}       
-        cart={cart}        
+        cart={cart}   
+        ratings={ratings}     
         />
-
     </div>
   );
 };

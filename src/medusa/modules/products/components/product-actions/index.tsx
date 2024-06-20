@@ -16,6 +16,7 @@ import type { CartWithCheckoutStep } from "medusa/types/global";
 import QuantityButtons from "components/product-cards/product-card-7/quantity-buttons"; 
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
+
 type ProductActionsProps = {
   product: PricedProduct;
   region: Region;
@@ -33,9 +34,7 @@ export type PriceType = {
 export default function ProductActions({
   product,
   region,
-  cart,
-  
-  
+  cart,   
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string>>({});
   const [isAdding, setIsAdding] = useState(false);
@@ -43,11 +42,11 @@ export default function ProductActions({
   const [reduce, addReduce] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [cartItemExist, setcartItemExist] = useState<LineItem | null>(null);
-  const [inCart, setInCart] = useState<LineItem | null>(null);
-  
+  const [inCart, setInCart] = useState<number>(0);
+  const [lineitem, setLineItem] = useState<LineItem | null>(null)
+
   const countryCode = useParams().countryCode as string;
-  const variants = product.variants;
+  const variants = product?.variants
 
   // initialize the option state
   useEffect(() => {
@@ -59,6 +58,7 @@ export default function ProductActions({
   }, [product]);
 
   // memoized record of the product's variants
+ 
   const variantRecord = useMemo(() => {
     const map: Record<string, Record<string, string>> = {};
     for (const variant of variants) {
@@ -73,15 +73,14 @@ export default function ProductActions({
   }, [variants]);
 
   // memoized function to check if the current options are a valid variant
+
   const variant = useMemo(() => {
     let variantId: string | undefined = undefined;
-
     for (const key of Object.keys(variantRecord)) {
       if (isEqual(variantRecord[key], options)) {
         variantId = key;
       }
     }
-
     return variants.find((v) => v.id === variantId);
   }, [options, variantRecord, variants, product]);
 
@@ -102,9 +101,7 @@ export default function ProductActions({
     if (variant && !variant.inventory_quantity) {
       return false;
     }
-
-    if (variant && variant.allow_backorder === false) {
-      
+    if (variant && variant.allow_backorder === false) {      
       return true;
     }
   }, [variant]);
@@ -114,43 +111,31 @@ export default function ProductActions({
   const colorOption = product?.options?.find(o => o.title === 'Color');
   const colorOptionId = colorOption?.id;
   const currentColor = colorOptionId ? options[colorOptionId] : undefined;
-
-  // useEffect(() => {
-  //   const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
-  //   setInCart(temp || null);    
-  // }, [options, variant]);
-
   const actionsRef = useRef<HTMLDivElement>(null);
   const inView = useIntersection(actionsRef, "0px");
 
-  useEffect(() => {
-    const data = cart?.items?.find((item) => {
-      const variantIds = variants.map((variant) => variant.id);
-      return variantIds.includes(item?.variant.id);
-    });
-    if(data) 
-      {
-        console.log("data", data?.id)
-        setcartItemExist(data)         
-    }
-  }, [options, variant, inStock]);
+  
 
   // increase quantity
   const handleIncrementQuantity = async (quantity: number) => {
-    if (inCart) {
+    const itemInCart = cart?.items?.find((i)=>i.id === variant.id)
+    if (itemInCart) {
       setError(null);
       setUpdating(true);
 
       const message = await updateLineItem({
-        lineId: inCart?.id,
+        lineId: itemInCart?.id,
         quantity,
       })
         .catch((err) => {
           return err.message;
         })
-        .finally(() => {
+        .finally(() => {          
+          
           setUpdating(false);
         });
+        const qty = cart?.items?.find((i)=>i.id===variant.id)
+        setLineItem(qty)
       message && setError(message);
      
     } else {
@@ -167,19 +152,24 @@ export default function ProductActions({
   };
 
   const handleDecrementQuantity = async (quantity: number) => {
-    if (inCart) {
+    const itemInCart = cart?.items?.find((i)=>i.id === variant.id)
+    if (itemInCart && itemInCart?.quantity > 0) {
       setError(null);
       addReduce(true);
       const message = await updateLineItem({
-        lineId: inCart?.id,
+        lineId: itemInCart?.id,
         quantity,
       })
         .catch((err) => {
           return err.message;
         })
-        .finally(() => {
+        .finally(() => {          
+         
           addReduce(false);
         });     
+        const qty = cart?.items?.find((i)=>i.id===variant.id)
+        setLineItem(qty)
+        console.log(qty)
       message && setError(message);
      
     }
@@ -197,6 +187,8 @@ export default function ProductActions({
     });
    
     setIsAdding(false);
+    const qty = cart?.items?.find((i)=>i.id===variant.id)
+    setLineItem(qty)
   };
   const router = useRouter()
 
@@ -275,7 +267,7 @@ export default function ProductActions({
           inStock={inStock}
           variant={variant}
           disabled={!inStock || !variant}
-          quantity={inCart?.quantity || 0}
+          quantity={lineitem?.quantity ? lineitem?.quantity : 0}
           handleIncrement={handleIncrementQuantity}
           handleDecrement={handleDecrementQuantity}
           handleAddToCart={handleAddToCart}

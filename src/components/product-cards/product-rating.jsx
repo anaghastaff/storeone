@@ -10,9 +10,8 @@ import { success } from "theme/theme-colors";
 // ==============================================================
 const ProductRating = ({
   showRating,
-  rating = null,
+  rating = 0,
   length = null,
-  status = null,
   ...props
 }) => {
   return showRating ? <FlexBox gap={1} marginBottom={1} alignItems="center" {...props}>

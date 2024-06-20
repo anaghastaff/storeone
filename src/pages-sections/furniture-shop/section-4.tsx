@@ -4,43 +4,83 @@ import Button from "@mui/material/Button"; // GLOBAL CUSTOM COMPONENTS
 import { H1, Paragraph, Span } from "components/Typography";
 import { CircularProgress, Skeleton } from "@mui/material";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
-import type { Region } from "medusa/types/medusa";
+import { Region } from "@medusajs/medusa";
 import { getProductPrice } from "medusa/lib/util/get-product-price";
-import {CartWithCheckoutStep} from "medusa/types/global"
+import {CartWithCheckoutStep, type AverageRatings} from "medusa/types/global"
 import ProductCard17 from "../../components/product-cards/product-card-7/product-card";
 import { useState } from "react";
+import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
+import { getProductsListWithSort, getProductsById , retrievePricedProductById} from "medusa/lib/data";
+import { Pagination } from "medusa/modules/store/components/pagination";
+
 
 // ===================================================================
-const Section4 = ({
-  products,
+const PRODUCT_LIMIT = 12
+type PaginatedProductsParams = {
+  limit: number
+  collection_id?: string[]
+  category_id?: string[]
+  id?: string[]
+}
+const Section4 = async ({
+ 
  heading,
  region,
  description,
  cart,
- count,
+ sortBy,
+  page,
+  collectionId,
+  categoryId,
+  productsIds,
+  countryCode,
+  ratings,
+
 }:
 {
- products,
+  sortBy?: SortOptions,
+  page?: number,
  heading:string,
  region:Region,
  description:string,
  cart:CartWithCheckoutStep | null,
- count?:number
+ count?:number,
+ countryCode:string,
+ collectionId?: string,
+  categoryId?: string,
+  productsIds?: string[],
+  ratings:AverageRatings,
+  pricedProducts?:PricedProduct[]
 }) => {
 
-  // const [variable, setVariable] = useState(3);
-  // const [pageEnd, setPageEnd] = useState(false);
-  // const [increment, setIncrement] = useState(1);
-  // const pages = Math.floor(count / 3) ;
-  
-  // const handleCount = () =>{
-  //   setVariable(prev=>prev+3);
-  //   setIncrement(prev=>prev+1);
-  //   if(increment >= pages || (variable+2) >= count){
-  //     setPageEnd(true)
-  //   }   
-  // }
+  const queryParams: PaginatedProductsParams = {
+    limit: PRODUCT_LIMIT,
+  }
 
+  if (collectionId) {
+    queryParams["collection_id"] = [collectionId]
+  }
+
+  if (categoryId) {
+    queryParams["category_id"] = [categoryId]
+  }
+
+  if (productsIds) {
+    queryParams["id"] = productsIds
+  }
+ 
+  const {
+    response: {products, count },
+  } = await getProductsListWithSort({
+    page,
+    queryParams,
+    sortBy,
+    countryCode,
+  })
+
+  
+  const totalPages = Math.ceil(count / PRODUCT_LIMIT)
+  
   return <div> 
       <Box >
         <H1 mb="4px">{heading}</H1>
@@ -49,28 +89,34 @@ const Section4 = ({
         </Paragraph>
       </Box>       
       <Grid container mb={-0.5} spacing={6}>
-      {products.map((item:PricedProduct) => {
-            
-          const { cheapestPrice } = getProductPrice({
-            product:item,
-            region,
-          })
+      {products.map( async (data) => {           
+          if (!data.id) {
+            return null;
+          }
+          const pricedProduct = await retrievePricedProductById({
+            id: data.id,
+            regionId: region.id,
+          });
+          // return data;
+        
           return (
-            <Grid key={item.id} item md={4} sm={6} xs={12}>
+            <Grid key={data.id} item md={4} sm={6} xs={12}>
               <ProductCard17
+              countryCode={countryCode}
                 hideRating
-                id={item.id}
-                slug={item.id}
-                title={item.title}
-                price={cheapestPrice}
+                id={data.id}
+                slug={data.id}
+                title={data.title}                 
+                 price={data.price.calculated_price}
                 region={region}
                 cart={cart}
-                product={item}
+                
                 off={"10"} 
                 // rating={5}
-                status={item?.tags?.find((i)=>i?.value === 'sale') ? "Sale" : item.variants?.find((v)=> v?.inventory_quantity < 95 ) ? 'Top' : ""}
-                imgUrl={ item.thumbnail}
-                
+                status={pricedProduct?.tags?.find((i)=>i?.value === 'sale') ? "Sale" : pricedProduct.variants?.find((v)=> v?.inventory_quantity < 95 ) ? 'Top' : ""}
+                imgUrl={ data.thumbnail}
+                ratings={ratings}
+                product={pricedProduct}
               />
             </Grid> 
           );
@@ -82,6 +128,7 @@ const Section4 = ({
         >
           Load More...
         </Button> */}
+         {totalPages > 1 && <Pagination data-testid="product-pagination" page={page} totalPages={totalPages} />}
       </Box>
     </div>;
 };

@@ -15,27 +15,37 @@ import api from "utils/__api__/furniture-shop";
 import Testing from "../testing";
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import type { Region, Customer } from "@medusajs/medusa";
+import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
+import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import { Skeleton } from "@mui/material";
+import { FetchAllReviews } from "medusa/lib/util/fetch-all-reviews";
+import { calculateAverageRating } from "medusa/lib/util/get-average-rating";
 
 const FurnitureShopPageView = async ({  
-   region,
-   pricedProducts,
+   region, 
    cart,
    customer,
    count,
- 
+   sortBy,
+   page,
+   countryCode,
+   products,
+   limit
 }:{
-  region:Region,
-  pricedProducts,
+  region:Region, 
   cart:CartWithCheckoutStep,
   customer?:Omit<Customer, 'password-hash'> | null,
   count?:number,
+  sortBy?: SortOptions,
+  page?: string,
+  countryCode: string,
+  limit:number,
+  products:PricedProduct[]
 }) => {
-  // const topNewProducts = await api.getTopNewProducts();
-  //  const mainCarouselData = await api.getMainCarouselData();
-  // const furnitureProducts = await api.getFurnitureProducts();
-  // const sidebarNavList = await api.getFurnitureShopNavList();
-  // const topSellingProducts = await api.getTopSellingProducts();
-   
+
+  const {allReviews} = await FetchAllReviews();  
+  const ratings = await calculateAverageRating({allReviews});  
+  const pageNumber = page ? parseInt(page) : 1
 
   return <Container maxWidth={false} disableGutters component="div">
       {
@@ -50,25 +60,27 @@ const FurnitureShopPageView = async ({
         {
         /* LEFT SIDEBAR & OFFER BANNERS AREA */
       }
-        <Sidebar navList={sidebarNavList} products={pricedProducts} region={region}/>
+        <Sidebar limit={limit} navList={sidebarNavList} products={products} region={region}/>
         
         <Stack spacing={6} my={6}>
           {
           /* TOP NEW PRODUCTS AREA */
         }
-          <Section3 heading="Top New Product" cart={cart} products={pricedProducts} region={region} description="Tall blind but were, been folks not the expand" />
+          <Section3 ratings={ratings}  heading="Top New Product" cart={cart} products={products} region={region} description="New products launched this month" />
 
           {
           /* TOP SELLING PRODUCT AREA */
         }
-          {/* <Section3 heading="Top Selling Product" cart={cart}  products={pricedProducts} region={region} description="Tall blind but were, been folks not the expand" /> */}
+          <Section3 ratings={ratings} heading="Top Selling Product" cart={cart}  products={products} region={region} description="Top selling products of this month" />
 
           {
           /* ALL PRODUCTS AREA */
           
         }
-         <Section4 count={count} cart={cart}  products={pricedProducts} region={region} heading="All Products" description="Summer Collection"/>
-        
+        <Suspense fallback={<Skeleton sx={{width:'100%', height:'100%', bgcolor:'grey.500'}} />}>
+         <Section4 pricedProducts={products} ratings={ratings} sortBy={sortBy} countryCode={countryCode}
+      page={pageNumber} count={count} cart={cart}  region={region} heading="All Products" description="Summer Collection"/>
+        </Suspense>
         </Stack>
       </Container>
 

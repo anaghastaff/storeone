@@ -9,41 +9,36 @@ import { variantSizes } from "lib/sizes";
 import { CircularProgress, Skeleton } from "@mui/material";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { Product } from "@medusajs/medusa";
-import type { Region } from "medusa/types/medusa";
+import { Region } from "@medusajs/medusa";
 
 import { getProductPrice } from "medusa/lib/util/get-product-price";
-import { CartWithCheckoutStep } from "medusa/types/global";
+import { CartWithCheckoutStep, type AverageRatings } from "medusa/types/global";
 
 export default function ProductInCarousel({
   products,
   region,
   cart,
+  responsive,
+  ratings,
 }: {
-  products;
+  products:PricedProduct[];
   region: Region;
   cart: CartWithCheckoutStep | null;
+  ratings:AverageRatings,
+  responsive: {
+    breakpoint: number;
+    settings: {
+        slidesToShow: number;
+    };
+}[],
 }) {
-  const responsive = [
-    {
-      breakpoint: 900,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 500,
-      settings: {
-        slidesToShow: 1,
-      },
-    },
-  ];
+  
   return (
     <>
       <Carousel
         responsive={responsive}
         dots={false}
-        dotColor="#3399ff"
-        
+        dotColor="#3399ff"        
         slidesToShow={3}
         arrowStyles={{
           width: 40,
@@ -57,10 +52,8 @@ export default function ProductInCarousel({
           },
         }}
       >
-        {products.map((item: PricedProduct) => {
-          const size = variantSizes(item); // Get the size for the current item
-          const colors = variantColors(item);
-
+        {products.map((item:PricedProduct) => {
+                   
           const { cheapestPrice } = getProductPrice({
             product: item,
             region,
@@ -72,16 +65,17 @@ export default function ProductInCarousel({
                 id={item.id}
                 slug={item.id}
                 title={item.title}
-                price={cheapestPrice}
+                price={cheapestPrice.calculated_price}
                 region={region}
                 cart={cart}
                 product={item}
                 off={"10"}
+                ratings={ratings}
                 // rating={5}
                 status={
                   item?.tags?.find((i) => i?.value === "sale")
                     ? "Sale"
-                    : item.variants.find((v) => v?.inventory_quantity < 95)
+                    : item?.variants?.find((v) => v?.inventory_quantity < 95)
                       ? "Top"
                       : ""
                 }

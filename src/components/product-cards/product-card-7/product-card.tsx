@@ -28,12 +28,34 @@ import {
   Review,
   ApiResponse,
   ApiResponseWithoutData,
+  type AverageRatings,
+  type CartWithCheckoutStep,
 } from "medusa/types/global";
 import Skeleton from "@mui/material/Skeleton";
 import Loading from "app/[countryCode]/(layout-1)/products/[slug]/loading";
+import type { Cart, Region } from "@medusajs/medusa";
+import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+
+type Props ={
+  sx?:any,
+    off?:string,
+    status?:string | "",
+    id:string,
+    title:string,
+    price?:string,
+    imgUrl:string,
+    rating?:number,
+    hideRating?:boolean,    
+    slug?:string,
+    region?:Region,
+    cart?:CartWithCheckoutStep | null,
+    product:PricedProduct,
+    ratings:AverageRatings,
+    countryCode?:string,
+}
 
 // =======================================================
-const ProductCard17 = (props) => {
+const ProductCard17 = (props:Props) => {
   const {
     sx,
     off,
@@ -43,33 +65,18 @@ const ProductCard17 = (props) => {
     price,
     imgUrl,
     rating,
-    hideRating,
-    
+    hideRating,    
     slug,
     region,
     cart,
     product,
+    ratings,
+    
   } = props;
 
   const discount = 15;
-  // const [ratingData, setData] = useState<ApiResponse | null>(null);
-
-
-  // useEffect(() => {
-  //   const fetchReviews = async () => {
-  //     const response = await fetch(`/api/reviews/${id}`, {
-  //       method: "GET",
-  //       credentials: "include",
-  //     });
-  //     const { data } = await response.json();
-
-  //     setData(data);
-  //   };
-  //   fetchReviews();
-  // }, []);
-
-  // const finalRating = averageRating({ response: ratingData?.data });
-
+ const pr = ratings.find((p) => p.id === product.id)
+  
   return (
     <StyledCard sx={sx}>
       <Link href={`/products/${slug}`}>
@@ -90,8 +97,7 @@ const ProductCard17 = (props) => {
           }}
         >
           {/* PRODUCT IMAGE / THUMBNAIL */}
-
-          {imgUrl ? (
+         
             <LazyImage
               alt={title}
               fill={true}
@@ -99,16 +105,7 @@ const ProductCard17 = (props) => {
               src={imgUrl}
               sx={{ objectFit: "contain", left: 0, top: 0, right: 0 }}
               id="productImg"
-            />
-          ) : (
-            <Skeleton
-              height="inherit"
-              width="100%"
-              animation="wave"
-              variant="rectangular"
-              sx={{ bgcolor: "grey.300" }}
-            />
-          )}
+            />         
         </ImgBox>
       </Link>
 
@@ -129,12 +126,11 @@ const ProductCard17 = (props) => {
 
           {/* PRODUCT RATING / REVIEW  */}
 
-          {/* <ProductRating
+          <ProductRating
             showRating={hideRating}
-            rating={finalRating ?? 0}
-            status={ratingData?.status ?? "error"}
-            length={ratingData?.data?.length ?? 0}
-          /> */}
+            rating={ pr ? pr?.averageRating : 0}            
+            length={pr ? pr?.count : 0}
+          />
 
           <div
             style={{

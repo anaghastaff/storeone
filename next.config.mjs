@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
+// import { withStoreConfig } from '../store-config';
+// import store from '../store.config.json';
+
 const nextConfig = {
-  env: { theme: "DEFAULT", currency: "USD" },
-  publicRuntimeConfig: { theme: "DEFAULT", currency: "USD" },
+  // env: { theme: "DEFAULT", currency: "USD" },
+  // publicRuntimeConfig: { theme: "DEFAULT", currency: "USD" },
+  // features: store.features,
+  reactStrictMode: true,
   experimental: {
     serverComponentsExternalPackages: [
       "@medusajs/product",
@@ -28,8 +33,7 @@ const nextConfig = {
       },
       {
         protocol:"http",
-        hostname:"res.cloudinary.com",
-  
+        hostname:"res.cloudinary.com",  
         pathname:"/dxvvl4bpp/**",
       },
       {

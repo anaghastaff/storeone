@@ -2,6 +2,28 @@ import { Cart, ProductCategory, ProductVariant, Region } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import { ProductCollection } from "@medusajs/product"
 
+
+export type AllReviews=[
+  {
+    product_id: string;
+    title: string;
+    user_name: string;
+    rating: number;
+    content: string;
+    id: string;
+    created_at: string;
+    updated_at: string;
+  }
+  ]
+  
+  export type AverageRatings=[
+    {
+      id:string,
+      averageRating:number,
+      count:number
+    }
+  ]
+
 export interface Review {
   product_id: string;
   title: string;

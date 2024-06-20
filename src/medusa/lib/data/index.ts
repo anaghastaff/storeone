@@ -20,6 +20,7 @@ import { ProductCategoryWithChildren, ProductPreviewType } from "medusa/types/gl
 import { medusaClient } from "medusa/lib/config"
 import medusaError from "medusa/lib/util/medusa-error"
 import { cookies } from "next/headers"
+import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products"
 
 const emptyResponse = {
   response: { products: [], count: 0 },
@@ -505,53 +506,53 @@ export const getProductsList = cache(async function ({
   }
 })
 
-// export const getProductsListWithSort = cache(
-//   async function getProductsListWithSort({
-//     page = 0,
-//     queryParams,
-//     sortBy = "created_at",
-//     countryCode,
-//   }: {
-//     page?: number
-//     queryParams?: StoreGetProductsParams
-//     sortBy?: SortOptions
-//     countryCode: string
-//   }): Promise<{
-//     response: { products: ProductPreviewType[]; count: number }
-//     nextPage: number | null
-//     queryParams?: StoreGetProductsParams
-//   }> {
-//     const limit = queryParams?.limit || 12
+export const getProductsListWithSort = cache(
+  async function getProductsListWithSort({
+    page = 0,
+    queryParams,
+    sortBy = "created_at",
+    countryCode,
+  }: {
+    page?: number
+    queryParams?: StoreGetProductsParams
+    sortBy?: SortOptions
+    countryCode: string
+  }): Promise<{
+    response: { products: ProductPreviewType[]; count: number }
+    nextPage: number | null
+    queryParams?: StoreGetProductsParams
+  }> {
+    const limit = queryParams?.limit || 12
 
-//     const {
-//       response: { products, count },
-//     } = await getProductsList({
-//       pageParam: 0,
-//       queryParams: {
-//         ...queryParams,
-//         limit: 100,
-//       },
-//       countryCode,
-//     })
+    const {
+      response: { products, count },
+    } = await getProductsList({
+      pageParam: 0,
+      queryParams: {
+        ...queryParams,
+        limit: 100,
+      },
+      countryCode,
+    })
 
-//     const sortedProducts = sortProducts(products, sortBy)
+    const sortedProducts = sortProducts(products, sortBy)
 
-//     const pageParam = (page - 1) * limit
+    const pageParam = (page - 1) * limit
 
-//     const nextPage = count > pageParam + limit ? pageParam + limit : null
+    const nextPage = count > pageParam + limit ? pageParam + limit : null
 
-//     const paginatedProducts = sortedProducts.slice(pageParam, pageParam + limit)
+    const paginatedProducts = sortedProducts.slice(pageParam, pageParam + limit)
 
-//     return {
-//       response: {
-//         products: paginatedProducts,
-//         count,
-//       },
-//       nextPage,
-//       queryParams,
-//     }
-//   }
-// )
+    return {
+      response: {
+        products: paginatedProducts,
+        count,
+      },
+      nextPage,
+      queryParams,
+    }
+  }
+)
 
 export const getHomepageProducts = cache(async function getHomepageProducts({
   collectionHandles,

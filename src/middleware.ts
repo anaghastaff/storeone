@@ -96,9 +96,9 @@ export async function middleware(request: NextRequest) {
 
   const regionMap = await getRegionMap()
 
-  //  const countryCode = regionMap && (await getCountryCode(request, regionMap))
+    const countryCode = regionMap && (await getCountryCode(request, regionMap))
    
-  const countryCode = "us";
+  // const countryCode = "us";
   const urlHasCountryCode =
     countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
   

@@ -1,5 +1,4 @@
 import { Fragment } from "react"; // MUI ICON COMPONENTS
-
 import Add from "@mui/icons-material/Add";
 import Remove from "@mui/icons-material/Remove"; // GLOBAL CUSTOM COMPONENT
 
@@ -40,6 +39,8 @@ const QuantityButtons = ({
   toCheckout:boolean;
   reduce:boolean
 }) => {
+
+  console.log("quantity" , quantity)
   return (
     <FlexBox
       width="100%"
@@ -57,8 +58,7 @@ const QuantityButtons = ({
         justifyContent="flex-start"
       >
         {quantity === 0 && (
-          <Stack direction="row" columnGap={2}>
-           
+          <Stack direction="row" columnGap={2}>      
 
 
             <LoadingButton

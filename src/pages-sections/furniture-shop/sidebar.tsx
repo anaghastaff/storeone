@@ -19,16 +19,16 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { ProductPreviewType } from "medusa/types/global";
 import { Product } from "@medusajs/medusa";
 // ==============================================================
-const Sidebar = ({
-  
+const Sidebar = ({ 
   navList,
   products,
   region,
-
+limit
 }:{
   navList:any,
-  products:any,
-  region:Region
+  products:PricedProduct[],
+  region:Region,
+  limit:number
 }) => {
   
   const ref = useRef<HTMLDivElement>(null);
@@ -36,6 +36,8 @@ const Sidebar = ({
   useEffect(() => {
     if (ref.current) setSidebarHeight(ref.current.offsetHeight);
   }, []);
+
+
   return <StyledContainer>
       {
       /* LEFT SIDEBAR */
@@ -55,7 +57,7 @@ const Sidebar = ({
       /* OFFER BANNERS */
     }
       <div className="pageContent" ref={ref}>
-        <Section2 products={products} region={region}/>
+        <Section2 limit={limit} products={products} region={region}/>
       </div>
     </StyledContainer>;
 };
