@@ -1,6 +1,6 @@
 import { getProductsListWithSort, getRegion } from "medusa/lib/data"
-// import ProductPreview from "@modules/products/components/product-preview"
-import { Pagination } from "medusa/modules/store/components/pagination"
+// import ProductPreview from "medusa/modules/products/components/product-preview"
+import { PaginationMedusa } from "medusa/modules/store/components/pagination"
 import { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products"
 
 const PRODUCT_LIMIT = 12
@@ -72,7 +72,7 @@ export default async function PaginatedProducts({
           )
         })}
       </ul>
-      {totalPages > 1 && <Pagination data-testid="product-pagination" page={page} totalPages={totalPages} />}
+      {totalPages > 1 && <PaginationMedusa data-testid="product-pagination" page={page} totalPages={totalPages} />}
     </>
   )
 }

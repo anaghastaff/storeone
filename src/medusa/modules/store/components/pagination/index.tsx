@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Pagination from "@mui/material/Pagination";
 import type React from "react";
-import _ from "lodash";
 
 export function PaginationMedusa({
   page,
