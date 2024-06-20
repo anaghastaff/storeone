@@ -15,7 +15,7 @@ import {
   categoryNavigation as sidebarNavList,
 } from "__server__/__db__/furniture/data";
 import api from "utils/__api__/furniture-shop";
-import Testing from "../testing";
+
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import type { Region, Customer } from "@medusajs/medusa";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
