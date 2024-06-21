@@ -123,7 +123,7 @@ const SubmitProductReview = ({
           onClick={handleClickOpen}
           variant={variant}
           size={size}
-          sx={{ px: 2, width: "fit-content" }}
+          sx={{ px: variant === 'text' ?0 : 2, width: "fit-content" }}
           color={color}
           endIcon={<RateReviewIcon sx={{fontSize:14}}/>}
         >

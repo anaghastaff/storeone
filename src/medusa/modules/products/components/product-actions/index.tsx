@@ -16,6 +16,7 @@ import type { CartWithCheckoutStep } from "medusa/types/global";
 import QuantityButtons from "components/product-cards/product-card-7/quantity-buttons"; 
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
+import { Typography } from "@mui/material";
 
 type ProductActionsProps = {
   product: PricedProduct;
@@ -44,6 +45,7 @@ export default function ProductActions({
   const [error, setError] = useState<string | null>(null);
   const [inCart, setInCart] = useState<number>(0);
   const [lineitem, setLineItem] = useState<LineItem | null>(null)
+  const {enqueueSnackbar} = useSnackbar()
 
   const countryCode = useParams().countryCode as string;
   const variants = product?.variants
@@ -225,6 +227,8 @@ export default function ProductActions({
         <Box>
           {product.variants.length > 1 && (
             <Box sx={{ display: "flex", flexDirection: "column", rowGap: '0.5rem' }}>
+             
+              <Typography variant="caption" color={variant ? "primary.dark": "transparent"}>Selected: {variant?.title}</Typography>
               {(product.options || []).map((option) => {
                 return (
                   <Box key={option.id}>
@@ -236,6 +240,7 @@ export default function ProductActions({
                       currentColor={currentColor} 
                       data-testid="product-options"
                       variants={product.variants}
+                      variant={variant}
                     />
                   </Box>
                 );

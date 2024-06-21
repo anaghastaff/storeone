@@ -14,13 +14,15 @@ export const StyledCard = styled(Box)(({
   borderRadius: 0,
   position:'relative',
   overflow: "hidden",  
+  backgroundColor:'white',
   transition: "all 250ms ease-in-out",
   outline: `4px solid ${theme.palette.grey[200]}`,
   marginLeft:'auto',
   marginRight:'auto',
- boxShadow: theme.shadows[8],
+ boxShadow: theme.shadows[2],
   "&:hover": {
-    boxShadow: theme.shadows[12],
+    boxShadow: theme.shadows[4],
+    border:'0.5rem solid info',
     "& .css-1i2n18j": {
       display: "flex"
     },
@@ -37,7 +39,7 @@ export const ImgBox = styled("div")(({
   marginRight:'auto',
     // marginBottom: 100,
   // padding: "60px 40px 20px 40px",
-  background: theme.palette.primary[50]
+  background: theme.palette.common.white,
 }));
 export const ContentWrapper = styled("div")({
   
@@ -59,7 +61,7 @@ export const StatusChipBox = styled("div")(({
   right: "10px",
   fontSize: "12px",
   position: "absolute",
-  background: theme.palette.primary.main,
+  background: theme.palette.common.white,
   "& .triangle-left": {
     width: 0,
     height: 0,

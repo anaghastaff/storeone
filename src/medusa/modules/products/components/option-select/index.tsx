@@ -2,6 +2,8 @@ import { ProductOption } from "@medusajs/medusa"
 import React from "react"
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip"
 import { onlyUnique } from "medusa/lib/util/only-unique"
@@ -14,7 +16,8 @@ type OptionSelectProps = {
   title: string
   'data-testid'?: string
   currentColor?:string
-  variants?:PricedVariant[] 
+  variants?:PricedVariant[] ,
+  variant?:PricedVariant
 }
 
 const OptionSelect: React.FC<OptionSelectProps> = ({
@@ -24,7 +27,8 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   title,
   'data-testid': dataTestId,
   currentColor,
-  variants
+  variants,
+  variant
 }) => {
   const filteredOptions = option.values.map((v) => v.value).filter(onlyUnique)
 
@@ -40,43 +44,48 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
  
   
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column'}}>
-    
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 1.5 }} data-testid={dataTestId}>
+    <>
+        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+      
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', gap: 1, fontSize:'8px' }} data-testid={dataTestId}>
       {relevantSizeOptions.map((v) => (
         <Tooltip key={v} title={title === "Size" ? `Size - ${v}` : `Color - ${v}`} arrow>
         <Button
+        size="small"
           key={v}
           onClick={() => updateOption({ [option.id]: v })}
-          sx={{
-            border:'1px solid lightgrey',
-            backgroundColor: (v === current && title !== "Color") ? '#eee' : v,
-            height: 30,
+          sx={{      
+            border: '1px solid lightgrey',
+            //  backgroundColor: (v === current && title !== "Color") ? '#eee' : v,
+            height: 25,
             borderRadius: '10%',
             flex: '1',
-            width:30,
+            width:25,
             maxWidth:'fit-content',
-            minWidth:30,
+            minWidth:25,
             '&:hover': {
-              boxShadow: v !== current ? '0px 0px 4px rgba(0,0,0,0.1)' : 'none',
+              boxShadow: v !== current ? '1px 1px 1px rgba(1,1,1,0.1)' : 'none',
               transition: 'box-shadow 0.2s ease-in-out',
-              backgroundColor: (v === current && title !== "Color") ? '#eee' : v,
+              // backgroundColor: (v === current && title !== "Color") ? '#eee' : v,
+              border:  '2px solid grey',
             },
             '&:focus': {
-              boxShadow: v !== current ? '0px 0px 4px rgba(0,0,0,0.1)' : 3,
+              boxShadow: v !== current ? '1px 1px 1px rgba(0,0,0,0.1)' : 3,
               transition: 'box-shadow 0.2s ease-in-out',
-              border: v === current && v !=='indigo'  ? '3px solid black' : v,
+              border: v === current && v !=='indigo'  ? '2px solid grey' : v,
             },
           }}
           data-testid="option-button"
         >
-          {title === "Size" ? v : ""}
+          {title === "Size" ? v : <div 
+          style={{backgroundColor: v, borderRadius:'50%', height:10, width:10, border: v==="white" || v==="beige" || v==="grey" || v.toLowerCase()==='cream' ? "0.1rem solid lightgrey" : ""}}
+          ></div>}
         </Button>
         </Tooltip>
       ))}
     </Box>
   </Box>
-
+  </>
   )
 }
 

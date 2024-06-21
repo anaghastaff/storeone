@@ -93,7 +93,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({
           </div>
 
           {/* SHOP NAME */}
-          <FlexBox alignItems="center" gap={1} mb={2}>
+          <FlexBox alignItems="center" gap={1} mb={2} mt={2}>
             <div>Sold By:</div>
             <Link href="/shops/scarlett-beauty">
               <H6>Medusa</H6>

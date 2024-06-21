@@ -16,7 +16,7 @@ const ImageGalleryArea = ({product}) => {
 
     return <Fragment>
 
-<FlexBox justifyContent="center" mb={6} sx={{width:300, height:300, mx:'auto', bgcolor: "grey.300", display:'block', position:'relative', overflow:'hidden' }}>
+<FlexBox justifyContent="center" mb={6} sx={{width:300, height:300, top:0, mx:'auto', bgcolor: "#fff", display:'block', position:'relative', overflow:'hidden' }}>
            {images ? 
            <LazyImage
               alt={title ? title : "loading..."}
@@ -27,7 +27,7 @@ const ImageGalleryArea = ({product}) => {
                 images && images[selectedImage]?.url
               }
               sx={{
-                objectFit: "cover", position:'absolute', 
+                objectFit: "contain", position:'absolute', 
               }}
             />
             :

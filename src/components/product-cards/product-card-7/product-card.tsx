@@ -138,7 +138,7 @@ const ProductCard17 = (props:Props) => {
               flexDirection: "column",
               gap: "14px",
               width: "100%",
-              backgroundColor: "#fafafa",
+              backgroundColor: "#fff",
             }}
           >
             <ProductActions
