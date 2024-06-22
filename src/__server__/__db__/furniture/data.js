@@ -16,7 +16,7 @@ export const categoryNavigation = [{
   }, {
     icon: "Products", 
     title: "All Products",
-    href: "/products/search/vegetables"
+    href: "/categories/all-products"
   }]
 }, {
   category: "Top Categories",

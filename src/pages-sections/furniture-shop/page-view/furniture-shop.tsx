@@ -99,7 +99,7 @@ const FurnitureShopPageView = async ({
               cart={cart}
               region={region}
               heading="All Products"
-              description="Summer Collection"
+              description="Premium Collection"
             />
             </Suspense>
          

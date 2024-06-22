@@ -139,10 +139,12 @@ const megaMenus = [[{
   }, {
     title: "Checkout",
     url: "/checkout"
-  }, {
+  }, 
+  {
     title: "Alternative Checkout",
     url: "/checkout-alternative"
-  }, {
+  },
+  {
     title: "Order confirmation",
     url: "/order-confirmation"
   }]

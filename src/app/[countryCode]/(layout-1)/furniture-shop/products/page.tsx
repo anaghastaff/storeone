@@ -38,18 +38,21 @@ type Params = {
   };
 };
 
-async function ProductWithContext({ region }) {
-  const { products, count } = await medusaClient.products
-    .list({
-      expand: "categories",
-      region_id: region.id,
-    })
-    .then(({ products, limit, offset, count }) => {
-      return { products, count };
-    });
+const product_limit = parseInt(process.env.PRODUCT_LIMIT)
 
-  return { products, count };
-}
+// async function ProductWithContext({ region }) {
+//   const { products, count } = await medusaClient.products
+//     .list({
+//       expand: "categories",
+//       region_id: region.id,
+//       limit:product_limit,
+//     })
+//     .then(({ products, limit, offset, count }) => {
+//       return { products, count };
+//     });
+
+//   return { products, count };
+// }
 
 //  MAIN FUNCTION
 
@@ -62,17 +65,17 @@ export default async function AllProducts({ searchParams, params }: Params) {
   const cart = await fetchCart();
   const { allReviews } = await FetchAllReviews();
   const ratings = await calculateAverageRating({ allReviews });
-  const { products, count } = await ProductWithContext({ region });
-  const pricedProducts = await Promise.all(
-    products.map(async (product) => {
-      if (!product.id) return null;
-      const data: PricedProduct = await retrievePricedProductById({
-        id: product.id,
-        regionId: region.id,
-      });
-      return data;
-    })
-  );
+  // const { products, count } = await ProductWithContext({ region });
+  // const pricedProducts = await Promise.all(
+  //   products.map(async (product) => {
+  //     if (!product.id) return null;
+  //     const data: PricedProduct = await retrievePricedProductById({
+  //       id: product.id,
+  //       regionId: region.id,
+  //     });
+  //     return data;
+  //   })
+  // );
   const pageNumber = page ? parseInt(page) : 1;
   return (
     <Container>
@@ -80,12 +83,12 @@ export default async function AllProducts({ searchParams, params }: Params) {
         <Section4
           countryCode={params.countryCode}
           cart={cart}
-          products={pricedProducts}
+          // products={pricedProducts}
           region={region}
           heading="All Products"
           description="Summer Collection"
           page={pageNumber}
-          count={count}
+          // count={count}
           sortBy={sortBy}
           ratings={ratings}
         />

@@ -79,8 +79,7 @@ export default async function FurnitureShop({ searchParams, params }: Params) {
       page={page}
       countryCode={params.countryCode}
       products={pricedProducts}
-      limit={limit}
-    
+      limit={limit}    
     />
     </Suspense>
   );

@@ -18,7 +18,8 @@ import {
 import { PaginationMedusa } from "medusa/modules/store/components/pagination";
 
 // ===================================================================
-const PRODUCT_LIMIT = 6;
+const product_limit = parseInt(process.env.PRODUCT_LIMIT)
+
 type PaginatedProductsParams = {
   limit: number;
   collection_id?: string[];
@@ -40,9 +41,9 @@ const Section4 = async ({
 }: {
   sortBy?: SortOptions;
   page?: number;
-  heading?: string;
+  heading: string;
   region?: Region;
-  description?: string;
+  description: string;
   cart: CartWithCheckoutStep | null;
   count?: number;
   countryCode: string;
@@ -54,7 +55,7 @@ const Section4 = async ({
   pricedProducts?:PricedProduct[];
 }) => {
   const queryParams: PaginatedProductsParams = {
-    limit: PRODUCT_LIMIT,
+    limit: product_limit,
   };
 
   if (collectionId) {
@@ -78,7 +79,7 @@ const Section4 = async ({
     countryCode,
   });
 
-  const totalPages = Math.ceil(count / PRODUCT_LIMIT);
+  const totalPages = Math.ceil(count / product_limit);
 
   return (
     <div>
