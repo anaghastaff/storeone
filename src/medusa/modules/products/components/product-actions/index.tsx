@@ -43,7 +43,7 @@ export default function ProductActions({
   const [reduce, addReduce] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [inCart, setInCart] = useState<number>(0);
+  const [inCart, setInCart] = useState<boolean>(false);
   const [lineitem, setLineItem] = useState<LineItem | null>(null)
   const {enqueueSnackbar} = useSnackbar()
 
@@ -108,6 +108,11 @@ export default function ProductActions({
     }
   }, [variant]);
 
+  useEffect(() => {
+    const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
+    setLineItem(temp || null);
+  }, [options, variant]);
+
   //Store the current selected color to match with available sizes inside the optionSelect Component
 
   const colorOption = product?.options?.find(o => o.title === 'Color');
@@ -136,8 +141,7 @@ export default function ProductActions({
           
           setUpdating(false);
         });
-        const qty = cart?.items?.find((i)=>i.id===variant.id)
-        setLineItem(qty)
+       
       message && setError(message);
      
     } else {
@@ -147,8 +151,14 @@ export default function ProductActions({
         variantId: variant.id,
         quantity: 1,
         countryCode,
-      });     
-      setIsAdding(false);
+      }).then((res)=>{
+        console.log("result",res)
+        if(res !== "Error adding item to cart" ){
+          setIsAdding(false);
+          enqueueSnackbar("Quantity +1", {variant:'success'})
+        }       
+      })    
+      
     }
     // handleCartAmountChange(product);
   };
@@ -169,9 +179,7 @@ export default function ProductActions({
          
           addReduce(false);
         });     
-        const qty = cart?.items?.find((i)=>i.id===variant.id)
-        setLineItem(qty)
-        console.log(qty)
+       
       message && setError(message);
      
     }
@@ -186,11 +194,16 @@ export default function ProductActions({
       variantId: variant.id,
       quantity: 1,
       countryCode,
-    });
+    }) .then((res)=>{
+      console.log("result",res)
+      if(res !== "Error adding item to cart" ){
+        setIsAdding(false);
+        enqueueSnackbar("Item added to Cart!", {variant:'success'})
+      }       
+    })
    
-    setIsAdding(false);
-    const qty = cart?.items?.find((i)=>i.id===variant.id)
-    setLineItem(qty)
+    
+   
   };
   const router = useRouter()
 

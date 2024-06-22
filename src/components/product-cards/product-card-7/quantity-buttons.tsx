@@ -9,7 +9,9 @@ import { StyledButton } from "./styles"; // ====================================
 import type { PricedVariant } from "@medusajs/medusa/dist/types/pricing";
 import Button from "@mui/material/Button";
 import { LoadingButton } from "@mui/lab";
-import { Stack } from "@mui/material";
+import Stack  from "@mui/material/Stack";
+import CircularProgress from '@mui/material/CircularProgress'
+import Avatar from '@mui/material/Avatar'
 
 // ==============================================================
 const QuantityButtons = ({
@@ -59,10 +61,10 @@ const QuantityButtons = ({
       >
         {quantity === 0 && (
           <Stack direction="row" columnGap={2}>      
-            <LoadingButton
-              loading={isAdding}
-              loadingPosition="center"
-              disabled={disabled}
+            <Button
+              // loading={isAdding}
+              // loadingPosition="center"
+              disabled={disabled || isAdding}
               variant="contained"
               color="primary"
               onClick={handleAddToCart}
@@ -77,19 +79,20 @@ const QuantityButtons = ({
                 minHeight: "2rem",
                 borderRadius:'0'
               }}
+              
             >
-             <span>
+            
              {!variant
                 ? "Select variant"
                 : !inStock
                   ? "Out of stock"
-                  : !isAdding && "Add to cart"}</span> 
-            </LoadingButton>
+                  : isAdding ? <CircularProgress size={16} color="error" sx={{mx:'auto'}} />
+                  :variant && "Add to cart"
+                } 
+            </Button>
 
-             <LoadingButton
-              loading={toCheckout}
-              loadingPosition="center"
-              disabled={disabled}
+             <LoadingButton              
+              disabled={disabled || isAdding}
               variant="contained"
               onClick={handleAddToCheckout}
               data-testid="add-product-button"
@@ -115,6 +118,7 @@ const QuantityButtons = ({
                 ? "Buy Now"
                 : !inStock
                   ? "Out of stock"
+                  :  toCheckout ? <CircularProgress size={16} color="error" sx={{mx:'auto'}} />
                   : !toCheckout && "Buy Now"}
               </span>  
             </LoadingButton>
@@ -124,8 +128,8 @@ const QuantityButtons = ({
         {quantity > 0 ? (
           <Fragment>
             <StyledButton
-              loading={updating}
-              disabled={disabled}
+              loading={updating || reduce}
+              disabled={disabled }
               variant="outlined"
               onClick={() => handleIncrement(quantity + 1)}
             >
@@ -135,8 +139,8 @@ const QuantityButtons = ({
             <Paragraph fontWeight={600}>{1}</Paragraph>
 
             <StyledButton
-              loading={reduce}
-              disabled={disabled}
+              loading={reduce || updating}
+              disabled={disabled }
               variant="outlined"
               onClick={() => handleDecrement(quantity - 1)}
             >
@@ -144,7 +148,7 @@ const QuantityButtons = ({
             </StyledButton>
           </Fragment>
         ) : null}
-        {quantity > 0 && <Paragraph>Qty in Cart: {quantity}</Paragraph>}
+        {quantity > 0 && <Stack direction="row" gap={1} alignItems="center">Qty in Cart: <Avatar sx={{width:24, height:24,bgcolor:'green', color:'white'}}>{quantity}</Avatar></Stack>}
       </FlexBox>
       {/* {disabled ? <Paragraph fontSize="l" color="error.main">Select an option</Paragraph>: ""} */}
     </FlexBox>

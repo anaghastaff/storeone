@@ -8,15 +8,15 @@ export const categoryNavigation = [{
   }, {
     icon: "Popular",
     title: "Popular Products",
-    href: "/products/search/Breakfast"
+    href: "/furniture-shop/categories/all-products"
   }, {
     icon: "Trending",
     title: "Trending Products",
-    href: "/products/search/Frozen"
+    href: "/furniture-shop/categories/all-products"
   }, {
     icon: "Products", 
     title: "All Products",
-    href: "/categories/all-products"
+    href: "/furniture-shop/categories/all-products"
   }]
 }, {
   category: "Top Categories",

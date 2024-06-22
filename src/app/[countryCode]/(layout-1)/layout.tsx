@@ -24,7 +24,7 @@ export default async function Layout1({ children, params }:{
   const region = await getRegion(params.countryCode);
   if(!region) { return null}
 
-  const customer = await getCustomer()
+  const customer = await getCustomer() 
   return (
       
       <ShopLayout1 cart={cart} customer={customer} countryCode={params.countryCode}>{children} </ShopLayout1> 

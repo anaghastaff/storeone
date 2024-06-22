@@ -56,7 +56,7 @@ const Navbar = ({
               key={nav.title}
               title={nav.title}
               menuList={nav.child}
-              custtomer={customer}
+              customer={customer}
             />
           );
         }

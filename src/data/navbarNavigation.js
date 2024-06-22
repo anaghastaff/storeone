@@ -153,24 +153,30 @@ const megaMenus = [[{
 // MAIN NAVIGATION DATA
 
 const navbarNavigation = [{
-  title: "Home",
+  title: "Menu",
   megaMenu: false,
   megaMenuWithSub: false,
   auth:true,
   child: [
-  //   {
-  //   title: "Market 1",
-  //   url: "/market-1"
-  // }, {
-  //   title: "Market 2",
-  //   url: "/market-2"
-  // }, {
-  //   title: "Gadget",
-  //   url: "/gadget-shop"
-  // }, {
-  //   title: "Grocery-1",
-  //   url: "/grocery-1"
-  // }, {
+    {
+      title: "Home",
+      url: "/furniture-shop"
+    }, {
+      title: "All Products",
+      url: "/furniture-shop/categories/all-products"
+    },
+    {
+    title: "Furniture",
+    url: "/furniture-shop/products/categories/furniture"
+  }, {
+    title: "Health",
+    url: "/furniture-shop/products/categories/health"
+  }, {
+    title: "Jute Bags",
+    url: "/furniture-shop/products/categories/organic-bags"
+  },
+  
+  //  {
   //   title: "Grocery-2",
   //   url: "/grocery-2"
   // }, {
@@ -190,13 +196,7 @@ const navbarNavigation = [{
   //   title: "Gift Store",
   //   url: "/gift-shop"
   // }, 
-  {
-    title: "Furniture",
-    url: "/furniture-shop"
-  }, {
-    title: "Health and Beauty",
-    url: "/health-beauty-shop"
-  }]
+ ]
 }, 
 {
   megaMenu: true,
@@ -210,7 +210,6 @@ const navbarNavigation = [{
   title: "Full Screen Menu",
   child: categoriesMegaMenu
 },
-
 {
   megaMenu: false,
   megaMenuWithSub: false,
