@@ -40,9 +40,9 @@ const Section4 = async ({
 }: {
   sortBy?: SortOptions;
   page?: number;
-  heading: string;
-  region: Region;
-  description: string;
+  heading?: string;
+  region?: Region;
+  description?: string;
   cart: CartWithCheckoutStep | null;
   count?: number;
   countryCode: string;

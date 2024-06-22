@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Done from "@mui/icons-material/Done"; // CUSTOM ICON COMPONENTS
 import React from 'react'
 import Delivery from "icons/Delivery";

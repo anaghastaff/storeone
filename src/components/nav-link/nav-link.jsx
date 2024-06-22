@@ -1,6 +1,7 @@
+'use client'
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import clsx from "clsx"; // STYLED COMPONENT
 
 const StyledLink = styled(Link, {

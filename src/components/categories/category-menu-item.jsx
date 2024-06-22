@@ -1,6 +1,6 @@
 import Link from "next/link";
 import MenuItem from "@mui/material/MenuItem";
-import styled from "@mui/material/styles/styled"; // MUI ICON COMPONENTS
+import {styled} from "@mui/material/styles"; // MUI ICON COMPONENTS
 
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight"; // GLOBAL CUSTOM HOOK

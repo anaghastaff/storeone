@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Preview = createSvgIcon(<svg fill="currentColor" viewBox="0 0 14 14">
     <g clipPath="url(#clip0_6740_34819)">
       <path d="M0.583984 6.99967C0.583984 6.99967 2.91732 2.33301 7.00065 2.33301C11.084 2.33301 13.4173 6.99967 13.4173 6.99967C13.4173 6.99967 11.084 11.6663 7.00065 11.6663C2.91732 11.6663 0.583984 6.99967 0.583984 6.99967Z" stroke="#879AB0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

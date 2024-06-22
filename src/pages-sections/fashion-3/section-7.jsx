@@ -1,6 +1,6 @@
 "use client";
 
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container"; // GLOBAL CUSTOM COMPONENTS
 
 import { H4, Span } from "components/Typography";

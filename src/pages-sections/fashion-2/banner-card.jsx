@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import BazaarImage from "components/BazaarImage";
 import { H1, H3, Paragraph } from "components/Typography"; // STYLED COMPONENTS

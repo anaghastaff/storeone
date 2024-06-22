@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import { layoutConstant } from "utils/constants";
 
 interface StyledRootProps {

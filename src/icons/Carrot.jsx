@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Carrot = createSvgIcon(<svg fill="currentColor" viewBox="0 0 20 20">
     <g>
       <path d="M6.88558 7.90479C6.97805 7.90479 7.07097 7.87244 7.14559 7.80667L7.15276 7.80027C7.31405 7.65699 7.32854 7.4101 7.18526 7.24882C7.04183 7.08753 6.79494 7.07304 6.63381 7.21632L6.62602 7.22318C6.46428 7.36585 6.45009 7.61152 6.59291 7.77326C6.66982 7.86054 6.77739 7.90479 6.88558 7.90479Z" />

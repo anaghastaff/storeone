@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Breakfast = createSvgIcon(<svg fill="currentColor" viewBox="0 0 20 20">
     <g>
       <path d="M10 20C15.527 20 20 15.5274 20 9.99998C20 4.47295 15.5275 0 10 0C4.47299 0 0 4.47249 0 10C0 12.6711 1.04017 15.1823 2.92896 17.0711C4.81767 18.9598 7.3289 20 10 20ZM10 0.585987C15.2032 0.585987 19.4141 4.79646 19.4141 10C19.4141 15.2032 15.2036 19.4141 10 19.4141C4.79689 19.414 0.585987 15.2036 0.585987 10C0.585987 4.79689 4.79638 0.585987 10 0.585987Z" />

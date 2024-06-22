@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Figma = createSvgIcon(<svg fill="currentColor" viewBox="0 0 18 32">
     <path d="M5.04372 27.9999C7.27568 27.9999 9.08744 26.2076 9.08744 23.9996V19.9993H5.04372C2.81177 19.9993 1 21.7916 1 23.9996C1 26.2076 2.81177 27.9999 5.04372 27.9999Z" fill="#0ACF83" />
     <path d="M1 16.0001C1 13.7921 2.81177 11.9998 5.04372 11.9998H9.08744V19.9994H5.04372C2.81177 20.0004 1 18.2081 1 16.0001Z" fill="#A259FF" />

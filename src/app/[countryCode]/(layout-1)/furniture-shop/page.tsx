@@ -31,7 +31,7 @@ type Params = {
     countryCode: string;
   };
 };
-const limit = 11;
+const limit = 12;
 async function ProductWithContext({ region }) {
   const { products, count } = await medusaClient.products
     .list({
@@ -69,6 +69,7 @@ export default async function FurnitureShop({ searchParams, params }: Params) {
   
 
   return (
+    <Suspense fallback={<Loading />}>
     <FurnitureShopPageView
       count={count}
       region={region}
@@ -81,5 +82,6 @@ export default async function FurnitureShop({ searchParams, params }: Params) {
       limit={limit}
     
     />
+    </Suspense>
   );
 }

@@ -1,4 +1,4 @@
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { H4 } from "components/Typography";
 import LazyImage from "components/LazyImage"; // STYLED COMPONENTS

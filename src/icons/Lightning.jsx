@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Lightning = createSvgIcon(<svg fill="currentColor" viewBox="0 0 64 64">
     <g>
       <path d="M23.7766 25.3112C23.4095 24.7265 22.6382 24.55 22.0533 24.9171L16.6501 28.3086C16.0653 28.6756 15.8888 29.4471 16.256 30.0318C16.4933 30.4101 16.9 30.6175 17.3158 30.6175C17.5428 30.6175 17.7726 30.5556 17.9792 30.426L23.3825 27.0345C23.9672 26.6675 24.1437 25.896 23.7766 25.3112Z" />

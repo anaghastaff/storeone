@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { H5 } from "components/Typography";
 import LazyImage from "components/LazyImage";

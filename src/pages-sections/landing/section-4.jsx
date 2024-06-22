@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container"; // CUSTOM COMPONENTS
 
 import LazyImage from "components/LazyImage";

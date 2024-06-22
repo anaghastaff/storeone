@@ -1,9 +1,6 @@
-"use client";
-
+//  "use client";
 import { useEffect, useRef, useState } from "react"; // Local CUSTOM COMPONENT
-
 import Section2 from "./section-2"; // GLOBAL CUSTOM COMPONENT
-
 import { SideNavbar } from "components/page-sidenav"; // CUSTOM DATA MODEL
 import Skeleton from '@mui/material/Skeleton';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -31,32 +28,29 @@ limit
   limit:number
 }) => {
   
-  const ref = useRef<HTMLDivElement>(null);
-  const [sidebarHeight, setSidebarHeight] = useState<any>(0);
-  useEffect(() => {
-    if (ref.current) setSidebarHeight(ref.current.offsetHeight);
-  }, []);
-
+  // const ref = useRef<HTMLDivElement>(null);
+  // const [sidebarHeight, setSidebarHeight] = useState<any>(0);
+  // useEffect(() => {
+  //   if (ref.current) setSidebarHeight(ref.current.offsetHeight);
+  // }, []);
+const sidebarHeight='85vh'
 
   return <StyledContainer>
       {
       /* LEFT SIDEBAR */
     }
       <div className="sidenav"> 
-      <Suspense fallback={
-        <Stack gap="3" justifyContent="flex-start" alignItems="center" >
-            <Typography variant="h5" align="center" color="primary" >Loading data...</Typography >
-            <CircularProgress color="primary" />
-        </Stack>
-      }>  
+      
         <SideNavbar lineStyle="dash" navList={navList} sidebarStyle="style2" sidebarHeight={sidebarHeight ? sidebarHeight : "85vh"} />
-        </Suspense>
+        
       </div>
 
       {
       /* OFFER BANNERS */
     }
-      <div className="pageContent" ref={ref}>
+      <div className="pageContent" 
+      // ref={ref}
+      >
         <Section2 limit={limit} products={products} region={region}/>
       </div>
     </StyledContainer>;

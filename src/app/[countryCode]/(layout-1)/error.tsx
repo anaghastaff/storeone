@@ -1,27 +1,50 @@
 "use client";
-
-import Card from "@mui/material/Card";
+import React, { useState } from "react";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button"; // GLOBAL CUSTOM COMPONENTS
-import React from 'react'
+import Card from "@mui/material/Card";
+import { useRouter } from "next/navigation";
 import { H1 } from "components/Typography";
-import { FlexRowCenter } from "components/flex-box"; // ==============================================================
 
-// ==============================================================
-export default function Error({
-  error,
-  reset
-}) {
+export default function Error({ error, reset }) {
   console.log(error, error.message);
-  return <FlexRowCenter height="100vh">
-      <Card sx={{
-      p: 4,
-      textAlign: "center"
-    }}>
-        <H1 mb={2}>Something went wrong!</H1>
+  const [err, setError] = useState(false);
+  console.log(error, error.message);
+  const router = useRouter();
+  const handleError = () => {
+    router.refresh();
+  };
+  const handleGoBack = () => {
+    router.back();
+  };
+  if (typeof error === "string") {
+    setError(true);
+  }
 
-        <Button color="error" variant="contained" onClick={() => reset()}>
+  return (
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+      }}
+    >
+      <Card
+        sx={{
+          p: 4,
+          textAlign: "center",
+        }}
+      >
+        <H1 mb={2}>{err ? error : "Something went wrong!"}</H1>
+        <Button color="error" variant="contained" onClick={handleGoBack}>
+          Go Back
+        </Button>
+
+        <Button color="error" variant="contained" onClick={handleError}>
           Try again
         </Button>
       </Card>
-    </FlexRowCenter>;
+    </div>
+  );
 }

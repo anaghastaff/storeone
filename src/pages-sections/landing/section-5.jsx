@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Done from "@mui/icons-material/Done"; // CUSTOM COMPONENTS
 

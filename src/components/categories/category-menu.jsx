@@ -1,5 +1,5 @@
 import { cloneElement, useCallback, useEffect, useRef, useState } from "react";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import CategoryMenuCard from "./category-menu-card"; // styled component
 
 const Wrapper = styled("div", {

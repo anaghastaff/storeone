@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import LazyImage from "components/LazyImage";
 import { Carousel } from "components/carousel";

@@ -1,10 +1,10 @@
-// top navigation
+// top navigation 
 export const categoryNavigation = [{
   category: "Top Categories",
   categoryItem: [{
     icon: "Home",
     title: "Home",
-    href: "/products/search/Dariry & Eggs"
+    href: "/furniture-shop"
   }, {
     icon: "Popular",
     title: "Popular Products",

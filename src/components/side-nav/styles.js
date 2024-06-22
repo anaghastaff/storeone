@@ -1,39 +1,46 @@
+'use client'
 import Container from "@mui/material/Container";
-import styled from "@mui/material/styles/styled";
+import Box from '@mui/material/Box';
+import {styled} from "@mui/material/styles";
 import { layoutConstant } from "utils/constants";
 export const Wrapper = styled("div")({
   "& .handle": {
     cursor: "pointer"
   }
 });
-export const StyledContainer = styled(Container)(({
+export const StyledContainer = styled(Box)(({
   theme
 }) => ({
   paddingTop: 24,
   display: "flex",
   position: "relative",
+  justifyContent:'space-between',
+  width:'100%',
+  backgroundColor:'lightgreen',
+  minHeight:'100vh',
   ".sidenav": {
     top: 0,
     bottom: 0,
     position: "relative",
     width: layoutConstant.grocerySidenavWidth,
     minWidth: layoutConstant.grocerySidenavWidth,
-    height: `calc(100vh - ${layoutConstant.headerHeight}px)`,
+    // height: `calc(100vh - ${layoutConstant.headerHeight}px)`,
     "& .MuiPaper-root": {
       borderRadius: 5
     }
   },
   ".fixed": {
     marginTop: 16,
-    position: "fixed",
+    position: "relative",
     scrollBehavior: "unset",
     top: layoutConstant.headerHeight
   },
   ".pageContent": {
     left: "unset",
-    marginLeft: "2rem",
+    marginLeft: "1rem",
+    marginRight:'1rem',
     position: "relative",
-    width: `calc(100% - 2rem - ${layoutConstant.grocerySidenavWidth}px)`
+    width: `calc(100% - 1rem - ${layoutConstant.grocerySidenavWidth}px)`
   },
   ".pageContentLeft": {
     left: layoutConstant.grocerySidenavWidth
@@ -48,6 +55,7 @@ export const StyledContainer = styled(Container)(({
       transform: "translateY(0)"
     }
   },
+  
   [theme.breakpoints.down("md")]: {
     ".sidenav": {
       display: "none"

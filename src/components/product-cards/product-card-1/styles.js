@@ -1,4 +1,4 @@
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENT
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENT
 
 import BazaarCard from "components/BazaarCard";
 export const StyledBazaarCard = styled(BazaarCard)({

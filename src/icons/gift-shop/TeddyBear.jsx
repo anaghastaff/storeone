@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const TeddyBear = createSvgIcon(<svg viewBox="0 0 19 19" fill="none">
     <g clipPath="url(#clip0_6820_24095)">
       <path d="M6.99258 4.15723C6.76407 4.15723 6.57812 4.34313 6.57812 4.57172C6.57816 4.80027 6.76407 4.98618 6.99258 4.98618C7.22114 4.98618 7.40708 4.80027 7.40708 4.57172C7.40708 4.34317 7.22117 4.15723 6.99258 4.15723Z" fill="currentColor" />

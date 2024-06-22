@@ -1,7 +1,7 @@
 "use client";
 
 import Drawer from "@mui/material/Drawer";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import { NavLink } from "components/nav-link";
 import { layoutConstant } from "utils/constants"; // STYLED COMPONENTS
 

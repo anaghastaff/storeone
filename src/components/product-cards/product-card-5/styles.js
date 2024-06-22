@@ -1,4 +1,4 @@
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import BazaarCard from "components/BazaarCard";
 import { FlexBetween } from "components/flex-box";

@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { H5 } from "components/Typography";
 import Scrollbar from "components/Scrollbar";

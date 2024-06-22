@@ -1,5 +1,5 @@
 import ListItem from "@mui/material/ListItem";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { NavLink } from "components/nav-link"; // STYLED COMPONENTS
 

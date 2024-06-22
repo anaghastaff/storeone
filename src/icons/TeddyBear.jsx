@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const TeddyBear = createSvgIcon(<svg fill="currentColor" viewBox="0 0 511.988 511.988">
     <g>
       <g>

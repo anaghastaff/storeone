@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Card from "@mui/material/Card";
 import MenuItem from "@mui/material/MenuItem";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import useTheme from "@mui/material/styles/useTheme";
 import Select from "@mui/material/Select";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown"; // LOCAL CUSTOM COMPONENT

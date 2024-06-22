@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Box from "@mui/material/Box";
-import styled from "@mui/material/styles/styled"; // STYLED COMPONENTS
+import {styled} from "@mui/material/styles"; // STYLED COMPONENTS
 
 const CardWrapper = styled(Box)({
   overflow: "hidden",

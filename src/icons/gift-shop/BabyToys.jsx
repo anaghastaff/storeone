@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const BabyToys = createSvgIcon(<svg viewBox="0 0 19 19" fill="none">
     <g clipPath="url(#clip0_6820_24167)">
       <path d="M7.94922 4.52539C7.94922 4.37977 7.8312 4.26172 7.68555 4.26172C7.53989 4.26172 7.42188 4.37977 7.42188 4.52539V5.24166C7.42188 5.38728 7.53989 5.50534 7.68555 5.50534C7.8312 5.50534 7.94922 5.38728 7.94922 5.24166V4.52539Z" fill="currentColor" />

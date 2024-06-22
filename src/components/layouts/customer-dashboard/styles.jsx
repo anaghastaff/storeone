@@ -1,5 +1,5 @@
 import Card from "@mui/material/Card";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import NavLink from "components/nav-link/nav-link";
 export const MainContainer = styled(Card)(({
   theme

@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const FaceMask = createSvgIcon(<svg viewBox="0 0 18 18" fill="none">
     <g clipPath="url(#clip0_6820_26105)">
       <path d="M12.5156 8.47266H5.48438C5.29021 8.47266 5.13281 8.63005 5.13281 8.82422C5.13281 9.01839 5.29021 9.17578 5.48438 9.17578H12.5156C12.7098 9.17578 12.8672 9.01839 12.8672 8.82422C12.8672 8.63005 12.7098 8.47266 12.5156 8.47266Z" fill="currentColor" />

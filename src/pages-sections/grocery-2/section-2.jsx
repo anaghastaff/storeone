@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled"; // CUSTOM ICON COMPONENTS
+import {styled} from "@mui/material/styles"; // CUSTOM ICON COMPONENTS
 
 import appIcons from "icons"; // GLOBAL CUSTOM COMPONENTS
 

@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const InstagramFilled = createSvgIcon(<svg fill="currentColor" viewBox="0 0 30 30">
     <circle cx="15" cy="15" r="15" fill="#E1306C" />
     <path fillRule="evenodd" clipRule="evenodd" d="M15 11.8182C13.2427 11.8182 11.8182 13.2427 11.8182 15C11.8182 16.7573 13.2427 18.1818 15 18.1818C16.7573 18.1818 18.1818 16.7573 18.1818 15C18.1818 13.2427 16.7573 11.8182 15 11.8182ZM13.0909 15C13.0909 16.0544 13.9456 16.9091 15 16.9091C16.0544 16.9091 16.9091 16.0544 16.9091 15C16.9091 13.9456 16.0544 13.0909 15 13.0909C13.9456 13.0909 13.0909 13.9456 13.0909 15Z" fill="white" />

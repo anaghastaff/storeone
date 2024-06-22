@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Pets = createSvgIcon(<svg fill="currentColor" viewBox="0 0 511.999 511.999">
     <g>
       <g>

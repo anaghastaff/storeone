@@ -1,4 +1,4 @@
-import styled from "@mui/material/styles/styled"; // STYLED COMPONENT
+import {styled} from "@mui/material/styles"; // STYLED COMPONENT
 
 const Wrapper = styled("div")(({
   theme

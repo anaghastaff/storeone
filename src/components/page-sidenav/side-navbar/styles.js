@@ -1,4 +1,5 @@
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+'use client'
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { Span } from "components/Typography";
 import BazaarCard from "components/BazaarCard";

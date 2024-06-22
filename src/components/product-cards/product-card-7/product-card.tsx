@@ -79,7 +79,7 @@ const ProductCard17 = (props:Props) => {
   
   return (
     <StyledCard sx={sx}>
-      <Link href={`/products/${slug}`}>
+      <Link href={`/furniture-shop/products/${slug}`}>
         <ProductStatus status={status} />
         <DiscountChip
           discount={discount}

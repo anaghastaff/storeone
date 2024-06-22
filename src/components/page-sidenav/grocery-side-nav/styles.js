@@ -1,5 +1,6 @@
+'use client'
 import Card from "@mui/material/Card";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENT
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENT
 
 import Scrollbar from "components/Scrollbar";
 export const StyledCard = styled(Card)({

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
-import styled from "@mui/material/styles/styled"; // LOCAL CUSTOM HOOK
+import {styled} from "@mui/material/styles"; // LOCAL CUSTOM HOOK
 
 import { useLayout } from "../dashboard-layout-context"; // STYLED COMPONENTS
 

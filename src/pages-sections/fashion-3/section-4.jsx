@@ -3,7 +3,7 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container"; // GLOBAL CUSTOM COMPONENTS
 
 import LazyImage from "components/LazyImage";

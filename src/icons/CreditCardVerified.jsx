@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const CreditCardVerified = createSvgIcon(<svg fill="currentColor" viewBox="0 0 64 64">
     <g>
       <path d="M62 40C60.896 40 60 40.896 60 42V56H4V32H26C27.104 32 28 31.104 28 30C28 28.896 27.104 28 26 28H4V20H26C27.104 20 28 19.104 28 18C28 16.896 27.104 16 26 16H4C1.792 16 0 17.792 0 20V56C0 58.208 1.792 60 4 60H60C62.208 60 64 58.208 64 56V42C64 40.896 63.104 40 62 40Z" />

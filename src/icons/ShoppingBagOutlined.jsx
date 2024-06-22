@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const ShoppingBagOutlined = createSvgIcon(<svg fill="currentColor" viewBox="0 0 24 24">
     <g>
       <rect fill="none" height="24" width="24" />

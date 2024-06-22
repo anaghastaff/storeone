@@ -2,7 +2,7 @@
 
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import BazaarCard from "components/BazaarCard";
 import { NavLink2 } from "components/nav-link";

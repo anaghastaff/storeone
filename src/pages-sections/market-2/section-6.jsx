@@ -2,7 +2,7 @@
 
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container"; // GLOBAL CUSTOM COMPONENTS
 
 import { H4, Paragraph, Span } from "components/Typography"; // CUSTOM UTILS LIBRARY FUNCTION

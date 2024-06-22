@@ -1,3 +1,4 @@
+'use client'
 import { alpha, styled } from "@mui/material/styles";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css"; // STYLED COMPONENT
@@ -6,21 +7,20 @@ import { SxProps } from "@mui/material/styles";
 interface ScrollbarProps {
   children: React.ReactNode;
   autoHide?: boolean;
-  sx?: SxProps; 
- 
+  sx?: SxProps;  
 }
 
 const StyledScrollBar = styled(SimpleBar)(({
   theme
 }) => ({
   maxHeight: "100%",
+  // position:'sticky',
   "& .simplebar-scrollbar": {
     "&.simplebar-visible:before": {
       opacity: 1
     }, 
     "&:before": {
-       backgroundColor: alpha(theme.palette.grey[400], 0.6)
-     
+       backgroundColor: alpha(theme.palette.grey[400], 0.6)     
     }
   },
   "& .simplebar-track.simplebar-vertical": {

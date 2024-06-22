@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const HealthBeauty = createSvgIcon(<svg viewBox="0 0 18 18" fill="none">
     <g clipPath="url(#clip0_6820_26169)">
       <path d="M8.87536 10.332C8.70011 10.2487 8.49041 10.323 8.40695 10.4983L8.34866 10.6208C8.26523 10.796 8.33966 11.0057 8.51487 11.0892C8.56367 11.1124 8.61507 11.1234 8.66573 11.1234C8.79707 11.1234 8.92307 11.0495 8.98329 10.923L9.04158 10.8005C9.12504 10.6252 9.05058 10.4155 8.87536 10.332Z" fill="currentColor" />

@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import useTheme from "@mui/material/styles/useTheme"; // GLOBAL CUSTOM COMPONENTS
 
 import { H1 } from "components/Typography";

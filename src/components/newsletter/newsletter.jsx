@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import ClickAwayListener from "@mui/material/ClickAwayListener"; // MUI UTILS METHODS
 
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import debounce from "@mui/material/utils/debounce"; // MUI ICON COMPONENTS
 
 import Clear from "@mui/icons-material/Clear"; // GLOBAL CUSTOM COMPONENTS

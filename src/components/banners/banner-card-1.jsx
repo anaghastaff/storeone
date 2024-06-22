@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Divider from "@mui/material/Divider";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Box from "@mui/material/Box"; // GLOBAL CUSTOM COMPONENTS
 
 import BazaarImage from "components/BazaarImage";

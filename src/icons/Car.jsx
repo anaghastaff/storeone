@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Car = createSvgIcon(<svg fill="currentColor" viewBox="0 0 480 480">
     <g>
       <g>

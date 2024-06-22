@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import Image from "components/BazaarImage";
 import { H5 } from "components/Typography";

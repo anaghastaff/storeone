@@ -23,6 +23,7 @@ import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { Skeleton } from "@mui/material";
 import { FetchAllReviews } from "medusa/lib/util/fetch-all-reviews";
 import { calculateAverageRating } from "medusa/lib/util/get-average-rating";
+import Loading from "./loading";
 
 const FurnitureShopPageView = async ({
   region,
@@ -52,15 +53,9 @@ const FurnitureShopPageView = async ({
   return (
     <Container maxWidth={false} disableGutters component="div">
       {/* HERO SECTION */}
-      <Suspense
-        fallback={
-          <div>
-            <p>Loading...</p> <CircularProgress />
-          </div>
-        }
-      >
+      
         <Section1 mainCarouselData={mainCarouselData} customer={customer} />
-      </Suspense>
+      
       <Container>
         {/* LEFT SIDEBAR & OFFER BANNERS AREA */}
         <Sidebar
@@ -82,23 +77,18 @@ const FurnitureShopPageView = async ({
           />
 
           {/* TOP SELLING PRODUCT AREA */}
-          {/* <Section3
+          <Section3
             ratings={ratings}
             heading="Top Selling Product"
             cart={cart}
             products={products}
             region={region}
             description="Top selling products of this month"
-          /> */}
+          />
 
           {/* ALL PRODUCTS AREA */}
-          {/* <Suspense
-            fallback={
-              <Skeleton
-                sx={{ width: "100%", height: "100%", bgcolor: "grey.500" }}
-              />
-            }
-          >
+         
+            <Suspense fallback={<Loading/>}>
             <Section4
               products={products}
               ratings={ratings}
@@ -111,7 +101,8 @@ const FurnitureShopPageView = async ({
               heading="All Products"
               description="Summer Collection"
             />
-          </Suspense> */}
+            </Suspense>
+         
         </Stack>
       </Container>
 

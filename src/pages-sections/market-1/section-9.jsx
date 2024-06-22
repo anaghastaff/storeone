@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container"; // CUSTOM ICON COMPONENT
 
 import CategoryIcon from "icons/Category"; // GLOBAL CUSTOM COMPONENTS

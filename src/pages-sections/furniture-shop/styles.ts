@@ -1,6 +1,7 @@
+'use client'
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import { layoutConstant } from "utils/constants";
 import { BoxProps } from "@mui/material/Box";

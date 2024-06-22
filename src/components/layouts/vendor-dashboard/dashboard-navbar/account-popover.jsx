@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton"; // GLOBAL CUSTOM COMPONENTS
 
 import { H6, Small } from "components/Typography"; // STYLED COMPONENT

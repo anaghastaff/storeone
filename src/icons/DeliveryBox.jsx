@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const DeliveryBox = createSvgIcon(<svg fill="currentColor" viewBox="0 0 20 20">
     <path d="M13.4333 1.60733L4.3575 6.25399L0.75 4.47899L9.66583 0.0764941C9.86583 -0.0251725 10.1058 -0.0251725 10.3158 0.0764941L13.4333 1.60733Z" />
     <path d="M19.2402 4.47912L10.0052 9.05412L6.54687 7.34995L6.04688 7.09579L15.1327 2.44995L15.6327 2.70328L19.2402 4.47912Z" />

@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Container from "@mui/material/Container";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { H3 } from "components/Typography";
 import { NavLink3 } from "components/nav-link";

@@ -1,6 +1,6 @@
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import styled from "@mui/material/styles/styled"; // LOCAL CUSTOM COMPONENT
+import {styled} from "@mui/material/styles"; // LOCAL CUSTOM COMPONENT
 
 import BazaarCard from "components/BazaarCard";
 const Wrapper = styled("div")(({

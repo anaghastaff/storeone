@@ -1,7 +1,7 @@
 "use client";
 
 import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container"; // MUI ICON COMPONENTS
 
 import Instagram from "@mui/icons-material/Instagram"; // GLOBAL CUSTOM COMPONENTS

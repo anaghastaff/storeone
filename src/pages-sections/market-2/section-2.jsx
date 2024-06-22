@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@mui/material/Container";
-import styled from "@mui/material/styles/styled"; // CUSTOM ICON COMPONENT
+import {styled} from "@mui/material/styles"; // CUSTOM ICON COMPONENT
 
 import appIcons from "icons"; // GLOBAL CUSTOM COMPONENTS
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import LazyImage from "components/LazyImage";
 import { NavLink3 } from "components/nav-link";

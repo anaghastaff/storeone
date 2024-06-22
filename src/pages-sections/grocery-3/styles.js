@@ -1,7 +1,7 @@
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled"; // USED IN SECTION 3 & 4
+import {styled} from "@mui/material/styles"; // USED IN SECTION 3 & 4
 
 export const TitleBox = styled("div")(({
   theme

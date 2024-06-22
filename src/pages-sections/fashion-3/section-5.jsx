@@ -2,7 +2,7 @@
 
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import styled from "@mui/material/styles/styled";
+import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container"; // GLOBAL CUSTOM COMPONENTS
 
 import { FlexRowCenter } from "components/flex-box";

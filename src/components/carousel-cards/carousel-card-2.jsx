@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled"; // MUI ICON COMPONENT
+import {styled} from "@mui/material/styles"; // MUI ICON COMPONENT
 
 import Favorite from "@mui/icons-material/Favorite"; // GLOBAL CUSTOM COMPONENTS
 

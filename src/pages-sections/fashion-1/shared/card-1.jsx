@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import LazyImage from "components/LazyImage";
 import { NavLink2 } from "components/nav-link";

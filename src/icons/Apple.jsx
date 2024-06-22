@@ -1,4 +1,4 @@
-import createSvgIcon from "@mui/material/utils/createSvgIcon";
+import {createSvgIcon} from "@mui/material/utils";
 const Apple = createSvgIcon(<svg fill="currentColor" viewBox="0 0 20 20">
     <g>
       <path d="M14.0148 16.3684C13.8489 16.3684 13.699 16.2595 13.6452 16.1032C13.5944 15.9555 13.6402 15.787 13.7573 15.6842C13.885 15.5719 14.0766 15.5561 14.221 15.6459C14.3553 15.7294 14.4278 15.8919 14.3993 16.0476C14.3656 16.2307 14.2013 16.3684 14.0148 16.3684Z" />

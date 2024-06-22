@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
-import styled from "@mui/material/styles/styled"; // CUSTOM ICON COMPONENT
+import {styled} from "@mui/material/styles"; // CUSTOM ICON COMPONENT
 
 import Quote from "icons/Quote"; // Local CUSTOM COMPONENTS
 

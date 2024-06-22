@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled"; // GLOBAL CUSTOM COMPONENTS
+import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { H2, H3, Span } from "components/Typography";
 import { FlexBox, FlexRowCenter } from "components/flex-box"; // LOCAL CUSTOM COMPONENT

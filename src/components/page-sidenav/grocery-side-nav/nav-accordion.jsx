@@ -1,3 +1,4 @@
+'use client'
 import { Fragment, useState } from "react";
 import Collapse from "@mui/material/Collapse"; // GLOBAL CUSTOM COMPONENTS
 
