@@ -16,7 +16,7 @@ export const StyledContainer = styled(Box)(({
   position: "relative",
   justifyContent:'space-between',
   width:'100%',
-  backgroundColor:'lightgreen',
+  
   minHeight:'100vh',
   ".sidenav": {
     top: 0,
@@ -37,8 +37,7 @@ export const StyledContainer = styled(Box)(({
   },
   ".pageContent": {
     left: "unset",
-    marginLeft: "1rem",
-    marginRight:'1rem',
+    margin:"auto",
     position: "relative",
     width: `calc(100% - 1rem - ${layoutConstant.grocerySidenavWidth}px)`
   },
@@ -61,7 +60,7 @@ export const StyledContainer = styled(Box)(({
       display: "none"
     },
     ".pageContent": {
-      left: "0px !important",
+      // left: "0px !important",
       width: "100% !important",
       marginLeft: "auto !important",
       marginRight: "auto !important"

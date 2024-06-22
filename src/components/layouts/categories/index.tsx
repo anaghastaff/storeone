@@ -44,7 +44,7 @@ limit
       {
       /* LEFT SIDEBAR */
     }
-      <div className="sidenav" style={{backgroundColor:'lightgreen'}}>       
+      <div className="sidenav">       
         <SideNavbar lineStyle="dash" navList={sidebarNavList} sidebarStyle="style2" sidebarHeight={sidebarHeight ? sidebarHeight : "85vh"} />       
       </div>
       {
@@ -52,7 +52,6 @@ limit
     }
       <div className="pageContent" 
        ref={ref}
-       style={{backgroundColor:'lightblue'}}
       >
        {children}
       </div>

@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Unstable_Grid2";
 import Button from "@mui/material/Button"; // GLOBAL CUSTOM COMPONENTS
 import { H1, Paragraph, Span } from "components/Typography";
 import { CircularProgress, Skeleton } from "@mui/material";
@@ -7,7 +7,7 @@ import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { Region } from "@medusajs/medusa";
 import { getProductPrice } from "medusa/lib/util/get-product-price";
 import { CartWithCheckoutStep, type AverageRatings, type ProductCategoryWithChildren } from "medusa/types/global";
-import ProductCard17 from "../../components/product-cards/product-card-7/product-card";
+import ProductCard17 from "components/product-cards/product-card-7/product-card";
 import { useState } from "react";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
 import {
@@ -16,6 +16,7 @@ import {
   retrievePricedProductById,
 } from "medusa/lib/data";
 import { PaginationMedusa } from "medusa/modules/store/components/pagination";
+import { FlexBox } from "components/flex-box";
 
 // ===================================================================
 const PRODUCT_LIMIT = 6;
@@ -89,7 +90,7 @@ categories,
         <H1 mb="4px">{heading}</H1>
         <Paragraph color="grey.600">{description}</Paragraph>
       </Box>
-      <Grid container mb={-0.5} spacing={6}>
+      <Grid container mb={-0.5} spacing={2} rowSpacing={2} columns={16}>
         {products.map(async (data) => {
           if (!data.id) {
             return null;
@@ -101,8 +102,9 @@ categories,
           // return data;
 
           return (
-            <Grid key={data.id} item md={4} sm={6} xs={12}>
-              <ProductCard17
+            <Grid xl={4} lg={5} sm={8} xs={16}>
+              
+              <ProductCard17             
                 countryCode={countryCode}
                 hideRating
                 id={data.id}
@@ -126,6 +128,7 @@ categories,
                 ratings={ratings}
                 product={pricedProduct}
               />
+             
             </Grid>
           );
         })}

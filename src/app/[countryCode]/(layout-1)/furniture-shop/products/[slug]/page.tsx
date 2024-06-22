@@ -13,7 +13,7 @@ import {
 } from "medusa/lib/data";
 
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
-import { FetchReviews } from "../../../../../pages-sections/product-details/fetch-review";
+import { FetchReviews } from "pages-sections/product-details/fetch-review";
 
 type Props = {
   params: { slug: string; countryCode: string };

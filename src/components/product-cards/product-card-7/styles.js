@@ -11,6 +11,7 @@ export const StyledCard = styled(Box)(({
 }) => ({
   height: "100%",
   margin: "auto",
+  width:300,
   borderRadius: 0,
   position:'relative',
   overflow: "hidden",  

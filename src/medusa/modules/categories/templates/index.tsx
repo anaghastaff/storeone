@@ -8,7 +8,7 @@ import RefinementList from "medusa/modules/store/components/refinement-list"
 import { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products"
 import PaginatedProducts from "medusa/modules/store/templates/paginated-products"
 import LocalizedClientLink from "medusa/modules/common/components/localized-client-link"
-import Section5 from "../../../../pages-sections/furniture-shop/section-5"
+import Section5 from "pages-sections/furniture-shop/section-5"
 import type { Region } from "@medusajs/medusa"
 import { Link } from "@mui/material"
 
