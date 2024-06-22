@@ -88,7 +88,7 @@ const FurnitureShopPageView = async ({
 
           {/* ALL PRODUCTS AREA */}
          
-            <Suspense fallback={<Loading/>}>
+            {/* <Suspense fallback={<Loading/>}>
             <Section4
               products={products}
               ratings={ratings}
@@ -101,7 +101,7 @@ const FurnitureShopPageView = async ({
               heading="All Products"
               description="Premium Collection"
             />
-            </Suspense>
+            </Suspense> */}
          
         </Stack>
       </Container>
