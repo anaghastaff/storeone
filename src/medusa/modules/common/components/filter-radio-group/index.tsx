@@ -1,6 +1,14 @@
 import { EllipseMiniSolid } from "@medusajs/icons"
-import { Label, RadioGroup, Text, clx } from "@medusajs/ui"
 import { ChangeEvent } from "react"
+import { RadioGroup, Box,
+  Radio,
+  FormControlLabel,
+  FormControl, } from "@mui/material"
+import { FlexBox } from "components/flex-box"
+import { Span } from "components/Typography"
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import AddIcon from "@mui/icons-material/Add";
+
 
 type FilterRadioGroupProps = {
   title: string
@@ -21,47 +29,47 @@ const FilterRadioGroup = ({
   'data-testid': dataTestId
 }: FilterRadioGroupProps) => {
   return (
-    <div className="flex gap-x-3 flex-col gap-y-3">
-      <Text className="txt-compact-small-plus text-ui-fg-muted">{title}</Text>
-      <RadioGroup data-testid={dataTestId}>
+    <FlexBox gap={3} flexDirection="column">
+      <Span 
+        fontSize="14px" color="grey.800"
+      >{title}</Span>
+      <FormControl>
+      <RadioGroup data-testid={dataTestId}
+      name="sort-products"
+      value={value}
+     
+      >
         {items?.map((i) => (
-          <div
+          <FlexBox
             key={i.value}
-            className={clx("flex gap-x-2 items-center", {
-              "ml-[-1.75rem]": i.value === value,
-            })}
-          >
+            gap={2} alignItems="center" sx={{ml:i.value === value && "-1.75rem"}}>
             {i.value === value && <EllipseMiniSolid />}
-            <RadioGroup.Item
-              checked={i.value === value}
-              onClick={(e) =>
-                handleChange(
-                  e as unknown as ChangeEvent<HTMLButtonElement>,
-                  i.value
-                )
-              }
-              className="hidden peer"
-              id={i.value}
+            <FormControlLabel
               value={i.value}
-            />
-            <Label
-              // placeholder={i.label}
-              htmlFor={i.value}
-              className={clx(
-                "!txt-compact-small !transform-none text-ui-fg-subtle hover:cursor-pointer",
-                {
-                  "text-ui-fg-base": i.value === value,
-                }
-              )}
-              data-testid="radio-label"
-              data-active={i.value === value}
-            >
-              {i.label}
-            </Label>
-          </div>
+              id={i.value}
+              control={
+                <Radio
+                  checked={
+                    i.value === value
+                  }
+                  icon={<AddIcon color="secondary" />}
+                  checkedIcon={
+                    <CheckCircleIcon color="success" />
+                  }
+                  onChange={(e) =>
+                    handleChange(
+                      e as unknown as ChangeEvent<HTMLButtonElement>,
+                      i.value
+                    )}
+                />
+              }
+              label={i.label}
+            />            
+          </FlexBox>
         ))}
       </RadioGroup>
-    </div>
+      </FormControl>
+    </FlexBox>
   )
 }
 

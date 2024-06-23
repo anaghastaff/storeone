@@ -40,12 +40,12 @@ export default function CategoryTemplate({
     // className="flex flex-col small:flex-row small:items-start py-6 content-container" data-testid="category-container"
     style={{display:'flex', flexDirection:'column', paddingTop:6, paddingBottom:6}}
     >
-      {/* <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" /> */}
+      <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" />
       <div 
       // className="w-full"
         style={{width:'100%'}}
       >
-        <div 
+        {/* <div 
         // className="flex flex-row mb-8 text-2xl-semi gap-4"
         style={{display:'flex', flexDirection:'row', marginBottom:8, fontSize:'semi-bold', gap:4  }}
         >
@@ -94,7 +94,7 @@ export default function CategoryTemplate({
               ))}
             </ul>
           </div>
-        )}
+        )} */}
         
           <Section5
             sortBy={sortBy || "created_at"}

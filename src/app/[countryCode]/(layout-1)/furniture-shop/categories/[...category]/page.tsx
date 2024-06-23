@@ -9,7 +9,7 @@ import { FetchAllReviews } from "medusa/lib/util/fetch-all-reviews";
 import { calculateAverageRating } from "medusa/lib/util/get-average-rating";
 
 type Props = {
-  params: { category: string[]; countryCode: string }
+  params: { category: string[]; countryCode: string } 
   searchParams: {
     sortBy?: SortOptions
     page?: string

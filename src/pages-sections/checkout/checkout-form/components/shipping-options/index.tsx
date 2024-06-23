@@ -57,7 +57,6 @@ const ShippingOptions: React.FC<ShippingProps> = ({
 
   const handleSubmit = () => {
     setIsLoading(true);
-
     router.push(pathname + "?step=payment", { scroll: false });
   };
 
@@ -75,7 +74,6 @@ const ShippingOptions: React.FC<ShippingProps> = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
-
     set((event.target as HTMLInputElement).value);
   };
 
