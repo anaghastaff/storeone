@@ -7,144 +7,178 @@ export const categoryNavigation = [{
     href: "/furniture-shop"
   }, {
     icon: "Popular",
-    title: "Popular Products",
-    href: "/furniture-shop/categories/all-products"
+    title: "Furniture Products",
+    href: "/furniture-shop/categories/furniture"
   }, {
     icon: "Trending",
-    title: "Trending Products",
-    href: "/furniture-shop/categories/all-products"
+    title: "Health Products",
+    href: "/furniture-shop/categories/medusa-merch"
   }, {
     icon: "Products", 
     title: "All Products",
     href: "/furniture-shop/categories/all-products"
   }]
 }, {
-  category: "Top Categories",
-  categoryItem: [{
+  category: "All Categories",
+  categoryItem: [
+    {
     icon: "Chair",
-    title: "Chair",
-    href: "/products/search/vegetables",
-    child: [{
-      title: "Pears, apples, quinces",
-      href: "/products/search/Pears, apples, quinces"
-    }, {
-      title: "Peaches, plums, apricots",
-      href: "/products/search/Peaches, plums, apricots"
-    }, {
-      title: "Grapes",
-      href: "/products/search/Grapes"
-    }]
-  }, {
-    icon: "Decoration",
-    title: "Decors",
-    href: "/products/search/Fruits & Vegetables",
-    child: [{
-      title: "Onion",
-      href: "/products/search/Onion"
-    }, {
-      title: "Potato",
-      href: "/products/search/Potato"
-    }, {
-      title: "Vegetable Pack",
-      href: "/products/search/Vegetable Pack"
-    }]
-  }, {
-    icon: "Interior",
-    title: "Interior",
-    href: "/products/search/Dariry & Eggs",
-    child: [{
-      title: "Pears, apples, quinces",
-      href: "/products/search/Pears, apples, quinces"
-    }, {
-      title: "Peaches, plums, apricots",
-      href: "/products/search/Peaches, plums, apricots"
-    }, {
-      title: "Grapes",
-      href: "/products/search/Grapes"
-    }]
-  }, {
-    icon: "Furniture",
     title: "Furniture",
-    href: "/products/search/Dariry & Eggs",
+    href: "/furniture-shop/categories/furniture",
     child: [{
-      title: "Pears, apples, quinces",
-      href: "/products/search/Pears, apples, quinces"
+      title: "Chairs",
+      href: "/furniture-shop/categories/chair"
     }, {
-      title: "Peaches, plums, apricots",
-      href: "/products/search/Peaches, plums, apricots"
+      title: "Couches",
+      href: "/furniture-shop/categories/couch"
     }, {
-      title: "Grapes",
-      href: "/products/search/Grapes"
+      title: "Home Sofas",
+      href:"/furniture-shop/categories/home-sofas"
     }]
-  }, {
-    icon: "Sofa",
-    title: "Sofa",
-    href: "/products/search/Breakfast",
+  }, 
+  
+  {
+    icon: "Chair",
+    title: "Health & Wellness",
+    href: "/furniture-shop/categories/health",
     child: [{
-      title: "Pears, apples, quinces",
-      href: "/products/search/Pears, apples, quinces"
+      title: "Essential Oils",
+      href: "/furniture-shop/categories/essential-oils"
     }, {
-      title: "Peaches, plums, apricots",
-      href: "/products/search/Peaches, plums, apricots"
-    }, {
-      title: "Grapes",
-      href: "/products/search/Grapes"
-    }]
-  }, {
-    icon: "Stool",
-    title: "Stool",
-    href: "/products/search/Frozen",
+      title: "Organic Jute Bags",
+      href: "/furniture-shop/categories/organic-bags"
+    }, 
+    {
+      title: "View All",
+      href:"/furniture-shop/categories/health"
+    }
+  ]
+  }, 
+  {
+    icon: "Chair",
+    title: "Merchandise",
+    href: "/furniture-shop/categories/health",
     child: [{
-      title: "Pears, apples, quinces",
-      href: "/products/search/Pears, apples, quinces"
-    }, {
-      title: "Peaches, plums, apricots",
-      href: "/products/search/Peaches, plums, apricots"
-    }, {
-      title: "Grapes",
-      href: "/products/search/Grapes"
-    }]
-  }, {
-    icon: "Wardrobe",
-    title: "Wardrobe",
-    href: "/products/search/Organic",
-    child: [{
-      title: "Pears, apples, quinces",
-      href: "/products/search/Pears, apples, quinces"
-    }, {
-      title: "Peaches, plums, apricots",
-      href: "/products/search/Peaches, plums, apricots"
-    }, {
-      title: "Grapes",
-      href: "/products/search/Grapes"
-    }]
-  }, {
-    icon: "Dining",
-    title: "Dining",
-    href: "/products/search/Canned Food",
-    child: [{
-      title: "Pears, apples, quinces",
-      href: "/products/search/Pears, apples, quinces"
-    }, {
-      title: "Peaches, plums, apricots",
-      href: "/products/search/Peaches, plums, apricots"
-    }, {
-      title: "Grapes",
-      href: "/products/search/Grapes"
-    }]
-  }, {
-    icon: "Living",
-    title: "Living",
-    href: "/products/search/Coffee & Snacks"
-  }, {
-    icon: "RoundTable",
-    title: "Coffee Tea Table",
-    href: "/products/search/Coffee & Snacks"
-  }, {
-    icon: "RoomSet",
-    title: "Living Room Sets",
-    href: "/products/search/Coffee & Snacks"
-  }]
+      title: "Medusa Merch",
+      href: "/furniture-shop/categories/medusa-merch"
+    }, 
+    
+  ]
+  },
+  
+  // {
+  //   icon: "Decoration",
+  //   title: "Decors",
+  //   href: "/products/search/Fruits & Vegetables",
+  //   child: [{
+  //     title: "Onion",
+  //     href: "/products/search/Onion"
+  //   }, {
+  //     title: "Potato",
+  //     href: "/products/search/Potato"
+  //   }, {
+  //     title: "Vegetable Pack",
+  //     href: "/products/search/Vegetable Pack"
+  //   }]
+  // }, {
+  //   icon: "Interior",
+  //   title: "Interior",
+  //   href: "/products/search/Dariry & Eggs",
+  //   child: [{
+  //     title: "Pears, apples, quinces",
+  //     href: "/products/search/Pears, apples, quinces"
+  //   }, {
+  //     title: "Peaches, plums, apricots",
+  //     href: "/products/search/Peaches, plums, apricots"
+  //   }, {
+  //     title: "Grapes",
+  //     href: "/products/search/Grapes"
+  //   }]
+  // }, {
+  //   icon: "Furniture",
+  //   title: "Furniture",
+  //   href: "/products/search/Dariry & Eggs",
+  //   child: [{
+  //     title: "Pears, apples, quinces",
+  //     href: "/products/search/Pears, apples, quinces"
+  //   }, {
+  //     title: "Peaches, plums, apricots",
+  //     href: "/products/search/Peaches, plums, apricots"
+  //   }, {
+  //     title: "Grapes",
+  //     href: "/products/search/Grapes"
+  //   }]
+  // }, {
+  //   icon: "Sofa",
+  //   title: "Sofa",
+  //   href: "/products/search/Breakfast",
+  //   child: [{
+  //     title: "Pears, apples, quinces",
+  //     href: "/products/search/Pears, apples, quinces"
+  //   }, {
+  //     title: "Peaches, plums, apricots",
+  //     href: "/products/search/Peaches, plums, apricots"
+  //   }, {
+  //     title: "Grapes",
+  //     href: "/products/search/Grapes"
+  //   }]
+  // }, {
+  //   icon: "Stool",
+  //   title: "Stool",
+  //   href: "/products/search/Frozen",
+  //   child: [{
+  //     title: "Pears, apples, quinces",
+  //     href: "/products/search/Pears, apples, quinces"
+  //   }, {
+  //     title: "Peaches, plums, apricots",
+  //     href: "/products/search/Peaches, plums, apricots"
+  //   }, {
+  //     title: "Grapes",
+  //     href: "/products/search/Grapes"
+  //   }]
+  // }, {
+  //   icon: "Wardrobe",
+  //   title: "Wardrobe",
+  //   href: "/products/search/Organic",
+  //   child: [{
+  //     title: "Pears, apples, quinces",
+  //     href: "/products/search/Pears, apples, quinces"
+  //   }, {
+  //     title: "Peaches, plums, apricots",
+  //     href: "/products/search/Peaches, plums, apricots"
+  //   }, {
+  //     title: "Grapes",
+  //     href: "/products/search/Grapes"
+  //   }]
+  // }, {
+  //   icon: "Dining",
+  //   title: "Dining",
+  //   href: "/products/search/Canned Food",
+  //   child: [{
+  //     title: "Pears, apples, quinces",
+  //     href: "/products/search/Pears, apples, quinces"
+  //   }, {
+  //     title: "Peaches, plums, apricots",
+  //     href: "/products/search/Peaches, plums, apricots"
+  //   }, {
+  //     title: "Grapes",
+  //     href: "/products/search/Grapes"
+  //   }]
+  // }, {
+  //   icon: "Living",
+  //   title: "Living",
+  //   href: "/products/search/Coffee & Snacks"
+  // }, {
+  //   icon: "RoundTable",
+  //   title: "Coffee Tea Table",
+  //   href: "/products/search/Coffee & Snacks"
+  // }, {
+  //   icon: "RoomSet",
+  //   title: "Living Room Sets",
+  //   href: "/products/search/Coffee & Snacks"
+  // }
+
+]
 }]; // carousel data
 
 export const mainCarouselData = [{

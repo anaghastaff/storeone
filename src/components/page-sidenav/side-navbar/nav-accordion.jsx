@@ -6,7 +6,7 @@ import { Span } from "components/Typography";
 import { FlexBox } from "components/flex-box";
 import { AccordionHeader } from "components/accordion"; // LOCAL CUSTOM COMPONENT
 
-import { renderChild } from "./render-child"; // ==============================================================
+import { RenderChild } from "./render-child"; // ==============================================================
 
 // ==============================================================
 const Accordion = ({
@@ -35,7 +35,9 @@ const Accordion = ({
       {
       /* RENDER NESTED NAV ITEMS */
     }
-      {child ? <Collapse in={open}>{renderChild(child, handleSelect)}</Collapse> : null}
+      {child ? <Collapse in={open}>
+      <RenderChild childList={child} handleSelect={handleSelect}/>
+      </Collapse> : null}
     </Fragment>;
 };
 

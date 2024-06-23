@@ -13,6 +13,7 @@ import Accordion from "./nav-accordion";
 import CategoryTitle from "./category-title"; // STYLED COMPONENTS
 
 import { NavbarRoot } from "./styles"; // CUSTOM DATA MODEL
+import Link from '@mui/material/Link'
 
 // ==================================================================
 const SideNavbar = props => {
@@ -41,7 +42,9 @@ const SideNavbar = props => {
               }}>
                         <FlexBox gap={1.5} className="linkList" py={0.75}>
                           <Icon fontSize="small" />
+                          <Link color="inherit" underline="hover" href={item.href} >
                           <Span fontWeight="600">{item.title}</Span>
+                          </Link>
                         </FlexBox>
                       </Box>}
                   </Box>;

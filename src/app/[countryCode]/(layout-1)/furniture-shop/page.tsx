@@ -65,8 +65,7 @@ export default async function FurnitureShop({ searchParams, params }: Params) {
       });
       return data;
     })
-  );
-  
+  );  
 
   return (
     <Suspense fallback={<Loading />}>

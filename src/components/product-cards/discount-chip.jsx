@@ -5,7 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 const StyledChip = styled(Chip)(({
   theme
 }) => ({
-  zIndex: 11,
+  zIndex: 1,
   top: "5px",
   left: "-1",
   paddingLeft: 0,

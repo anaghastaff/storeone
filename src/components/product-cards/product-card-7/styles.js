@@ -57,7 +57,7 @@ export const StatusChipBox = styled("div")(({
 }) => ({
   width: 40,
   height: 42,
-  zIndex: 11,
+  zIndex: 1,
   top: "0px",
   right: "10px",
   fontSize: "12px",

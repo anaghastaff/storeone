@@ -1,39 +1,11 @@
-import categoriesMegaMenu from "./categoriesMegaMenu"; // MEGA-MENU DATA
+import productCategoriesMegaMenu from "./product-categories"; // MEGA-MENU DATA
 
-const megaMenus = [[{
+const megaMenus = [
+  [{
   title: "Home",
   auth: false,
-  child: [{
-    title: "Market 1",
-    url: "/market-1"
-  }, {
-    title: "Market 2",
-    url: "/market-2"
-  }, {
-    title: "Gadget",
-    url: "/gadget-shop"
-  }, {
-    title: "Grocery-1",
-    url: "/grocery-1"
-  }, {
-    title: "Grocery-2",
-    url: "/grocery-2"
-  }, {
-    title: "Grocery-3",
-    url: "/grocery-3"
-  }, {
-    title: "Fashion 1",
-    url: "/fashion-1"
-  }, {
-    title: "Fashion 2",
-    url: "/fashion-2"
-  }, {
-    title: "Fashion 3",
-    url: "/fashion-3"
-  }, {
-    title: "Gift Store",
-    url: "/gift-shop"
-  }, {
+  child: [
+    {
     title: "Furniture",
     url: "/furniture-shop"
   }, {
@@ -41,6 +13,56 @@ const megaMenus = [[{
     url: "/health-beauty-shop"
   }]
 }], 
+[{
+  title: "Products",
+  auth: false,
+  child: [
+    {
+    title: "Furniture",
+    url: "/furniture-shop/categories/furniture"
+  }, {
+    title: "Couches",
+    url: "/furniture-shop/categories/couch",
+  },
+  {
+    title: "Chairs",
+    url: "/furniture-shop/categories/chair",
+  },
+  {
+    title: "Home Sofas",
+    url: "/furniture-shop/categories/home-sofas",
+  }
+]
+},
+{
+  title: "Wellness Products",
+  auth: false,
+  child: [
+    {
+    title: "Organic products",
+    url: "/furniture-shop/categories/health"
+  }, {
+    title: "Essential Oils",
+    url: "/furniture-shop/categories/essential-oils",
+  },
+  {
+    title: "Jute Bags",
+    url: "/furniture-shop/categories/organic-bags",
+  },
+]
+},
+{
+  title: "Merchandise",
+  auth: false,
+  child: [
+    {
+    title: "Medusa Merch",
+    url: "/furniture-shop/categories/medusa-merch"
+  },
+]
+},
+
+], 
 
 // [{
 //   title: "User Account",
@@ -113,26 +135,27 @@ const megaMenus = [[{
 //   }]
 // }], 
 
-[{
-  title: "Sale Page",
-  auth:false,
-  child: [{
-    title: "Sales Version 1",
-    url: "/sales-1"
-  }, {
-    title: "Sales Version 2",
-    url: "/sales-2"
-  }]
-}, 
+[
+//   {
+//   title: "Sale Page",
+//   auth:false,
+//   child: [{
+//     title: "Sales Version 1",
+//     url: "/sales-1"
+//   }, {
+//     title: "Sales Version 2",
+//     url: "/sales-2"
+//   }]
+// }, 
 
 {
   title: "Shop",
   child: [{
     title: "Search product",
-    url: "/products/search/mobile phone"
+    url: "furniture-shop/products/search"
   }, {
     title: "Single product",
-    url: "/products/lord-2019"
+    url: "furniture-shop/categories/medusa-merch"
   }, {
     title: "Cart",
     url: "/cart"
@@ -140,10 +163,10 @@ const megaMenus = [[{
     title: "Checkout",
     url: "/checkout"
   }, 
-  {
-    title: "Alternative Checkout",
-    url: "/checkout-alternative"
-  },
+  // {
+  //   title: "Alternative Checkout",
+  //   url: "/checkout-alternative"
+  // },
   {
     title: "Order confirmation",
     url: "/order-confirmation"
@@ -167,13 +190,17 @@ const navbarNavigation = [{
     },
     {
     title: "Furniture",
-    url: "/furniture-shop/products/categories/furniture"
+    url: "/furniture-shop/categories/furniture"
   }, {
     title: "Health",
-    url: "/furniture-shop/products/categories/health"
+    url: "/furniture-shop/categories/health"
   }, {
     title: "Jute Bags",
-    url: "/furniture-shop/products/categories/organic-bags"
+    url: "/furniture-shop/categories/organic-bags"
+  },
+  {
+    title: "Medusa Merch",
+    url: "/furniture-shop/categories/medusa-merch"
   },
   
   //  {
@@ -208,22 +235,33 @@ const navbarNavigation = [{
   megaMenu: false,
   megaMenuWithSub: true,
   title: "Full Screen Menu",
-  child: categoriesMegaMenu
+  child: productCategoriesMegaMenu
 },
 {
   megaMenu: false,
   megaMenuWithSub: false,
-  title: "Pages",
-  auth:true,
-  child: [{
-    title: "Sale Page",
-    child: [{
-      title: "Version 1",
-      url: "/sales-1"
+  title: "Products",
+  auth:false,
+  child: [
+    {
+    title: "Furniture",
+    child: [
+      {
+      title: "Couches",
+      url: "/furniture-shop/categories/couch",
     }, {
-      title: "Version 2",
-      url: "/sales-2"
-    }]
+      title: "Chairs",
+      url: "/furniture-shop/categories/chair",
+    },
+    {
+      title: "Sofas",
+      url: "/furniture-shop/categories/home-sofas",
+    },
+    {
+      title: "All Products",
+      url: "/furniture-shop/categories/all-products",
+    }
+  ]
   }, {
     title: "Vendor",
     child: [{
@@ -254,38 +292,36 @@ const navbarNavigation = [{
       title: "Order confirmation",
       url: "/order-confirmation"
     }]
-  }, {
-    title: "Auth",
-    child: [{
-      title: "Login",
-      url: "/login"
-    }, {
-      title: "Register",
-      url: "/register"
-    }]
-  }]
+  }, 
+  // {
+  //   title: "Auth",
+  //   child: [{
+  //     title: "Login",
+  //     url: "/login"
+  //   }, {
+  //     title: "Register",
+  //     url: "/register"
+  //   }]
+  // }
+]
 }, 
 
 {
   megaMenu: false,
   megaMenuWithSub: false,
+  auth:true,
   title: "User Account",
   child: [{
     title: "Orders",
     child: [{
       title: "Order List",
       url: "/orders"
-    }, {
-      title: "Order Details",
-      url: "/orders"
-    }]
+    }, 
+    ]
   }, {
     title: "Profile",
     child: [{
       title: "View Profile",
-      url: "/profile"
-    }, {
-      title: "Edit Profile",
       url: "/profile"
     }]
   }, {
@@ -293,17 +329,11 @@ const navbarNavigation = [{
     child: [{
       title: "Address List",
       url: "/address"
-    }, {
-      title: "Add Address",
-      url: "/address"
     }]
   }, {
     title: "Support tickets",
     child: [{
       title: "All tickets",
-      url: "/support-tickets"
-    }, {
-      title: "Ticket details",
       url: "/support-tickets"
     }]
   }, {

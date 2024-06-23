@@ -16,7 +16,7 @@ const LogoutButton = ({countryCode}:{
         setLogout(true)
         await signOut(countryCode);
         setLogout(false)
-        enqueueSnackbar("You are Logged out", {variant:"default"})
+        enqueueSnackbar("You have logged out!", {variant:"warning"})
       };
     return <LoadingButton
     
