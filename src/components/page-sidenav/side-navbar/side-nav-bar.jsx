@@ -37,7 +37,7 @@ const SideNavbar = props => {
     maxHeight: sidebarHeight
   }}>
       <NavbarRoot fixed={isFixed} sidebar={sidebarStyle}>
-      <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" />
+     {category && <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" />}
         {navList.map((item, ind) => {
         return <div key={ind}>
               <CategoryTitle title={item.category} line={lineStyle} />

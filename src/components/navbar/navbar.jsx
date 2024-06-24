@@ -17,7 +17,7 @@ import { CategoryBasedMenu } from "./category-based-menu"; // GLOBAL CUSTOM HOOK
 import useSettings from "hooks/useSettings"; // NAVIGATION DATA LIST
 
 import navigation from "data/navbarNavigation"; // STYLED COMPONENTS
-
+import BreadCrumbs from "components/bread-crumbs";
 import {
   ParentNav,
   ParentNavItem,
@@ -201,17 +201,20 @@ const Navbar = ({
             justifyContent: "center",
           }}
         >
+          
           {CONTENT}
+          
         </InnerContainer>
       ) : (
         <InnerContainer>
           {/* CATEGORY MEGA MENU */}
           <Categories open={navListOpen} />
-
+          
           {/* HORIZONTAL MENU */}
           {CONTENT}
         </InnerContainer>
       )}
+     
     </NavBarWrapper>
   );
 };

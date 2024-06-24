@@ -6,6 +6,8 @@ import type { Viewport } from "next";
 import { getCustomer } from "medusa/lib/data";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { getProductsList } from "medusa/lib/data";
+import { medusaClient } from "medusa/lib/config";
 
 export const viewport: Viewport = {
   width:'device-width',
@@ -23,11 +25,16 @@ export default async function Layout1({ children, params }:{
 
   const region = await getRegion(params.countryCode);
   if(!region) { return null}
+  const { products, count } = await medusaClient.products
+    .list()
+    .then(({ products, limit, offset, count }) => {
+      return { products, count };
+    });
 
   const customer = await getCustomer() 
   return (
       
-      <ShopLayout1 cart={cart} customer={customer} countryCode={params.countryCode}>{children} </ShopLayout1> 
+      <ShopLayout1 cart={cart} customer={customer} countryCode={params.countryCode} products={products}>{children} </ShopLayout1> 
       
   );
 }

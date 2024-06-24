@@ -69,7 +69,7 @@ const FilterRadioGroup = ({
               }
               
             />
-            <Divider sx={{height:'1rem', border:'0.1rem solid lightgrey'}} orientation="vertical"/>            
+           
           </FlexBox>
         ))}
       </RadioGroup>

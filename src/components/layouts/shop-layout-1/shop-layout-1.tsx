@@ -14,6 +14,7 @@ import type { Customer } from "@medusajs/medusa";
 import { Suspense } from "react";
 import CircularProgress from '@mui/material/CircularProgress'
 import BreadCrumbs from "components/bread-crumbs";
+import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 
 /**
  *  USED IN:
@@ -25,12 +26,13 @@ import BreadCrumbs from "components/bread-crumbs";
  */
 
 const ShopLayout1 = ({
-  children, cart, customer, countryCode
+  children, cart, customer, countryCode, products
 }:{
   children:React.ReactNode, 
   cart: CartWithCheckoutStep,
   customer?: Omit<Customer, 'password-hash'> | null,
-  countryCode?:string
+  countryCode?:string,
+  products?:PricedProduct[]
 }) => {
   
   const [isFixed, setIsFixed] = useState(false);
@@ -48,7 +50,6 @@ const ShopLayout1 = ({
       <Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={300}>
       <Suspense fallback={<CircularProgress />}>
         <Header countryCode={countryCode} customer={customer} isFixed={isFixed} searchInput={<SearchInputWithCategory/>} cart={cart} />
-       
         </Suspense>
       </Sticky>    
 
@@ -56,7 +57,10 @@ const ShopLayout1 = ({
       /* NAVIGATION BAR */
     }
       <Navbar elevation={0} border={1} customer={customer}/>
-    
+      {/* <BreadCrumbs /> */}
+      <Sticky fixedOn={50} onSticky={toggleIsFixed} scrollDistance={300}>
+      <BreadCrumbs products={products} />
+        </Sticky>
       
       {
       /* BODY CONTENT */
