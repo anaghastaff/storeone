@@ -10,31 +10,36 @@ import { getProductsList } from "medusa/lib/data";
 import { medusaClient } from "medusa/lib/config";
 
 export const viewport: Viewport = {
-  width:'device-width',
-  initialScale:1,
-}
+  width: "device-width",
+  initialScale: 1,
+};
 
-export default async function Layout1({ children, params }:{
-  children:React.ReactNode
-  params:{
-    countryCode:string
-  }
+export default async function Layout1({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: {
+    countryCode: string;
+  };
 }) {
-
   const cart = await fetchCart();
 
   const region = await getRegion(params.countryCode);
-  if(!region) { return null}
-  const { products, count } = await medusaClient.products
-    .list()
-    .then(({ products, limit, offset, count }) => {
-      return { products, count };
-    });
+  if (!region) {
+    return null;
+  }
+ 
 
-  const customer = await getCustomer() 
+  const customer = await getCustomer();
   return (
+    <ShopLayout1
+      cart={cart}
+      customer={customer}
+      countryCode={params.countryCode}
       
-      <ShopLayout1 cart={cart} customer={customer} countryCode={params.countryCode} products={products}>{children} </ShopLayout1> 
-      
+    >
+      {children}{" "}
+    </ShopLayout1>
   );
 }

@@ -12,7 +12,7 @@ import { MobileNavigationBar } from "components/mobile-navigation";
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import type { Customer } from "@medusajs/medusa";
 import { Suspense } from "react";
-import CircularProgress from '@mui/material/CircularProgress'
+import CircularProgress from "@mui/material/CircularProgress";
 import BreadCrumbs from "components/bread-crumbs";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 
@@ -26,56 +26,57 @@ import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
  */
 
 const ShopLayout1 = ({
-  children, cart, customer, countryCode, products
-}:{
-  children:React.ReactNode, 
-  cart: CartWithCheckoutStep,
-  customer?: Omit<Customer, 'password-hash'> | null,
-  countryCode?:string,
-  products?:PricedProduct[]
+  children,
+  cart,
+  customer,
+  countryCode,
+}: {
+  children: React.ReactNode;
+  cart: CartWithCheckoutStep;
+  customer?: Omit<Customer, "password-hash"> | null;
+  countryCode?: string;
 }) => {
-  
   const [isFixed, setIsFixed] = useState(false);
-  const toggleIsFixed = useCallback(fixed => setIsFixed(fixed), []);
-  return <Fragment>
-      {
-      /* TOP BAR SECTION */
-    }
+  const toggleIsFixed = useCallback((fixed) => setIsFixed(fixed), []);
+  return (
+    <Fragment>
+      {/* TOP BAR SECTION */}
       <Topbar />
 
-      {
-      /* HEADER */
-    }
-    
-      <Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={300}>
-      <Suspense fallback={<CircularProgress />}>
-        <Header countryCode={countryCode} customer={customer} isFixed={isFixed} searchInput={<SearchInputWithCategory/>} cart={cart} />
-        </Suspense>
-      </Sticky>    
+      {/* HEADER */}
 
-      {
-      /* NAVIGATION BAR */
-    }
-      <Navbar elevation={0} border={1} customer={customer}/>
+      <Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={300}>
+        <Suspense fallback={<CircularProgress />}>
+          <Header
+            countryCode={countryCode}
+            customer={customer}
+            isFixed={isFixed}
+            searchInput={<SearchInputWithCategory />}
+            cart={cart}
+          />
+        </Suspense>
+      </Sticky>
+
+      {/* NAVIGATION BAR */}
+      <Navbar elevation={0} border={1} customer={customer} />
       {/* <BreadCrumbs /> */}
-      <Sticky fixedOn={50} onSticky={toggleIsFixed} scrollDistance={300}>
+      {/* <Sticky fixedOn={50} onSticky={toggleIsFixed} scrollDistance={300}>
       <BreadCrumbs products={products} />
         </Sticky>
-      
-      {
-      /* BODY CONTENT */
-    }
+       */}
+      {/* BODY CONTENT */}
       {children}
 
-      {
-      /* SMALL DEVICE BOTTOM NAVIGATION */
-    }
-      <MobileNavigationBar cart={cart} customer={customer} countryCode={countryCode}/>
-      {
-      /* FOOTER */
-    }
+      {/* SMALL DEVICE BOTTOM NAVIGATION */}
+      <MobileNavigationBar
+        cart={cart}
+        customer={customer}
+        countryCode={countryCode}
+      />
+      {/* FOOTER */}
       <Footer1 />
-    </Fragment>;
+    </Fragment>
+  );
 };
 
 export default ShopLayout1;
