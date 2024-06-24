@@ -138,7 +138,7 @@ const StripePaymentButton = ({
     }
 
     // Create the PaymentIntent and obtain clientSecret
-    const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
+    
     const res = await fetch(`/api/payments/stripe`, {
       credentials: "include",
       method: "POST",
@@ -178,7 +178,7 @@ const StripePaymentButton = ({
       (paymentIntent && paymentIntent.status === "requires_capture") ||
       paymentIntent.status === "succeeded"
     ) {
-      return onPaymentCompleted();    
+      await onPaymentCompleted();    
     }
     if (error) {
       handleError(error);
@@ -219,7 +219,7 @@ const StripePaymentButton = ({
                 type="submit"           
                 variant="contained"
                 color="secondary"
-                size="large"
+                
                 fullWidth={true}
                 data-testid={dataTestId}     
                 sx={{mx:'auto'}}        
