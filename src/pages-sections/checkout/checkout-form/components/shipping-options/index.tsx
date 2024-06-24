@@ -31,7 +31,7 @@ import { formatAmount } from "medusa/lib/util/prices";
 import AddIcon from "@mui/icons-material/Add";
 import { setShippingMethod } from "medusa/modules/checkout/actions";
 import ErrorMessage from "medusa/modules/checkout/components/error-message";
-import { LoadingButton } from "@mui/lab";
+
 
 type ShippingProps = {
   cart: Omit<Cart, "refundable_amount" | "refunded_total">;
@@ -198,19 +198,18 @@ const ShippingOptions: React.FC<ShippingProps> = ({
             data-testid="delivery-option-error-message"
           />
 
-          <LoadingButton
+          <Button
             size="large"
             variant="contained"
             sx={{ mt: 3 }}
             onClick={handleSubmit}
-            loading={isLoading}
-            loadingPosition="end"
+           
             color="primary"
             disabled={!cart.shipping_methods[0]}
             data-testid="submit-delivery-option-button"
           >
-           <span>Continue to payment</span> 
-          </LoadingButton>
+          {isLoading ? <CircularProgress size={14} color="success"/> : "Continue to Payment"   } 
+          </Button>
         </div>
       ) : (
         <Box>

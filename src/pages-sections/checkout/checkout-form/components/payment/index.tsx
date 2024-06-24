@@ -26,7 +26,7 @@ import { setPaymentMethod } from "medusa/modules/checkout/actions";
 import { paymentInfoMap } from "medusa/lib/constants";
 import { StripeContext } from "medusa/modules/checkout/payment-wrapper";
 import PaymentContainer from "../payment-container";
-import { LoadingButton } from "@mui/lab";
+
 import CreditCard from "@mui/icons-material/CreditCard";
 
 export const maxDuration=60;
@@ -90,9 +90,7 @@ const Payment = ({
 
   const handleSubmit = () => {
     setIsLoading(true);
-    router.push(pathname + "?" + createQueryString("step", "review"), {
-      scroll: false,
-    });
+    router.push("/checkout?step=review", {scroll: false});
   };
 
   useEffect(() => {
@@ -162,13 +160,11 @@ const Payment = ({
               error={error}
               data-testid="payment-method-error-message"
             />
-            <LoadingButton
+            <Button
               size="large"
               variant="contained"
               sx={{ mt: 6 }}
-              onClick={handleSubmit}
-              loading={isLoading}
-              loadingPosition="end"
+              onClick={handleSubmit}              
               color="primary"
               disabled={
                 (isStripe && !stripeReady && !paymentSelected) ||
@@ -176,8 +172,8 @@ const Payment = ({
               }
               data-testid="submit-payment-button"
             >
-              <span>Review and Pay</span>
-            </LoadingButton>
+              {isLoading ? <CircularProgress size={14} color="success"/> : "Review & Pay"   }
+            </Button>
           </Box>
         ) : (
           <Stack

@@ -25,7 +25,7 @@ import { error } from "console";
 import useToggleState from "medusa/lib/hooks/use-toggle-state";
 import compareAddresses from "medusa/lib/util/compare-addresses";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { LoadingButton } from "@mui/lab";
+
 
 const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
    
@@ -226,23 +226,23 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                         </Grid>
 
                         <Grid item sm={6} xs={12}>
-                          <LoadingButton
+                          <Button
                            LinkComponent={Link}
                             variant="contained"
                             color="primary"
                             type="submit"
                             fullWidth
-                            loading={updating}
-                            loadingPosition="end"
+                            disabled={updating}
+                            sx={{mx:'auto'}}
                           >
                             {
                               updating ?
-                              <span>Submitting Address</span>
+                             "Submitting Address"
                               :
-                              <span>Proceed to Delivery</span>
+                              "Proceed to Delivery"
                             }
                             
-                          </LoadingButton>
+                          </Button>
                         </Grid>
                       </>
                     )}

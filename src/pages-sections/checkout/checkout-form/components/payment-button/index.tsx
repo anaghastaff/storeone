@@ -4,6 +4,7 @@ import type { Cart, PaymentSession } from "@medusajs/medusa";
 
 import { OnApproveActions, OnApproveData } from "@paypal/paypal-js";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { SubmitButton } from "medusa/modules/common/components/submit-button";
 
 import {
   PaymentElement,
@@ -22,9 +23,9 @@ import ErrorMessage from "../../../../../medusa/modules/checkout/components/erro
 
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Unstable_Grid2";
-import { LoadingButton } from "@mui/lab";
+
 import CircularProgress from "@mui/material/CircularProgress";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 type PaymentButtonProps = {
   cart: Omit<Cart, "refundable_amount" | "refunded_total">;
@@ -118,7 +119,7 @@ const StripePaymentButton = ({
   const session = cart?.payment_session as PaymentSession;
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+     event.preventDefault();
     const pi = session?.data?.id;
     console.log("PI IN DATA ID", pi);
 
@@ -205,7 +206,6 @@ const StripePaymentButton = ({
 
               {/* <Button
               disabled={disabled || notReady || !cardComplete}
-
               type="submit"
               size="large"
               isLoading={submitting}
@@ -214,19 +214,18 @@ const StripePaymentButton = ({
             >
               Place order
             </Button> */}
-              <LoadingButton
-                disabled={disabled || notReady || !cardComplete}
-                type="submit"
-                loading={submitting}
+              <Button
+                disabled={disabled || notReady || !cardComplete || submitting}      
+                type="submit"           
                 variant="contained"
                 color="secondary"
                 size="large"
-                data-testid={dataTestId}             
-                loadingPosition="center"
-                sx={{rowGap:1}}
+                fullWidth={true}
+                data-testid={dataTestId}     
+                sx={{mx:'auto'}}        
               >
-                <span>{submitting ? "Processing... " : "Process Payment"}</span>
-              </LoadingButton>
+               {submitting ? <CircularProgress size={14} color="success"/> : "Place order"   }
+              </Button>
             </form>
           </Stack>
         </Grid>
@@ -316,33 +315,35 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   
   const onPaymentCompleted = async () => {
     await placeOrder()
-    .then((cart)=> cart)
+    .then((cart)=> {cart
+    setSubmitting(false);
+    })
     .catch((err) => {
       setErrorMessage(err.toString());
-      setSubmitting(false);
+      
     });
   };
 
   const handlePayment = async () => {
     setSubmitting(true);
     await onPaymentCompleted();
+    setSubmitting(false)
   };
 
   return (
     <>
-      <LoadingButton
+      <Button
         color="secondary"
         variant="contained"
-        disabled={notReady}
-        loading={submitting}
-        
-        loadingPosition="end"
+        disabled={notReady || submitting}     
         onClick={handlePayment}
         size="large"
+        fullWidth={true}
         data-testid="submit-order-button"
+        sx={{mx:'auto'}}
       >
-        <span>Place order</span>
-      </LoadingButton>
+       {submitting ? <CircularProgress size={14} color="success"/> : "Place order"   } 
+      </Button>
       <ErrorMessage
         error={errorMessage}
         data-testid="manual-payment-error-message"
