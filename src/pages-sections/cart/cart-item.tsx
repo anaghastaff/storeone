@@ -10,6 +10,7 @@ import Remove from "@mui/icons-material/Remove"; // GLOBAL CUSTOM COMPONENTS
 import Image from "components/BazaarImage";
 import { Span } from "components/Typography";
 import { FlexBox } from "components/flex-box"; // GLOBAL CUSTOM HOOK
+import CircularProgress from '@mui/material/CircularProgress'
 
 // import useCart from "hooks/useCart"; // CUSTOM UTILS LIBRARY FUNCTION
 
@@ -58,17 +59,12 @@ const CartItem = ({
 
   const unitPrice = (variant as CalculatedVariant).original_price || price
   const hasReducedUnitPrice = (unitPrice * qty || 0) > total!
-  const reducedPrice = (total || 0) / qty!
-
- 
+  const reducedPrice = (total || 0) / qty! 
  const unitPriceWithQty =  unitPrice * qty
- const hasReducedPriceWithQty = (total || 0) < unitPriceWithQty
-
- 
+ const hasReducedPriceWithQty = (total || 0) < unitPriceWithQty 
 
   return <Wrapper>
       <Image alt={name} width={140} height={140} display="block" src={imgUrl || "/assets/images/products/iphone-xi.png"} />
-
       {
       /* DELETE BUTTON */
     }
@@ -112,23 +108,24 @@ const CartItem = ({
         /* PRODUCT QUANTITY INC/DEC BUTTONS */
       }
         <FlexBox alignItems="center">
-          <Button color="primary" sx={{
+        {updating ? <CircularProgress size={14} /> 
+        :  <Button color="primary" sx={{
           p: "5px"
-        }} variant="outlined" disabled={qty === 1} onClick={()=>handleCartAmountChange(qty - 1)}
-        
-        >
-            <Remove fontSize="small" />
-          </Button>
+        }} variant="outlined" disabled={qty === 1} onClick={()=>handleCartAmountChange(qty - 1)}>
+           <Remove fontSize="small" />
+          </Button>}
 
           <Span mx={1} fontWeight={600} fontSize={15}>
             {qty}
           </Span>
 
-          <Button color="primary" sx={{
+          {updating ? <CircularProgress size={14} /> 
+          :   
+          <Button color="primary" disabled={updating} sx={{
           p: "5px"
         }} variant="outlined" onClick={()=>handleCartAmountChange(qty + 1)}>
             <Add fontSize="small" />
-          </Button>
+          </Button>}
         </FlexBox>
       </FlexBox>
     </Wrapper>;
