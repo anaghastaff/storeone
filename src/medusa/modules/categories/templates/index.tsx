@@ -1,6 +1,6 @@
+
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
-
 import { ProductCategoryWithChildren, type AverageRatings, type CartWithCheckoutStep } from "medusa/types/global"
 import InteractiveLink from "medusa/modules/common/components/interactive-link"
 // import SkeletonProductGrid from "medusa/modules/skeletons/templates/skeleton-product-grid"
@@ -32,15 +32,15 @@ export default function CategoryTemplate({
   const pageNumber = page ? parseInt(page) : 1
   const category = categories[categories.length - 1]
   const parents = categories.slice(0, categories.length - 1)
-
+  
   if (!category || !countryCode) notFound()
 
   return (
     <div 
     // className="flex flex-col small:flex-row small:items-start py-6 content-container" data-testid="category-container"
-    style={{display:'flex', flexDirection:'column', paddingTop:6, paddingBottom:6}}
+    style={{display:'flex', flexDirection:'column'}}
     >
-      <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" />
+        {/* <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" /> */}
       <div 
       // className="w-full"
         style={{width:'100%'}}
@@ -103,7 +103,7 @@ export default function CategoryTemplate({
             categoryId={category.id}
             countryCode={countryCode}
             heading="Categories"
-            description="Some categories"
+            description="Use code: FIFTEEN at the time of checkout to avail flat 15% discount"
             cart={cart}
             region={region}
             ratings={ratings}

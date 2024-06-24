@@ -11,7 +11,7 @@ import SettingsProvider from "contexts/SettingContext"; // GLOBAL CUSTOM COMPONE
 import SnackbarProvider from "components/SnackbarProvider";
 import { RTL } from "components/rtl";
 import { ProgressBar } from "components/progress"; // IMPORT DUMMY SERVER
-
+import BreadCrumbs from "components/bread-crumbs";
 import "__server__"; // IMPORT i18n SUPPORT FILE
 
 import "i18n";
@@ -28,6 +28,7 @@ export default function RootLayout({
             <ThemeProvider>
               <SnackbarProvider>
               <ProgressBar />
+             
               <RTL>{children}</RTL>
               </SnackbarProvider>
             </ThemeProvider>

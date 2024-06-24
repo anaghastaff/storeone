@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
 import Box from '@mui/material/Box'
 import SortProducts, { SortOptions } from "./sort-products"
+import { Divider } from "@mui/material"
 
 type RefinementListProps = {
   sortBy: SortOptions
@@ -34,17 +35,14 @@ const RefinementList = ({ sortBy, 'data-testid': dataTestId }: RefinementListPro
   return (
     <Box 
     sx={{
-      display: 'flex',
+      display: "flex",
       flexDirection: { xs: 'row', sm: 'column' }, // Adjust for responsive behavior
-      gap: '12px',
-      py: 4,
-      mb: 8,
-      px: { small: 0, xs: 6 },
-      minWidth: { small: '250px' },
-      ml: { small: '1.675rem' },
+      gap: '12px',     
+      pl:2,
     }}
     >
       <SortProducts sortBy={sortBy} setQueryParams={setQueryParams} data-testid={dataTestId} />
+      
     </Box>
   )
 }

@@ -2,7 +2,7 @@
 
 import { memo } from "react";
 import Box from "@mui/material/Box"; // CUSTOM ICON COMPONENTS
-
+import { usePathname, useSearchParams } from "next/navigation";
 import appIcons from "icons"; // GLOBAL CUSTOM COMPONENTS
 
 import Scrollbar from "components/Scrollbar";
@@ -14,6 +14,7 @@ import CategoryTitle from "./category-title"; // STYLED COMPONENTS
 
 import { NavbarRoot } from "./styles"; // CUSTOM DATA MODEL
 import Link from '@mui/material/Link'
+import RefinementList from "medusa/modules/store/components/refinement-list";
 
 // ==================================================================
 const SideNavbar = props => {
@@ -23,12 +24,20 @@ const SideNavbar = props => {
     lineStyle = "solid",
     sidebarHeight = "auto",
     sidebarStyle = "style1",
-    handleSelect = () => {}
+    handleSelect = () => {},
+    
   } = props;
+
+  const pathname = usePathname();
+  const category = pathname.split('/').includes("categories");
+  const searchParams = useSearchParams();
+  const sortBy = searchParams.get("sortBy");
+
   return <Scrollbar autoHide={false} sx={{ 
     maxHeight: sidebarHeight
   }}>
       <NavbarRoot fixed={isFixed} sidebar={sidebarStyle}>
+      <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" />
         {navList.map((item, ind) => {
         return <div key={ind}>
               <CategoryTitle title={item.category} line={lineStyle} />

@@ -23,9 +23,6 @@ const Section1 = ({
 
  
 
-  
-  
-
   return <Wrapper id="carouselBox">
       <Carousel dots arrows={false} slidesToShow={1} spaceBetween={0} dotColor={palette.primary.main} dotStyles={COMMON_DOT_STYLES}>
         {mainCarouselData.map(item => <div key={item.id}>

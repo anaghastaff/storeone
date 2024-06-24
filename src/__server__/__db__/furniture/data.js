@@ -188,7 +188,7 @@ export const mainCarouselData = [{
   imgUrl: "/assets/images/Furniture Shop/Furniture Shop Header.jpg",
   description: `How employees, surely the a said drops. Bathroom expected that systems let place. Her safely been little. Enterprises flows films it a fly the of wasn't designer the her thought. Enterprises flows films it a fly the of wasn't designer.`,
   buttonText: "Shop Now",
-  buttonLink: "#"
+  buttonLink: "/furniture-shop/categories/all-products"
 }, {
   id: 2,
   title: "Modern Fashion",
@@ -196,7 +196,7 @@ export const mainCarouselData = [{
   imgUrl: "/assets/images/Furniture Shop/Furniture Shop Header.jpg",
   description: `How employees, surely the a said drops. Bathroom expected that systems let place. Her safely been little. Enterprises flows films it a fly the of wasn't designer the her thought. Enterprises flows films it a fly the of wasn't designer.`,
   buttonText: "Shop Now",
-  buttonLink: "#"
+  buttonLink: "/furniture-shop/categories/all-products"
 }]; // products
 
 export const products = [{

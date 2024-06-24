@@ -50,7 +50,7 @@ const Section2 =  ({products, region, limit}:{
         /* BIG SALE BANNER CARD */
       }
         <Grid item xs={12} sm={7} md={7}>
-          <Link href="/sales-1">
+          <Link href="/furniture-shop/categories/medusa-merch">
           
             <LeftContentBox imgUrl={             
                product1 
@@ -76,7 +76,7 @@ const Section2 =  ({products, region, limit}:{
         /* UPTO 60% OFF BANNER CARD */
       }
         <Grid item xs={12} sm={5} md={5} sx={{display:'flex', justifyContent:'center'}}>
-          <Link href="/sales-1">
+          <Link href="/furniture-shop/categories/essential-oils">
             <RightContentBox imgUrl={product2} pt="20px" textAlign="center">
               <div>
                 <H6>SweatShirt Collection</H6>
@@ -103,7 +103,7 @@ const Section2 =  ({products, region, limit}:{
         /* WINTER OFFER 50% OFF BANNER CARD */
       }
         <Grid item xs={12} sm={7} md={7}>
-          <Link href="/sales-1">
+          <Link href="/furniture-shop/categories/couch">
             <RightContentBox imgUrl={product4} textAlign="center" sx={{
             pt: 3,
             px: "80px",
@@ -136,7 +136,7 @@ const Section2 =  ({products, region, limit}:{
           {
           /* CHAR COLLECTION BANNER CARD */
         }
-          <Link href="/sales-1">
+          <Link href="/furniture-shop/categories/chair">
             <LeftContentBox imgUrl={product5} py="20px" pl={3}>
               <div>
                 <Paragraph>Stylish & Comfortable</Paragraph>
@@ -154,7 +154,7 @@ const Section2 =  ({products, region, limit}:{
           {
           /* SOFA CHAIR BANNER CARD */
         }
-          <Link href="/sales-1">
+          <Link href="/furniture-shop/categories/organic-bags">
             <LeftContentBox imgUrl={product3} mt={3} py="20px" pl={3}>
               <div>
                 <Paragraph>December New!</Paragraph>
