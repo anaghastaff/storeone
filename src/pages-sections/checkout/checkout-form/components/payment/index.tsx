@@ -91,6 +91,7 @@ const Payment = ({
   const handleSubmit = () => {
     setIsLoading(true);
     router.push("/checkout?step=review", {scroll: false});
+    setIsLoading(false)
   };
 
   useEffect(() => {
