@@ -32,7 +32,7 @@ import {
   type CartWithCheckoutStep,
 } from "medusa/types/global";
 import Skeleton from "@mui/material/Skeleton";
-import Loading from "app/[countryCode]/(layout-1)/products/[slug]/loading";
+import Loading from "app/loading";
 import type { Cart, Region } from "@medusajs/medusa";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 

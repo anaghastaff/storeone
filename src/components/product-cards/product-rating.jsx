@@ -1,6 +1,6 @@
 import { Skeleton } from "@mui/material";
 import Rating from "@mui/material/Rating";
-import Loading from "app/loading";
+
 // GLOBAL CUSTOM COMPONENTS
 import { Span } from "components/Typography";
 import { FlexBox } from "components/flex-box"; // ==============================================================
