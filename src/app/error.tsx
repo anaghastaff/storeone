@@ -34,6 +34,7 @@ export default function Error({ error, reset }) {
         sx={{
           p: 4,
           textAlign: "center",
+          gap:2
         }}
       >
         <H1 mb={2}>{err ? error : "Something went wrong!"}</H1>
@@ -43,6 +44,9 @@ export default function Error({ error, reset }) {
 
         <Button color="error" variant="contained" onClick={handleError}>
           Try again
+        </Button>
+        <Button color="error" variant="contained" onClick={()=>reset()}>
+          Reset Page
         </Button>
       </Card>
     </div>

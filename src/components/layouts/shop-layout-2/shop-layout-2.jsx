@@ -15,7 +15,10 @@ import { SearchInput } from "components/search-box";
  */
 
 const ShopLayout2 = ({
-  children
+  children,
+  customer,
+  cart,
+  countryCode
 }) => {
   const pathname = usePathname();
   const [isFixed, setIsFixed] = useState(false);
@@ -33,7 +36,7 @@ const ShopLayout2 = ({
   const SHOW_NAV_BAR = ["/health-beauty-shop", "/checkout-alternative"];
 
   if (SHOW_NAV_BAR.includes(pathname)) {
-    NAV_BAR_CONTENT = <Navbar elevation={0} />;
+    NAV_BAR_CONTENT = <Navbar elevation={0} customer={customer}/>;
   }
 
   return <Fragment>
@@ -46,7 +49,7 @@ const ShopLayout2 = ({
       /* HEADER */
     }
       <Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={70}>
-        <Header isFixed={isFixed} searchInput={<SearchInput />} />
+        <Header cart={cart} customer={customer} countryCode={countryCode} isFixed={isFixed} searchInput={<SearchInput />} />
       </Sticky>
 
       {

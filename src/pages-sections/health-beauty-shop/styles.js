@@ -1,3 +1,4 @@
+'use client'
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -6,14 +7,19 @@ import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 import { Paragraph } from "components/Typography";
 import { FlexBox, FlexRowCenter } from "components/flex-box"; // FOR SECTION - 2
 
-export const ContentBox = styled(Card)({
-  height: 220,
+export const ContentBox = styled(Card)(({
+  theme
+}) => ({
+  height: 600,
   display: "flex",
   alignItems: "center",
   "& .content": {
     width: "50%"
+  },
+  [theme.breakpoints.down("sm")]: {
+    height: 220,
   }
-});
+}));
 export const RightContent = styled(FlexRowCenter)(({
   theme
 }) => ({

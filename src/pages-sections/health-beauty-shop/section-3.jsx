@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box"; // GLOBAL CUSTOM COMPONENTS
-
 import { Carousel } from "components/carousel";
 import { SectionHeader } from "components/section-header";
 import { ProductCard5 } from "components/product-cards/product-card-5"; // CUSTOM DATA MODEL

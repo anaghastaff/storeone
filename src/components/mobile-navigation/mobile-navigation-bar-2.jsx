@@ -69,7 +69,7 @@ const MobileNavigationBar2 = ({
 const list = [{
   title: "Home",
   Icon: Home,
-  href: "/"
+  href: "/health-beauty-shop"
 }, {
   title: "Category",
   Icon: CategoryOutlined

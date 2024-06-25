@@ -11,7 +11,7 @@ export const Wrapper = styled("div")({
 export const StyledContainer = styled(Box)(({
   theme
 }) => ({
-  paddingTop: 24,
+  // paddingTop: 24,
   display: "flex",
   position: "relative",
   justifyContent:'space-between',

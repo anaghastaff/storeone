@@ -2,7 +2,7 @@ import { HealthBeautyPageView } from "pages-sections/health-beauty-shop/page-vie
 
 import api from "utils/__api__/healthbeauty-shop";
 export const metadata = {
-  title: "Health & Beauty - Bazaar Next.js E-commerce Template",
+  title: "Health & Beauty",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
   authors: [{
     name: "UI-LIB",
