@@ -36,7 +36,7 @@ export default async function Checkout({params}:{params:{countryCode:string}}) {
   )) as CartWithCheckoutStep
   console.log("cart type", cart?.type)
   return (
-    <Suspense fallback={<Loading pagename="data" />} >
+    <Suspense fallback={<Loading />} >
     <Wrapper cart={cart}>
       <CheckoutPageView cart={cartWithPaymentSession}/>
   </Wrapper>
