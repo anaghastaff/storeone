@@ -4,7 +4,7 @@ import { getRegion } from "medusa/lib/data";
 import { retrievePricedProductById, getProductsList } from "medusa/lib/data";
 import { Suspense } from "react";
 import { medusaClient } from "medusa/lib/config";
-import Loading from "./loading";
+import Loading from './loading';
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { getCustomer } from "medusa/lib/data";
 import { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";

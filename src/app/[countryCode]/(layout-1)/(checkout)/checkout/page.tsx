@@ -1,5 +1,5 @@
 import { CheckoutPageView } from "pages-sections/checkout/page-view";
-import { fetchCart } from "../../../../../medusa/lib/util/get-cart-from-cookie";
+import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { createPaymentSessions, getRegion } from "medusa/lib/data";
 import UpdateCartRegion from "medusa/lib/util/update-cart-region"
 import type { CartWithCheckoutStep } from "medusa/types/global";

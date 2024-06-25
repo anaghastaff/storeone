@@ -10,8 +10,7 @@ export const getRegion = cache(async function (countryCode: string) {
     try {
       if (regionMap.has(countryCode)) {
         return regionMap.get(countryCode)
-      }
-  
+      }  
       const regions = await listRegions()
   
       if (!regions) {

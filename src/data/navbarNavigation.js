@@ -266,32 +266,28 @@ const navbarNavigation = [{
     title: "Vendor",
     child: [{
       title: "All vendors",
-      url: "/shops"
+      url: "/furniture-shop"
     }, {
       title: "Vendor store",
-      url: "/shops/scarlett-beauty"
+      url: "/furniture-shop/products"
     }]
   }, {
     title: "Shop",
     child: [{
       title: "Search product",
-      url: "/products/search/mobile phone"
+      url: "/furniture-shop/categories/all-products"
     }, {
       title: "Single product",
-      url: "/products/lord-2019"
+      url: "/furniture-shop/categories/medusa-merch"
     }, {
       title: "Cart",
       url: "/cart"
     }, {
       title: "Checkout",
       url: "/checkout"
-    }, {
-      title: "Alternative Checkout",
-      url: "/checkout-alternative"
-    }, {
-      title: "Order confirmation",
-      url: "/order-confirmation"
-    }]
+    }, 
+    
+  ]
   }, 
   // {
   //   title: "Auth",

@@ -3,7 +3,7 @@ import { retrieveOrder } from "medusa/lib/data"
 import { LineItem, Order } from "@medusajs/medusa"
 import { enrichLineItems } from "medusa/modules/cart/actions"
 import { notFound } from "next/navigation"
-import Loading from "../loading";
+import Loading from "./loading";
 import { Suspense } from "react";
 export const metadata = {
   title: "Order Confirmed",
