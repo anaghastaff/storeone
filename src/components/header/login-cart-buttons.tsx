@@ -66,7 +66,7 @@ const LoginCartButtons = ({
           component={IconButton}
           onClick={toggleSidenav}
         >
-          <ShoppingBagOutlined />
+          <ShoppingBagOutlined /> 
         </Box>
       </Badge>
     </FlexBox>

@@ -108,13 +108,13 @@ categories,
                 countryCode={countryCode}
                 hideRating
                 id={data.id}
-                slug={data.id}
+                slug={data.handle}
                 title={data.title}
                 price={data.price.calculated_price}
                 region={region}
                 cart={cart}
-                off={"10"}
-                // rating={5}
+                off="15"
+                
                 status={
                   pricedProduct?.tags?.find((i) => i?.value === "sale")
                     ? "Sale"

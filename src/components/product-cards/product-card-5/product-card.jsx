@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link"; // GLOBAL CUSTOM COMPONENTS
 
 import LazyImage from "components/LazyImage";
@@ -12,10 +13,16 @@ import DiscountChip from "../discount-chip";
 import ButtonActions from "./button-actions";
 import ProductRating from "../product-rating"; // STYLED COMPONENTS
 
-import { ContentWrapper, ImageBox, ImageWrapper, StyledBazaarCard } from "./styles"; // =============================================================
+import {
+  ContentWrapper,
+  ImageBox,
+  ImageWrapper,
+  StyledBazaarCard,
+} from "./styles"; // =============================================================
+import ProductActionsHealth_Beauty from "medusa/modules/products/components/product-actions-handb";
 
 // =============================================================
-const ProductCard14 = props => {
+const ProductCard14 = (props) => {
   const {
     off,
     id,
@@ -25,15 +32,18 @@ const ProductCard14 = props => {
     rating,
     hideRating,
     hoverEffect,
-    slug
+    slug,
+    cart,
+    product,
+    region,
   } = props;
   const {
     cartItem,
-    handleCartAmountChange,
     isFavorite,
     openModal,
+    handleCartAmountChange,
     toggleDialog,
-    toggleFavorite
+    toggleFavorite,
   } = useProduct(slug);
 
   const handleIncrementQuantity = () => {
@@ -43,7 +53,7 @@ const ProductCard14 = props => {
       price,
       imgUrl,
       name: title,
-      qty: (cartItem?.qty || 0) + 1
+      qty: (cartItem?.qty || 0) + 1,
     };
     handleCartAmountChange(product);
   };
@@ -55,70 +65,77 @@ const ProductCard14 = props => {
       price,
       imgUrl,
       name: title,
-      qty: (cartItem?.qty || 0) - 1
+      qty: (cartItem?.qty || 0) - 1,
     };
     handleCartAmountChange(product, "remove");
   };
-
-  return <StyledBazaarCard hoverEffect={hoverEffect}>
+  console.log("product variant length in product crd", product?.variant?.length);
+  return (
+    <StyledBazaarCard hoverEffect={hoverEffect}>
       <ImageWrapper>
-        {
-        /* DISCOUNT PERCENT CHIP IF AVAILABLE */
-      }
-        <DiscountChip discount={off} sx={{
-        left: 0,
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0
-      }} />
+        {/* DISCOUNT PERCENT CHIP IF AVAILABLE */}
+        <DiscountChip
+          discount={off}
+          sx={{
+            left: 0,
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          }}
+        />
 
         <ImageBox>
-          {
-          /* PRODUCT IMAGE / THUMBNAIL */
-        }
-          <Link href={`/products/${slug}`}>
+          {/* PRODUCT IMAGE / THUMBNAIL */}
+          <Link href={`health-beauty-shop/products/${id}`}>
             <LazyImage alt={title} src={imgUrl} width={190} height={190} />
           </Link>
 
-          {
-          /* HOVER ACTION ICONS */
-        }
-          <HoverActions isFavorite={isFavorite} toggleView={toggleDialog} toggleFavorite={toggleFavorite} handleIncrementQuantity={handleIncrementQuantity} />
+          {/* HOVER ACTION ICONS */}
+          <HoverActions
+            isFavorite={isFavorite}
+            toggleView={toggleDialog}
+            toggleFavorite={toggleFavorite}
+            handleIncrementQuantity={handleIncrementQuantity}
+          />
         </ImageBox>
       </ImageWrapper>
 
-      {
-      /* PRODUCT VIEW DIALOG BOX */
-    }
-      <ProductViewDialog openDialog={openModal} handleCloseDialog={toggleDialog} product={{
-      title,
-      price,
-      id,
-      slug,
-      imgGroup: [imgUrl, imgUrl]
-    }} />
+      {/* PRODUCT VIEW DIALOG BOX */}
+      <ProductViewDialog
+        openDialog={openModal}
+        handleCloseDialog={toggleDialog}
+        product={{
+          title,
+          price,
+          id,
+          slug,
+          imgGroup: [imgUrl, imgUrl],
+        }}
+      />
 
       <ContentWrapper>
-        {
-        /* PRODUCT NAME / TITLE */
-      }
+        {/* PRODUCT NAME / TITLE */}
         <ProductTitle slug={slug} title={title} />
 
-        {
-        /* PRODUCT RATINGS IF AVAILABLE */
-      }
+        {/* PRODUCT RATINGS IF AVAILABLE */}
         <ProductRating rating={rating} showRating={!hideRating} />
 
-        {
-        /* PRODUCT PRICE WITH DISCOUNT */
-      }
+        {/* PRODUCT PRICE WITH DISCOUNT */}
         <ProductPrice discount={off} price={price} />
 
-        {
-        /* PRODUCT QUANTITY HANDLER & FAVORITE BUTTONS */
-      }
-        <ButtonActions hasQty={cartItem?.qty ? true : false} handleIncrementQuantity={handleIncrementQuantity} handleDecrementQuantity={handleDecrementQuantity} />
+        {/* PRODUCT QUANTITY HANDLER & FAVORITE BUTTONS */}
+        <ProductActionsHealth_Beauty
+          product={product}
+          region={region}
+          cart={cart}
+        />
+        <ButtonActions
+          hasQty={cartItem?.qty ? true : false}
+          handleIncrementQuantity={handleIncrementQuantity}
+          handleDecrementQuantity={handleDecrementQuantity}
+        />
       </ContentWrapper>
-    </StyledBazaarCard>;
+    </StyledBazaarCard>
+  );
 };
 
 export default ProductCard14;

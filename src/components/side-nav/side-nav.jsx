@@ -1,7 +1,8 @@
+'use client'
 import { cloneElement, useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import clsx from "clsx"; // GLOBAL CUSTOM COMPONENT
-
+import { HealthBeautySideNav } from "components/page-sidenav";
 import Scrollbar from "components/Scrollbar"; // STYLED COMPONENT
 
 import { Wrapper } from "./styles"; // ================================================================

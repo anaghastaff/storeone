@@ -1,4 +1,4 @@
-
+'use client'
 import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider"; // GLOBAL CUSTOM HOOK

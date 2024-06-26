@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 // MUI ICON COMPONENTS
 import ArrowLeft from "@mui/icons-material/ArrowLeft";

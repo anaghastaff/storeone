@@ -1,3 +1,4 @@
+'use client'
 import Box from "@mui/material/Box"; // CUSTOM ICON COMPONENTS
 import appIcons from "icons"; // GLOBAL CUSTOM COMPONENTS
 import Scrollbar from "components/Scrollbar";

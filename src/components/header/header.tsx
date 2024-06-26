@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 import { Fragment } from "react";
 import useTheme from "@mui/material/styles/useTheme";
