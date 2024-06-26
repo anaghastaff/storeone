@@ -36,6 +36,9 @@ export const StyledContainer = styled(Box)(({
     top: layoutConstant.headerHeight
   },
   ".pageContent": {
+    display:'flex',
+    flexDirection:'column',
+    gap:2,
     left: "unset",
     margin:"auto",
     position: "relative",

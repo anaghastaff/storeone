@@ -7,8 +7,10 @@ import { NavLink } from "components/nav-link";
 import { H4, Span } from "components/Typography"; // LOCAL CUSTOM COMPONENT
 
 import NavAccordion from "./nav-accordion"; // STYLED COMPONENT
+import RefinementList from "medusa/modules/store/components/refinement-list";
 
 import { NavbarRoot } from "./styles"; // CUSTOM DATA MODEL
+import { usePathname, useSearchParams } from "next/navigation";
 
 // =================================================================
 const HealthBeautySideNav = ({
@@ -18,8 +20,15 @@ const HealthBeautySideNav = ({
     backgroundColor: "primary.200",
     borderRadius: "5px 5px 0px 0px"
   };
+
+  const pathname = usePathname();
+  const category = pathname.split('/').includes("categories");
+  const searchParams = useSearchParams();
+  const sortBy = searchParams.get("sortBy");
+
   return <Scrollbar>
       <NavbarRoot>
+      {category && <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" />}
         <FlexBox padding="10px 18px" sx={STYLES}>
           <H4>Categories</H4>
         </FlexBox>

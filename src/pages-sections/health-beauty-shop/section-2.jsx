@@ -20,7 +20,7 @@ const Section2 = () => {
         </RightContent>
 
         <LeftContent px="10px">
-          <LazyImage alt="shop" width={250} height={300} src="/assets/images/Health Shop/Doctor.png" />
+          <LazyImage alt="shop" width={250} height={250} src="/assets/images/Health Shop/Doctor.png" />
         </LeftContent>
       </ContentBox>
 
@@ -37,7 +37,7 @@ const Section2 = () => {
         </div>
 
         <div className="content">
-          <LazyImage alt="shop" width={250} height={300} src="/assets/images/Health Shop/Product (4).png" />
+          <LazyImage alt="shop" width={250} height={250} src="/assets/images/Health Shop/Product (4).png" />
         </div>
       </ContentBox>
     </Box>;

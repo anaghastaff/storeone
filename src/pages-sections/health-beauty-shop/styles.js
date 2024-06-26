@@ -10,14 +10,14 @@ import { FlexBox, FlexRowCenter } from "components/flex-box"; // FOR SECTION - 2
 export const ContentBox = styled(Card)(({
   theme
 }) => ({
-  height: 600,
+  height: 250,
   display: "flex",
   alignItems: "center",
   "& .content": {
     width: "50%"
   },
   [theme.breakpoints.down("sm")]: {
-    height: 220,
+    height: 250,
   }
 }));
 export const RightContent = styled(FlexRowCenter)(({

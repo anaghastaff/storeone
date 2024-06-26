@@ -10,7 +10,7 @@ import { FetchAllReviews } from "medusa/lib/util/fetch-all-reviews";
 import { calculateAverageRating } from "medusa/lib/util/get-average-rating";
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
-import Section4 from "pages-sections/furniture-shop/section-4";
+import Section6 from "pages-sections/health-beauty-shop/section-6";
 import { Suspense } from "react";
 import Loading from "./loading";
 
@@ -80,7 +80,7 @@ export default async function AllProducts({ searchParams, params }: Params) {
   return (
     <Container>
       <Suspense fallback={<Loading pagename="products" />}>
-        <Section4
+        <Section6
           countryCode={params.countryCode}
           cart={cart}
           // products={pricedProducts}

@@ -8,9 +8,10 @@ import RefinementList from "medusa/modules/store/components/refinement-list"
 import { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products"
 import PaginatedProducts from "medusa/modules/store/templates/paginated-products"
 import LocalizedClientLink from "medusa/modules/common/components/localized-client-link"
-import Section5 from "pages-sections/furniture-shop/section-5"
+import Section6 from "pages-sections/health-beauty-shop/section-6"
 import type { Region } from "@medusajs/medusa"
 import { Link } from "@mui/material"
+import Loading from "app/loading"
 
 export default function CategoryTemplate({
   categories,
@@ -95,8 +96,8 @@ export default function CategoryTemplate({
             </ul>
           </div>
         )} */}
-        
-          <Section5
+          <Suspense fallback={<Loading />}>
+          <Section6
             sortBy={sortBy || "created_at"}
             page={pageNumber}
             categories={categories}
@@ -108,7 +109,7 @@ export default function CategoryTemplate({
             region={region}
             ratings={ratings}
           />
-        
+        </Suspense>
       </div>
     </div>
   )

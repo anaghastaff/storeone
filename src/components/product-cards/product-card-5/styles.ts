@@ -1,9 +1,33 @@
-import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
-
+import { Button } from "@mui/material";
+import {styled, Theme} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 import BazaarCard from "components/BazaarCard";
 import { FlexBetween } from "components/flex-box";
-export const StyledBazaarCard = styled(BazaarCard)(({
+
+
+interface StyledBazaarCardProps {
+  hoverEffect: boolean;
+  theme?: Theme;
+}
+
+export const StyledButton = styled(Button)(({
   theme
+
+}) => ({
+  padding: "4px",
+  borderRadius: 0,
+  transition: "all 0.3s",
+  color: theme.palette.primary.main,
+  "&:hover": {
+    color: "#fff",
+    background: theme.palette.primary.main,
+    border: `1px solid ${theme.palette.primary.main}`
+  }
+}));
+
+export const StyledBazaarCard = styled(BazaarCard, {
+  shouldForwardProp: prop => prop !== "hoverEffect"
+})<StyledBazaarCardProps>(({
+  theme 
 }) => ({
   margin: "auto",
   height: "100%",
@@ -85,6 +109,8 @@ export const HoverWrapper = styled(FlexBetween)(({
 }));
 export const ContentWrapper = styled("div")({
   padding: "1rem",
+  display:'flex',
+  flexDirection:'column',
   "& .title, & .categories": {
     overflow: "hidden",
     whiteSpace: "nowrap",
@@ -98,6 +124,8 @@ export const ButtonBox = styled("div")(({
   display: "flex",
   marginTop: "15px",
   justifyContent: "space-between",
+  width:'100%',
+  
   "& button": {
     color: "#fff",
     background: theme.palette.primary.main,

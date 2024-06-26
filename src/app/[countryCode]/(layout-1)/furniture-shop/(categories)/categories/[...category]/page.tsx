@@ -7,6 +7,7 @@ import { SortOptions } from "medusa/modules/store/components/refinement-list/sor
 import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { FetchAllReviews } from "medusa/lib/util/fetch-all-reviews";
 import { calculateAverageRating } from "medusa/lib/util/get-average-rating";
+import FurnitureCategoryTemplate from "medusa/modules/categories/template-2"
 
 type Props = {
   params: { category: string[]; countryCode: string } 
@@ -85,7 +86,7 @@ if (!region) {
   }
 
   return (
-    <CategoryTemplate
+    <FurnitureCategoryTemplate
       categories={product_categories}
       sortBy={sortBy}
       page={page}

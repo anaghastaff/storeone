@@ -16,57 +16,79 @@ import BazaarImage from "components/BazaarImage";
 import { H1, H2, H3, H6, Paragraph } from "components/Typography"; // LOCAL CUSTOM HOOKS
 
 import useCart from "hooks/useCart"; // CUSTOM UTILS LIBRARY FUNCTION
+import ProductActionsHealth_Beauty from "medusa/modules/products/components/product-actions-handb";
 
 import { currency } from "lib"; // =====================================================
 
 // =====================================================
-const ProductViewDialog = props => {
+const ProductViewDialog = (props) => {
   const {
     product,
     openDialog,
-    handleCloseDialog
+    handleCloseDialog,
+    pricedProduct,
+    cart,
+    region,
   } = props;
-  const {
-    state,
-    dispatch
-  } = useCart();
-  const cartItem = state.cart.find(item => item.id === product.id);
+  // const {
+  //   state,
+  //   dispatch
+  // } = useCart();
+  // const cartItem = state.cart.find(item => item.id === product.id);
 
-  const handleCartAmountChange = amount => () => {
-    dispatch({
-      type: "CHANGE_CART_AMOUNT",
-      payload: { ...product,
-        qty: amount,
-        name: product.title,
-        imgUrl: product.imgGroup[0]
-      }
-    });
-  };
+  // const handleCartAmountChange = amount => () => {
+  //   dispatch({
+  //     type: "CHANGE_CART_AMOUNT",
+  //     payload: { ...product,
+  //       qty: amount,
+  //       name: product.title,
+  //       imgUrl: product.imgGroup[0]
+  //     }
+  //   });
+  // };
 
-  return <Dialog open={openDialog} maxWidth={false} onClose={handleCloseDialog} sx={{
-    zIndex: 1501
-  }}>
-      <DialogContent sx={{
-      maxWidth: 900,
-      width: "100%"
-    }}>
+  return (
+    <Dialog
+      open={openDialog}
+      maxWidth={false}
+      onClose={handleCloseDialog}
+      sx={{
+        zIndex: 1501,
+      }}
+    >
+      <DialogContent
+        sx={{
+          maxWidth: 900,
+          width: "100%",
+        }}
+      >
         <div>
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
-              <Carousel slidesToShow={1} arrowStyles={{
-              boxShadow: 0,
-              color: "primary.main",
-              backgroundColor: "transparent"
-            }}>
-                {product.imgGroup.map((item, index) => <BazaarImage key={index} src={item} alt="product" sx={{
-                mx: "auto",
-                width: "100%",
-                objectFit: "contain",
-                height: {
-                  sm: 400,
-                  xs: 250
-                }
-              }} />)}
+              <Carousel
+                slidesToShow={1}
+                arrowStyles={{
+                  boxShadow: 0,
+                  color: "primary.main",
+                  backgroundColor: "transparent",
+                }}
+              >
+                {product.imgGroup.map((item, index) => (
+                  <BazaarImage
+                    key={index}
+                    src={item}
+                    alt="product"
+                    sx={{
+                      mx: "auto",
+                      width: "100%",
+                      objectFit: "contain",
+                      height: {
+                        sm: 400,
+                        xs: 250,
+                      },
+                    }}
+                  />
+                ))}
               </Carousel>
             </Grid>
 
@@ -90,19 +112,42 @@ const ProductViewDialog = props => {
                 vol faucibus adipiscing.
               </Paragraph>
 
-              <Divider sx={{
-              mb: 2
-            }} />
-
-              {!cartItem?.qty ? <Button size="large" color="primary" variant="contained" onClick={handleCartAmountChange(1)} sx={{
-              height: 45
-            }}>
+              <Divider
+                sx={{
+                  mb: 2,
+                }}
+              />
+              <ProductActionsHealth_Beauty
+                product={pricedProduct}
+                region={region}
+                cart={cart}
+              >
+                Add to Cart
+              </ProductActionsHealth_Beauty>
+              {/* {!cartItem?.qty ? (
+                <Button
+                  size="large"
+                  color="primary"
+                  variant="contained"
+                  onClick={handleCartAmountChange(1)}
+                  sx={{
+                    height: 45,
+                  }}
+                >
                   Add to Cart
-                </Button> : <FlexBox alignItems="center">
-                  <Button size="small" color="primary" variant="outlined" sx={{
-                p: ".6rem",
-                height: 45
-              }} onClick={handleCartAmountChange(cartItem?.qty - 1)}>
+                </Button>
+              ) : (
+                <FlexBox alignItems="center">
+                  <Button
+                    size="small"
+                    color="primary"
+                    variant="outlined"
+                    sx={{
+                      p: ".6rem",
+                      height: 45,
+                    }}
+                    onClick={handleCartAmountChange(cartItem?.qty - 1)}
+                  >
                     <Remove fontSize="small" />
                   </Button>
 
@@ -110,26 +155,37 @@ const ProductViewDialog = props => {
                     {cartItem?.qty.toString().padStart(2, "0")}
                   </H3>
 
-                  <Button size="small" color="primary" variant="outlined" sx={{
-                p: ".6rem",
-                height: 45
-              }} onClick={handleCartAmountChange(cartItem?.qty + 1)}>
+                  <Button
+                    size="small"
+                    color="primary"
+                    variant="outlined"
+                    sx={{
+                      p: ".6rem",
+                      height: 45,
+                    }}
+                    onClick={handleCartAmountChange(cartItem?.qty + 1)}
+                  >
                     <Add fontSize="small" />
                   </Button>
-                </FlexBox>}
+                </FlexBox>
+              )} */}
             </Grid>
           </Grid>
         </div>
 
-        <IconButton sx={{
-        position: "absolute",
-        top: 3,
-        right: 3
-      }} onClick={handleCloseDialog}>
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: 3,
+            right: 3,
+          }}
+          onClick={handleCloseDialog}
+        >
           <Close fontSize="small" color="secondary" />
         </IconButton>
       </DialogContent>
-    </Dialog>;
+    </Dialog>
+  );
 };
 
 export default ProductViewDialog;

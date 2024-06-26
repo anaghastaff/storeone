@@ -17,12 +17,14 @@ import QuantityButtons from "components/product-cards/product-card-7/quantity-bu
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
 import { Typography } from "@mui/material";
+import HealthBeautyQuantityButtons from "components/product-cards/product-card-5/quantity-buttons";
 
 type ProductActionsProps = {
   product: PricedProduct;
   region: Region;
   cart: CartWithCheckoutStep | null;
-  
+  children:React.ReactNode
+  hoverbutton?:boolean
 };
 
 export type PriceType = {
@@ -35,7 +37,9 @@ export type PriceType = {
 export default function ProductActionsHealth_Beauty({
   product,
   region,
-  cart,   
+  cart, 
+  hoverbutton=false,
+  children  
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string>>({});
   const [isAdding, setIsAdding] = useState(false);
@@ -49,42 +53,43 @@ export default function ProductActionsHealth_Beauty({
 
   const countryCode = useParams().countryCode as string;
   const variants = product?.variants;
+  const cartVariant = product?.variants[0];
 
   // initialize the option state
-  useEffect(() => {
-    const optionObj: Record<string, string> = {};
-    for (const option of product.options || []) {
-      Object.assign(optionObj, { [option.id]: undefined });
-    }
-    setOptions(optionObj);
-  }, [product]);
+  // useEffect(() => {
+  //   const optionObj: Record<string, string> = {};
+  //   for (const option of product.options || []) {
+  //     Object.assign(optionObj, { [option.id]: undefined });
+  //   }
+  //   setOptions(optionObj);
+  // }, [product]);
 
   // memoized record of the product's variants
  
-  const variantRecord = useMemo(() => {
-    const map: Record<string, Record<string, string>> = {};
-    for (const variant of variants) {
-      if (!variant.options || !variant.id) continue;
-      const temp: Record<string, string> = {};
-      for (const option of variant.options) {
-        temp[option.option_id] = option.value;
-      }      
-      map[variant.id] = temp;      
-    }
-    return map;
-  }, [variants]);
+  // const variantRecord = useMemo(() => {
+  //   const map: Record<string, Record<string, string>> = {};
+  //   for (const variant of variants) {
+  //     if (!variant.options || !variant.id) continue;
+  //     const temp: Record<string, string> = {};
+  //     for (const option of variant.options) {
+  //       temp[option.option_id] = option.value;
+  //     }      
+  //     map[variant.id] = temp;      
+  //   }
+  //   return map;
+  // }, [variants]);
 
   // memoized function to check if the current options are a valid variant
 
-  const variant = useMemo(() => {
-    let variantId: string | undefined = undefined;
-    for (const key of Object.keys(variantRecord)) {
-      if (isEqual(variantRecord[key], options)) {
-        variantId = key;
-      }
-    }
-    return variants.find((v) => v.id === variantId);
-  }, [options, variantRecord, variants, product]);
+  // const variant = useMemo(() => {
+  //   let variantId: string | undefined = undefined;
+  //   for (const key of Object.keys(variantRecord)) {
+  //     if (isEqual(variantRecord[key], options)) {
+  //       variantId = key;
+  //     }
+  //   }
+  //   return variants.find((v) => v.id === variantId);
+  // }, [options, variantRecord, variants, product]);
 
   // if product only has one variant, then select it
   // useEffect(() => {
@@ -94,38 +99,38 @@ export default function ProductActionsHealth_Beauty({
   // }, [variants, variantRecord]);
 
   // update the options when a variant is selected
-  const updateOptions = (update: Record<string, string>) => {
-    setOptions({ ...options, ...update });
-  };
+  // const updateOptions = (update: Record<string, string>) => {
+  //   setOptions({ ...options, ...update });
+  // };
 
   // check if the selected variant is in stock
   const inStock = useMemo(() => {
-    if (variant && !variant.inventory_quantity) {
+    if (cartVariant && !cartVariant.inventory_quantity) {
       return false;
     }
-    if (variant && variant.allow_backorder === false) {      
+    if (cartVariant && cartVariant.allow_backorder === false) {      
       return true;
     }
-  }, [variant]);
+  }, [cartVariant]);
 
   useEffect(() => {
-    const temp = cart?.items?.find((item) => item?.variant.id === variant?.id);
+    const temp = cart?.items?.find((item) => item?.variant.id === cartVariant?.id);
     setLineItem(temp || null);
-  }, [options, variant]);
+  }, [cartVariant]);
 
   //Store the current selected color to match with available sizes inside the optionSelect Component
 
-  const colorOption = product?.options?.find(o => o.title === 'Color');
-  const colorOptionId = colorOption?.id;
-  const currentColor = colorOptionId ? options[colorOptionId] : undefined;
-  const actionsRef = useRef<HTMLDivElement>(null);
-  const inView = useIntersection(actionsRef, "0px");
+  // const colorOption = product?.options?.find(o => o.title === 'Color');
+  // const colorOptionId = colorOption?.id;
+  // const currentColor = colorOptionId ? options[colorOptionId] : undefined;
+  // const actionsRef = useRef<HTMLDivElement>(null);
+  // const inView = useIntersection(actionsRef, "0px");
 
   
 
   // increase quantity
   const handleIncrementQuantity = async (quantity: number) => {
-    const itemInCart = cart?.items?.find((i)=>i.id === variant.id)
+    const itemInCart = cart?.items?.find((i)=>i.id === cartVariant?.id)
     if (itemInCart) {
       setError(null);
       setUpdating(true);
@@ -145,10 +150,10 @@ export default function ProductActionsHealth_Beauty({
       message && setError(message);
      
     } else {
-      if (!variant?.id) return null;
+      if (!cartVariant?.id) return null;
       setIsAdding(true);
       await addToCart({
-        variantId: variant.id,
+        variantId: cartVariant.id,
         quantity: 1,
         countryCode,
       }).then((res)=>{
@@ -164,7 +169,7 @@ export default function ProductActionsHealth_Beauty({
   };
 
   const handleDecrementQuantity = async (quantity: number) => {
-    const itemInCart = cart?.items?.find((i)=>i.id === variant.id)
+    const itemInCart = cart?.items?.find((i)=>i.id === cartVariant.id)
     if (itemInCart && itemInCart?.quantity > 0) {
       setError(null);
       addReduce(true);
@@ -188,10 +193,10 @@ export default function ProductActionsHealth_Beauty({
 
   // add the selected variant to the cart
   const handleAddToCart = async () => {
-    if (!variant?.id) return null;
+    if (!cartVariant?.id) return null;
     setIsAdding(true);
    await addToCart({
-      variantId: variant.id,
+      variantId: cartVariant.id,
       quantity: 1,
       countryCode,
     }) .then((res)=>{
@@ -208,12 +213,12 @@ export default function ProductActionsHealth_Beauty({
   const router = useRouter()
 
   const handleAddToCheckout = async () => {
-    if (!variant?.id) return null;
+    if (!cartVariant?.id) return null;
 
     addItemtoCheckout(true);
     try{
       await addToCheckout({
-        variantId: variant.id,
+        variantId: cartVariant.id,
         quantity: 1,
         countryCode,
       })
@@ -234,10 +239,10 @@ export default function ProductActionsHealth_Beauty({
   return (
     <>
       <Box
-        sx={{ display: "flex", flexDirection: "column", rowGap: 1 }}
-        ref={actionsRef}
+        sx={{ display: "flex", flexDirection: "column", rowGap: 1 , width:'100%'}}
+        // ref={actionsRef}
       >
-        <Box>
+        {/* <Box>
           {product.variants.length > 1 && (
             <Box sx={{ display: "flex", flexDirection: "column", rowGap: '0.5rem' }}>
              
@@ -261,9 +266,9 @@ export default function ProductActionsHealth_Beauty({
               
             </Box>
           )}
-        </Box>
+        </Box> */}
 
-        <ProductPrice product={product} variant={variant} region={region} />
+       {/* {!hoverbutton && <ProductPrice product={product} variant={cartVariant} region={region} />}  */}
 
         {/* <Button
           onClick={handleAddToCart}
@@ -281,10 +286,10 @@ export default function ProductActionsHealth_Beauty({
             : "Add to cart"}
         </Button> */}
 
-        <QuantityButtons
+        <HealthBeautyQuantityButtons
           inStock={inStock}
-          variant={variant}
-          disabled={!inStock || !variant}
+          variant={cartVariant}
+          disabled={!inStock || !cartVariant}
           quantity={lineitem?.quantity ? lineitem?.quantity : 0}
           handleIncrement={handleIncrementQuantity}
           handleDecrement={handleDecrementQuantity}
@@ -294,7 +299,10 @@ export default function ProductActionsHealth_Beauty({
           updating={updating}
           toCheckout={toCheckout}
           reduce={reduce}
-        />
+          hoverbutton={hoverbutton}
+        >
+          {children}
+        </HealthBeautyQuantityButtons>
 
         {/* <MobileActions
           product={product}

@@ -8,15 +8,21 @@ import AddShoppingCart from "@mui/icons-material/AddShoppingCart"; // GLOBAL CUS
 import { Span } from "components/Typography"; // STYLED COMPONENT
 
 import { HoverWrapper } from "./styles"; // ==============================================================
+import ProductActionsHealth_Beauty from "medusa/modules/products/components/product-actions-handb";
 
 // ==============================================================
 const HoverActions = ({
   isFavorite,
   toggleView,
   toggleFavorite,
-  handleIncrementQuantity
+
+  product,
+  region,
+  cart,
 }) => {
-  return <HoverWrapper className="controller">
+  const hoverbutton = true;
+  return (
+    <HoverWrapper className="controller">
       <Span onClick={toggleView}>
         <RemoveRedEye />
       </Span>
@@ -24,15 +30,28 @@ const HoverActions = ({
       <Divider orientation="horizontal" flexItem />
 
       <Span onClick={toggleFavorite}>
-        {isFavorite ? <Favorite color="primary" fontSize="small" /> : <FavoriteBorder fontSize="small" color="primary" />}
+        {isFavorite ? (
+          <Favorite color="primary" fontSize="small" />
+        ) : (
+          <FavoriteBorder fontSize="small" color="primary" />
+        )}
       </Span>
 
       <Divider orientation="horizontal" flexItem />
 
-      <Span onClick={handleIncrementQuantity}>
+      <Span>
+        <ProductActionsHealth_Beauty
+          product={product}
+          region={region}
+          cart={cart}
+          hoverbutton={hoverbutton}
+        >
+          <AddShoppingCart />
+        </ProductActionsHealth_Beauty>
         <AddShoppingCart />
       </Span>
-    </HoverWrapper>;
+    </HoverWrapper>
+  );
 };
 
 export default HoverActions;

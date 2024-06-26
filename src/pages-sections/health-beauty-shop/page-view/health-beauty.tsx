@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from "react";
+import { Fragment, Suspense, useCallback } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack"; // GLOBAL CUSTOM COMPONENTS
 import Container from "@mui/material/Container";
@@ -19,6 +19,7 @@ import type { Customer, Region } from "@medusajs/medusa";
 import type { CartWithCheckoutStep } from "medusa/types/global";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
+import Loading from "app/loading";
 
 // ===============================================
 type Props = {
@@ -53,8 +54,9 @@ const HealthBeautyPageView = (props) => {
     ratings,
   } = props;
 
-    console.log("product length in h-b page view", products?.length);
-  const SideNav = () => <HealthBeautySideNav navigation={props.navigationList} />
+  const SideNav = () => (
+    <HealthBeautySideNav navigation={props.navigationList} />
+  );
 
   return (
     <Fragment>
@@ -65,8 +67,12 @@ const HealthBeautyPageView = (props) => {
         </Box>
         <Container disableGutters component="div">
           <SideNavContainer
-            navFixedComponentID="healthBeautySection1" 
+            navFixedComponentID="healthBeautySection1"
             navigationList={props.navigationList}
+            products={products}
+            ratings={ratings}
+            cart={cart}
+            region={region}            
           />
 
           <Stack spacing={6}>
@@ -74,15 +80,23 @@ const HealthBeautyPageView = (props) => {
             {/* <Section2 /> */}
 
             {/* TOP NEW PRODUCTS AREA */}
-            <Section3
-              products={products}
-              ratings={ratings}
-              cart={cart}
-              region={region}
-            />
-
+            <Suspense fallback={<Loading />}>
+              <Section3
+                products={products}
+                ratings={ratings}
+                cart={cart}
+                region={region}
+              />
+            </Suspense>
             {/* ALL PRODUCTS AREA */}
-            {/* <Section4 products={props.allProducts} /> */}
+            <Suspense fallback={<Loading />}>
+              <Section4
+                products={products}
+                ratings={ratings}
+                cart={cart}
+                region={region}
+              />
+           </Suspense>
 
             {/* SERVICE LIST AREA */}
             <Section5 services={props.serviceList} />
@@ -98,7 +112,7 @@ const HealthBeautyPageView = (props) => {
 
         {/* SMALL DEVICE BOTTOM NAVIGATION */}
         <MobileNavigationBar2>
-          <SideNav/>
+          <SideNav />
         </MobileNavigationBar2>
         <Footer3
           id="footer"

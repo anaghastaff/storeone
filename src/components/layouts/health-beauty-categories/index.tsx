@@ -23,6 +23,7 @@ import {
     mainCarouselData,
     categoryNavigation as sidebarNavList,
   } from "__server__/__db__/furniture/data";
+  
   import { categoryNavigation } from "__server__/__db__/health-beauty/data";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
 import Grid from "@mui/material/Grid";
@@ -58,7 +59,7 @@ const sidebarHeight='85vh'
       /* LEFT SIDEBAR */
     }
       <div className="sidenav">       
-        <SideNavbar lineStyle="dash"  navList={categoryNavigation} sidebarStyle="style2" sidebarHeight={sidebarHeight ? sidebarHeight : "85vh"} /> 
+      <HealthBeautySideNav navigation={categoryNavigation}/>
       </div>
       {
       /* OFFER BANNERS */

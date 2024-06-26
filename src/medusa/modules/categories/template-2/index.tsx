@@ -12,7 +12,7 @@ import Section5 from "pages-sections/furniture-shop/section-5"
 import type { Region } from "@medusajs/medusa"
 import { Link } from "@mui/material"
 
-export default function CategoryTemplate({
+export default function FurnitureCategoryTemplate({
   categories,
   sortBy,
   page,

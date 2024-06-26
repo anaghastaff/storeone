@@ -1,4 +1,3 @@
-
 import Box from "@mui/material/Box"; // GLOBAL CUSTOM COMPONENTS
 import { Carousel } from "components/carousel";
 import { SectionHeader } from "components/section-header";
@@ -24,8 +23,9 @@ const Section3 = async ({
   region: Region;
 }) => {
   const responsive = [
+   
     {
-      breakpoint: 950,
+      breakpoint: 1025,
       settings: {
         slidesToShow: 3,
       },
@@ -43,15 +43,14 @@ const Section3 = async ({
       },
     },
   ];
-  console.log("product length in section-3", products?.length);
-  return (
-    <div>
+ 
+  return (<div>
       <SectionHeader title="Top New Products" seeMoreLink="#" />
       <SubTitle>Best deal with medical and beauty items</SubTitle>
 
       <Carousel
         dotColor="info.dark"
-        slidesToShow={3}
+        slidesToShow={4}
         responsive={responsive}
         arrowStyles={{
           color: "primary.main",
@@ -62,9 +61,9 @@ const Section3 = async ({
         }}
       >
         {products.map(async (item) => {
-          const rating = ratings.find((r) => r.id === item.id);
+          const rating = ratings.find((r) => r.id === item?.id);
           const pricedProduct:PricedProduct = await retrievePricedProductById({
-            id: item.id,
+            id: item?.id,
             regionId: region.id,
           });
           return (
@@ -77,9 +76,10 @@ const Section3 = async ({
                 title={item.title}
                 price={pricedProduct.variants[0].calculated_price}
                 off={15}
-                rating={rating}
+                rating={rating ?? 0}
                 imgUrl={item.thumbnail}
                 region={region}
+                hoverEffect={true}
               />
             </Box>
           );

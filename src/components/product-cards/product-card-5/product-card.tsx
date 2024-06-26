@@ -12,7 +12,7 @@ import ProductTitle from "../product-title";
 import DiscountChip from "../discount-chip";
 import ButtonActions from "./button-actions";
 import ProductRating from "../product-rating"; // STYLED COMPONENTS
-
+import Add from "@mui/icons-material/Add";
 import {
   ContentWrapper,
   ImageBox,
@@ -20,7 +20,30 @@ import {
   StyledBazaarCard,
 } from "./styles"; // =============================================================
 import ProductActionsHealth_Beauty from "medusa/modules/products/components/product-actions-handb";
-
+import type { Region } from "@medusajs/medusa";
+import type { AverageRatings, CartWithCheckoutStep } from "medusa/types/global";
+import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import { Button } from "@mui/material";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import { FlexBox } from "components/flex-box";
+type Props ={
+  sx?:any,
+    off?:string,
+    status?:string | "",
+    id:string,
+    title:string,
+    price?:string,
+    imgUrl:string,
+    rating?:number,
+    hideRating?:boolean,    
+    slug?:string,
+    region?:Region,
+    cart?:CartWithCheckoutStep | null,
+    product:PricedProduct,
+    ratings:AverageRatings,
+    countryCode?:string,
+    hoverEffect?:boolean
+}
 // =============================================================
 const ProductCard14 = (props) => {
   const {
@@ -69,7 +92,7 @@ const ProductCard14 = (props) => {
     };
     handleCartAmountChange(product, "remove");
   };
-  console.log("product variant length in product crd", product?.variant?.length);
+  
   return (
     <StyledBazaarCard hoverEffect={hoverEffect}>
       <ImageWrapper>
@@ -86,7 +109,7 @@ const ProductCard14 = (props) => {
         <ImageBox>
           {/* PRODUCT IMAGE / THUMBNAIL */}
           <Link href={`health-beauty-shop/products/${id}`}>
-            <LazyImage alt={title} src={imgUrl} width={190} height={190} />
+            <LazyImage alt={title} src={imgUrl} width={190} height={190} sx={{objectFit:'contain', mx:'auto'}} />
           </Link>
 
           {/* HOVER ACTION ICONS */}
@@ -94,7 +117,10 @@ const ProductCard14 = (props) => {
             isFavorite={isFavorite}
             toggleView={toggleDialog}
             toggleFavorite={toggleFavorite}
-            handleIncrementQuantity={handleIncrementQuantity}
+            
+            product={product}
+            region={region}
+            cart={cart}
           />
         </ImageBox>
       </ImageWrapper>
@@ -103,6 +129,9 @@ const ProductCard14 = (props) => {
       <ProductViewDialog
         openDialog={openModal}
         handleCloseDialog={toggleDialog}
+        pricedProduct={product}
+        region={region}
+        cart={cart}
         product={{
           title,
           price,
@@ -123,16 +152,33 @@ const ProductCard14 = (props) => {
         <ProductPrice discount={off} price={price} />
 
         {/* PRODUCT QUANTITY HANDLER & FAVORITE BUTTONS */}
+       
         <ProductActionsHealth_Beauty
           product={product}
           region={region}
           cart={cart}
-        />
-        <ButtonActions
+        >
+          <Add /> Add to Cart
+        </ProductActionsHealth_Beauty>
+        {/* <ButtonActions
           hasQty={cartItem?.qty ? true : false}
           handleIncrementQuantity={handleIncrementQuantity}
           handleDecrementQuantity={handleDecrementQuantity}
-        />
+        /> */}
+         {/* <Button
+              variant="contained"
+              color="primary"
+              sx={{
+                width:20, height:20,flexGrow:1
+              }}
+            >
+              <FavoriteBorder
+                sx={{
+                  fontSize: 16,
+                }}
+              />
+            </Button> */}
+            
       </ContentWrapper>
     </StyledBazaarCard>
   );

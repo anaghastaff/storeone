@@ -5,11 +5,16 @@ import { layoutConstant } from "utils/constants"; // STYLED COMPONENT
 import { StyledContainer } from "./styles"; // ================================================================
 import Section2 from "pages-sections/health-beauty-shop/section-2";
 import { HealthBeautySideNav } from "components/page-sidenav";
+
 // ================================================================
 const SideNavContainer = props => {
   const {
     navFixedComponentID,
     navigationList,
+    products,
+    ratings,
+    cart,
+    region,
   } = props;
   
   return <StyledContainer>
@@ -21,6 +26,7 @@ const SideNavContainer = props => {
         // ref={ref}
       >
         <Section2 />
+      
        
   </div>
      
