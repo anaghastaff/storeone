@@ -19,9 +19,27 @@ import useCart from "hooks/useCart"; // CUSTOM UTILS LIBRARY FUNCTION
 import ProductActionsHealth_Beauty from "medusa/modules/products/components/product-actions-handb";
 
 import { currency } from "lib"; // =====================================================
+import type { AverageRatings, CartWithCheckoutStep } from "medusa/types/global";
+import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import type { Region } from "@medusajs/medusa";
 
+type Props = {
+  product:any,
+  openDialog:boolean,
+  handleCloseDialog:()=>void,
+  pricedProduct:PricedProduct,
+  cart:CartWithCheckoutStep,
+  region:Region,
+  rating:averagerating,
+  dotColor?:string
+}
+type averagerating = {
+  id:string,
+  averageRating:number,
+  count:number
+}
 // =====================================================
-const ProductViewDialog = (props) => {
+const ProductViewDialog = (props:Props) => {
   const {
     product,
     openDialog,
@@ -103,7 +121,7 @@ const ProductViewDialog = (props) => {
               <H1 color="primary.main">{currency(product.price)}</H1>
 
               <FlexBox alignItems="center" gap={1} mt={1}>
-                <Rating color="warn" value={rating.averageRating} readOnly />
+                <Rating color="warn" value={rating?.averageRating ?? 0} readOnly />
                 
               </FlexBox>
 

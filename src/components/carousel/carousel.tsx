@@ -10,6 +10,19 @@ import "slick-carousel/slick/slick-theme.css"; // STYLED COMPONENT
 
 import { RootStyle } from "./styles"; // ==============================================================
 
+type Props = {
+  [x: string]: any;
+    dotColor?: any;
+    children: any;
+    arrowStyles?: any;
+    dots?: boolean;
+    arrows?: boolean;
+    slidesToShow?: number;
+    spaceBetween?: number;
+    dotStyles?: {
+        mt: number;
+    };
+}
 // ==============================================================
 const Carousel = ({
   dotColor,
@@ -23,7 +36,7 @@ const Carousel = ({
     mt: 4
   },
   ...props
-}) => {
+}:Props) => {
   const theme = useTheme();
   const settings = {
     dots,

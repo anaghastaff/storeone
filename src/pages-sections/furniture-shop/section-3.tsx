@@ -35,7 +35,7 @@ const Section3 = ({
   
   const responsive = [
     {
-      breakpoint: 900,
+      breakpoint: 1025,
       settings: {
         slidesToShow: 3,
       },

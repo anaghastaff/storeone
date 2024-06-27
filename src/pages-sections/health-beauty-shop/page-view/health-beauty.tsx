@@ -16,7 +16,7 @@ import Section3 from "../section-3";
 import Section4 from "../section-4";
 import Section5 from "../section-5"; // CUSTOM DATA MODELS
 import type { Customer, Region } from "@medusajs/medusa";
-import type { CartWithCheckoutStep } from "medusa/types/global";
+import type { AverageRatings, CartWithCheckoutStep } from "medusa/types/global";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
 import Loading from "app/loading";
@@ -37,9 +37,11 @@ type Props = {
   navigationList: any;
   topNewProducts: any;
   mainCarouselData: any;
+  ratings:AverageRatings
+
 };
 
-const HealthBeautyPageView = (props) => {
+const HealthBeautyPageView = (props:Props) => {
   // SIDE NAVBAR COMPONENT
   const {
     region,

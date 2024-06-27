@@ -11,6 +11,7 @@ import LocalizedClientLink from "medusa/modules/common/components/localized-clie
 import Section5 from "pages-sections/furniture-shop/section-5"
 import type { Region } from "@medusajs/medusa"
 import { Link } from "@mui/material"
+import { Footer1 } from "components/footer";
 
 export default function FurnitureCategoryTemplate({
   categories,
@@ -38,7 +39,7 @@ export default function FurnitureCategoryTemplate({
   return (
     <div 
     // className="flex flex-col small:flex-row small:items-start py-6 content-container" data-testid="category-container"
-    style={{display:'flex', flexDirection:'column'}}
+    style={{display:'flex', flexDirection:'column', gap:2}}
     >
         {/* <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" /> */}
       <div 
@@ -108,7 +109,7 @@ export default function FurnitureCategoryTemplate({
             region={region}
             ratings={ratings}
           />
-        
+          <Footer1 />
       </div>
     </div>
   )

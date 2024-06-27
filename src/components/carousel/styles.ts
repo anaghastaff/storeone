@@ -5,7 +5,7 @@ import { Theme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 interface DotProps  {
-  theme:Theme,
+  theme?:Theme,
   dotColor?:string,
   space?:number
 }

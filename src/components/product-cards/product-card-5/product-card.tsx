@@ -26,26 +26,33 @@ import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { Button } from "@mui/material";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { FlexBox } from "components/flex-box";
-type Props ={
+interface Props {
   sx?:any,
-    off?:string,
+    off?:number,
     status?:string | "",
     id:string,
     title:string,
-    price?:string,
+    price?:number,
     imgUrl:string,
-    rating?:number,
+    rating?:averagerating,
     hideRating?:boolean,    
     slug?:string,
     region?:Region,
     cart?:CartWithCheckoutStep | null,
     product:PricedProduct,
-    ratings:AverageRatings,
+    ratings?:AverageRatings,
     countryCode?:string,
-    hoverEffect?:boolean
+    hoverEffect?:boolean,
+    handle?:string
+}
+
+type averagerating = {
+  id:string
+  averageRating:number
+  count:number
 }
 // =============================================================
-const ProductCard14 = (props) => {
+const ProductCard14:React.FC<Props> = (props) => {
   const {
     off,
     id,
@@ -108,7 +115,7 @@ const ProductCard14 = (props) => {
 
         <ImageBox>
           {/* PRODUCT IMAGE / THUMBNAIL */}
-          <Link href={`health-beauty-shop/products/${id}`}>
+          <Link href={`/health-beauty-shop/products/${id}`}>
             <LazyImage alt={title} src={imgUrl} width={190} height={190} sx={{objectFit:'contain', mx:'auto'}} />
           </Link>
 
@@ -116,8 +123,7 @@ const ProductCard14 = (props) => {
           <HoverActions
             isFavorite={isFavorite}
             toggleView={toggleDialog}
-            toggleFavorite={toggleFavorite}
-            
+            toggleFavorite={toggleFavorite}            
             product={product}
             region={region}
             cart={cart}
@@ -144,10 +150,10 @@ const ProductCard14 = (props) => {
 
       <ContentWrapper>
         {/* PRODUCT NAME / TITLE */}
-        <ProductTitle slug={slug} title={title} />
+        <ProductTitle slug={id} title={title} />
 
         {/* PRODUCT RATINGS IF AVAILABLE */}
-        <ProductRating rating={rating.averageRating} length={rating.count} showRating={true} />
+        <ProductRating rating={rating?.averageRating ?? 0} length={rating?.count ?? 0} showRating={true} />
 
         {/* PRODUCT PRICE WITH DISCOUNT */}
         <ProductPrice discount={off} price={price} />

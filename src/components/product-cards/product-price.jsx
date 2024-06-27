@@ -11,7 +11,7 @@ const ProductPrice = ({
   price
 }) => {
   const actualPrice = price/100;
-  console.log("price", price)
+  
   return <FlexBox alignItems="center" gap={1} mt={0.5}>
       <Paragraph fontWeight={600} color="primary.main">
         {calculateDiscount(actualPrice, discount)}

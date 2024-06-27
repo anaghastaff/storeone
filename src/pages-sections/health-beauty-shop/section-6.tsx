@@ -6,7 +6,7 @@ import { CircularProgress, Skeleton } from "@mui/material";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { Region } from "@medusajs/medusa";
 import { getProductPrice } from "medusa/lib/util/get-product-price";
-import { CartWithCheckoutStep, type AverageRatings, type ProductCategoryWithChildren } from "medusa/types/global";
+import { CartWithCheckoutStep, type AverageRatings, type ProductCategoryWithChildren, type averagerating } from "medusa/types/global";
 import { ProductCard5 } from "components/product-cards/product-card-5";
 import { useState } from "react";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
@@ -100,20 +100,20 @@ categories,
             regionId: region.id,
           });
           // return data;
-
+          const rating:averagerating = ratings.find((ar)=> ar.id === pricedProduct.id)
           return (
             <Grid key={pricedProduct.id}  md={4} sm={6} xs={12}>              
               <ProductCard5             
                 countryCode={countryCode}
                 hideRating
                 id={pricedProduct.id}
-                slug={pricedProduct.handle}
+                slug={pricedProduct.id}
                 title={pricedProduct.title}
                 price={pricedProduct.variants[0].calculated_price}
                 region={region}
                 cart={cart}
-                off="15"
-                
+                off={15}
+                handle={pricedProduct.handle}
                 // status={
                 //   pricedProduct?.tags?.find((i) => i?.value === "sale")
                 //     ? "Sale"
@@ -124,7 +124,7 @@ categories,
                 //       : ""
                 // }
                 imgUrl={data.thumbnail}
-                ratings={ratings}
+                rating={rating}
                 product={pricedProduct}
               />
              

@@ -42,14 +42,14 @@ const CategoriesLayout = ({
   children: React.ReactNode;
   sortBy?: SortOptions;
 }) => {
-  // const ref = useRef<HTMLDivElement>(null);
-  // const [sidebarHeight, setSidebarHeight] = useState<any>(0);
-  // useEffect(() => {
-  //   if (ref.current) setSidebarHeight(ref.current.offsetHeight);
-  // }, []);
+  const ref = useRef<HTMLDivElement>(null);
+  const [sidebarHeight, setSidebarHeight] = useState<any>(0);
+  useEffect(() => {
+    if (ref.current) setSidebarHeight(ref.current.offsetHeight);
+  }, []);
   const [isFixed, setIsFixed] = useState(false);
   const toggleIsFixed = useCallback((fixed) => setIsFixed(fixed), []); // FOR HANDLE TOP BAR AREA
-  const sidebarHeight = "85vh";
+  // const sidebarHeight = "85vh";
   const searchParams = useSearchParams();
   const sort_option = searchParams.get("sortBy");
   return (

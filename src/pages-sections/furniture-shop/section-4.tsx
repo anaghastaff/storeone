@@ -92,7 +92,7 @@ const Section4 = async ({
           if (!data.id) {
             return null;
           }
-          const pricedProduct = await retrievePricedProductById({
+          const pricedProduct:PricedProduct = await retrievePricedProductById({
             id: data.id,
             regionId: region.id,
           });
@@ -103,10 +103,10 @@ const Section4 = async ({
               <ProductCard17
                 countryCode={countryCode}
                 hideRating
-                id={data.id}
-                slug={data.id}
-                title={data.title}
-                price={data.price.calculated_price}
+                id={pricedProduct?.id}
+                slug={pricedProduct?.id}
+                title={pricedProduct?.title}
+                price={pricedProduct?.variants[0].calculated_price.toString()}
                 region={region}
                 cart={cart}
                 off={"10"}

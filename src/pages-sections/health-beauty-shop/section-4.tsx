@@ -7,14 +7,25 @@ import { ProductCard5 } from "components/product-cards/product-card-5"; // CUSTO
 import { retrievePricedProductById } from "medusa/lib/data";
 // STYLED COMPONENT
 import { SubTitle } from "./styles"; // ===========================================================
-
+import averageRating from "medusa/lib/average-rating";
+import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import type { AverageRatings, CartWithCheckoutStep, averagerating } from "medusa/types/global";
+import type { Region } from "@medusajs/medusa";
 // ===========================================================
+
+type Props ={
+  products:PricedProduct[],
+  ratings:AverageRatings,
+  cart:CartWithCheckoutStep,
+  region:Region
+
+}
 const Section4 = async ({
   products,
   ratings,
   cart,
   region,
-}) => {
+}:Props) => {
   return <div>
       <SectionHeader title="All Products" seeMoreLink="#" />
       <SubTitle>Best deal with medical and beauty items</SubTitle>
@@ -22,11 +33,12 @@ const Section4 = async ({
       <Grid container mb={-0.5} spacing={3}>
         {products.slice(0,6).map(async (item) => 
         {
-          const rating = ratings.find((r) => r.id === item?.id);
-          const pricedProduct = await retrievePricedProductById({
+          
+          const pricedProduct:PricedProduct = await retrievePricedProductById({
             id: item?.id,
             regionId: region.id,
           })
+          const rating:averagerating = ratings.find((r) => r.id === pricedProduct?.id);
           return (
             <Grid key={item.id} item md={4} sm={6} xs={12}>
            <ProductCard5
@@ -37,7 +49,7 @@ const Section4 = async ({
                 title={item.title}
                 price={pricedProduct.variants[0].calculated_price}
                 off={15}
-                rating={rating ?? 0}
+                rating={rating}
                 imgUrl={item.thumbnail}
                 region={region}
                 hoverEffect={true}

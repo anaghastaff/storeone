@@ -7,6 +7,7 @@ import { H1 } from "components/Typography";
 import { FlexRowCenter } from "components/flex-box"; // ==============================================================
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Stack from '@mui/material/Stack'
 // ==============================================================
 export default function Error({
   error,
@@ -19,19 +20,30 @@ export default function Error({
   const handleError=()=>{
     router.back()
   }
+  const handleRefresh=()=>{
+    router.refresh()
+  }
   if(typeof error === 'string'){
     setError(true)
   }
   return <FlexRowCenter height="100vh">
       <Card sx={{
       p: 4,
-      textAlign: "center"
+      textAlign: "center",
+      gap:3,
     }}>
         <H1 mb={2}>{err ? error : "Something went wrong!"}</H1>
-
-        <Button color="error" variant="contained" onClick={handleError}>
-            Try again
+        <Stack gap={2}>
+        <Button color="error" variant="outlined" onClick={()=>reset()}>
+            Reset component
         </Button>
+        <Button color="error" variant="outlined" onClick={handleError}>
+            Go Back
+        </Button>
+        <Button color="error" variant="outlined" onClick={handleRefresh}>
+            Refresh Page
+        </Button>
+        </Stack>
       </Card>
     </FlexRowCenter>;
 }

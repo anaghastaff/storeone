@@ -90,11 +90,11 @@ const Section1 = ({
                   <H1 maxWidth={380}>{item.title}</H1>
                 </div>
 
-                <StyledButton variant="contained">Shop Now</StyledButton>
+                <StyledButton variant="contained" href="/health-beauty-shop/categories/all-products">Shop Now</StyledButton>
               </GridItemOne>
 
               <GridItemTwo item md={5} sm={5} xs={12}>
-                <LazyImage priority width={570} height={360} src={item.imgUrl} alt={item.title} />
+                <LazyImage priority width={570} height={360} src={item.imgUrl} alt={item.title} sx={{objectFit:'contain'}}/>
               </GridItemTwo>
             </StyledGrid>
           </div>)}

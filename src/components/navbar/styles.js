@@ -25,6 +25,7 @@ export const ParentNav = styled(Box, {
   active
 }) => ({
   position: "relative",
+  zIndex: 15002,
   "&:hover": {
     color: theme.palette.primary.main,
     "& > .parent-nav-item": {
@@ -39,7 +40,7 @@ export const ParentNavItem = styled("div")(({
   theme
 }) => ({
   top: 0,
-  zIndex: 5,
+  zIndex: 15002,
   left: "100%",
   paddingLeft: 8,
   display: "none",
@@ -56,6 +57,7 @@ export const NavBarWrapper = styled(BazaarCard, {
   theme,
   border
 }) => ({
+  zIndex: 15002,
   height: "60px",
   display: "block",
   borderRadius: "0px",
@@ -81,7 +83,7 @@ export const CategoryMenuButton = styled(Button)(({
   backgroundColor: theme.palette.grey[100]
 }));
 export const ChildNavListWrapper = styled("div")({
-  zIndex: 5,
+  zIndex: 15007,
   left: "50%",
   top: "100%",
   display: "none",
