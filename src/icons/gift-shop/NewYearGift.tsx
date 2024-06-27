@@ -4,7 +4,7 @@ import SvgIcon from "@mui/material/SvgIcon";
 export default function NewYearGift(props) {
   return (
     <SvgIcon {...props}>
-      <svg fill="currentColor" viewBox="0 0 512 512">
+      <svg fill="currentColor" viewBox="0 0 19 19">
         
     <g clipPath="url(#clip0_6820_24136)">
       <path d="M13.9695 17.9695H1.49609C1.34141 17.9695 1.21484 17.843 1.21484 17.6883V8.02734C1.21484 7.87266 1.34141 7.74609 1.49609 7.74609H12.0992C12.2539 7.74609 12.3805 7.87266 12.3805 8.02734C12.3805 8.18203 12.2539 8.30859 12.0992 8.30859H1.76328V17.4211H13.6883V10.3477C13.6883 10.193 13.8148 10.0664 13.9695 10.0664C14.1242 10.0664 14.2508 10.193 14.2508 10.3477V17.6883C14.2367 17.843 14.1102 17.9695 13.9695 17.9695Z" fill="currentColor" />

@@ -50,7 +50,7 @@ const Section3 = async ({
 
       <Carousel
         dotColor="info.dark"
-        slidesToShow={4}
+        slidesToShow={3}
         responsive={responsive}
         arrowStyles={{
           color: "primary.main",

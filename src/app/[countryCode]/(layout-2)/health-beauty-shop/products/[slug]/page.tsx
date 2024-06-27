@@ -72,7 +72,7 @@ export default async function ProductDetails({ params }: Props) {
   const response = await FetchReviews({ id: pricedProduct.id });
   const relatedProducts = await getRelatedProducts();
   const frequentlyBought = await getFrequentlyBought();
-
+  const store = "health-beauty-shop";
   return (
     <Suspense fallback={<Loading pagename={`${pricedProduct.title}`} />}>
     <ProductDetailsPageView
@@ -83,6 +83,7 @@ export default async function ProductDetails({ params }: Props) {
       region={region}
       cart={cart}
       response={response}
+      store={store}
     />
     </Suspense>
   );

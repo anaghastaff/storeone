@@ -1,6 +1,6 @@
 'use client'
 import Container from "@mui/material/Container"; // GLOBAL CUSTOM COMPONENTS
-import { useEffect, useRef, useState } from "react"; // Local CUSTOM COMPONENT
+import { useCallback, useEffect, useRef, useState } from "react"; // Local CUSTOM COMPONENT
 import { useSearchParams } from "next/navigation";
 import { SideNavbar } from "components/page-sidenav"; // CUSTOM DATA MODEL
 import {HealthBeautySideNav} from "components/page-sidenav";
@@ -12,6 +12,7 @@ import  Typography from "@mui/material/Typography";
 
 // STYLED COMPONENT
 import { StyledContainer } from "components/side-nav/styles";
+import { Sticky } from "components/sticky";
      // ==============================================================
 import FetchProducts from "app/api/fetchProducts";
 import { Region } from "medusa/types/medusa";
@@ -54,22 +55,26 @@ sortBy,
 const sidebarHeight='85vh'
   const searchParams = useSearchParams();
   const sort_option = searchParams.get("sortBy");
-  return <StyledContainer >
+  const [isFixed, setIsFixed] = useState(false);
+  const toggleIsFixed = useCallback(fixed => setIsFixed(fixed), []); // FOR HANDLE TOP BAR AREA
+  return <div >
       {
       /* LEFT SIDEBAR */
     }
-      <div className="sidenav">       
+      {/* <div className="sidenav">   
+      <Sticky fixedOn={90} onSticky={toggleIsFixed} scrollDistance={400}>    
       <HealthBeautySideNav navigation={categoryNavigation}/>
-      </div>
+      </Sticky>
+      </div> */}
       {
       /* OFFER BANNERS */
     }
-      <div className="pageContent" 
+      {/* <div className="pageContent" 
       //  ref={ref}
-      >
+      > */}
        {children}
-      </div>
-    </StyledContainer>;
+      {/* </div> */}
+    </div>;
 };
 
 export default HealthCategoriesLayout;

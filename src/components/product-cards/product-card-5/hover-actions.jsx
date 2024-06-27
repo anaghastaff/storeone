@@ -9,7 +9,8 @@ import { Span } from "components/Typography"; // STYLED COMPONENT
 
 import { HoverWrapper } from "./styles"; // ==============================================================
 import ProductActionsHealth_Beauty from "medusa/modules/products/components/product-actions-handb";
-
+import ProductActionsHoverButton from "medusa/modules/products/components/product-actions-hoverbutton";
+import IconButton from '@mui/material/IconButton'
 // ==============================================================
 const HoverActions = ({
   isFavorite,
@@ -40,15 +41,14 @@ const HoverActions = ({
       <Divider orientation="horizontal" flexItem />
 
       <Span>
-        <ProductActionsHealth_Beauty
+        <ProductActionsHoverButton
           product={product}
           region={region}
-          cart={cart}
-          hoverbutton={hoverbutton}
+          cart={cart}         
         >
           <AddShoppingCart />
-        </ProductActionsHealth_Beauty>
-        <AddShoppingCart />
+        </ProductActionsHoverButton>
+        
       </Span>
     </HoverWrapper>
   );

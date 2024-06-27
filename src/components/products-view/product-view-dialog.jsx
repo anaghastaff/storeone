@@ -29,6 +29,7 @@ const ProductViewDialog = (props) => {
     pricedProduct,
     cart,
     region,
+    rating,
   } = props;
   // const {
   //   state,
@@ -102,8 +103,8 @@ const ProductViewDialog = (props) => {
               <H1 color="primary.main">{currency(product.price)}</H1>
 
               <FlexBox alignItems="center" gap={1} mt={1}>
-                <Rating color="warn" value={4} readOnly />
-                <H6 lineHeight="1">(50)</H6>
+                <Rating color="warn" value={rating.averageRating} readOnly />
+                
               </FlexBox>
 
               <Paragraph my={2}>

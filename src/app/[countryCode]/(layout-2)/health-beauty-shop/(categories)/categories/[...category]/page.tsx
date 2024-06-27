@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function CategoryPage({ params, searchParams }: Props) {
+export default async function HealthCategoryPage({ params, searchParams }: Props) {
   const { sortBy, page } = searchParams
   const { allReviews } = await FetchAllReviews();
   const ratings = await calculateAverageRating({ allReviews });

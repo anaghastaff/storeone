@@ -83,7 +83,7 @@ const HealthBeautyQuantityButtons = ({
                 fullWidth={true}
                 sx={BTN_STYLE}
               >
-               {children}
+               {isAdding ? <CircularProgress size={16} color="error" sx={{mx:'auto'}} /> : children}
               </Button>
             )}
 
@@ -105,7 +105,7 @@ const HealthBeautyQuantityButtons = ({
 
         {(quantity > 0 && !hoverbutton) ? (
          
-           <Stack direction="row" justifyContent="space-between" gap={2} marginTop="15px">            
+           <Stack direction="row" justifyContent="space-between" gap={2} marginTop="15px">           
             
             <StyledButton
               disabled={disabled || updating || reduce}
@@ -123,8 +123,7 @@ const HealthBeautyQuantityButtons = ({
               onClick={() => handleDecrement(quantity - 1)}
             >
               <Remove fontSize="medium" />
-            </StyledButton>
-           
+            </StyledButton>        
          
             </Stack >
             

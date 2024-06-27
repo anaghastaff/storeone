@@ -90,27 +90,26 @@ categories,
         <H1 mb="4px">{heading}</H1>
         <Paragraph color="grey.600">{description}</Paragraph>
       </Box>
-      <Grid container mb={-0.5} spacing={2} rowSpacing={2} columns={16}>
+      <Grid container mb={-0.5} spacing={3}>
         {products.map(async (data) => {
           if (!data.id) {
             return null;
           }
-          const pricedProduct = await retrievePricedProductById({
+          const pricedProduct:PricedProduct = await retrievePricedProductById({
             id: data.id,
             regionId: region.id,
           });
           // return data;
 
           return (
-            <Grid xl={4} lg={5} sm={8} xs={16}>
-              
+            <Grid key={pricedProduct.id}  md={4} sm={6} xs={12}>              
               <ProductCard5             
                 countryCode={countryCode}
                 hideRating
-                id={data.id}
-                slug={data.handle}
-                title={data.title}
-                price={data.price.calculated_price}
+                id={pricedProduct.id}
+                slug={pricedProduct.handle}
+                title={pricedProduct.title}
+                price={pricedProduct.variants[0].calculated_price}
                 region={region}
                 cart={cart}
                 off="15"

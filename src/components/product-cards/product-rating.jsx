@@ -14,10 +14,10 @@ const ProductRating = ({
   length = null,
   ...props
 }) => {
-  return showRating ? <FlexBox gap={1} marginBottom={1} alignItems="center" {...props}>
+  return <FlexBox gap={1} marginBottom={1} alignItems="center" {...props}>
    <Rating size="small" precision={0.1} value={rating} color="warn" readOnly />
       <Span color="grey.600" fontSize="10px">{length} User reviews</Span>      
-    </FlexBox> : null;
+    </FlexBox> 
 };
 
 export default ProductRating;

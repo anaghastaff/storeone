@@ -4,7 +4,7 @@ import SvgIcon from "@mui/material/SvgIcon";
 export default function Wardrobe(props) {
   return (
     <SvgIcon {...props}>
-      <svg fill="currentColor" viewBox="0 0 512 512">
+      <svg fill="currentColor" viewBox="0 0 19 19">
         
     <g clipPath="url(#clip0_6800_50497)">
       <path d="M8.89764 1.24023C8.73206 1.24023 8.59766 1.37464 8.59766 1.54022V2.74025C8.59766 2.90583 8.73206 3.04023 8.89764 3.04023C9.06323 3.04023 9.19763 2.90583 9.19763 2.74025V1.54026C9.19767 1.37464 9.06327 1.24023 8.89764 1.24023Z" fill="currentColor" />

@@ -4,7 +4,7 @@ import SvgIcon from "@mui/material/SvgIcon";
 export default function BirthdayCake(props) {
   return (
     <SvgIcon {...props}>
-      <svg fill="currentColor" viewBox="0 0 512 512">
+      <svg fill="currentColor" viewBox="0 0 19 19">
         
     <g clipPath="url(#clip0_6820_24012)">
       <path d="M4.93437 14.8164C5.27369 14.8164 5.27425 14.2891 4.93437 14.2891C4.59508 14.2891 4.59451 14.8164 4.93437 14.8164Z" fill="currentColor" />

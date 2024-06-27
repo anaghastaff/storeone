@@ -103,7 +103,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
             color="primary"
             variant="contained"
             size="small"
-            sx={{ maxWidth: "fit-content" }}
+            sx={{ maxWidth: "fit-content",  }}
             data-testid="edit-delivery-button"
           >
             Edit
@@ -201,7 +201,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
           <Button
             size="large"
             variant="contained"
-            sx={{ mt: 3 }}
+            sx={{ mt: 3 ,  minWidth:'50%'}}
             onClick={handleSubmit}
            
             color="primary"

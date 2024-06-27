@@ -62,22 +62,22 @@ const HealthBeautyPageView = (props) => {
     <Fragment>
       <Container maxWidth="xl" disableGutters component="div">
         {/* TOP HERO CAROUSEL AREA */}
-        <Box id="healthBeautySection1" mb={2}>
+        {/* <Box id="healthBeautySection1" mb={2}>
           <Section1 carouselData={props.mainCarouselData} />
-        </Box>
+        </Box> */}
         <Container disableGutters component="div">
-          <SideNavContainer
+          {/* <SideNavContainer
             navFixedComponentID="healthBeautySection1"
             navigationList={props.navigationList}
             products={products}
             ratings={ratings}
             cart={cart}
             region={region}            
-          />
+          /> */}
 
           <Stack spacing={6}>
             {/* BANNER AREA */}
-            {/* <Section2 /> */}
+            <Section2 />
 
             {/* TOP NEW PRODUCTS AREA */}
             <Suspense fallback={<Loading />}>

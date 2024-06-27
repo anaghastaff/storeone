@@ -4,7 +4,7 @@ import SvgIcon from "@mui/material/SvgIcon";
 export default function Products(props) {
   return (
     <SvgIcon {...props}>
-      <svg fill="currentColor" viewBox="0 0 512 512">
+      <svg fill="currentColor" viewBox="0 0 19 19">
         
     <g clipPath="url(#clip0_6800_50540)">
       <path d="M3.38281 1.97949H1.13281V4.22949H3.38281V1.97949Z" stroke="#7D879C" strokeMiterlimit="10" />

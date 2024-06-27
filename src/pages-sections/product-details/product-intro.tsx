@@ -20,6 +20,8 @@ import { useEffect } from "react";
 import { ApiResponse, Review } from "./product-review";
 import averageRating from "medusa/lib/average-rating";
 import SubmitProductReview from "./submit-review";
+import ProductActionsHealth_Beauty from "medusa/modules/products/components/product-actions-handb";
+import Add from "@mui/icons-material/Add";
 // ================================================================
 
 type ProductIntroProps = {
@@ -27,6 +29,7 @@ type ProductIntroProps = {
   region: Region;
   cart: CartWithCheckoutStep;
   response: ApiResponse;
+  store?:string
 };
 
 const ProductIntro: React.FC<ProductIntroProps> = ({
@@ -34,6 +37,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({
   region,
   cart,
   response,
+  store,
 }) => {
   const { id, title, images, handle, thumbnail, options, variants } =
     product || {};
@@ -89,7 +93,18 @@ const ProductIntro: React.FC<ProductIntroProps> = ({
               backgroundColor: "#fafafa",
             }}
           >
+            {store === "health-beauty-shop" ? 
+            <ProductActionsHealth_Beauty
+            product={product}
+            region={region}
+            cart={cart}
+          >
+            <Add /> Add to Cart
+          </ProductActionsHealth_Beauty>
+            : 
             <ProductActions product={product} region={region} cart={cart} />
+            }
+            
           </div>
 
           {/* SHOP NAME */}

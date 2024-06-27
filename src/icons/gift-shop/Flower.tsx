@@ -4,7 +4,7 @@ import SvgIcon from "@mui/material/SvgIcon";
 export default function Flower(props) {
   return (
     <SvgIcon {...props}>
-      <svg fill="currentColor" viewBox="0 0 512 512">
+      <svg fill="currentColor" viewBox="0 0 19 19">
         
     <g clipPath="url(#clip0_6820_24076)">
       <path d="M5.74599 12.2099C4.41068 11.0187 3.81988 9.54109 3.55927 8.5115C3.27429 7.38503 3.31011 6.5308 3.3105 6.52229L3.02964 6.50879L2.7487 6.49512C2.74691 6.53259 2.70754 7.42623 3.00907 8.62952C3.28765 9.74145 3.92366 11.338 5.37157 12.6297L5.74599 12.2099Z" fill="currentColor" />

@@ -12,12 +12,10 @@ import { medusaClient } from "medusa/lib/config";
 export default async function Layout({
   children,
   params,
-}:
-{
+}: {
   children: React.ReactNode;
-  params: {countryCode: string };
-}
-){
+  params: { countryCode: string };
+}) {
   const cart = await fetchCart();
   const region = await getRegion(params.countryCode);
   if (!region) {
@@ -25,10 +23,14 @@ export default async function Layout({
   }
   const customer = await getCustomer();
 
-  return <ShopLayout2
-  cart={cart}
-  customer={customer}
-  countryCode={params.countryCode}
-  
-  >{children}</ShopLayout2>;
+  return (
+    <ShopLayout2
+      cart={cart}
+      customer={customer}
+      countryCode={params.countryCode}
+      region={region}
+    >
+      {children}
+    </ShopLayout2>
+  );
 }

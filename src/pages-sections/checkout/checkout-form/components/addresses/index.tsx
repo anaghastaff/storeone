@@ -220,6 +220,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                             type="button"
                             href="/cart"
                             fullWidth
+                            sx={{minWidth:'50%'}}
                           >
                             Back to Cart
                           </Button>
@@ -233,7 +234,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                             type="submit"
                             fullWidth
                             disabled={updating}
-                            sx={{mx:'auto'}}
+                            sx={{mx:'auto', minWidth:'50%'}}
                           >
                             {
                               updating ?

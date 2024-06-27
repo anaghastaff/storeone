@@ -222,7 +222,7 @@ const StripePaymentButton = ({
                 
                 fullWidth={true}
                 data-testid={dataTestId}     
-                sx={{mx:'auto'}}        
+                sx={{mx:'auto', minWidth:'50%'}}        
               >
                {submitting ? <CircularProgress size={14} color="success"/> : "Place order"   }
               </Button>
@@ -340,7 +340,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         size="large"
         fullWidth={true}
         data-testid="submit-order-button"
-        sx={{mx:'auto'}}
+        sx={{mx:'auto', minWidth:'50%'}}
       >
        {submitting ? <CircularProgress size={14} color="success"/> : "Place order"   } 
       </Button>

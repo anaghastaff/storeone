@@ -1,6 +1,6 @@
 "use client";
 import Container from "@mui/material/Container"; // GLOBAL CUSTOM COMPONENTS
-import { useEffect, useRef, useState } from "react"; // Local CUSTOM COMPONENT
+import { useEffect, useRef, useState,useCallback } from "react"; // Local CUSTOM COMPONENT
 import { useSearchParams } from "next/navigation";
 import { SideNavbar } from "components/page-sidenav"; // CUSTOM DATA MODEL
 import Skeleton from "@mui/material/Skeleton";
@@ -23,6 +23,7 @@ import {
   categoryNavigation as sidebarNavList,
 } from "__server__/__db__/furniture/data";
 import type { SortOptions } from "medusa/modules/store/components/refinement-list/sort-products";
+import {SideNavSticky} from "components/sticky";
 // ==============================================================
 
 type searchParams = {
@@ -46,6 +47,8 @@ const CategoriesLayout = ({
   // useEffect(() => {
   //   if (ref.current) setSidebarHeight(ref.current.offsetHeight);
   // }, []);
+  const [isFixed, setIsFixed] = useState(false);
+  const toggleIsFixed = useCallback((fixed) => setIsFixed(fixed), []); // FOR HANDLE TOP BAR AREA
   const sidebarHeight = "85vh";
   const searchParams = useSearchParams();
   const sort_option = searchParams.get("sortBy");
@@ -53,12 +56,14 @@ const CategoriesLayout = ({
     <StyledContainer>
       {/* LEFT SIDEBAR */}
       <div className="sidenav">
+      <SideNavSticky fixedOn={80} onSticky={toggleIsFixed} scrollDistance={405}>
         <SideNavbar
           lineStyle="dash"
           navList={sidebarNavList}
           sidebarStyle="style2"
           sidebarHeight={sidebarHeight ? sidebarHeight : "85vh"}
         />
+        </SideNavSticky>
       </div>
       {/* OFFER BANNERS */}
       <div

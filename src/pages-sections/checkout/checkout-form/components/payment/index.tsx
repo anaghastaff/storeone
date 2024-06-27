@@ -19,9 +19,7 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Divider from "@mui/material/Divider"
 import CircularProgress from "@mui/material/CircularProgress"
-
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-
 import { setPaymentMethod } from "medusa/modules/checkout/actions";
 import { paymentInfoMap } from "medusa/lib/constants";
 import { StripeContext } from "medusa/modules/checkout/payment-wrapper";
@@ -164,7 +162,7 @@ const Payment = ({
             <Button
               size="large"
               variant="contained"
-              sx={{ mt: 6 }}
+              sx={{ mt: 6, minWidth:'50%' }}
               onClick={handleSubmit}              
               color="primary"
               disabled={

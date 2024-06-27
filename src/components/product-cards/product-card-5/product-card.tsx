@@ -132,6 +132,7 @@ const ProductCard14 = (props) => {
         pricedProduct={product}
         region={region}
         cart={cart}
+        rating={rating}
         product={{
           title,
           price,
@@ -146,7 +147,7 @@ const ProductCard14 = (props) => {
         <ProductTitle slug={slug} title={title} />
 
         {/* PRODUCT RATINGS IF AVAILABLE */}
-        <ProductRating rating={rating} showRating={!hideRating} />
+        <ProductRating rating={rating.averageRating} length={rating.count} showRating={true} />
 
         {/* PRODUCT PRICE WITH DISCOUNT */}
         <ProductPrice discount={off} price={price} />
