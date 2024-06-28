@@ -89,13 +89,13 @@ const Payment = ({
   const handleSubmit = () => {
     setIsLoading(true);
     router.push("/checkout?step=review", {scroll: false});
-    setIsLoading(false)
+    
   };
 
-  useEffect(() => {
-    setIsLoading(false);
-    setError(null);
-  }, [isOpen]);
+  // useEffect(() => {
+  //    setIsLoading(false);
+  //   setError(null);
+  // }, [isOpen]);
 
   return (
     <Paper elevation={4} sx={{ bgcolor: "inherit" }}>
@@ -113,7 +113,7 @@ const Payment = ({
         {!isOpen && paymentReady && (
           <Button
             onClick={handleEdit}
-            color="primary"
+            color="info"
             variant="contained"
             size="small"
             sx={{ maxWidth: "fit-content" }}
@@ -160,11 +160,11 @@ const Payment = ({
               data-testid="payment-method-error-message"
             />
             <Button
-              size="large"
+              size="small"
               variant="contained"
-              sx={{ mt: 6, minWidth:'50%' }}
+              sx={{mx:'auto', minWidth:'50%', minHeight:'2rem'}}
               onClick={handleSubmit}              
-              color="primary"
+              color="info"
               disabled={
                 (isStripe && !stripeReady && !paymentSelected) ||
                 !cart.payment_session

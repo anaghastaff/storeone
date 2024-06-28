@@ -80,7 +80,7 @@ const OrderConfirmationPageView = ({ order }: OrderCompletedTemplateProps) => {
           variant="contained"
           className="button-link"
           LinkComponent={Link}
-          href="/furniture-shop"
+          href="/furniture-shop/categories/all-products"
         >
           Browse products
         </StyledButton>

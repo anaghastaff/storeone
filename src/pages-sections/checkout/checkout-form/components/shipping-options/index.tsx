@@ -36,11 +36,13 @@ import ErrorMessage from "medusa/modules/checkout/components/error-message";
 type ShippingProps = {
   cart: Omit<Cart, "refundable_amount" | "refunded_total">;
   availableShippingMethods: PricedShippingOption[] | null;
+  
 };
 
 const ShippingOptions: React.FC<ShippingProps> = ({
   cart,
   availableShippingMethods,
+ 
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -100,7 +102,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
         {!isOpen && cart.shipping_methods.length > 0 && (
           <Button
             onClick={handleEdit}
-            color="primary"
+            color="info"
             variant="contained"
             size="small"
             sx={{ maxWidth: "fit-content",  }}
@@ -155,8 +157,7 @@ const ShippingOptions: React.FC<ShippingProps> = ({
                               />
                             }
                             label={
-                              <Box
-                              
+                              <Box                              
                                 sx={{
                                   display: "flex",
                                   justifyContent: "space-between",
@@ -199,16 +200,15 @@ const ShippingOptions: React.FC<ShippingProps> = ({
           />
 
           <Button
-            size="large"
+            size="small"
             variant="contained"
-            sx={{ mt: 3 ,  minWidth:'50%'}}
-            onClick={handleSubmit}
-           
-            color="primary"
-            disabled={!cart.shipping_methods[0]}
+            sx={{mt:3, mx:'auto', minWidth:'50%', minHeight:'2rem'}}
+            onClick={handleSubmit}           
+            color="info"
+            disabled={!cart.shipping_methods[0] || isLoading || !isOpen}
             data-testid="submit-delivery-option-button"
           >
-          {isLoading ? <CircularProgress size={14} color="success"/> : "Continue to Payment"   } 
+          {isLoading ? <CircularProgress size={14} color="success"/> : "Continue to Payment"} 
           </Button>
         </div>
       ) : (

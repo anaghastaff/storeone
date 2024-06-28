@@ -36,10 +36,10 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
        px:1,
         border:
           selectedPaymentOptionId === paymentSession.provider_id
-            ? "2px solid lightblue"
+            ? "2px solid blue"
             : "none",
             '&:hover':{
-              bgcolor:'lightgreen'
+              bgcolor:'lightblue'
             }
       }}
     >
