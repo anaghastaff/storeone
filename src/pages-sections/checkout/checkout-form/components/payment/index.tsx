@@ -167,7 +167,7 @@ const Payment = ({
               color="info"
               disabled={
                 (isStripe && !stripeReady && !paymentSelected) ||
-                !cart.payment_session
+                !cart.payment_session || isLoading
               }
               data-testid="submit-payment-button"
             >

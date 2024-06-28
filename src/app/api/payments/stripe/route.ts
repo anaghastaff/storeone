@@ -7,7 +7,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2024-04-10",
   });
 
-  
 const POST = async (req:NextRequest, res:NextResponse) => { 
     
     const cart = await fetchCart();
