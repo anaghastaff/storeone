@@ -66,7 +66,7 @@ const Section3 = async ({
             id: item?.id,
             regionId: region.id,
           });
-          const rating = ratings.find((r) => r.id === pricedProduct?.id);
+          // const rating = ratings.find((r) => r.id === pricedProduct?.id);
           return (
             <Box pt={0.5} pb={2} key={item.id}>
               <ProductCard5
@@ -77,10 +77,11 @@ const Section3 = async ({
                 title={item.title}
                 price={pricedProduct.variants[0].calculated_price}
                 off={15}
-                rating={rating}
+                
                 imgUrl={item.thumbnail}
                 region={region}
                 hoverEffect={true}
+                ratings={ratings}
               />
             </Box>
           );

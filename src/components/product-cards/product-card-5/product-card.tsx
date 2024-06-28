@@ -59,7 +59,7 @@ const ProductCard14:React.FC<Props> = (props) => {
     title,
     price,
     imgUrl,
-    rating,
+    ratings,
     hideRating,
     hoverEffect,
     slug,
@@ -99,7 +99,10 @@ const ProductCard14:React.FC<Props> = (props) => {
     };
     handleCartAmountChange(product, "remove");
   };
+
   
+  const rating = ratings.find((r) => r.id === product?.id);
+
   return (
     <StyledBazaarCard hoverEffect={hoverEffect}>
       <ImageWrapper>

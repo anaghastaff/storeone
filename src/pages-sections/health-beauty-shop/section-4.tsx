@@ -38,7 +38,7 @@ const Section4 = async ({
             id: item?.id,
             regionId: region.id,
           })
-          const rating:averagerating = ratings.find((r) => r.id === pricedProduct?.id);
+         
           return (
             <Grid key={item.id} item md={4} sm={6} xs={12}>
            <ProductCard5
@@ -49,7 +49,7 @@ const Section4 = async ({
                 title={item.title}
                 price={pricedProduct.variants[0].calculated_price}
                 off={15}
-                rating={rating}
+                ratings={ratings}
                 imgUrl={item.thumbnail}
                 region={region}
                 hoverEffect={true}
