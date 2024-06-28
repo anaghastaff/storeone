@@ -129,7 +129,7 @@ const QuantityButtons = ({
           <Fragment>
             <StyledButton
               loading={updating || reduce}
-              disabled={disabled }
+              disabled={disabled || updating || reduce}
               variant="outlined"
               onClick={() => handleIncrement(quantity + 1)}
             >
@@ -140,7 +140,7 @@ const QuantityButtons = ({
 
             <StyledButton
               loading={reduce || updating}
-              disabled={disabled }
+              disabled={disabled || updating || reduce}
               variant="outlined"
               onClick={() => handleDecrement(quantity - 1)}
             >

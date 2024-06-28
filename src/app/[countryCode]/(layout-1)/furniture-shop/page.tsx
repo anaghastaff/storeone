@@ -34,7 +34,7 @@ type Params = {
 const limit = 12;
 async function ProductWithContext({ region }) {
   const { products, count } = await medusaClient.products
-    .list({
+    .list({ 
       expand: "categories",
       region_id: region.id,      
       limit:limit,

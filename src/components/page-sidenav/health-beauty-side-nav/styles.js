@@ -3,12 +3,18 @@ import {styled} from "@mui/material/styles"; // GLOBAL CUSTOM COMPONENTS
 
 import { FlexBox } from "components/flex-box";
 import BazaarCard from "components/BazaarCard";
+
 export const NavbarRoot = styled(BazaarCard)(({
   theme
 }) => ({
   height: "100%",
+  minHeight:"100vh",
   borderRadius: "8px",
-  position: "relative",
+  // position: "relative",
+  position:'sticky',
+  offset:'80px',
+width:280,
+  maxWidth:280,
   "& .linkList": {
     padding: "8px 11px",
     transition: "all 0.2s",

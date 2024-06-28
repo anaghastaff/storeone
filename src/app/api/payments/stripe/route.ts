@@ -3,11 +3,10 @@ import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import Stripe from "stripe";
 import { error } from "console";
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2024-04-10",
   });
 
-  
 const POST = async (req:NextRequest, res:NextResponse) => { 
     
     const cart = await fetchCart();
@@ -40,7 +39,7 @@ const POST = async (req:NextRequest, res:NextResponse) => {
     const paymentIntent = await stripe.paymentIntents.update(
        session?.data?.id,
       {
-        description: "service Transaction", 
+        description: "ecommerce transaction", 
 
         shipping: {
             name: cart?.shipping_address?.first_name + "" + cart?.shipping_address?.last_name ,
@@ -48,7 +47,7 @@ const POST = async (req:NextRequest, res:NextResponse) => {
               line1: cart?.shipping_address?.address_1 ?? undefined  ,
               postal_code: cart?.shipping_address?.postal_code ?? undefined,
               city: cart?.shipping_address?.city ?? undefined,
-              state: cart?.shipping_address?.province ?? "ABC" ,
+              state: cart?.shipping_address?.province ?? "province" ,
               country:cart?.shipping_address?.country_code ?? undefined ,
             },
           },

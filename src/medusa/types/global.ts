@@ -15,6 +15,12 @@ export type AllReviews=[
     updated_at: string;
   }
   ]
+
+  export type averagerating = {
+    id:string,
+    averageRating:number,
+    count:number
+  }
   
   export type AverageRatings=[
     {

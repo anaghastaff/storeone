@@ -25,7 +25,7 @@ import { FetchAllReviews } from "medusa/lib/util/fetch-all-reviews";
 import { calculateAverageRating } from "medusa/lib/util/get-average-rating";
 import Loading from "./loading";
 
-const FurnitureShopPageView = async ({
+const FurnitureShopPageView = async ({ 
   region,
   cart,
   customer,

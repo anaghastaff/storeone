@@ -127,7 +127,7 @@ const ProductCard17 = (props:Props) => {
           {/* PRODUCT RATING / REVIEW  */}
 
           <ProductRating
-            showRating={hideRating}
+            showRating={true}
             rating={ pr ? pr?.averageRating : 0}            
             length={pr ? pr?.count : 0}
           />

@@ -113,8 +113,8 @@ categories,
                 price={data.price.calculated_price}
                 region={region}
                 cart={cart}
-                off={"10"}
-                // rating={5}
+                off="15"
+                
                 status={
                   pricedProduct?.tags?.find((i) => i?.value === "sale")
                     ? "Sale"
@@ -133,7 +133,7 @@ categories,
           );
         })}
       </Grid>
-      <Box mt={6} mb={6} display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="center">
         {/* <Button color="primary" variant="contained" size="large" sx={{borderRadius:0, mb:2}}
           onClick={handleCount} disabled={pageEnd}
         >

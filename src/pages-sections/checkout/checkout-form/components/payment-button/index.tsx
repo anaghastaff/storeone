@@ -137,7 +137,7 @@ const StripePaymentButton = ({
       return;
     }
 
-    // Create the PaymentIntent and obtain clientSecret
+    // Create the PaymentIntent and obtain clientSecret 
     
     const res = await fetch(`/api/payments/stripe`, {
       credentials: "include",
@@ -218,11 +218,11 @@ const StripePaymentButton = ({
                 disabled={disabled || notReady || !cardComplete || submitting}      
                 type="submit"           
                 variant="contained"
-                color="secondary"
-                
+                color="info"                
                 fullWidth={true}
-                data-testid={dataTestId}     
-                sx={{mx:'auto'}}        
+                data-testid={dataTestId}   
+                size="small"  
+                sx={{mx:'auto', minWidth:'50%', minHeight:'2rem'}}        
               >
                {submitting ? <CircularProgress size={14} color="success"/> : "Place order"   }
               </Button>
@@ -340,7 +340,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         size="large"
         fullWidth={true}
         data-testid="submit-order-button"
-        sx={{mx:'auto'}}
+        sx={{mx:'auto', minWidth:'50%'}}
       >
        {submitting ? <CircularProgress size={14} color="success"/> : "Place order"   } 
       </Button>

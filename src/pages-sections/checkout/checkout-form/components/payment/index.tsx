@@ -19,9 +19,7 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Divider from "@mui/material/Divider"
 import CircularProgress from "@mui/material/CircularProgress"
-
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-
 import { setPaymentMethod } from "medusa/modules/checkout/actions";
 import { paymentInfoMap } from "medusa/lib/constants";
 import { StripeContext } from "medusa/modules/checkout/payment-wrapper";
@@ -91,13 +89,13 @@ const Payment = ({
   const handleSubmit = () => {
     setIsLoading(true);
     router.push("/checkout?step=review", {scroll: false});
-    setIsLoading(false)
+    
   };
 
-  useEffect(() => {
-    setIsLoading(false);
-    setError(null);
-  }, [isOpen]);
+  // useEffect(() => {
+  //    setIsLoading(false);
+  //   setError(null);
+  // }, [isOpen]);
 
   return (
     <Paper elevation={4} sx={{ bgcolor: "inherit" }}>
@@ -115,7 +113,7 @@ const Payment = ({
         {!isOpen && paymentReady && (
           <Button
             onClick={handleEdit}
-            color="primary"
+            color="info"
             variant="contained"
             size="small"
             sx={{ maxWidth: "fit-content" }}
@@ -162,14 +160,14 @@ const Payment = ({
               data-testid="payment-method-error-message"
             />
             <Button
-              size="large"
+              size="small"
               variant="contained"
-              sx={{ mt: 6 }}
+              sx={{mx:'auto', minWidth:'50%', minHeight:'2rem'}}
               onClick={handleSubmit}              
-              color="primary"
+              color="info"
               disabled={
                 (isStripe && !stripeReady && !paymentSelected) ||
-                !cart.payment_session
+                !cart.payment_session || isLoading
               }
               data-testid="submit-payment-button"
             >

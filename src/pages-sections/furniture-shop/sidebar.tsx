@@ -1,4 +1,4 @@
-//  "use client";
+ "use client";
 import { useEffect, useRef, useState } from "react"; // Local CUSTOM COMPONENT
 import Section2 from "./section-2"; // GLOBAL CUSTOM COMPONENT
 import { SideNavbar } from "components/page-sidenav"; // CUSTOM DATA MODEL
@@ -27,12 +27,12 @@ const Sidebar = ({
   region: Region;
   limit: number;
 }) => {
-  // const ref = useRef<HTMLDivElement>(null);
-  // const [sidebarHeight, setSidebarHeight] = useState<any>(0);
-  // useEffect(() => {
-  //   if (ref.current) setSidebarHeight(ref.current.offsetHeight);
-  // }, []);
-  const sidebarHeight = "85vh";
+  const ref = useRef<HTMLDivElement>(null);
+  const [sidebarHeight, setSidebarHeight] = useState<any>(0);
+  useEffect(() => {
+    if (ref.current) setSidebarHeight(ref.current.offsetHeight);
+  }, []);
+  // const sidebarHeight = "85vh";
 
   return (
     <StyledContainer>
@@ -49,7 +49,7 @@ const Sidebar = ({
       {/* OFFER BANNERS */}
       <div
         className="pageContent"
-        // ref={ref}
+         ref={ref}
       >
         <Section2 limit={limit} products={products} region={region} />
       </div>

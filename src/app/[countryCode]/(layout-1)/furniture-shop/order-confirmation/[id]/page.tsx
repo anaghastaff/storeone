@@ -39,5 +39,8 @@ export default async function OrderConfirmation(
 
   const { order } = await getOrder(params.id)
 
-  return  <OrderConfirmationPageView order={order}/>;
+  return <Suspense fallback={<Loading />}>
+<OrderConfirmationPageView order={order}/>;
+  </Suspense> 
+   
 }

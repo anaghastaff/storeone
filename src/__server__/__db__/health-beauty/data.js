@@ -2,144 +2,147 @@
 export const categoryNavigation = [{
   icon: "Home",
   title: "Home",
-  href: "/products/search/Dariry & Eggs"
+  href: "/health-beauty-shop"
 }, {
   icon: "Popular",
   title: "Popular Products",
-  href: "/products/search/Breakfast"
+  href: "/health-beauty-shop/categories/essential-oils"
 }, {
   icon: "Trending",
   title: "Trending Products",
-  href: "/products/search/Frozen"
+  href: "/health-beauty-shop/categories/health"
 }, {
   icon: "Products",
   title: "All Products",
-  href: "/products/search/vegetables"
+  href: "/health-beauty-shop/categories/all-products"
 }, {
   icon: "HealthBeauty",
   title: "Health and beauty",
-  href: "/products/search/Fruits & Vegetables",
+  href: "/health-beauty-shop/categories/organic-bags",
   child: [{
     title: "Beauty Items",
-    href: "/products/search/Onion"
+    href: "/health-beauty-shop/categories/essential-oils"
   }, {
     title: "Medicine Items",
-    href: "/products/search/Potato"
+    href: "/health-beauty-shop/categories/chair"
   }, {
     title: "Makeup Items",
-    href: "/products/search/Vegetable Pack"
+    href: "/health-beauty-shop/categories/home-sofas"
   }]
 }, {
   icon: "Mascara",
   title: "Mascara",
-  href: "/products/search/Dariry & Eggs",
+  href: "/health-beauty-shop/categories/essential-oils",
   child: [{
     title: "Beauty Items",
-    href: "/products/search/Onion"
+    href:"/health-beauty-shop/categories/organic-bags",
   }, {
     title: "Medicine Items",
-    href: "/products/search/Potato"
+    href: "/health-beauty-shop/categories/essential-oils"
   }, {
     title: "Makeup Items",
-    href: "/products/search/Vegetable Pack"
+    href: "/health-beauty-shop/categories/organic-bags",
   }]
 }, {
   icon: "Powder",
   title: "Powder",
-  href: "/products/search/Breakfast",
+  href: "/health-beauty-shop/categories/couch",
   child: [{
     title: "Beauty Items",
-    href: "/products/search/Onion"
+    href: "/health-beauty-shop/categories/medusa-merch",
   }, {
     title: "Medicine Items",
-    href: "/products/search/Potato"
+    href: "/health-beauty-shop/categories/essential-oils",
   }, {
     title: "Makeup Items",
-    href: "/products/search/Vegetable Pack"
+    href: "/health-beauty-shop/categories/organic-bags",
   }]
 }, {
   icon: "Lotion",
   title: "Lotion",
-  href: "/products/search/Frozen",
+  href: "/health-beauty-shop/categories/essential-oils",
   child: [{
     title: "Beauty Items",
-    href: "/products/search/Onion"
+    href: "/health-beauty-shop/categories/organic-bags",
   }, {
     title: "Medicine Items",
-    href: "/products/search/Potato"
+    href: "/health-beauty-shop/categories/medusa-merch",
   }, {
     title: "Makeup Items",
-    href: "/products/search/Vegetable Pack"
+    href: "/health-beauty-shop/categories/home-sofas",
   }]
 }, {
   icon: "HealthBeauty",
   title: "Makeup",
-  href: "/products/search/Organic",
+  href: "/health-beauty-shop/categories/health",
   child: [{
     title: "Beauty Items",
-    href: "/products/search/Onion"
+    href: "/health-beauty-shop/categories/medusa-merch",
   }, {
     title: "Medicine Items",
-    href: "/products/search/Potato"
+    href: "/health-beauty-shop/categories/essential-oils",
   }, {
     title: "Makeup Items",
-    href: "/products/search/Vegetable Pack"
+    href: "/health-beauty-shop/categories/organic-bags",
   }]
-}, {
-  icon: "Lipstick",
-  title: "Lipstick",
-  href: "/products/search/Canned Food",
-  child: [{
-    title: "Beauty Items",
-    href: "/products/search/Onion"
-  }, {
-    title: "Medicine Items",
-    href: "/products/search/Potato"
-  }, {
-    title: "Makeup Items",
-    href: "/products/search/Vegetable Pack"
-  }]
-}, {
-  icon: "FaceMask",
-  title: "Face Mask",
-  href: "/products/search/Coffee & Snacks",
-  child: [{
-    title: "Beauty Items",
-    href: "/products/search/Onion"
-  }, {
-    title: "Medicine Items",
-    href: "/products/search/Potato"
-  }, {
-    title: "Makeup Items",
-    href: "/products/search/Vegetable Pack"
-  }]
-}, {
-  icon: "Thermometer",
-  title: "Digital Thermometer",
-  href: "/products/search/Sauces & Jems"
-}, {
-  icon: "OxygenPump",
-  title: "Oxygen Pump",
-  href: "/products/search/Breakfast"
-}, {
-  icon: "LenseCase",
-  title: "Lense Case Kit",
-  href: "/products/search/Frozen"
-}, {
-  icon: "AutoMotive",
-  title: "Automotive",
-  href: "/products/search/Organic"
-}]; // main carousel data
+}, 
+// {
+//   icon: "Lipstick",
+//   title: "Lipstick",
+//   href: "/products/search/Canned Food",
+//   child: [{
+//     title: "Beauty Items",
+//     href: "/products/search/Onion"
+//   }, {
+//     title: "Medicine Items",
+//     href: "/products/search/Potato"
+//   }, {
+//     title: "Makeup Items",
+//     href: "/products/search/Vegetable Pack"
+//   }]
+// }, {
+//   icon: "FaceMask",
+//   title: "Face Mask",
+//   href: "/products/search/Coffee & Snacks",
+//   child: [{
+//     title: "Beauty Items",
+//     href: "/products/search/Onion"
+//   }, {
+//     title: "Medicine Items",
+//     href: "/products/search/Potato"
+//   }, {
+//     title: "Makeup Items",
+//     href: "/products/search/Vegetable Pack"
+//   }]
+// }, {
+//   icon: "Thermometer",
+//   title: "Digital Thermometer",
+//   href: "/products/search/Sauces & Jems"
+// }, {
+//   icon: "OxygenPump",
+//   title: "Oxygen Pump",
+//   href: "/products/search/Breakfast"
+// }, {
+//   icon: "LenseCase",
+//   title: "Lense Case Kit",
+//   href: "/products/search/Frozen"
+// }, {
+//   icon: "AutoMotive",
+//   title: "Automotive",
+//   href: "/products/search/Organic"
+// }
+
+]; // main carousel data
 
 export const mainCarouselData = [{
   id: 1,
-  buttonLink: "/",
+  buttonLink: "/health-beauty-shop/categories/all-products",
   buttonText: "Shop",
   imgUrl: "/assets/images/Health Shop/Header 1.png",
   title: "Delivering Medicine to your Doorstep Within 30 Minutes"
 }, {
   id: 2,
-  buttonLink: "/",
+  buttonLink: "/health-beauty-shop/categories/health",
   buttonText: "Shop",
   imgUrl: "/assets/images/Health Shop/Header 1.png",
   title: "Delivering Medicine to your Doorstep Within 30 Minutes"

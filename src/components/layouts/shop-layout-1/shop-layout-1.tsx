@@ -15,6 +15,7 @@ import { Suspense } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import BreadCrumbs from "components/bread-crumbs";
 import type { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import { usePathname } from "next/navigation";
 
 /**
  *  USED IN:
@@ -38,6 +39,9 @@ const ShopLayout1 = ({
 }) => {
   const [isFixed, setIsFixed] = useState(false);
   const toggleIsFixed = useCallback((fixed) => setIsFixed(fixed), []);
+  const pathname = usePathname();
+  const categories = pathname.split("/").includes("categories")
+  
   return (
     <Fragment>
       {/* TOP BAR SECTION */}
@@ -74,7 +78,7 @@ const ShopLayout1 = ({
         countryCode={countryCode}
       />
       {/* FOOTER */}
-      <Footer1 />
+     {!categories && <Footer1 />} 
     </Fragment>
   );
 };

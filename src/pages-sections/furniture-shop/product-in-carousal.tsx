@@ -39,7 +39,7 @@ export default function ProductInCarousel({
         responsive={responsive}
         dots={false}
         dotColor="#3399ff"        
-        slidesToShow={3}
+        slidesToShow={4}
         arrowStyles={{
           width: 40,
           height: 40,

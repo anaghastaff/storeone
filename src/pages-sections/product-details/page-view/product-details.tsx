@@ -21,6 +21,7 @@ type ProductDetailsPageViewProps = {
   region:Region,
   cart: CartWithCheckoutStep,
   response:ApiResponse
+  store?:string
 
 }
 const ProductDetailsPageView:React.FC<ProductDetailsPageViewProps> = props => {
@@ -33,7 +34,7 @@ const ProductDetailsPageView:React.FC<ProductDetailsPageViewProps> = props => {
       {
       /* PRODUCT DETAILS INFO AREA */
     }
-       <ProductIntro product={props.product} region={props.region} cart={props.cart} response={props.response}/> 
+       <ProductIntro store={props.store} product={props.product} region={props.region} cart={props.cart} response={props.response}/> 
 
       {
       /* PRODUCT DESCRIPTION AND REVIEW */

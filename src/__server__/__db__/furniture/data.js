@@ -1,5 +1,5 @@
 // top navigation 
-export const categoryNavigation = [{
+export const categoryNavigation = [{ 
   category: "Top Categories",
   categoryItem: [{
     icon: "Home",

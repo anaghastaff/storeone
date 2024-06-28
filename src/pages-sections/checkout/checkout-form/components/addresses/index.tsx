@@ -20,7 +20,7 @@ import ShippingForm from "../shipping-address";
 import BillingAddressForm from "../billing-address";
 import type { CartAddress, CartWithCheckoutStep } from "medusa/types/global";
 import { setCartAddress } from "medusa/modules/checkout/actions";
-import CustomizedSnackbars from "components/snackbar";
+
 import { error } from "console";
 import useToggleState from "medusa/lib/hooks/use-toggle-state";
 import compareAddresses from "medusa/lib/util/compare-addresses";
@@ -29,7 +29,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
    
-  const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
+  
   const [updating, setUpdating] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -58,14 +58,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
       .finally(() => {
         setUpdating(false);
       });
-    message && setSnackbarMessage(message);
-
-    if (snackbarMessage !== "success" && snackbarMessage !== null) {
-      setOpen(true);
-    }
-
-    const temp = "Address updated Successfully";
-    setSnackbarMessage(temp);
+    
     setOpen(true);
     router.push("/checkout?step=delivery");
   };
@@ -104,7 +97,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
         {!isOpen && cart?.shipping_address && (
           <Button
             onClick={handleEdit}
-            color="primary"
+            color="info"
             variant="contained"
             size="small"
             data-testid="edit-address-button"
@@ -216,10 +209,12 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
                           <Button
                             LinkComponent={Link}
                             variant="outlined"
-                            color="primary"
+                            color="info"
                             type="button"
                             href="/cart"
+                            size="small"
                             fullWidth
+                            sx={{mx:'auto', minWidth:'50%', minHeight:'2rem'}}
                           >
                             Back to Cart
                           </Button>
@@ -227,17 +222,18 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
 
                         <Grid item sm={6} xs={12}>
                           <Button
-                           LinkComponent={Link}
+                           
                             variant="contained"
-                            color="primary"
+                            color="info"
                             type="submit"
                             fullWidth
-                            disabled={updating}
-                            sx={{mx:'auto'}}
+                            size="small"
+                            disabled={updating || !isOpen}
+                            sx={{mx:'auto', minWidth:'50%', minHeight:'2rem'}}
                           >
                             {
                               updating ?
-                             "Submitting Address"
+                              <CircularProgress color="primary" size={14} />
                               :
                               "Proceed to Delivery"
                             }
@@ -369,11 +365,7 @@ const Addresses = ({ cart }: { cart: CartWithCheckoutStep }) => {
           );
         }}
       </Formik>
-      <CustomizedSnackbars
-        open={open}
-        handleClose={handleClose}
-        message={snackbarMessage}
-      />
+     
     </Box>
   );
 };

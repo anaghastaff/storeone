@@ -3,12 +3,7 @@ import Card from "@mui/material/Card";
 import {styled} from "@mui/material/styles"; // ===============================================
 
 // ===============================================
-const 
-
-
-
-
-BazaarCard = styled(Card, {
+const BazaarCard = styled(Card, {
   shouldForwardProp: prop => prop !== "hoverEffect"
 })(({
   theme,

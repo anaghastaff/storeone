@@ -11,31 +11,29 @@ export const Wrapper = styled("div")({
 export const StyledContainer = styled(Box)(({
   theme
 }) => ({
-  paddingTop: 24,
+  // paddingTop: 24,
   display: "flex",
   position: "relative",
   justifyContent:'space-between',
-  width:'100%',
-  
-  minHeight:'100vh',
-  ".sidenav": {
-    top: 0,
-    bottom: 0,
-    position: "relative",
+  width:'100%',  
+  ".sidenav": {       
     width: layoutConstant.grocerySidenavWidth,
     minWidth: layoutConstant.grocerySidenavWidth,
-    // height: `calc(100vh - ${layoutConstant.headerHeight}px)`,
+     minHeight: `calc(100vh - ${layoutConstant.headerHeight}px)`,
     "& .MuiPaper-root": {
       borderRadius: 5
     }
   },
-  ".fixed": {
-    marginTop: 16,
-    position: "relative",
-    scrollBehavior: "unset",
-    top: layoutConstant.headerHeight
-  },
+  // ".fixed": {
+  //   marginTop: 16,
+  //   position: "relative",
+  //   scrollBehavior: "unset",
+  //   top: layoutConstant.headerHeight
+  // },
   ".pageContent": {
+    display:'flex',
+    flexDirection:'column',
+    gap:2,
     left: "unset",
     margin:"auto",
     position: "relative",

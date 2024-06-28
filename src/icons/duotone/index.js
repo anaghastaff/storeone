@@ -15,7 +15,7 @@ import UserTie from "./UserTie";
 import Pricing from "./Pricing";
 import Settings from "./Settings";
 import TodoList from "./TodoList";
-import Products from "./Products";
+import Products from "../furniture-shop/Products";
 import Accounts from "./Accounts";
 import Calender from "./Calender";
 import Customers from "./Customers";

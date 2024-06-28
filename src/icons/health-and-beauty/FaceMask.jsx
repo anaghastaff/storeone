@@ -1,5 +1,9 @@
-import {createSvgIcon} from "@mui/material/utils";
-const FaceMask = createSvgIcon(<svg viewBox="0 0 18 18" fill="none">
+import SvgIcon from "@mui/material/SvgIcon";
+
+export default function FaceMask(props) {
+  return (
+    <SvgIcon {...props} viewBox="0 0 18 18">
+      <svg viewBox="0 0 18 18" fill="none">
     <g clipPath="url(#clip0_6820_26105)">
       <path d="M12.5156 8.47266H5.48438C5.29021 8.47266 5.13281 8.63005 5.13281 8.82422C5.13281 9.01839 5.29021 9.17578 5.48438 9.17578H12.5156C12.7098 9.17578 12.8672 9.01839 12.8672 8.82422C12.8672 8.63005 12.7098 8.47266 12.5156 8.47266Z" fill="currentColor" />
       <path d="M12.6462 6.73998C12.5719 6.71024 10.8048 6.01172 9.00002 6.01172C7.19528 6.01172 5.42819 6.71027 5.35384 6.73998C5.17362 6.81205 5.08598 7.01652 5.15802 7.19677C5.23002 7.37701 5.43455 7.4648 5.61484 7.39287C5.63182 7.38608 7.3338 6.71481 9.00006 6.71481C10.6663 6.71481 12.3683 7.38608 12.3851 7.3928C12.5661 7.46522 12.7703 7.37645 12.8421 7.19694C12.9142 7.01666 12.8265 6.81209 12.6462 6.73998Z" fill="currentColor" />
@@ -12,5 +16,7 @@ const FaceMask = createSvgIcon(<svg viewBox="0 0 18 18" fill="none">
         <rect width="18" height="18" fill="white" />
       </clipPath>
     </defs>
-  </svg>, "FaceMask");
-export default FaceMask;
+  </svg>
+    </SvgIcon>
+  );
+}
