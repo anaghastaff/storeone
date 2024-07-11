@@ -101,7 +101,7 @@ const ProductCard14:React.FC<Props> = (props) => {
   };
 
   
-  const rating = ratings.find((r) => r.id === product?.id);
+  const rating = ratings?.find((r) => r.id === product?.id);
 
   return (
     <StyledBazaarCard hoverEffect={hoverEffect}>
