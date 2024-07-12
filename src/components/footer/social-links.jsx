@@ -13,7 +13,7 @@ const SocialLinks = () => {
         margin: 0.5,
         fontSize: 12,
         padding: "10px",
-        backgroundColor: "rgba(0,0,0,0.2)"
+        backgroundColor: "rgba(0,0,0,0.3)"
       }}>
             <Icon fontSize="inherit" sx={{
           color: "white"
