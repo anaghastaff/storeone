@@ -110,7 +110,9 @@ const FurnitureShopPageView = async ({
       <Newsletter image="/assets/images/newsletter/bg-3.png" />
 
       {/* SETTINGS IS USED ONLY FOR DEMO, YOU CAN REMOVE THIS */}
-      <Setting />
+     
+     {/*  <Setting /> */}
+
     </Container>
   );
 };

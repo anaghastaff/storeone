@@ -56,7 +56,7 @@ const Header = ({
         </Link>
 
         {/* SHOW DROP DOWN CATEGORY BUTTON WHEN HEADER FIXED */}
-        {isFixed ? <CategoriesMenu /> : null}
+        {/* {isFixed ? <CategoriesMenu /> : null} */}
       </FlexBox>
 
       {/* SEARCH FORM */}

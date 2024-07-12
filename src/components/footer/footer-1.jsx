@@ -77,15 +77,15 @@ const Footer1 = () => {
             </H6>
 
             <Paragraph py={0.6} color="grey.500">
-              70 Washington Square South, New York, NY 10012, United States
+              Vidyaranyapyra, HMT Layout, Bangalore - 560097, India
             </Paragraph>
 
             <Paragraph py={0.6} color="grey.500">
-              Email: uilib.help@gmail.com
+              Email: anaghawebdev@gmail.com
             </Paragraph>
 
             <Paragraph py={0.6} mb={2} color="grey.500">
-              Phone: +1 1123 456 780
+              Phone: +91 7259676231
             </Paragraph>
 
             {

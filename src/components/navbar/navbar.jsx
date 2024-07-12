@@ -33,7 +33,7 @@ const Navbar = ({
   border,
   elevation = 2,
   navListOpen = false,
-  hideCategories = false,
+  hideCategories = true,
   customer,
 }) => {
   const { settings } = useSettings();
@@ -48,7 +48,8 @@ const Navbar = ({
              <MegaMenu key={nav.title} title={nav.title} menuList={nav.child} customer={customer}/>
             
           );
-        } // SHOW MEGA MENU WITH SUB ITEMS
+        } 
+        // SHOW MEGA MENU WITH SUB ITEMS
 
         if (nav.megaMenuWithSub) {
           return (

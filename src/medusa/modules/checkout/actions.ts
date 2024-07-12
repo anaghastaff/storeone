@@ -273,19 +273,17 @@ export async function placeOrder() {
 
   if (!cartId) throw new Error("No cartId cookie found")
 
-  let cart
+  let cart;
 
   try {
     cart = await completeCart(cartId)
     revalidateTag("cart")
   } catch (error: any) {
     throw error
-  }
-  
+  }  
   if (cart?.type === "order") {
     const countryCode = cart.data.shipping_address?.country_code?.toLowerCase()
-    cookies().set("_medusa_cart_id", "", { maxAge: -1 })
-    console.log(`Redirecting to: /${countryCode}/order-confirmation/${cart?.data.id}`);
+    cookies().set("_medusa_cart_id", "", { maxAge: -1 })    
     redirect(`/${countryCode}/furniture-shop/order-confirmation/${cart?.data.id}`)
    }
 

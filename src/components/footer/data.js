@@ -8,17 +8,17 @@ export const ABOUT_LINKS = ["Careers", "Our Stores", "Our Cares", "Terms & Condi
 export const CUSTOMER_CARE_LINKS = ["Help Center", "Track Your Order", "Corporate & Bulk Purchasing", "Returns & Refunds"];
 export const SOCIAL_ICON_LINKS = [{
   Icon: Facebook,
-  url: "https://www.facebook.com/UILibOfficial"
+  url: "https://www.facebook.com"
 }, {
   Icon: Twitter,
-  url: "https://twitter.com/uilibofficial"
+  url: "https://twitter.com"
 }, {
   Icon: Youtube,
-  url: "https://www.youtube.com/channel/UCsIyD-TSO1wQFz-n2Y4i3Rg"
+  url: "https://www.youtube.com"
 }, {
   Icon: Google,
-  url: "https://www.google.com/search?q=ui-lib.com"
+  url: "https://www.google.com"
 }, {
   Icon: Instagram,
-  url: "https://www.instagram.com/uilibofficial/"
+  url: "https://www.instagram.com/"
 }];
