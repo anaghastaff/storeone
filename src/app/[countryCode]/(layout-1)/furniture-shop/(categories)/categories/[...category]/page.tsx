@@ -12,7 +12,7 @@ import FurnitureCategoryTemplate from "medusa/modules/categories/template-2"
 type Props = {
   params: { category: string[]; countryCode: string } 
   searchParams: {
-    sortBy?: SortOptions
+    sortBy?: SortOptions 
     page?: string
   }
 }
@@ -23,13 +23,10 @@ export async function generateStaticParams() {
   if (!product_categories) {
     return []
   }
-
   const countryCodes = await listRegions().then((regions) =>
     regions?.map((r) => r.countries.map((c) => c.iso_2)).flat() 
   )
-
   const categoryHandles = product_categories.map((category) => category.handle)
-
   const staticParams = countryCodes
     ?.map((countryCode) =>
       categoryHandles.map((handle) => ({

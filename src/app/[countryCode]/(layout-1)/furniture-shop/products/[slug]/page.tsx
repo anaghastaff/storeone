@@ -16,7 +16,7 @@ import { fetchCart } from "medusa/lib/util/get-cart-from-cookie";
 import { FetchReviews } from "pages-sections/product-details/fetch-review";
 
 type Props = {
-  params: { slug: string; countryCode: string };
+  params: { slug: string; countryCode: string }; 
 };
 
 export async function generateMetadata(

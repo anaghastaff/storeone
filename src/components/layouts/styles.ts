@@ -8,7 +8,7 @@ import { BoxProps } from "@mui/material/Box";
 
 /** USED IN PAGE-VIEW FILE */
 
-interface CardProps extends BoxProps {
+interface CardProps extends BoxProps { 
   imgUrl?: string
 }
 
