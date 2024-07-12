@@ -10,6 +10,7 @@ export async function GET() {
             console.log(`Ping Successful @ ${new Date().toLocaleDateString()}`)
             return NextResponse.json({ ok: true }, {status:200});
         }
+        return NextResponse.json({error:"server still down due to inactivity"}, {status:500})
         
     }
     catch(error){
